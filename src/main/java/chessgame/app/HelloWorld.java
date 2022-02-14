@@ -15,8 +15,8 @@ public class HelloWorld implements ApplicationListener {
     public void create() {
         batch = new SpriteBatch();
         font = new BitmapFont();
-        font.setColor(Color.BLUE);
-  
+        font.setColor(Color.MAGENTA);
+
     }
 
     @Override
