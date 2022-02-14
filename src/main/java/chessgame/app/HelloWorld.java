@@ -51,7 +51,7 @@ public class HelloWorld implements ApplicationListener {
         shapeRenderer.end();
         
         batch.begin();
-        font.draw(batch, "Would you rather have:\n Unlimited bacon but no game. \n Or games unlimited games, but no games"
+        font.draw(batch, "(●'◡'●)"
         		+ "", 100, 200);
         batch.end();
     }
