@@ -43,7 +43,7 @@ public class HelloWorld implements ApplicationListener {
 //        batch.end();
         
         
-        //PUSH DA
+        
         
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(Color.BLACK);
