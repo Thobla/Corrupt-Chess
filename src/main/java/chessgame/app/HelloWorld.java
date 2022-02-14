@@ -16,6 +16,7 @@ public class HelloWorld implements ApplicationListener {
         batch = new SpriteBatch();
         font = new BitmapFont();
         font.setColor(Color.BLUE);
+  
     }
 
     @Override
@@ -30,7 +31,8 @@ public class HelloWorld implements ApplicationListener {
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-        font.draw(batch, "Hello World", 200, 200);
+        font.draw(batch, "Would you rather have:\n Unlimited bacon but no game. \n Or games unlimited games, but no games"
+        		+ "", 100, 200);
         batch.end();
     }
 
