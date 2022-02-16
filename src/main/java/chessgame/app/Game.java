@@ -3,6 +3,7 @@ package chessgame.app;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
@@ -27,7 +28,7 @@ public class Game implements ApplicationListener {
         cam.update();
         
         //The map
-        gameMap = new TiledGameMap();
+        gameMap = new TiledGameMap("map");
     }
 
     @Override
@@ -37,6 +38,11 @@ public class Game implements ApplicationListener {
 
     @Override
     public void render() {
+    	/**
+        if(Gdx.input.isKeyPressed(Keys.R)) {
+        	System.out.println("Pressed R!");
+        	gameMap.changeMap("map2");
+        } */
         gameMap.render(cam);
     }
 

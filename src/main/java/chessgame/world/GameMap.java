@@ -28,6 +28,12 @@ public abstract class GameMap {
 	 */
 	public abstract TileType getTileTypeByCoordinate(int layer, int col, int row);
 	
+	/**
+	 * Changes the current map to another map
+	 * @param name - the name of the map to change to.
+	 */
+	public abstract void changeMap(String name);
+	
 	public abstract int getWidth();
 	public abstract int getHeight();
 	public abstract int getLayers();

@@ -11,9 +11,9 @@ public class TiledGameMap extends GameMap{
 	TiledMap tiledMap;
 	OrthogonalTiledMapRenderer tiledMapRenderer;
 	
-	public TiledGameMap() {
+	public TiledGameMap(String map) {
 		
-		tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/map.tmx").file().getAbsolutePath());
+		tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+map+".tmx").file().getAbsolutePath());
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 	}
 	
@@ -57,6 +57,12 @@ public class TiledGameMap extends GameMap{
 	public int getLayers() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void changeMap(String name) {
+		tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+name+".tmx").file().getAbsolutePath());
+		tiledMapRenderer.setMap(tiledMap);
 	}
 
 }

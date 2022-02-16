@@ -2,13 +2,15 @@ package chessgame.app;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 
 public class Main {
     public static void main(String[] args) {
         Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
         cfg.setTitle("Chess Game");
        // cfg.setWindowedMode(480, 320);
-
-        new Lwjgl3Application(new Game(), cfg);
+        Game game = new Game();
+        new Lwjgl3Application(game, cfg);
     }
 }

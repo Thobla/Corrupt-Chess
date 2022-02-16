@@ -7,9 +7,6 @@ public enum TileType {
 	//Tiles
 	GRASS(1, true, "Grass"),
 	SKY(2, false, "Sky"),
-	CHECKERG(3, true, "Checker_green"),
-	CHECKERGC(4, true, "Checker_green_TRCorner"),
-	CHECKERGB(5, true, "Checker_green_TRCorner")
 	;
 	
 	//Tile-size
