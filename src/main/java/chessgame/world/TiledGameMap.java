@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
 
 public class TiledGameMap extends GameMap{
     
@@ -63,6 +64,11 @@ public class TiledGameMap extends GameMap{
 	public void changeMap(String name) {
 		tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+name+".tmx").file().getAbsolutePath());
 		tiledMapRenderer.setMap(tiledMap);
+	}
+
+	@Override
+	public Vector2 getStartPoint() {
+		return new Vector2(200,200);
 	}
 
 }

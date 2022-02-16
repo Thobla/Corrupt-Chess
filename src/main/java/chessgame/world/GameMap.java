@@ -1,6 +1,7 @@
 package chessgame.world;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector2;
 
 public abstract class GameMap {
 	
@@ -33,6 +34,11 @@ public abstract class GameMap {
 	 * @param name - the name of the map to change to.
 	 */
 	public abstract void changeMap(String name);
+	/**
+	 * Gets the start position of Player
+	 * @return the start position
+	 */
+	public abstract Vector2 getStartPoint();
 	
 	public abstract int getWidth();
 	public abstract int getHeight();

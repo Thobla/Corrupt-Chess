@@ -42,7 +42,8 @@ public class Game implements ApplicationListener {
         
         //The map
         gameMap = new TiledGameMap("map");
-        player = new Player(playerSprite ,new Vector2(0, 0));
+        //Displays the player at the maps start position.
+        player = new Player(playerSprite , gameMap.getStartPoint());
     }
 
     @Override
@@ -62,6 +63,7 @@ public class Game implements ApplicationListener {
         
     	batch.begin();
     	player.getSprite().draw(batch);
+    	player.getSprite().setPosition(player.getPosition().x, player.getPosition().y);
     	batch.end();
     }
 
