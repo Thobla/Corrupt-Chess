@@ -85,23 +85,26 @@ public class Game implements ApplicationListener {
     public void cameraBounds() {
     	//Half of the camera x view
     	float halfCamWidth = cam.viewportWidth/2;
+    	//Half of the camera y view
     	float halfCamHeight = cam.viewportHeight/2;
-    	//System.out.println(halfCam);
-    	//System.out.println(gameMap.getWidth());
-    	
+
+    	//Checks if the camera is trying to go left of the map
     	if(cam.position.x <= 0+halfCamWidth) {
     		cam.position.x = 0+halfCamWidth;
     	}
+    	//Checks if the camera is trying to go right of the map
     	if(cam.position.x > gameMap.getWidthPixels()-halfCamWidth) {
     		cam.position.x = gameMap.getWidthPixels()-halfCamWidth;
     	}
+    	//Checks if the camera is trying to above the map
     	if(cam.position.y <= 0+halfCamHeight) {
     		cam.position.y = 0+halfCamHeight;
     	}
+    	//Checks if the camera is trying to go under the map
     	if(cam.position.y > gameMap.getHeightPixels()-halfCamHeight) {
     		cam.position.y = gameMap.getHeightPixels()-halfCamHeight;
     	}
-    	
+    	//updates camera based on calculation.
     	cam.update();
     }
 }
