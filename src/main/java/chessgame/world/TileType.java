@@ -10,7 +10,7 @@ public enum TileType {
 	;
 	
 	//Tile-size
-	public static final int TILE_SIZE = 16;
+	public static final int TILE_SIZE = 32;
 	
 	//Attributes of tiles
 	private int id;
@@ -22,7 +22,13 @@ public enum TileType {
 	private TileType (int id, boolean collidable, String name) {
 		this(id, collidable, name, 0);
 	}
-	
+	/**
+	 * Gir tiletypen (Grass, sky etc) en id, navn collidable og damage
+	 * @param id - Hver tile har en unik id representert med 1,2,3,4... som blir brukt til representere tile i map
+	 * @param collidable - Kan entities collide med den eller ikkje
+	 * @param name - navn av tilen (grass, sky ect)
+	 * @param damage - eventuell damage en entity tar ved collision
+	 */
 	private TileType (int id, boolean collidable, String name, float damage) {
 		this.id = id;
 		this.collidable = collidable;

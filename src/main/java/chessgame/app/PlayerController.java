@@ -8,6 +8,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import chessgame.entities.Player;
 
 public class PlayerController extends InputMultiplexer {
+	
 	public void myController(Player player) {
     	if(Gdx.input.isKeyPressed(Keys.D))
     		player.move(new Vector2(1,0));
