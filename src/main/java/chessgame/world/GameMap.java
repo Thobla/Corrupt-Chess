@@ -43,4 +43,6 @@ public abstract class GameMap {
 	public abstract int getWidth();
 	public abstract int getHeight();
 	public abstract int getLayers();
+	public abstract int getWidthPixels();
+	public abstract int getHeightPixels();
 }

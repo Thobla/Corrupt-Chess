@@ -64,7 +64,7 @@ public class Game implements ApplicationListener {
         cam.update();
         
         //Camera within bounds
-        //cameraBounds();
+        cameraBounds();
     }
 
     @Override
@@ -83,12 +83,25 @@ public class Game implements ApplicationListener {
      * Keeps camera within bounds
      */
     public void cameraBounds() {
-    	float maptoLeft = cam.viewportWidth/2;
-    	if(cam.position.x <= 0+maptoLeft) {
-    		cam.position.x = 0+maptoLeft;
-    		cam.update();
-    		System.out.println("");
-    		System.out.println("camera out of bounds");
+    	//Half of the camera x view
+    	float halfCamWidth = cam.viewportWidth/2;
+    	float halfCamHeight = cam.viewportHeight/2;
+    	//System.out.println(halfCam);
+    	//System.out.println(gameMap.getWidth());
+    	
+    	if(cam.position.x <= 0+halfCamWidth) {
+    		cam.position.x = 0+halfCamWidth;
     	}
+    	if(cam.position.x > gameMap.getWidthPixels()-halfCamWidth) {
+    		cam.position.x = gameMap.getWidthPixels()-halfCamWidth;
+    	}
+    	if(cam.position.y <= 0+halfCamHeight) {
+    		cam.position.y = 0+halfCamHeight;
+    	}
+    	if(cam.position.y > gameMap.getHeightPixels()-halfCamHeight) {
+    		cam.position.y = gameMap.getHeightPixels()-halfCamHeight;
+    	}
+    	
+    	cam.update();
     }
 }

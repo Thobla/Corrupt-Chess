@@ -2,6 +2,7 @@ package chessgame.world;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -11,11 +12,13 @@ public class TiledGameMap extends GameMap{
     
 	TiledMap tiledMap;
 	OrthogonalTiledMapRenderer tiledMapRenderer;
+	MapProperties properties;
 	
 	public TiledGameMap(String map) {
 		
 		tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+map+".tmx").file().getAbsolutePath());
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+		properties = tiledMap.getProperties();
 	}
 	
 	@Override
@@ -43,15 +46,34 @@ public class TiledGameMap extends GameMap{
 	}
 
 	@Override
+	/**
+	 * Returns the width of the map in Tiles.
+	 */
 	public int getWidth() {
 		// TODO Auto-generated method stub
-		return 0;
+		return properties.get("width", Integer.class);
 	}
-
+	
+	/**
+	 * Returns the width of the map in Pixels.
+	 */
+	public int getWidthPixels() {
+		return getWidth()*32;
+	}
+	
+	/**
+	 * Returns the height of the map in Tiles.
+	 */
 	@Override
 	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return properties.get("height", Integer.class);
+	}
+	
+	/**
+	 * Returns the height of the map in Pixels.
+	 */
+	public int getHeightPixels() {
+		return getWidth()*32;
 	}
 
 	@Override
