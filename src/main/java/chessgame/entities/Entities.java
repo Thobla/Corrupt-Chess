@@ -14,7 +14,7 @@ public interface Entities {
 	/**
 	 * moves the entity on the gameMap.
 	 */
-	public abstract void move();
+	public abstract void move(Vector2 newPos);
 	
 	/**
 	 * Gets the current sprite of the entity

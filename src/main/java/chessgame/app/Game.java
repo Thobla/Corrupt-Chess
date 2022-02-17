@@ -4,18 +4,9 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
-
 import chessgame.entities.Player;
 import chessgame.world.GameMap;
 import chessgame.world.TiledGameMap;
@@ -25,23 +16,28 @@ public class Game implements ApplicationListener {
     Batch batch;
     GameMap gameMap;
     Player player;
-
+    PlayerController playerController;
     @Override
     public void create() {
+    	
+    	//PlayerController
+    	playerController = new PlayerController();
 
         //The camera viewpoint
-        cam = new OrthographicCamera();
+        cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.update();
         
         //Batch
         batch = new SpriteBatch();
+        Gdx.input.setInputProcessor(new PlayerController());
         
         //Get sprite
         Sprite playerSprite = new Sprite(new Texture (Gdx.files.internal("assets/player.png").file().getAbsolutePath()));
         
-        //The map
+        //The Map renderer
         gameMap = new TiledGameMap("map");
+        
         //Displays the player at the maps start position.
         player = new Player(playerSprite , gameMap.getStartPoint());
     }
@@ -54,17 +50,21 @@ public class Game implements ApplicationListener {
 
     @Override
     public void render() {
-		/**
-        if(Gdx.input.isKeyPressed(Keys.R)) {
-        	System.out.println("Pressed R!");
-        	gameMap.changeMap("map2");
-        } */
+    	//Testing playerController.
+    	playerController.myController(player);
+
         gameMap.render(cam);
         
     	batch.begin();
     	player.getSprite().draw(batch);
     	player.getSprite().setPosition(player.getPosition().x, player.getPosition().y);
     	batch.end();
+    	
+        cam.position.set(player.getSprite().getX(), player.getSprite().getY(), 0);
+        cam.update();
+        
+        //Camera within bounds
+        //cameraBounds();
     }
 
     @Override
@@ -77,5 +77,18 @@ public class Game implements ApplicationListener {
 
     @Override
     public void resume() {
+    }
+    
+    /**
+     * Keeps camera within bounds
+     */
+    public void cameraBounds() {
+    	float maptoLeft = cam.viewportWidth/2;
+    	if(cam.position.x <= 0+maptoLeft) {
+    		cam.position.x = 0+maptoLeft;
+    		cam.update();
+    		System.out.println("");
+    		System.out.println("camera out of bounds");
+    	}
     }
 }

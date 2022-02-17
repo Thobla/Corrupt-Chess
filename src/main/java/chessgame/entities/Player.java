@@ -19,7 +19,9 @@ public class Player implements Entities{
 	}
 
 	@Override
-	public void move() {
+	public void move(Vector2 newPos) {
+		//if(position.a < Gdx.graphics.getWidth() && position.add(newPos).x > 0)
+			position.add(newPos);
 	}
 
 	@Override
