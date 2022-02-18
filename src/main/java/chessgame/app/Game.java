@@ -77,8 +77,8 @@ public class Game implements ApplicationListener {
         	TileType type = gameMap.getTileTypeByLocation(0, pos.x, pos.y);
         	if(type != null)
         		System.out.println(type.name());
-        	*/
-        }
+       
+        }*/
     }
 
     @Override
