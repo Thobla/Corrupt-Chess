@@ -67,6 +67,8 @@ public class Game implements ApplicationListener {
 //        cam.position.x += (player.getPosition().x + 20 - cam.position.x) * 0.5 * 4;
 //        cam.position.y = player.getPosition().y;
 //        cam.update();
+   
+//COMMIT MELDING
         
         
 //        cam.position.set(player.getSprite().getX(), player.getSprite().getY(), 0);
