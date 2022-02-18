@@ -4,6 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -38,10 +41,27 @@ public class TiledGameMap extends GameMap{
 		tiledMap.dispose();
 		
 	}
-
+	/**
+	 * Gets the tileType in the map, based on its layer, column and row
+	 * 
+	 * @return TileType of said tile
+	 */
 	@Override
 	public TileType getTileTypeByCoordinate(int layer, int col, int row) {
-		// TODO Auto-generated method stub
+		//Gets the cell at the wanted location
+		Cell cell = (((TiledMapTileLayer) tiledMap.getLayers().get(layer)).getCell(col, row));
+		//checks that the cell is not empty, or out of bounds
+		if(cell != null) {
+			//Gets the tile inside the cell
+			TiledMapTile tile = cell.getTile();
+			
+			//If the tile is not empty ->
+			if (tile != null) {
+				int id = tile.getId();
+				//return the TileType, with said id.
+				return TileType.getTileById(id);
+			}
+		}
 		return null;
 	}
 
@@ -78,8 +98,7 @@ public class TiledGameMap extends GameMap{
 
 	@Override
 	public int getLayers() {
-		// TODO Auto-generated method stub
-		return 0;
+		return tiledMap.getLayers().size();
 	}
 
 	@Override

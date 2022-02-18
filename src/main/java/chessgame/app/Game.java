@@ -7,9 +7,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
+
 import chessgame.entities.Player;
 import chessgame.world.GameMap;
+import chessgame.world.TileType;
 import chessgame.world.TiledGameMap;
+import com.badlogic.gdx.physics.box2d.*;
 
 public class Game implements ApplicationListener {
     OrthographicCamera cam;
@@ -22,7 +26,7 @@ public class Game implements ApplicationListener {
     	
     	//PlayerController
     	playerController = new PlayerController();
-
+    	
         //The camera viewpoint
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -45,7 +49,7 @@ public class Game implements ApplicationListener {
     @Override
     public void dispose() {
     	batch.dispose();
-       gameMap.dispose();
+    	gameMap.dispose();
     }
 
     @Override
@@ -65,6 +69,16 @@ public class Game implements ApplicationListener {
         
         //Camera within bounds
         cameraBounds();
+        
+        /*
+        //For tile testing
+        if (Gdx.input.justTouched()) {
+        	Vector3 pos = cam.unproject(new Vector3 (Gdx.input.getX(), Gdx.input.getY(), 0));
+        	TileType type = gameMap.getTileTypeByLocation(0, pos.x, pos.y);
+        	if(type != null)
+        		System.out.println(type.name());
+        	*/
+        }
     }
 
     @Override

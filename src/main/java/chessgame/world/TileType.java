@@ -7,6 +7,8 @@ public enum TileType {
 	//Tiles
 	GRASS(1, true, "Grass"),
 	SKY(2, false, "Sky"),
+	SOME(3, true, "Something"),
+	DARK(4, true, "Dark")
 	;
 	
 	//Tile-size
@@ -58,6 +60,7 @@ public enum TileType {
 	//Is run when the class is run (At start of game)
 	// Sets up a list of all tile-types
 	static {
+		tileMap = new HashMap<Integer, TileType>();
 		for (TileType tiletype : TileType.values()) {
 			tileMap.put(tiletype.getId(), tiletype);
 			
