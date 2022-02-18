@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
 import chessgame.entities.Player;
+import chessgame.utils.CameraStyles;
 import chessgame.world.GameMap;
 import chessgame.world.TileType;
 import chessgame.world.TiledGameMap;
@@ -64,8 +65,16 @@ public class Game implements ApplicationListener {
     	player.getSprite().setPosition(player.getPosition().x, player.getPosition().y);
     	batch.end();
     	
-        cam.position.set(player.getSprite().getX(), player.getSprite().getY(), 0);
-        cam.update();
+    	CameraStyles.lockOnTarget(cam, player.getPosition());
+    	
+    	
+//        cam.position.x += (player.getPosition().x + 20 - cam.position.x) * 0.5 * 4;
+//        cam.position.y = player.getPosition().y;
+//        cam.update();
+        
+        
+//        cam.position.set(player.getSprite().getX(), player.getSprite().getY(), 0);
+//        cam.update();
         
         //Camera within bounds
         cameraBounds();
