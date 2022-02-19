@@ -8,10 +8,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 
+import chessgame.entities.Entities;
 import chessgame.entities.Player;
 import chessgame.utils.CameraStyles;
+import chessgame.utils.Constants;
 import chessgame.world.B2dModel;
 import chessgame.world.GameMap;
 import chessgame.world.TiledGameMap;
@@ -23,21 +27,48 @@ public class Game implements ApplicationListener {
     Player player;
     PlayerController playerController;
     B2dModel model; 
+    Body playerBody;
     Box2DDebugRenderer debugRenderer;
+    Sprite playerSprite;
+    
     
     
     @Override
     public void create() {
     	
     	model = new B2dModel();
+    	playerBody = model.playerBody;
     	
     	debugRenderer = new Box2DDebugRenderer(true, true, true, true, true, true);
+    	
+    	playerSprite = new Sprite(new Texture (Gdx.files.internal("assets/player.png").file().getAbsolutePath()));
+    	playerSprite.setSize(2, 2);
+    	playerSprite.setOrigin(playerSprite.getWidth()/2, playerSprite.getHeight()/2);
+    	playerBody.setUserData(playerSprite);
+    	player = new Player(playerSprite , playerBody.getPosition());
+    	
+    	System.out.println(player.getPosition());
+    	System.out.println(playerBody.getPosition());
+    	
     	
         //The camera viewpoint
         cam = new OrthographicCamera(32, 24);
         
+        cam.position.set(player.getPosition().x / Constants.PPM, player.getPosition().y / Constants.PPM, 0);
+        
         //cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.update();
+        
+      //Get sprite
+        
+        
+        
+        
+        //gameMap = new TiledGameMap("map");
+        
+        
+        
+        batch = new SpriteBatch();
         /**
         
       //PlayerController
@@ -45,17 +76,16 @@ public class Game implements ApplicationListener {
 
         
         //Batch
-        batch = new SpriteBatch();
+        
         Gdx.input.setInputProcessor(new PlayerController());
         
-        //Get sprite
-        Sprite playerSprite = new Sprite(new Texture (Gdx.files.internal("assets/player.png").file().getAbsolutePath()));
+        
         
         //The Map renderer
-        gameMap = new TiledGameMap("map");
+       
         
         //Displays the player at the maps start position.
-        player = new Player(playerSprite , gameMap.getStartPoint());
+        
         **/
     }
 
@@ -69,36 +99,50 @@ public class Game implements ApplicationListener {
     public void render() {
     	//Testing playerController.
     	
+    	
+    	
     	model.logicStep(Gdx.graphics.getDeltaTime());
     	Gdx.gl.glClearColor(0f, 0f, 0f, 01);
     	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     	debugRenderer.render(model.world, cam.combined);
     	
-    	/**
-    	playerController.myController(player);
-
-        gameMap.render(cam);
-        
+    	batch.setProjectionMatrix(cam.combined);
     	batch.begin();
-    	player.getSprite().draw(batch);
-    	player.getSprite().setPosition(player.getPosition().x, player.getPosition().y);
+    	playerSprite = (Sprite) playerBody.getUserData();
+    	playerSprite.setPosition(playerBody.getPosition().x - playerSprite.getWidth()/2, playerBody.getPosition().y - playerSprite.getHeight()/2);
+    	playerSprite.draw(batch);
     	batch.end();
     	
-    	CameraStyles.lockOnTarget(cam, player.getPosition());
+    	System.out.println(player.getPosition());
+    	System.out.println(playerBody.getPosition());
+
+    	
+    	//gameMap.render(cam);
+    	
+    	//playerController.myController(player);
+
+        
+        
     	
     	
-//        cam.position.x += (player.getPosition().x + 20 - cam.position.x) * 0.5 * 4;
-//        cam.position.y = player.getPosition().y;
-//        cam.update();
+    	//CameraStyles.lockOnTarget(cam, player.getPosition());
+    	
+    	
+        //cam.position.x += (player.getPosition().x + 20 - cam.position.x) * 0.5 * 4;
+        //cam.position.y = player.getPosition().y;
+        //cam.update();
    
 
         
         
-//        cam.position.set(player.getSprite().getX(), player.getSprite().getY(), 0);
-//        cam.update();
+        //cam.position.set(player.getSprite().getX(), player.getSprite().getY(), 0);
+        //cam.update();
         
         //Camera within bounds
-        cameraBounds();
+        //cameraBounds();
+    	
+    	/**
+    	
         **/
     }
 

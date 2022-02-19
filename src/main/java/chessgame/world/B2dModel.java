@@ -8,11 +8,13 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import chessgame.entities.BodyFactory;
 public class B2dModel {
 	public World world;
+	public Body playerBody;
 	private Box2DDebugRenderer debugRenderer;
 	private OrthographicCamera camera;
 	private Body bodyd;
 	private Body bodys;
 	private Body bodyk;
+	
 	
 	public B2dModel() {
 		world = new World(new Vector2(0, -9.81f), true);
@@ -21,7 +23,8 @@ public class B2dModel {
 		createMovingObject();
 		BodyFactory bodyFactory = BodyFactory.getInstance(world);
 		
-		bodyFactory.makeCirclePolyBody(1,1,2, BodyFactory.RUBBER, BodyType.DynamicBody,false);
+		 
+		playerBody = bodyFactory.makeCirclePolyBody(1,1,2, BodyFactory.RUBBER, BodyType.DynamicBody,false);
 		bodyFactory.makeCirclePolyBody(4,1,2, BodyFactory.STEEL, BodyType.DynamicBody,false);
 		bodyFactory.makeCirclePolyBody(-4,1,2, BodyFactory.STONE, BodyType.DynamicBody,false);
 		

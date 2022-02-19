@@ -23,6 +23,9 @@ public class Player implements Entities{
 		//if(position.a < Gdx.graphics.getWidth() && position.add(newPos).x > 0)
 			position.add(newPos);
 	}
+	public void setPosition(Vector2 newPos) {
+		position.set(newPos);
+	}
 
 	@Override
 	public Sprite getSprite() {
