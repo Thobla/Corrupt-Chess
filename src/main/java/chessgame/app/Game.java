@@ -1,14 +1,18 @@
 package chessgame.app;
 
 import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+
 import chessgame.entities.Player;
 import chessgame.utils.CameraStyles;
+import chessgame.world.B2dModel;
 import chessgame.world.GameMap;
 import chessgame.world.TiledGameMap;
 
@@ -18,16 +22,27 @@ public class Game implements ApplicationListener {
     GameMap gameMap;
     Player player;
     PlayerController playerController;
+    B2dModel model; 
+    Box2DDebugRenderer debugRenderer;
+    
+    
     @Override
     public void create() {
     	
-    	//PlayerController
+    	model = new B2dModel();
+    	
+    	debugRenderer = new Box2DDebugRenderer(true, true, true, true, true, true);
+    	
+        //The camera viewpoint
+        cam = new OrthographicCamera(32, 24);
+        
+        //cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        cam.update();
+        /**
+        
+      //PlayerController
     	playerController = new PlayerController();
 
-        //The camera viewpoint
-        cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        cam.update();
         
         //Batch
         batch = new SpriteBatch();
@@ -41,17 +56,25 @@ public class Game implements ApplicationListener {
         
         //Displays the player at the maps start position.
         player = new Player(playerSprite , gameMap.getStartPoint());
+        **/
     }
 
     @Override
     public void dispose() {
     	batch.dispose();
-       gameMap.dispose();
+    	gameMap.dispose();
     }
 
     @Override
     public void render() {
     	//Testing playerController.
+    	
+    	model.logicStep(Gdx.graphics.getDeltaTime());
+    	Gdx.gl.glClearColor(0f, 0f, 0f, 01);
+    	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    	debugRenderer.render(model.world, cam.combined);
+    	
+    	/**
     	playerController.myController(player);
 
         gameMap.render(cam);
@@ -76,6 +99,7 @@ public class Game implements ApplicationListener {
         
         //Camera within bounds
         cameraBounds();
+        **/
     }
 
     @Override
