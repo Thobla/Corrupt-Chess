@@ -24,13 +24,13 @@ Blir en “alt mulig mann” i prosjektet. Stiller opp og hjelper hos dem som tr
 
 ### Prosess- og prosjektplanen/Prosjektmetodikk:
 
-Scrum og parprogrammering (parprogrammering så det alltid er to personer som vet hva en del av en kode gjør, og unngå feil). Ved å bruke scrum metodikk vil arbeidet brytes ned i små blokker, og det vil bli gitt en tidsfrist for å nå “sprinten”. 
+Scrum og parprogrammering (parprogrammering så det alltid er to personer som vet hva en del av en kode gjør, og unngå feil). Ved å bruke scrum metodikk vil arbeidet brytes ned i små blokker, og det vil bli gitt en tidsfrist for å nå “sprinten”.
 
 
 
 ### Metoder som hjelper å utvikle et veldokumentert programvare:
 
-Trello, brukerhistorier, Git (ved commit, nevne hvem som har vore med på parprogrammering). Vi har valgt å bruke trello slik at vi til enhver tid kan se hva som har blitt gjort, hva som trengs å bli gjort og gjerne hvem som skal gjennomføre de ulike oppgavene. Disse gjøremålene kan få ulik prioriteringsgrad i trello. Har laget et gruppeprosjekt i git av oppgaven hvor vi alle kan commite våre siste endringer, og alle kan se endringene i prosjektet. 
+Trello, brukerhistorier, Git (ved commit, nevne hvem som har vore med på parprogrammering). Vi har valgt å bruke trello slik at vi til enhver tid kan se hva som har blitt gjort, hva som trengs å bli gjort og gjerne hvem som skal gjennomføre de ulike oppgavene. Disse gjøremålene kan få ulik prioriteringsgrad i trello. Har laget et gruppeprosjekt i git av oppgaven hvor vi alle kan commite våre siste endringer, og alle kan se endringene i prosjektet. Vi bruker også Discord for å kommunisere og dele ressurser. I tillegg har vi en git-commit-bot i Discord som sender ut melding om nye pushes på tvers av alle branchene, noe som gjør det enklere å holde styr på endringer som blir gjort.
 
 
 
