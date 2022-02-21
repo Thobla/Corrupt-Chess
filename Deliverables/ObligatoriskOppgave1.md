@@ -92,6 +92,41 @@ Programmerings-stil (dvs Lik programmeringsmetode og indetering):
 - Bruk av State Machines der det gir mening? (player, enemies, boss aka mer kompleks oppførsel).
 
 
+Manuelle tester.
+Teste bevegeligheten av player:
+
+Step 1:
+Kjøre main:
+ - spillet starter og man ser et vindu med en Player og et Gameboard.
+
+Step 2:
+Bevege spiller:
+-Trykke “W” og ser at player beveger seg oppover.
+-Trykke “A” og ser at player beveger seg til venstre.
+-Trykke “S” og ser at player beveger seg nedover.
+-Trykke “D” og ser at player beveger seg til høyre.
+-Trykke “W + D” og ser at player beveger seg skrått Oppover mot Høyre.
+-Trykke “S + D” og ser at player beveger seg skrått Nedover mot Høyre.
+-Trykke “W + A” og ser at player beveger seg skrått Oppover mot Venstre.
+-Trykke “S + A” og ser at player beveger seg skrått Nedover mot Venstre.
+-Trykke “A + D” og ser at player står stille.
+-Trykke “W + S” og ser at player står stille.
+
+
+
+-Trykke “Pil-opp” og ser at player beveger seg oppover.
+-Trykke “Pil-venstre” og ser at player beveger seg til venstre.
+-Trykke “Pil-ned” og ser at player beveger seg nedover.
+-Trykke “Pil-høyre” og ser at player beveger seg til høgre.
+-Trykke “Pil-Høyre + Pil-Opp” og ser at player beveger seg skrått Oppover mot Høyre.
+-Trykke “Pil-Høyre + Pil-Ned” og ser at player beveger seg skrått Nedover mot Høyre.
+-Trykke “Pil-Venstre + Pil-Opp” og ser at player beveger seg skrått Oppover mot Venstre.
+-Trykke “Pil-Venstre + Pil-Ned” og ser at player beveger seg skrått Nedover mot Venstre.
+-Trykke “Pil-Venstre + Pil-Høyre” og ser at player står stille.
+-Trykke “Pil-Opp + Pil-Ned” og ser at player står stille.
+
+-Trykke “W + Pil-Venstre” og ser at player beveger seg oppover mot Venstre.
+
 ### Oppsummering:
 
 Ved dette prosjektet har vi møtt på både oppturer og nedturer. En del av problemet er at vi har hatt litt sykdom i gruppa, hvor da ikke alle har kunne møtt til de planlagte møtene. Nå i startfasen har det vært litt vanskelig å fordele arbeid siden det meste har vært planlegging, noe som vi har syntes å være best å gjøre i fellesskap. I og med at det i oblig 1 har vært mye planlegging har ikke metodikken scrum vært enkelt å utføre, heller ikke parprogrammering. Det vi opplevde var derimot at vi raskt kom i gang med arbeidet, og var tidlig ferdig med alt av planlegging. Det har derfor blitt gjort en del programmering allerede av det mest grunnleggende slik som spillbrett, player, osv. 
