@@ -11,12 +11,12 @@ public class PlayerController extends InputMultiplexer {
 	
 	public void myController(Player player) {
     	if(Gdx.input.isKeyPressed(Keys.D))
-    		player.move(new Vector2(1,0));
+    		player.move(new Vector2(3,0));
     	if(Gdx.input.isKeyPressed(Keys.A))
-    		player.move(new Vector2(-1,0));
+    		player.move(new Vector2(-3,0));
     	if(Gdx.input.isKeyPressed(Keys.W))
-    		player.move(new Vector2(0,1));
+    		player.move(new Vector2(0,3));
     	if(Gdx.input.isKeyPressed(Keys.S))
-    		player.move(new Vector2(0,-1));
+    		player.move(new Vector2(0,-3));
 	}
 }
