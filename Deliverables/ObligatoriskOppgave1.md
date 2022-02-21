@@ -100,3 +100,6 @@ For oss har det foreløpig holdt med å møtes to ganger i uken. Det vi må bli 
 
 Foreløpig har gruppa fungert godt, og vi har ikke enda noen konkrete aktiviteter eller verktøy vi ønsker å prøve. Dette kan selvsagt endre seg når vi kommer lengre ut i prosjektet.
 
+### Link til Trello (Prosjektplanen)
+Link: https://trello.com/invite/b/toDOLHwu/2e8eeb822e39ff808d991dd147805219/obligatorisk-oppg%C3%A5ve-1
+
