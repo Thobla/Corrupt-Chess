@@ -1,6 +1,6 @@
-Gruppe: 6 Chicks
+#Gruppe: 6 Chicks
 
-Fordeling av roller:
+##Fordeling av roller:
 
 Emil - gruppeleder
 For å distribuere og utlevere oppgaver kan det være lurt å ha en som tar en lederrolle.
@@ -22,33 +22,33 @@ Blir en “alt mulig mann” i prosjektet. Stiller opp og hjelper hos dem som tr
 
 
 
-Prosess- og prosjektplanen/Prosjektmetodikk:
+##Prosess- og prosjektplanen/Prosjektmetodikk:
 
 Scrum og parprogrammering (parprogrammering så det alltid er to personer som vet hva en del av en kode gjør, og unngå feil). Ved å bruke scrum metodikk vil arbeidet brytes ned i små blokker, og det vil bli gitt en tidsfrist for å nå “sprinten”. 
 
 
 
-Metoder som hjelper å utvikle et veldokumentert programvare:
+##Metoder som hjelper å utvikle et veldokumentert programvare:
 
 Trello, brukerhistorier, Git (ved commit, nevne hvem som har vore med på parprogrammering). Vi har valgt å bruke trello slik at vi til enhver tid kan se hva som har blitt gjort, hva som trengs å bli gjort og gjerne hvem som skal gjennomføre de ulike oppgavene. Disse gjøremålene kan få ulik prioriteringsgrad i trello. Har laget et gruppeprosjekt i git av oppgaven hvor vi alle kan commite våre siste endringer, og alle kan se endringene i prosjektet. 
 
 
 
-Organisering av møter:
+##Organisering av møter:
 I tillegg til mandags gruppe time har vi også et møte på fredager fra 10 - 14, flere dersom det blir nødvendig.
 
 
-Tildeling av oppgaver:
+##Tildeling av oppgaver:
 På møter blir det bestemt hvem som skal gjøre hva til hver sprint.
 
 
-Oppfølging av arbeid:
+##Oppfølging av arbeid:
 Gruppetimen på mandag skal bli brukt til å fordele arbeidsoppgaver og diskutere plan for uke. 
 Fredagsmøte er satt av til arbeid, og gjennomgang av ukas arbeid.
 
 
 
-Målet for applikasjonen:
+##Målet for applikasjonen:
 
 Brukerhistorier basert på MVP.
 - Akseptansekriterier
@@ -56,9 +56,9 @@ Brukerhistorier basert på MVP.
 - Hvilke krav fyller brukerhistoriene
 
 
-BrukerHistorier:
+##BrukerHistorier:
 
-Liste med brukerhistorier som skal med i første iterasjon:
+###Liste med brukerhistorier som skal med i første iterasjon:
 
 For programmereren:
 Som en gruppe vil eg bruke samme programmerings metoder for å gjøre kode-snittene mer oversiktlig og kompatibel med hverandre (unngå spaghetti kode).
@@ -92,7 +92,7 @@ Programmerings-stil (dvs Lik programmeringsmetode og indetering):
 - Bruk av State Machines der det gir mening? (player, enemies, boss aka mer kompleks oppførsel).
 
 
-Oppsummering:
+##Oppsummering:
 
 Ved dette prosjektet har vi møtt på både oppturer og nedturer. En del av problemet er at vi har hatt litt sykdom i gruppa, hvor da ikke alle har kunne møtt til de planlagte møtene. Nå i startfasen har det vært litt vanskelig å fordele arbeid siden det meste har vært planlegging, noe som vi har syntes å være best å gjøre i fellesskap. I og med at det i oblig 1 har vært mye planlegging har ikke metodikken scrum vært enkelt å utføre, heller ikke parprogrammering. Det vi opplevde var derimot at vi raskt kom i gang med arbeidet, og var tidlig ferdig med alt av planlegging. Det har derfor blitt gjort en del programmering allerede av det mest grunnleggende slik som spillbrett, player, osv. 
 
