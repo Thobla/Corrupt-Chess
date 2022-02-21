@@ -58,7 +58,7 @@ Brukerhistorier basert på MVP.
 
 ### BrukerHistorier:
 
-### Liste med brukerhistorier som skal med i første iterasjon:
+#### Liste med brukerhistorier som skal med i første iterasjon:
 
 For programmereren:
 Som en gruppe vil eg bruke samme programmerings metoder for å gjøre kode-snittene mer oversiktlig og kompatibel med hverandre (unngå spaghetti kode).
