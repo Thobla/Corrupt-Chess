@@ -2,7 +2,7 @@
 
 ### Fordeling av roller:
 
-Emil - gruppeleder
+#Emil - gruppeleder
 For å distribuere og utlevere oppgaver kan det være lurt å ha en som tar en lederrolle.
 
 Olaug - skrive ansvarlig 
