@@ -5,19 +5,19 @@
 Emil - gruppeleder<br>
 For å distribuere og utlevere oppgaver kan det være lurt å ha en som tar en lederrolle.
 
-Olaug - skrive ansvarlig 
+Olaug - skrive ansvarlig<br>
 For å sikre at de skriftlige dokumentene oppholder en viss standard, og ikke er full av rot.
 
-Thorgal - kodeansvarlig
+Thorgal - kodeansvarlig<br>
 For å sikre at koden er ryddig og holder en lignende stil gjennom hele prosjektet har vi valgt å ha ein kode ansvarlig som ser igjennom og “tweaker” på koden.
 
-Åsmund - testansvarlig
+Åsmund - testansvarlig<br>
 Samme som med kode-ansvarlig, så trenger tester å bli sett på og kvalitetssjekket.
 
-Jonarthan - grafisk ansvarlig
+Jonarthan - grafisk ansvarlig<br>
 Når vi kommer til punktet hvor vi kan begynne å få prosjektet til å se bra ut trenger vi en som faktisk kan noko med karakterbygging og grafisk design/illustrasjon.
 
-Mikal - Moralsk støtteperson :-)
+Mikal - Moralsk støtteperson :-)<br>
 Blir en “alt mulig mann” i prosjektet. Stiller opp og hjelper hos dem som trenger det. 
 
 
