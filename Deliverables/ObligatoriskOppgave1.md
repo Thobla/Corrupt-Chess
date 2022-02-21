@@ -101,31 +101,31 @@ Kjøre main:
 
 Step 2:
 Bevege spiller:
--Trykke “W” og ser at player beveger seg oppover.
--Trykke “A” og ser at player beveger seg til venstre.
--Trykke “S” og ser at player beveger seg nedover.
--Trykke “D” og ser at player beveger seg til høyre.
--Trykke “W + D” og ser at player beveger seg skrått Oppover mot Høyre.
--Trykke “S + D” og ser at player beveger seg skrått Nedover mot Høyre.
--Trykke “W + A” og ser at player beveger seg skrått Oppover mot Venstre.
--Trykke “S + A” og ser at player beveger seg skrått Nedover mot Venstre.
--Trykke “A + D” og ser at player står stille.
--Trykke “W + S” og ser at player står stille.
+- Trykke “W” og ser at player beveger seg oppover.
+- Trykke “A” og ser at player beveger seg til venstre.
+- Trykke “S” og ser at player beveger seg nedover.
+- Trykke “D” og ser at player beveger seg til høyre.
+- Trykke “W + D” og ser at player beveger seg skrått Oppover mot Høyre.
+- Trykke “S + D” og ser at player beveger seg skrått Nedover mot Høyre.
+- Trykke “W + A” og ser at player beveger seg skrått Oppover mot Venstre.
+- Trykke “S + A” og ser at player beveger seg skrått Nedover mot Venstre.
+- Trykke “A + D” og ser at player står stille.
+- Trykke “W + S” og ser at player står stille.
 
 
 
--Trykke “Pil-opp” og ser at player beveger seg oppover.
--Trykke “Pil-venstre” og ser at player beveger seg til venstre.
--Trykke “Pil-ned” og ser at player beveger seg nedover.
--Trykke “Pil-høyre” og ser at player beveger seg til høgre.
--Trykke “Pil-Høyre + Pil-Opp” og ser at player beveger seg skrått Oppover mot Høyre.
--Trykke “Pil-Høyre + Pil-Ned” og ser at player beveger seg skrått Nedover mot Høyre.
--Trykke “Pil-Venstre + Pil-Opp” og ser at player beveger seg skrått Oppover mot Venstre.
--Trykke “Pil-Venstre + Pil-Ned” og ser at player beveger seg skrått Nedover mot Venstre.
--Trykke “Pil-Venstre + Pil-Høyre” og ser at player står stille.
--Trykke “Pil-Opp + Pil-Ned” og ser at player står stille.
+- Trykke “Pil-opp” og ser at player beveger seg oppover.
+- Trykke “Pil-venstre” og ser at player beveger seg til venstre.
+- Trykke “Pil-ned” og ser at player beveger seg nedover.
+- Trykke “Pil-høyre” og ser at player beveger seg til høgre.
+- Trykke “Pil-Høyre + Pil-Opp” og ser at player beveger seg skrått Oppover mot Høyre.
+- Trykke “Pil-Høyre + Pil-Ned” og ser at player beveger seg skrått Nedover mot Høyre.
+- Trykke “Pil-Venstre + Pil-Opp” og ser at player beveger seg skrått Oppover mot Venstre.
+- Trykke “Pil-Venstre + Pil-Ned” og ser at player beveger seg skrått Nedover mot Venstre.
+- Trykke “Pil-Venstre + Pil-Høyre” og ser at player står stille.
+- Trykke “Pil-Opp + Pil-Ned” og ser at player står stille.
 
--Trykke “W + Pil-Venstre” og ser at player beveger seg oppover mot Venstre.
+- Trykke “W + Pil-Venstre” og ser at player beveger seg oppover mot Venstre.
 
 ### Oppsummering:
 
