@@ -2,6 +2,7 @@ package chessgame.world;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
@@ -11,23 +12,26 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 
+import chessgame.utils.Constants;
+
 public class TiledGameMap extends GameMap{
+    static int PPM = Constants.PixelPerMeter;
     
-	TiledMap tiledMap;
+	public TiledMap tiledMap;
 	OrthogonalTiledMapRenderer tiledMapRenderer;
 	MapProperties properties;
 	
 	public TiledGameMap(String map) {
 		
 		tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+map+".tmx").file().getAbsolutePath());
-		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 1f/PPM);
 		properties = tiledMap.getProperties();
 	}
 	
 	@Override
 	public void render(OrthographicCamera camera) {
 		tiledMapRenderer.setView(camera);
-		tiledMapRenderer.render();
+		tiledMapRenderer.render();;
 	}
 
 	@Override
@@ -64,7 +68,6 @@ public class TiledGameMap extends GameMap{
 		}
 		return null;
 	}
-
 	@Override
 	/**
 	 * Returns the width of the map in Tiles.
@@ -97,8 +100,8 @@ public class TiledGameMap extends GameMap{
 	}
 
 	@Override
-	public int getLayers() {
-		return tiledMap.getLayers().size();
+	public MapLayers getLayers() {
+		return tiledMap.getLayers();
 	}
 
 	@Override

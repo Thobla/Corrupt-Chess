@@ -4,7 +4,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 public interface Entities {
-	
+	/**
+	 * Creates the entity body
+	 * @author Thorgal, Mikal
+	 * 
+	 * 
+	 */
+	abstract void createBody();
 	/**
 	 * Gets the position of the entity according to the gameMap.
 	 * @return the position.
