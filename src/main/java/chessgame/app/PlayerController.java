@@ -10,7 +10,7 @@ import chessgame.entities.Player;
 public class PlayerController extends InputMultiplexer {
 	
 	private int playerspeed;
-	private float jumpForce = 1000f;
+	private float jumpForce = 3000f;
 	
 	public void myController(Player player) {
 		if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT))

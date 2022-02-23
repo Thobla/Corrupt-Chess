@@ -64,7 +64,7 @@ public class Player implements Entities{
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(0.5f, 0.5f);
 		
-		playerBody.createFixture(shape, 10);
+		playerBody.createFixture(shape, 10f);
 		playerBody.setFixedRotation(true);
 	}
 	

@@ -16,12 +16,12 @@ import chessgame.utils.Constants;
 
 public class PhysicsWorld {
 	static int PPM = Constants.PixelPerMeter;
+	static float gravity = Constants.Gravity;
 	public World world;
 	//The worlds gravity
-	Vector2 gravity = new Vector2(0, -9.81f);
-	
+
 	public PhysicsWorld() {
-		world = new World(gravity, true);
+		world = new World(new Vector2(0, -gravity), true);
 	}
 	
 	/**
