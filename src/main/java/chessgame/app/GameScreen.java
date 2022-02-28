@@ -1,6 +1,7 @@
 package chessgame.app;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -25,7 +26,7 @@ public class GameScreen implements Screen {
     Player player;
     PlayerController playerController;
 
-    public GameScreen(final ChessGame game) {
+    public GameScreen(final ChessGame game, String map) {
     	this.game = game;
     	
     	//PlayerController
@@ -44,7 +45,7 @@ public class GameScreen implements Screen {
         Sprite playerSprite = new Sprite(new Texture (Gdx.files.internal("assets/player.png").file().getAbsolutePath()));
         
         //The Map renderer
-        gameMap = new TiledGameMap("map");
+        gameMap = new TiledGameMap(map);
         
         //Displays the player at the maps start position.
         player = new Player(playerSprite , gameMap.getStartPoint());
@@ -84,6 +85,11 @@ public class GameScreen implements Screen {
         
         //Camera within bounds
         cameraBounds();
+        
+        if(Gdx.input.isKeyPressed(Keys.ENTER)) {
+			game.setScreen(new GameScreen(game,"map2"));
+			dispose();
+		}
 
 
 	}
