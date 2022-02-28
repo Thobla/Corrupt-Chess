@@ -10,7 +10,7 @@ public class Main {
         Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
         cfg.setTitle("Chess Game");
        // cfg.setWindowedMode(480, 320);
-        Game game = new Game();
+        ChessGame game = new ChessGame();
         new Lwjgl3Application(game, cfg);
     }
 }

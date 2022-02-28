@@ -1,5 +1,6 @@
 package chessgame.app;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -12,14 +13,20 @@ import chessgame.utils.CameraStyles;
 import chessgame.world.GameMap;
 import chessgame.world.TiledGameMap;
 
-public class Game implements ApplicationListener {
-    OrthographicCamera cam;
+
+
+public class GameScreen implements Screen {
+	final ChessGame game;
+	
+	
+	OrthographicCamera cam;
     Batch batch;
     GameMap gameMap;
     Player player;
     PlayerController playerController;
-    @Override
-    public void create() {
+
+    public GameScreen(final ChessGame game) {
+    	this.game = game;
     	
     	//PlayerController
     	playerController = new PlayerController();
@@ -43,15 +50,16 @@ public class Game implements ApplicationListener {
         player = new Player(playerSprite , gameMap.getStartPoint());
     }
 
-    @Override
-    public void dispose() {
-    	batch.dispose();
-       gameMap.dispose();
-    }
 
-    @Override
-    public void render() {
-    	//Testing playerController.
+	@Override
+	public void show() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void render(float delta) {
+		//Testing playerController.
     	playerController.myController(player);
 
         gameMap.render(cam);
@@ -76,24 +84,41 @@ public class Game implements ApplicationListener {
         
         //Camera within bounds
         cameraBounds();
-    }
 
-    @Override
-    public void resize(int width, int height) {
-    }
 
-    @Override
-    public void pause() {
-    }
+	}
 
-    @Override
-    public void resume() {
-    }
-    
-    /**
-     * Keeps camera within bounds
-     */
-    public void cameraBounds() {
+	@Override
+	public void resize(int width, int height) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void pause() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void resume() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void hide() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void dispose() {
+		batch.dispose();
+	    gameMap.dispose();
+	}
+
+	public void cameraBounds() {
     	//Half of the camera x view
     	float halfCamWidth = cam.viewportWidth/2;
     	//Half of the camera y view
@@ -118,4 +143,5 @@ public class Game implements ApplicationListener {
     	//updates camera based on calculation.
     	cam.update();
     }
+
 }
