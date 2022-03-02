@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -15,6 +16,9 @@ public class Player implements Entities{
 	World world;
 	Sprite sprite = new Sprite(new Texture (Gdx.files.internal("assets/player.png").file().getAbsolutePath()));
 	Body playerBody;
+	
+	float width = 0.5f;
+	float height = 0.5f;
 	
 	public Player (Sprite sprite, Vector2 position, World world) {
 		this.position = new Vector2(position.x/32, position.y/32);
@@ -62,10 +66,19 @@ public class Player implements Entities{
 		playerBody = world.createBody(bodyDef);
 		
 		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(0.5f, 0.5f);
+		shape.setAsBox(width, height);
 		
 		playerBody.createFixture(shape, 10f);
 		playerBody.setFixedRotation(true);
+		
+		//creating a fixture that will serve as the players groundCheck-platter.
+		FixtureDef fixDef = new FixtureDef();
+		fixDef.isSensor = true;
+		shape.setAsBox(width * 0.95f, height / 20, new Vector2(0f, -height), 0);
+		fixDef.shape = shape;
+		
+		playerBody.createFixture(fixDef).setUserData("foot");
+		
 	}
 	
 	/**

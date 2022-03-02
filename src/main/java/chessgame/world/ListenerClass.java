@@ -21,8 +21,8 @@ public class ListenerClass implements ContactListener{
 	public void beginContact(Contact contact) {
 		Fixture fixtureA = contact.getFixtureA();
 		Fixture fixtureB = contact.getFixtureB();
-		
-		System.out.println(fixtureA.getBody() + " " + fixtureB.getBody());
+		if(fixtureA.getUserData() == "foot" || fixtureB.getUserData() == "foot")
+			System.out.println(fixtureA.getBody() + " " + fixtureB.getBody());
 	}
 
 	@Override
