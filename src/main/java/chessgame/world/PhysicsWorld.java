@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import chessgame.utils.Constants;
+import chessgame.world.ListenerClass;
 
 public class PhysicsWorld {
 	static int PPM = Constants.PixelPerMeter;
@@ -22,6 +23,7 @@ public class PhysicsWorld {
 
 	public PhysicsWorld() {
 		world = new World(new Vector2(0, -gravity), true);
+		world.setContactListener(new ListenerClass(this));
 	}
 	
 	/**
