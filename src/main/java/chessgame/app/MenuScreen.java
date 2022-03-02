@@ -5,7 +5,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -13,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -26,6 +29,7 @@ public class MenuScreen implements Screen {
     private Label outputLabel;
 		
 	public MenuScreen(ChessGame game) {
+		
 		this.game = game;
 		stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
@@ -42,30 +46,69 @@ public class MenuScreen implements Screen {
         title.setAlignment(Align.center);
         stage.addActor(title);
         
-        // Button
-        Button button1 = new Button(skin,"default");
+        
+        Button button1 = new TextButton("Play",skin,"default");
         button1.setSize(colWidth*4,rowHeight);
         button1.setPosition(colWidth,Gdx.graphics.getHeight()-rowHeight*3);
         button1.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                outputLabel.setText("Press a Button");
                 game.setScreen(new GameScreen(game,"map"));
     			dispose();
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                outputLabel.setText("Pressed Button");
                 return true;
             }
         });
         stage.addActor(button1);
         
-        outputLabel = new Label("Press a Button",skin,"default");
-        outputLabel.setSize(Gdx.graphics.getWidth(),rowHeight);
-        outputLabel.setPosition(0,rowHeight);
-        outputLabel.setAlignment(Align.center);
-        stage.addActor(outputLabel);
+     
+        Button button2 = new TextButton("Reset",skin,"default");
+        button2.setSize(colWidth*4,rowHeight);
+        button2.setPosition(colWidth*7,Gdx.graphics.getHeight()-rowHeight*3);
+        button2.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                ResetSaveFile.reset();
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        stage.addActor(button2);
+        
+        Button button3 = new TextButton("WRITE",skin, "default");
+        button3.setSize(colWidth*4, rowHeight);
+        button3.setPosition(colWidth, Gdx.graphics.getHeight()-rowHeight*5);
+        button3.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                ResetSaveFile.write(new byte[] {1});
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        stage.addActor(button3);
+        
+        Button button4 = new TextButton("READ",skin,"default");
+        button4.setSize(colWidth*4,rowHeight);
+        button4.setPosition(colWidth*7,Gdx.graphics.getHeight()-rowHeight*5);
+        button4.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                byte[] data = ResetSaveFile.read();
+                System.out.print(data[0]);
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        stage.addActor(button4);
 	}
 	
 	@Override
