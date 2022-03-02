@@ -56,7 +56,8 @@ public class Player implements Entities{
 	public Sprite getSprite() {
 		return sprite;
 	}
-
+	
+	
 	@Override
 	public void createBody() {
 		BodyDef bodyDef = new BodyDef();
@@ -74,12 +75,14 @@ public class Player implements Entities{
 		//creating a fixture that will serve as the players groundCheck-platter.
 		FixtureDef fixDef = new FixtureDef();
 		fixDef.isSensor = true;
+		//the shape should be lower than the players width and height
 		shape.setAsBox(width * 0.95f, height / 20, new Vector2(0f, -height), 0);
 		fixDef.shape = shape;
 		
 		playerBody.createFixture(fixDef).setUserData("foot");
 		
 	}
+	
 	
 	/**
 	 * Updates some aspects of the players data, such as: 
