@@ -18,7 +18,7 @@ public class Player implements Entities{
 	World world;
 	Sprite sprite = new Sprite(new Texture (Gdx.files.internal("assets/player.png").file().getAbsolutePath()));
 	Body playerBody;
-	PlayerController controller;
+	public PlayerController controller;
 	
 	float width = 0.5f;
 	float height = 0.5f;
@@ -27,7 +27,8 @@ public class Player implements Entities{
 		this.position = new Vector2(position.x/32, position.y/32);
 		this.world = world;
 		createBody();
-		playerBody.setUserData(sprite);
+		//sets the userData as a pointer to the player (this is used for groundCheck in ListnerClass and PlayerController)
+		playerBody.setUserData(this);
 		
     	//PlayerController
     	controller = new PlayerController();
@@ -77,6 +78,7 @@ public class Player implements Entities{
 		
 		playerBody.createFixture(shape, 10f);
 		playerBody.setFixedRotation(true);
+		playerBody.setUserData("Hello");
 		
 		//creating a fixture that will serve as the players groundCheck-platter.
 		FixtureDef fixDef = new FixtureDef();

@@ -10,13 +10,12 @@ import chessgame.entities.Player;
 public class PlayerController extends InputMultiplexer {
 	
 	private int playerspeed;
-	private float jumpForce = 3000f;
-	public boolean isGrounded;
+	private float jumpForce = 6000f;
+	public boolean isGrounded = false;
 	
 	
 	public void myController(Player player) {
 		//checks if the player is on the ground
-		isGrounded = true;
 		
 		if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT))
 			playerspeed = 16;
@@ -30,7 +29,7 @@ public class PlayerController extends InputMultiplexer {
     		player.move(new Vector2(-playerspeed, player.getVelocity().y));
     	else 
     		player.move(new Vector2(0, player.getVelocity().y));
-    	if(Gdx.input.isKeyPressed(Keys.W) || Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.SPACE))
+    	if((Gdx.input.isKeyPressed(Keys.W) || Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.SPACE)) && isGrounded)
     		player.jump(jumpForce);
 	}
 }
