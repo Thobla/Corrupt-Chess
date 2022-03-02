@@ -11,8 +11,13 @@ public class PlayerController extends InputMultiplexer {
 	
 	private int playerspeed;
 	private float jumpForce = 3000f;
+	public boolean isGrounded;
+	
 	
 	public void myController(Player player) {
+		//checks if the player is on the ground
+		isGrounded = true;
+		
 		if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT))
 			playerspeed = 16;
 		else 

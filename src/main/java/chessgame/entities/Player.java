@@ -11,11 +11,14 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import chessgame.app.PlayerController;
+
 public class Player implements Entities{
 	Vector2 position;
 	World world;
 	Sprite sprite = new Sprite(new Texture (Gdx.files.internal("assets/player.png").file().getAbsolutePath()));
 	Body playerBody;
+	PlayerController controller;
 	
 	float width = 0.5f;
 	float height = 0.5f;
@@ -25,6 +28,9 @@ public class Player implements Entities{
 		this.world = world;
 		createBody();
 		playerBody.setUserData(sprite);
+		
+    	//PlayerController
+    	controller = new PlayerController();
 	}
 
 	@Override
@@ -92,6 +98,8 @@ public class Player implements Entities{
 	 * @param batch
 	 */
 	public void updatePlayer(Batch batch) {
+		
+    	controller.myController(this);
 		position = playerBody.getPosition();
 		sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
 		sprite.setSize(1, 1);

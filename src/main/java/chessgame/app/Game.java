@@ -42,9 +42,6 @@ public class Game implements ApplicationListener {
     	//World initialisation
     	gameWorld = new PhysicsWorld();
     	debugRenderer = new Box2DDebugRenderer();
-    	
-    	//PlayerController
-    	playerController = new PlayerController();
 
         //The camera viewpoint
         cam = new OrthographicCamera(Gdx.graphics.getWidth() / PPM, Gdx.graphics.getHeight() / PPM);
@@ -79,10 +76,6 @@ public class Game implements ApplicationListener {
     public void render() {
     	//Logic step
     	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
-    	
-    	//Testing playerController.
-    	playerController.myController(player);
-    	
         gameMap.render(cam);
     	//Debug-render
     	debugRenderer.render(gameWorld.world, cam.combined);
