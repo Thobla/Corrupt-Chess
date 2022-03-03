@@ -9,14 +9,20 @@ import chessgame.entities.Player;
 
 public class PlayerController extends InputMultiplexer {
 	
-	public void myController(Player player) {
-    	if(Gdx.input.isKeyPressed(Keys.D) || Gdx.input.isKeyPressed(Keys.RIGHT))
+	/**
+	 * [0]=up
+	 * [1]=left
+	 * [2]=down
+	 * [3]=left
+	 */
+	public void myController(Player player, byte[] controls) {
+    	if(Gdx.input.isKeyPressed(controls[3]))
     		player.move(new Vector2(3,0));
-    	if(Gdx.input.isKeyPressed(Keys.A) || Gdx.input.isKeyPressed(Keys.LEFT))
+    	if(Gdx.input.isKeyPressed(controls[1]))
     		player.move(new Vector2(-3,0));
-    	if(Gdx.input.isKeyPressed(Keys.W) || Gdx.input.isKeyPressed(Keys.UP))
+    	if(Gdx.input.isKeyPressed(controls[0]))
     		player.move(new Vector2(0,3));
-    	if(Gdx.input.isKeyPressed(Keys.S) || Gdx.input.isKeyPressed(Keys.DOWN))
+    	if(Gdx.input.isKeyPressed(controls[2]))
     		player.move(new Vector2(0,-3));
 	}
 }

@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import chessgame.entities.Player;
+import chessgame.menues.SaveFile;
 import chessgame.utils.CameraStyles;
 import chessgame.world.GameMap;
 import chessgame.world.TiledGameMap;
@@ -24,12 +25,14 @@ public class GameScreen implements Screen {
     GameMap gameMap;
     Player player;
     PlayerController playerController;
+    byte[] controls = SaveFile.readControls();
 
     public GameScreen(final ChessGame game, String map) {
     	this.game = game;
     	
     	//PlayerController
     	playerController = new PlayerController();
+    	
 
         //The camera viewpoint
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -60,7 +63,7 @@ public class GameScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		//Testing playerController.
-    	playerController.myController(player);
+    	playerController.myController(player, controls);
 
         gameMap.render(cam);
         
