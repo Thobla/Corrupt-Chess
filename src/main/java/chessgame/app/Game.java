@@ -2,20 +2,22 @@ package chessgame.app;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 
+import chessgame.entities.Pawn;
+import chessgame.entities.Enemies;
 import chessgame.entities.Player;
 import chessgame.utils.CameraStyles;
 import chessgame.utils.Constants;
 import chessgame.world.PhysicsWorld;
 import chessgame.world.TiledGameMap;
+import chessgame.utils.EntityManager;
 
 
 public class Game implements ApplicationListener {
@@ -36,12 +38,17 @@ public class Game implements ApplicationListener {
     PhysicsWorld gameWorld;
     Box2DDebugRenderer debugRenderer;
     
+    //Entities
+    EntityManager entityManager;
+    
     @Override
     public void create() {
     	
     	//World initialisation
     	gameWorld = new PhysicsWorld();
     	debugRenderer = new Box2DDebugRenderer();
+    	
+    	entityManager = new EntityManager(gameWorld);
 
         //The camera viewpoint
         cam = new OrthographicCamera(Gdx.graphics.getWidth() / PPM, Gdx.graphics.getHeight() / PPM);
@@ -52,24 +59,29 @@ public class Game implements ApplicationListener {
         batch = new SpriteBatch();
         Gdx.input.setInputProcessor(new PlayerController());
         
-        //Get sprite from folder
-        Sprite playerSprite = new Sprite(new Texture (Gdx.files.internal("assets/player.png").file().getAbsolutePath()));
-        
         //The Map renderer
         gameMap = new TiledGameMap("map");
         
         //Creates the player
-        player = new Player(playerSprite , gameMap.getStartPoint(), gameWorld.world);
+        player = new Player(gameMap.getStartPoint(), gameWorld.world);
         
         //Creates bodies for TileMap
         tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+"map"+".tmx").file().getAbsolutePath());
     	gameWorld.tileMapToBody(tiledMap);
+    	
+    	//Adds a pawn for testing purposes.
+    	gameWorld.tileMapToEnemies(tiledMap, entityManager);
+    	Pawn pawn = new Pawn(gameMap.getStartPoint().mulAdd(new Vector2(100, 100),1), gameWorld.world, entityManager);
+    	
+    	
+    	//Updates the map
+    	entityManager.updateLists();
     }
 
     @Override
     public void dispose() {
     	batch.dispose();
-       gameMap.dispose();
+    	gameMap.dispose();
     }
 
     @Override
@@ -83,6 +95,10 @@ public class Game implements ApplicationListener {
     	
     	batch.begin();
     	player.updatePlayer(batch);
+    	for(Enemies enemy : entityManager.enemyList) {
+    		enemy.updateState(batch);
+    	}
+    	entityManager.updateLists();
     	batch.end();
     	
     	CameraStyles.lockOnTarget(cam, player.getPosition());

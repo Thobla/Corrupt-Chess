@@ -17,13 +17,17 @@ public class Player implements Entities{
 	Vector2 position;
 	World world;
 	Sprite sprite = new Sprite(new Texture (Gdx.files.internal("assets/player.png").file().getAbsolutePath()));
-	Body playerBody;
+	public Body playerBody;
 	public PlayerController controller;
+	//PlayerStats
+	int health = 3;
+	int attack = 1;
 	
+	//Player size
 	float width = 0.5f;
 	float height = 0.5f;
 	
-	public Player (Sprite sprite, Vector2 position, World world) {
+	public Player (Vector2 position, World world) {
 		this.position = new Vector2(position.x/32, position.y/32);
 		this.world = world;
 		createBody();
@@ -106,6 +110,40 @@ public class Player implements Entities{
 		sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
 		sprite.setSize(1, 1);
 		sprite.draw(batch);
+		
+		if(health == 0)
+			kill();
+	}
+
+	@Override
+	public int getHealth() {
+		// TODO Auto-generated method stub
+		return health;
+	}
+
+	@Override
+	public void takeDamage(int damage) {
+		if(damage < health)
+			health -= damage;
+		else
+			kill();
+	}
+
+	@Override
+	public int getAttack() {
+		// TODO Auto-generated method stub
+		return attack;
+	}
+
+	@Override
+	public void kill() {
+		
+	}
+
+	@Override
+	public void removeBody() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

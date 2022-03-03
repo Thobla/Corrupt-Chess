@@ -12,7 +12,10 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
+
+import chessgame.entities.Pawn;
 import chessgame.utils.Constants;
+import chessgame.utils.EntityManager;
 import chessgame.world.ListenerClass;
 
 public class PhysicsWorld {
@@ -46,6 +49,7 @@ public class PhysicsWorld {
 			bodyDef.type = BodyDef.BodyType.StaticBody;
 
 			Body body = world.createBody(bodyDef);
+			body.setUserData("ground");
 			
 			//Shapes the body, and adds friciton
 			PolygonShape polygonShape = new PolygonShape();
@@ -75,4 +79,29 @@ public class PhysicsWorld {
 	public void logicStep(float delta) {
 		world.step(delta, 3, 3);
 	}
+	/**
+	 * Creates enemies based on the tileMap objects on the enemy layer.
+	 * @param tiledMap
+	 * @param manager
+	 */
+	public void tileMapToEnemies(TiledMap tiledMap, EntityManager manager) {
+		MapObjects enemies = tiledMap.getLayers().get("Enemies").getObjects();
+		
+		for(MapObject enemy : enemies) {
+			
+			Rectangle rectangle = ((RectangleMapObject)enemy).getRectangle();
+			Vector2 pos = rectangle.getPosition(new Vector2());
+			
+			//Spawns a pawn
+			if(enemy.getName().equals("pawn")) {;
+				new Pawn(pos, world, manager);
+			}
+			
+			//Spawns a tower (eventually)
+			if(enemy.getName().equals("tower")) {
+				System.out.println("Spawned Tower");
+			}
+		}
+	}
+	
 }

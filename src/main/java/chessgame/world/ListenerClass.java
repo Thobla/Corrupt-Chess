@@ -8,12 +8,14 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
 import chessgame.app.PlayerController;
+import chessgame.entities.Enemies;
 import chessgame.entities.Player;
 
 public class ListenerClass implements ContactListener{
 	
 	private PhysicsWorld world;
 	Player player;
+	Enemies enemy;
 	
 	ListenerClass(PhysicsWorld world){
 		this.world = world;
@@ -30,8 +32,25 @@ public class ListenerClass implements ContactListener{
 		 	player.controller.isGrounded = true;
 		}
 		else if(fixtureB.getUserData() == "foot") {
-			player = (Player) fixtureA.getBody().getUserData();
+			player = (Player) fixtureB.getBody().getUserData();
 		 	player.controller.isGrounded = true;
+		}
+		//checks if the fixture is a enemy weakpoint
+		if(fixtureA.getUserData() == "weakpoint" && fixtureB.getUserData() == "foot") {
+			player = (Player) fixtureB.getBody().getUserData();
+		 	enemy = (Enemies) fixtureA.getBody().getUserData();
+		 	enemy.takeDamage(player.getAttack());
+			System.out.println("Enemy hit");
+			player.playerBody.setLinearVelocity(player.playerBody.getLinearVelocity().x, 0);
+			player.jump(10000f);
+		}
+		else if(fixtureB.getUserData() == "weakpoint" && fixtureA.getUserData() == "foot") {
+			player = (Player) fixtureA.getBody().getUserData();
+			enemy = (Enemies) fixtureB.getBody().getUserData();
+			enemy.takeDamage(player.getAttack());
+			System.out.println("Enemy hit");
+			player.playerBody.setLinearVelocity(player.playerBody.getLinearVelocity().x, 0);
+			player.jump(10000f);
 		}
 		
 	}
