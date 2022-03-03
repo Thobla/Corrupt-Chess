@@ -27,4 +27,34 @@ public interface Entities {
 	 * @return the sprite.
 	 */
 	public abstract Sprite getSprite();
+	/**
+	 * Returns the amount of health of the entity
+	 * @return - health
+	 * @author Mikal, Thorgal
+	 */
+	public abstract int getHealth();
+	
+	/**
+	 * Reduces the HP of the entity by the input value.
+	 * @param damage
+	 * @author Mikal, Thorgal
+	 */
+	public abstract void takeDamage(int damage);
+	
+	/**
+	 * Gets the Attack-Damage of the entity.
+	 * @return damage
+	 * @author Thorgal, Mikal
+	 */
+	public abstract int getAttack();
+	
+	/**
+	 * Kills the entity.
+	 */
+	public abstract void kill();
+	
+	/**
+	 * removes the Box2D body of the entity
+	 */
+	public void removeBody();
 }
