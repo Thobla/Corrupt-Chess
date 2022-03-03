@@ -1,4 +1,4 @@
-package chessgame.app;
+package chessgame.menues;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;

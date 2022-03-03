@@ -9,7 +9,8 @@ public class Main {
     public static void main(String[] args) {
         Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
         cfg.setTitle("Chess Game");
-       // cfg.setWindowedMode(480, 320);
+        cfg.setWindowedMode(1500, 1000);
+        //cfg.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
         ChessGame game = new ChessGame();
         new Lwjgl3Application(game, cfg);
     }
