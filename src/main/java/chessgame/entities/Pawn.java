@@ -21,17 +21,19 @@ public class Pawn implements Enemies {
 	World world;
 	Body myBody;
 	EntityManager entityManager;
+	Sprite sprite;
 	
 	//Entity size
 	float width = 0.5f;
 	float height = 0.5f;
 	
-	Sprite sprite = new Sprite(new Texture (Gdx.files.internal("assets/badguy.png").file().getAbsolutePath()));
-	
 	public Pawn (Vector2 position, World world, EntityManager entityManager) {
 		this.position = new Vector2(position.x/32, position.y/32);
 		this.world = world;
 		this.entityManager = entityManager;
+		
+		//if(Gdx.files.internal("assets/badguy.png").file()!= null)
+		sprite = new Sprite(new Texture (Gdx.files.internal("assets/badguy.png").file().getAbsolutePath()));
 		
 		createBody();
 		//sets the userData as a pointer to the pawn (this is used for collisionchecking)
@@ -52,9 +54,9 @@ public class Pawn implements Enemies {
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);
 		
-		myBody.createFixture(shape, 10f);
+		myBody.createFixture(shape, 1000f);
 		myBody.setFixedRotation(true);
-		myBody.setUserData("Hello");
+		myBody.setUserData("Pawn");
 		
 		//creating a fixture that will serve as the players groundCheck-platter.
 		FixtureDef fixDef = new FixtureDef();
@@ -109,9 +111,11 @@ public class Pawn implements Enemies {
 	@Override
 	public void updateState(Batch batch) {
 		position = myBody.getPosition();
-		sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
-		sprite.setSize(1, 1);
-		sprite.draw(batch);
+		if(batch != null) {
+			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
+			sprite.setSize(1, 1);
+			sprite.draw(batch);	
+		}
 		if(health <= 0)
 			kill();
 	}
@@ -124,5 +128,11 @@ public class Pawn implements Enemies {
 	@Override
 	public Body getBody() {
 		return myBody;
+	}
+
+	@Override
+	public void keepWithinBounds() {
+		// TODO Auto-generated method stub
+		
 	}
 }

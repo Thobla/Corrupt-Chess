@@ -105,8 +105,15 @@ public class Player implements Entities{
 	 */
 	public void updatePlayer(Batch batch) {
 		
-    	controller.myController(this);
+		//Sets the maximum speed upward of the player.
+		if(playerBody.getLinearVelocity().y > 30)
+			playerBody.setLinearVelocity(new Vector2(playerBody.getLinearVelocity().x, 20));
+		//Updates position vector2
 		position = playerBody.getPosition();
+		
+    	controller.myController(this);
+		keepWithinBounds();
+    	
 		sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
 		sprite.setSize(1, 1);
 		sprite.draw(batch);
@@ -137,13 +144,26 @@ public class Player implements Entities{
 
 	@Override
 	public void kill() {
-		
+		System.out.println("player died");
 	}
 
 	@Override
 	public void removeBody() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void keepWithinBounds() {
+		if(playerBody.getPosition().x > 100-0.5f) {
+			playerBody.setTransform(new Vector2(100-0.5f, playerBody.getPosition().y), 0f);
+		}
+		else if(playerBody.getPosition().x < (0+0.5f)) {
+			playerBody.setTransform(new Vector2(0+0.5f, playerBody.getPosition().y), 0f);
+		}
+		if(playerBody.getPosition().y > 0) {
+			kill();
+		}
 	}
 	
 }

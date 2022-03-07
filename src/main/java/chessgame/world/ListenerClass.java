@@ -43,6 +43,7 @@ public class ListenerClass implements ContactListener{
 			System.out.println("Enemy hit");
 			player.playerBody.setLinearVelocity(player.playerBody.getLinearVelocity().x, 0);
 			player.jump(10000f);
+			player.controller.isGrounded = false;
 		}
 		else if(fixtureB.getUserData() == "weakpoint" && fixtureA.getUserData() == "foot") {
 			player = (Player) fixtureA.getBody().getUserData();
@@ -51,6 +52,7 @@ public class ListenerClass implements ContactListener{
 			System.out.println("Enemy hit");
 			player.playerBody.setLinearVelocity(player.playerBody.getLinearVelocity().x, 0);
 			player.jump(10000f);
+			player.controller.isGrounded = false;
 		}
 		
 	}
@@ -62,12 +64,12 @@ public class ListenerClass implements ContactListener{
 		
 		//checks if the fixture is the "groundCheck-platter" for the player, if it is, we change the players controller isGrounded to falsew
 		if(fixtureA.getUserData() == "foot") {
-		 	player = (Player) fixtureA.getBody().getUserData();
-		 	player.controller.isGrounded = false;
+		 	//player = (Player) fixtureA.getBody().getUserData();
+		 	//player.controller.isGrounded = false;
 		}
 		if(fixtureB.getUserData() == "foot") {
-			player = (Player) fixtureA.getBody().getUserData();
-		 	player.controller.isGrounded = false;
+			//player = (Player) fixtureA.getBody().getUserData();
+		 	//player.controller.isGrounded = false;
 		}
 		
 	}

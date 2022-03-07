@@ -57,4 +57,10 @@ public interface Entities {
 	 * removes the Box2D body of the entity
 	 */
 	public void removeBody();
+	
+	/**
+	 * Keeps the player within the confines of the map.
+	 * @author Mikal
+	 */
+	public void keepWithinBounds();
 }
