@@ -22,7 +22,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import chessgame.app.ChessGame;
-import chessgame.app.GameScreen;
+
 
 
 public class OptionScreen implements Screen {

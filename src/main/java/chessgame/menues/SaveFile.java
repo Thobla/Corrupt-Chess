@@ -16,8 +16,9 @@ public class SaveFile {
 	}
 	
 	public static void defaultControls() {
+		byte audio = readControls()[4];
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
-		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.S, Keys.D}, false);
+		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.S, Keys.D, audio}, false);
 		
 	}
 	

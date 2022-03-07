@@ -1,6 +1,7 @@
 package chessgame.world;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class GameMap {
@@ -42,7 +43,7 @@ public abstract class GameMap {
 	
 	public abstract int getWidth();
 	public abstract int getHeight();
-	public abstract int getLayers();
+	public abstract MapLayers getLayers();
 	public abstract int getWidthPixels();
 	public abstract int getHeightPixels();
 	

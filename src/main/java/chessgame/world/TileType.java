@@ -1,9 +1,9 @@
 package chessgame.world;
 
 import java.util.HashMap;
+import chessgame.utils.Constants;
 
 public enum TileType {
-	
 	//Tiles
 	GRASS(1, true, "Grass"),
 	SKY(2, false, "Sky"),
@@ -11,8 +11,7 @@ public enum TileType {
 	DARK(4, true, "Dark")
 	;
 	
-	//Tile-size
-	public static final int TILE_SIZE = 32;
+	static int TILE_SIZE = Constants.PixelPerMeter;
 	
 	//Attributes of tiles
 	private int id;

@@ -19,7 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import chessgame.app.ChessGame;
-import chessgame.app.GameScreen;
+import chessgame.app.Game;
 
 
 public class MenuScreen implements Screen {
@@ -59,7 +59,7 @@ public class MenuScreen implements Screen {
         button1.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(new GameScreen(game,"map"));
+                game.setScreen(new Game(game,"map"));
     			dispose();
             }
             @Override

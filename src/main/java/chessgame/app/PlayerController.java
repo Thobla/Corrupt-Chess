@@ -13,16 +13,43 @@ public class PlayerController extends InputMultiplexer {
 	 * [0]=up
 	 * [1]=left
 	 * [2]=down
-	 * [3]=left
+	 * [3]=right
 	 */
-	public void myController(Player player, byte[] controls) {
-    	if(Gdx.input.isKeyPressed(controls[3]))
-    		player.move(new Vector2(3,0));
-    	if(Gdx.input.isKeyPressed(controls[1]))
-    		player.move(new Vector2(-3,0));
-    	if(Gdx.input.isKeyPressed(controls[0]))
-    		player.move(new Vector2(0,3));
-    	if(Gdx.input.isKeyPressed(controls[2]))
-    		player.move(new Vector2(0,-3));
+	private int playerspeed;
+	private float jumpForce = 10000f;
+	public boolean isGrounded = false;
+	
+	private byte up;
+	private byte left;
+	private byte down;
+	private byte right;
+	
+	public PlayerController(byte[] controls){
+		up = controls[0];
+		left = controls[1];
+		down = controls[2];
+		right = controls[3];	
+	}
+	
+	
+	public void myController(Player player) {
+		//checks if the player is on the ground
+		
+		if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT))
+			playerspeed = 16;
+		else 
+			playerspeed = 8;
+		
+		//Movement inputs
+    	if(Gdx.input.isKeyPressed(right) || Gdx.input.isKeyPressed(Keys.RIGHT))
+    		player.move(new Vector2(playerspeed, player.getVelocity().y));
+    	else if(Gdx.input.isKeyPressed(left) || Gdx.input.isKeyPressed(Keys.LEFT))
+    		player.move(new Vector2(-playerspeed, player.getVelocity().y));
+    	else 
+    		player.move(new Vector2(0, player.getVelocity().y));
+    	if((Gdx.input.isKeyPressed(up) || Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.SPACE)) && isGrounded) {
+    		player.jump(jumpForce);
+    		isGrounded = false;
+    	}
 	}
 }
