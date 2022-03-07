@@ -18,6 +18,7 @@ public class PlayerController extends InputMultiplexer {
 	private int playerspeed;
 	private float jumpForce = 10000f;
 	public boolean isGrounded = false;
+	public boolean clearJump = true;
 	
 	private byte up;
 	private byte left;
@@ -47,9 +48,12 @@ public class PlayerController extends InputMultiplexer {
     		player.move(new Vector2(-playerspeed, player.getVelocity().y));
     	else 
     		player.move(new Vector2(0, player.getVelocity().y));
-    	if((Gdx.input.isKeyPressed(up) || Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.SPACE)) && isGrounded) {
-    		player.jump(jumpForce);
-    		isGrounded = false;
+
+    	if((Gdx.input.isKeyPressed(Keys.W) || Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.SPACE))) {
+    		if(isGrounded && clearJump) {
+	    		player.jump(jumpForce);
+	    		isGrounded = false;
+    		}
     	}
 	}
 }

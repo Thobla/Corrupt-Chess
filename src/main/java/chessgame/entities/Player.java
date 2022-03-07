@@ -95,6 +95,14 @@ public class Player implements Entities{
 		
 		playerBody.createFixture(fixDef).setUserData("foot");
 		
+		//creating a fixture that will serve as the players skyCheck
+		fixDef = new FixtureDef();
+		fixDef.isSensor = true;
+		//the shape should be lower than the players width and height
+		shape.setAsBox(width * 1.2f, height * 0.2f, new Vector2(0f, +height), 0);
+		fixDef.shape = shape;
+		playerBody.createFixture(fixDef).setUserData("sky");
+		
 	}
 	
 	
@@ -146,7 +154,7 @@ public class Player implements Entities{
 
 	@Override
 	public void kill() {
-		System.out.println("player died");
+		//System.out.println("player died");
 	}
 
 	@Override
@@ -167,5 +175,4 @@ public class Player implements Entities{
 			kill();
 		}
 	}
-	
 }
