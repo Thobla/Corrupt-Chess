@@ -4,7 +4,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 public interface Entities {
-	
+	/**
+	 * Creates the entity body
+	 * @author Thorgal, Mikal
+	 * 
+	 * 
+	 */
+	abstract void createBody();
 	/**
 	 * Gets the position of the entity according to the gameMap.
 	 * @return the position.
@@ -21,4 +27,40 @@ public interface Entities {
 	 * @return the sprite.
 	 */
 	public abstract Sprite getSprite();
+	/**
+	 * Returns the amount of health of the entity
+	 * @return - health
+	 * @author Mikal, Thorgal
+	 */
+	public abstract int getHealth();
+	
+	/**
+	 * Reduces the HP of the entity by the input value.
+	 * @param damage
+	 * @author Mikal, Thorgal
+	 */
+	public abstract void takeDamage(int damage);
+	
+	/**
+	 * Gets the Attack-Damage of the entity.
+	 * @return damage
+	 * @author Thorgal, Mikal
+	 */
+	public abstract int getAttack();
+	
+	/**
+	 * Kills the entity.
+	 */
+	public abstract void kill();
+	
+	/**
+	 * removes the Box2D body of the entity
+	 */
+	public void removeBody();
+	
+	/**
+	 * Keeps the player within the confines of the map.
+	 * @author Mikal
+	 */
+	public void keepWithinBounds();
 }
