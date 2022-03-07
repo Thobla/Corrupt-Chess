@@ -63,7 +63,7 @@ public class ControllerChangingScreen implements Screen {
 	
 	private void SaveNewControls(int keycode, byte[] controls, int mem) {
 		controls[mem] = (byte) keycode;
-		SaveFile.writeControls(controls);
+		SaveFile.writeSettings(controls);
 	}
 
 	@Override

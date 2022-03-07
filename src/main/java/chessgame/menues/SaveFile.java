@@ -16,13 +16,13 @@ public class SaveFile {
 	}
 	
 	public static void defaultControls() {
-		FileHandle file = Gdx.files.local("savefiles/controls.txt");
+		FileHandle file = Gdx.files.local("savefiles/settings.txt");
 		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.S, Keys.D}, false);
 		
 	}
 	
 	public static byte[] readControls() {
-		FileHandle file = Gdx.files.local("savefiles/controls.txt");
+		FileHandle file = Gdx.files.local("savefiles/settings.txt");
 		return file.readBytes();
 	}
 	
@@ -34,9 +34,10 @@ public class SaveFile {
 	 * [1]=left
 	 * [2]=down
 	 * [3]=left
+	 * [4]=audiolvl
 	 */
-	public static void writeControls(byte[] data) {
-		FileHandle file = Gdx.files.local("savefiles/controls.txt");
+	public static void writeSettings(byte[] data) {
+		FileHandle file = Gdx.files.local("savefiles/settings.txt");
 		file.writeBytes(data, false);
 	}
 	public static void write(byte[] data) {

@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
@@ -33,6 +34,7 @@ public class OptionScreen implements Screen {
     private byte downButton;
     private byte rightButton;
     private byte leftButton;
+    private float audiolvl;
 		
 	public OptionScreen(ChessGame game) {
 		
@@ -45,6 +47,8 @@ public class OptionScreen implements Screen {
         downButton = controls[2];
         leftButton = controls[1];
         rightButton = controls[3];
+        audiolvl = controls[4];
+        
         
       //Background image
         Table backgroundTable = new Table();
@@ -192,6 +196,30 @@ public class OptionScreen implements Screen {
             }
         });
         stage.addActor(defaultControls);
+        
+        Label audio = new Label("Sound level", skin, "default");
+        audio.setSize(colWidth*3, (rowHeight*2));
+        audio.setPosition(Gdx.graphics.getWidth()/2-colWidth*3/2,(float) (rowHeight*6.8));
+        audio.setAlignment(Align.center);
+        stage.addActor(audio);
+        
+        Slider audioSlider = new Slider(0, 100, 1, false, skin, "default-horizontal");
+        audioSlider.setSize(colWidth*6, (float) (rowHeight*1.5));
+        audioSlider.setPosition(Gdx.graphics.getWidth()/2 - colWidth*6/2,rowHeight*6);
+        audioSlider.setValue(audiolvl);
+        audioSlider.setSnapToValues(new float[] {0, 50, 100}, 3);
+        audioSlider.addListener(new InputListener() {
+        	@Override
+        	public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+        		controls[4] = (byte) audioSlider.getValue();
+        		SaveFile.writeSettings(controls);
+        	}
+        	@Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        stage.addActor(audioSlider);
 	}
 	
 	@Override
