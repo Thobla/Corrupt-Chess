@@ -5,49 +5,72 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.files.FileHandle;
 
 public class SaveFile {
-
-	//saves.txt
-	//[0]: lvl progress
-	//[1]: highscore?
 	
-	public static void reset() {
-		FileHandle file = Gdx.files.local("savefiles/saves.txt");
-		file.writeBytes(new byte[] {1,0}, false);
-	}
-	
+	/**
+	 * Changes the controls in the settings file back to default (W,A,S,D).
+	 * !!DOES NOT CHANGE AUDIO!!
+	 */
 	public static void defaultControls() {
-		byte audio = readControls()[4];
+		byte audio = readSettings()[4];
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
 		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.S, Keys.D, audio}, false);
 		
 	}
 	
-	public static byte[] readControls() {
+	/**
+	 * Reads the settings file and returns its data.
+	 * 
+	 * @return
+	 * 
+	 * [0]=up input,
+	 * [1]=left input,
+	 * [2]=down input,
+	 * [3]=left input,
+	 * [4]=audiolvl
+	 * 
+	 * @author Åsmund
+	 */
+	public static byte[] readSettings() {
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
 		return file.readBytes();
 	}
 	
 	/**
+	 * Writes the input data to the settings file.
 	 * 
-	 * @param data
-	 * 
-	 * [0]=up
-	 * [1]=left
-	 * [2]=down
-	 * [3]=left
+	 * @param data Data to be saved.
+	 * @see
+	 * [0]=up input,
+	 * [1]=left input,
+	 * [2]=down input,
+	 * [3]=left input,
 	 * [4]=audiolvl
+	 * 
+	 * @author Åsmund
 	 */
 	public static void writeSettings(byte[] data) {
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
 		file.writeBytes(data, false);
 	}
-	public static void write(byte[] data) {
-		FileHandle file = Gdx.files.local("savefiles/saves.txt");
-		file.writeBytes(data, false);
-	}
 	
-	public static byte[] read() {
-		FileHandle file = Gdx.files.local("savefiles/saves.txt");
-		return file.readBytes();
+	/**
+	 * Writes the input data to the specified location in the settings file.
+	 * 
+	 * @param data New data to be saved
+	 * @param index Index of data in settings file.
+	 * @see
+	 * [0]=up input,
+	 * [1]=left input,
+	 * [2]=down input,
+	 * [3]=left input,
+	 * [4]=audiolvl
+	 * 
+	 * @author Åsmund
+	 */
+	public static void writeSingleSetting(byte data, int index) {
+		FileHandle file = Gdx.files.local("savefiles/settings.txt");
+		byte[] controls = file.readBytes();
+		controls[index] = data;
+		file.writeBytes(controls, false);
 	}
 }

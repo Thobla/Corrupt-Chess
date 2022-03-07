@@ -58,7 +58,7 @@ public class Game implements Screen {
         
         //Batch
         batch = new SpriteBatch();
-        byte[] controls = SaveFile.readControls();
+        byte[] controls = SaveFile.readSettings();
         Gdx.input.setInputProcessor(new PlayerController(controls));
         
         //The Map renderer

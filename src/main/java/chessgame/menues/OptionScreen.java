@@ -23,17 +23,15 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import chessgame.app.ChessGame;
 
-
-
 public class OptionScreen implements Screen {
 
 	OrthographicCamera cam;
     final ChessGame game;
     private Stage stage;
-    private byte upButton;
-    private byte downButton;
-    private byte rightButton;
-    private byte leftButton;
+    private byte up;
+    private byte down;
+    private byte right;
+    private byte left;
     private float audiolvl;
 		
 	public OptionScreen(ChessGame game) {
@@ -42,37 +40,39 @@ public class OptionScreen implements Screen {
 		stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
         
-        byte[] controls = SaveFile.readControls();
-        upButton = controls[0];
-        downButton = controls[2];
-        leftButton = controls[1];
-        rightButton = controls[3];
+        byte[] controls = SaveFile.readSettings();
+        up = controls[0];
+        down = controls[2];
+        left = controls[1];
+        right = controls[3];
         audiolvl = controls[4];
         
         
-      //Background image
+        //Background image
         Table backgroundTable = new Table();
         backgroundTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("assets/background.png"))));
         backgroundTable.setFillParent(true);
         backgroundTable.setDebug(true);
         stage.addActor(backgroundTable);
         
+        //Scalable units for size and placements of UI
         int rowHeight = Gdx.graphics.getHeight() / 16;
         int colWidth = Gdx.graphics.getWidth() / 24;
-        
+        //Imported skin for UI
         Skin skin = new Skin(Gdx.files.internal("assets/skin/goldenspiralui/golden-ui-skin.json"));
-	
+        
+        //Title for this menu
         Label title = new Label("Options", skin, "title");
         title.setSize(Gdx.graphics.getWidth(),rowHeight*2);
         title.setPosition(0,Gdx.graphics.getHeight()-rowHeight*2);
         title.setAlignment(Align.center);
         stage.addActor(title);
         
-        
-        Button button1 = new TextButton("Back",skin,"default");
-        button1.setSize(colWidth*3,(float) (rowHeight*1.5));
-        button1.setPosition(Gdx.graphics.getWidth()/2 - colWidth*3/2,rowHeight);
-        button1.addListener(new InputListener(){
+        //Button back to Title screen
+        Button backButton = new TextButton("Back",skin,"default");
+        backButton.setSize(colWidth*3,(float) (rowHeight*1.5));
+        backButton.setPosition(Gdx.graphics.getWidth()/2 - colWidth*3/2,rowHeight);
+        backButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
             	game.setScreen(new MenuScreen(game));
@@ -83,21 +83,19 @@ public class OptionScreen implements Screen {
                 return true;
             }
         });
-        stage.addActor(button1);
+        stage.addActor(backButton);
         
-        
-        
-        
-        Label up = new Label("Key up",skin,"default");
-        up.setSize(colWidth*2,(float) (rowHeight*1.5));
-        up.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*12);
-        up.setAlignment(Align.center);
-        stage.addActor(up);
-
-		Button buttonUp = new TextButton(Keys.toString(upButton),skin,"default");
-        buttonUp.setSize(colWidth*2,(float) (rowHeight*1.5));
-        buttonUp.setPosition(Gdx.graphics.getWidth()/2,rowHeight*12);
-        buttonUp.addListener(new InputListener(){
+        //Text for up key
+        Label upText = new Label("Key up",skin,"default");
+        upText.setSize(colWidth*2,(float) (rowHeight*1.5));
+        upText.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*12);
+        upText.setAlignment(Align.center);
+        stage.addActor(upText);
+        //Button for up key
+		Button upButton = new TextButton(Keys.toString(up),skin,"default");
+        upButton.setSize(colWidth*2,(float) (rowHeight*1.5));
+        upButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*12);
+        upButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
             	game.setScreen(new ControllerChangingScreen(game, "up", 0));
@@ -109,18 +107,19 @@ public class OptionScreen implements Screen {
                 return true;
             }
         });
-        stage.addActor(buttonUp);
+        stage.addActor(upButton);
         
-        Label down = new Label("Key down",skin,"default");
-        down.setSize(colWidth*2,(float) (rowHeight*1.5));
-        down.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*11);
-        down.setAlignment(Align.center);
-        stage.addActor(down);
-        
-        Button buttonDown = new TextButton(Keys.toString(downButton),skin,"default");
-        buttonDown.setSize(colWidth*2,(float) (rowHeight*1.5));
-        buttonDown.setPosition(Gdx.graphics.getWidth()/2,rowHeight*11);
-        buttonDown.addListener(new InputListener(){
+        //Text for down key
+        Label downText = new Label("Key down",skin,"default");
+        downText.setSize(colWidth*2,(float) (rowHeight*1.5));
+        downText.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*11);
+        downText.setAlignment(Align.center);
+        stage.addActor(downText);
+        //Button for down key
+        Button downButton = new TextButton(Keys.toString(down),skin,"default");
+        downButton.setSize(colWidth*2,(float) (rowHeight*1.5));
+        downButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*11);
+        downButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
             	game.setScreen(new ControllerChangingScreen(game, "down", 2));
@@ -132,18 +131,19 @@ public class OptionScreen implements Screen {
                 return true;
             }
         });
-        stage.addActor(buttonDown);
+        stage.addActor(downButton);
         
-        Label left = new Label("Key left",skin,"default");
-        left.setSize(colWidth*2,(float) (rowHeight*1.5));
-        left.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*10);
-        left.setAlignment(Align.center);
-        stage.addActor(left);
-        
-        Button buttonLeft = new TextButton(Keys.toString(leftButton),skin,"default");
-        buttonLeft.setSize(colWidth*2,(float) (rowHeight*1.5));
-        buttonLeft.setPosition(Gdx.graphics.getWidth()/2,rowHeight*10);
-        buttonLeft.addListener(new InputListener(){
+        //Text for left key
+        Label leftText = new Label("Key left",skin,"default");
+        leftText.setSize(colWidth*2,(float) (rowHeight*1.5));
+        leftText.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*10);
+        leftText.setAlignment(Align.center);
+        stage.addActor(leftText);
+        //Button for left key
+        Button leftButton = new TextButton(Keys.toString(left),skin,"default");
+        leftButton.setSize(colWidth*2,(float) (rowHeight*1.5));
+        leftButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*10);
+        leftButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
             	game.setScreen(new ControllerChangingScreen(game, "left", 1));
@@ -155,18 +155,19 @@ public class OptionScreen implements Screen {
                 return true;
             }
         });
-        stage.addActor(buttonLeft);
+        stage.addActor(leftButton);
         
-        Label right = new Label("Key rightp",skin,"default");
-        right.setSize(colWidth*2,(float) (rowHeight*1.5));
-        right.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*9);
-        right.setAlignment(Align.center);
-        stage.addActor(right);
-        
-        Button buttonRight = new TextButton(Keys.toString(rightButton),skin,"default");
-        buttonRight.setSize(colWidth*2,(float) (rowHeight*1.5));
-        buttonRight.setPosition(Gdx.graphics.getWidth()/2,rowHeight*9);
-        buttonRight.addListener(new InputListener(){
+        //Text for right key
+        Label rightText = new Label("Key rightp",skin,"default");
+        rightText.setSize(colWidth*2,(float) (rowHeight*1.5));
+        rightText.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*9);
+        rightText.setAlignment(Align.center);
+        stage.addActor(rightText);
+        //Button for right key
+        Button rightButton = new TextButton(Keys.toString(right),skin,"default");
+        rightButton.setSize(colWidth*2,(float) (rowHeight*1.5));
+        rightButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*9);
+        rightButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
             	game.setScreen(new ControllerChangingScreen(game, "right", 3));
@@ -178,8 +179,9 @@ public class OptionScreen implements Screen {
                 return true;
             }
         });
-        stage.addActor(buttonRight);
+        stage.addActor(rightButton);
         
+        //Button for default controls reset
         Button defaultControls = new TextButton("Reset to default", skin, "default");
         defaultControls.setSize(colWidth*6, (float) (rowHeight*1.8));
         defaultControls.setPosition(Gdx.graphics.getWidth()/2 - colWidth*6/2,rowHeight*3);
@@ -197,12 +199,13 @@ public class OptionScreen implements Screen {
         });
         stage.addActor(defaultControls);
         
+        //Text for audioSlider
         Label audio = new Label("Sound level", skin, "default");
         audio.setSize(colWidth*3, (rowHeight*2));
         audio.setPosition(Gdx.graphics.getWidth()/2-colWidth*3/2,(float) (rowHeight*6.8));
         audio.setAlignment(Align.center);
         stage.addActor(audio);
-        
+        //Slider for controlling audio
         Slider audioSlider = new Slider(0, 100, 1, false, skin, "default-horizontal");
         audioSlider.setSize(colWidth*6, (float) (rowHeight*1.5));
         audioSlider.setPosition(Gdx.graphics.getWidth()/2 - colWidth*6/2,rowHeight*6);
@@ -211,8 +214,7 @@ public class OptionScreen implements Screen {
         audioSlider.addListener(new InputListener() {
         	@Override
         	public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-        		controls[4] = (byte) audioSlider.getValue();
-        		SaveFile.writeSettings(controls);
+        		SaveFile.writeSingleSetting((byte) audioSlider.getValue(), 4);
         	}
         	@Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {

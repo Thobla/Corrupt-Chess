@@ -35,35 +35,32 @@ public class ControllerChangingScreen implements Screen {
         
         Skin skin = new Skin(Gdx.files.internal("assets/skin/goldenspiralui/golden-ui-skin.json"));
         
-        byte[] controls = SaveFile.readControls();	
+        byte[] controls = SaveFile.readSettings();	
         
-      //Background image
+        //Background image
         Table backgroundTable = new Table();
         backgroundTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("assets/background.png"))));
         backgroundTable.setFillParent(true);
         backgroundTable.setDebug(true);
         stage.addActor(backgroundTable);
         
+        //Text prompting you to type new input for key
         Label prompt = new Label("Press the button for the new " + button + " key." , skin, "title");
         prompt.setSize(Gdx.graphics.getWidth(),rowHeight*2);
         prompt.setPosition(0,Gdx.graphics.getHeight()-rowHeight*6);
         prompt.setAlignment(Align.center);
         stage.addActor(prompt);
         
+        //Runs when a key is typed
         Gdx.input.setInputProcessor(new InputAdapter () {
         	   @Override
         	   public boolean keyDown (int keycode) {
-        		   SaveNewControls(keycode,controls,buttonMemory);
+        		   SaveFile.writeSingleSetting((byte)keycode,buttonMemory);
         		   game.setScreen(new OptionScreen(game));
                    dispose();
         		   return true;
         	   }
         	});
-	}
-	
-	private void SaveNewControls(int keycode, byte[] controls, int mem) {
-		controls[mem] = (byte) keycode;
-		SaveFile.writeSettings(controls);
 	}
 
 	@Override

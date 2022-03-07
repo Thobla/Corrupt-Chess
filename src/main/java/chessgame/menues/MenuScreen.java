@@ -40,23 +40,24 @@ public class MenuScreen implements Screen {
         backgroundTable.setFillParent(true);
         backgroundTable.setDebug(true);
         stage.addActor(backgroundTable);
-        
+        //Scalable units for size and placements of UI
         int rowHeight = Gdx.graphics.getHeight() / 16;
         int colWidth = Gdx.graphics.getWidth() / 24;
-        
+        //Imported skin for UI
         Skin skin = new Skin(Gdx.files.internal("assets/skin/goldenspiralui/golden-ui-skin.json"));
-	
+        
+        //Text for this menu
         Label title = new Label("Chess Game", skin, "title");
         title.setSize((float) (Gdx.graphics.getWidth()/2.2),rowHeight*2);
         title.setPosition(0,Gdx.graphics.getHeight()-rowHeight*2);
         title.setAlignment(Align.center);
         stage.addActor(title);
         
-        
-        Button button1 = new TextButton("Play",skin,"default");
-        button1.setSize(colWidth*3,(float) (rowHeight*1.5));
-        button1.setPosition(colWidth*4,Gdx.graphics.getHeight()-rowHeight*4);
-        button1.addListener(new InputListener(){
+        //Play button for starting the game.
+        Button playButton = new TextButton("Play",skin,"default");
+        playButton.setSize(colWidth*3,(float) (rowHeight*1.5));
+        playButton.setPosition(colWidth*4,Gdx.graphics.getHeight()-rowHeight*4);
+        playButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 game.setScreen(new Game(game,"map"));
@@ -67,13 +68,13 @@ public class MenuScreen implements Screen {
                 return true;
             }
         });
-        stage.addActor(button1);
+        stage.addActor(playButton);
         
-     
-        Button button2 = new TextButton("Options",skin,"default");
-        button2.setSize(colWidth*3,(float) (rowHeight*1.5));
-        button2.setPosition(colWidth*4,(float) (Gdx.graphics.getHeight()-rowHeight*5.5));
-        button2.addListener(new InputListener(){
+        //Button for going to the option screen.
+        Button optionButton = new TextButton("Options",skin,"default");
+        optionButton.setSize(colWidth*3,(float) (rowHeight*1.5));
+        optionButton.setPosition(colWidth*4,(float) (Gdx.graphics.getHeight()-rowHeight*5.5));
+        optionButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 game.setScreen(new OptionScreen(game));
@@ -84,12 +85,13 @@ public class MenuScreen implements Screen {
                 return true;
             }
         });
-        stage.addActor(button2);
+        stage.addActor(optionButton);
         
-        Button button3 = new TextButton("Credits",skin, "default");
-        button3.setSize(colWidth*3, (float) (rowHeight*1.5));
-        button3.setPosition(colWidth*4, Gdx.graphics.getHeight()-rowHeight*7);
-        button3.addListener(new InputListener(){
+        //Currently unused button
+        Button creditsButton = new TextButton("Credits",skin, "default");
+        creditsButton.setSize(colWidth*3, (float) (rowHeight*1.5));
+        creditsButton.setPosition(colWidth*4, Gdx.graphics.getHeight()-rowHeight*7);
+        creditsButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 
@@ -99,12 +101,13 @@ public class MenuScreen implements Screen {
                 return true;
             }
         });
-        stage.addActor(button3);
+        stage.addActor(creditsButton);
         
-        Button button4 = new TextButton("Quit",skin,"default");
-        button4.setSize(colWidth*3,(float) (rowHeight*1.5));
-        button4.setPosition(colWidth*4,(float) (Gdx.graphics.getHeight()-rowHeight*8.5));
-        button4.addListener(new InputListener(){
+        //Button for exiting the game
+        Button quitButton = new TextButton("Quit",skin,"default");
+        quitButton.setSize(colWidth*3,(float) (rowHeight*1.5));
+        quitButton.setPosition(colWidth*4,(float) (Gdx.graphics.getHeight()-rowHeight*8.5));
+        quitButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.exit();
@@ -114,7 +117,7 @@ public class MenuScreen implements Screen {
                 return true;
             }
         });
-        stage.addActor(button4);
+        stage.addActor(quitButton);
 	}
 	
 	@Override

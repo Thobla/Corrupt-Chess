@@ -36,7 +36,7 @@ public class Player implements Entities{
 		playerBody.setUserData(this);
 		
     	//PlayerController
-		byte[] controls = SaveFile.readControls();
+		byte[] controls = SaveFile.readSettings();
     	controller = new PlayerController(controls);
 	}
 
