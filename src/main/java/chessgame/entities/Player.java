@@ -161,7 +161,7 @@ public class Player implements Entities{
 		else if(playerBody.getPosition().x < (0+0.5f)) {
 			playerBody.setTransform(new Vector2(0+0.5f, playerBody.getPosition().y), 0f);
 		}
-		if(playerBody.getPosition().y > 0) {
+		if(playerBody.getPosition().y < 0) {
 			kill();
 		}
 	}
