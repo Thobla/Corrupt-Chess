@@ -1,8 +1,8 @@
 package chessgame.app;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -18,9 +18,10 @@ import chessgame.utils.Constants;
 import chessgame.world.PhysicsWorld;
 import chessgame.world.TiledGameMap;
 import chessgame.utils.EntityManager;
+import chessgame.menues.SaveFile;
 
 
-public class Game implements ApplicationListener {
+public class Game implements Screen {
 	static int PPM = Constants.PixelPerMeter;
 	//Rendering
     OrthographicCamera cam;
@@ -41,8 +42,8 @@ public class Game implements ApplicationListener {
     //Entities
     EntityManager entityManager;
     
-    @Override
-    public void create() {
+    
+    public Game(ChessGame game, String map) {
     	
     	//World initialisation
     	gameWorld = new PhysicsWorld();
@@ -57,10 +58,11 @@ public class Game implements ApplicationListener {
         
         //Batch
         batch = new SpriteBatch();
-        Gdx.input.setInputProcessor(new PlayerController());
+        byte[] controls = SaveFile.readControls();
+        Gdx.input.setInputProcessor(new PlayerController(controls));
         
         //The Map renderer
-        gameMap = new TiledGameMap("map");
+        gameMap = new TiledGameMap(map);
         
         //Creates the player
         player = new Player(gameMap.getStartPoint(), gameWorld.world);
@@ -85,7 +87,7 @@ public class Game implements ApplicationListener {
     }
 
     @Override
-    public void render() {
+    public void render(float delta) {
     	//Logic step
     	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
         gameMap.render(cam);
@@ -150,4 +152,17 @@ public class Game implements ApplicationListener {
     	//updates camera based on calculation.
     	cam.update();
     }
+
+	@Override
+	public void show() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void hide() {
+		// TODO Auto-generated method stub
+		
+	}
 }

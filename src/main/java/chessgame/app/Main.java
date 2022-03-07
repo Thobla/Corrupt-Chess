@@ -8,8 +8,9 @@ public class Main {
         Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
         cfg.useVsync(true);
         cfg.setTitle("Chess Game");
-       // cfg.setWindowedMode(480, 320);
-        Game game = new Game();
+        cfg.setWindowedMode(1980, 1000);
+        //cfg.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
+        ChessGame game = new ChessGame();
         new Lwjgl3Application(game, cfg);
     }
 }

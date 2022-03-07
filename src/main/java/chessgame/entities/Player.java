@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.app.PlayerController;
+import chessgame.menues.SaveFile;
 
 public class Player implements Entities{
 	Vector2 position;
@@ -35,7 +36,8 @@ public class Player implements Entities{
 		playerBody.setUserData(this);
 		
     	//PlayerController
-    	controller = new PlayerController();
+		byte[] controls = SaveFile.readControls();
+    	controller = new PlayerController(controls);
 	}
 
 	@Override
