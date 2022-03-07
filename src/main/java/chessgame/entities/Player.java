@@ -144,7 +144,7 @@ public class Player implements Entities{
 
 	@Override
 	public void kill() {
-		System.out.println("player died");
+		//System.out.println("player died");
 	}
 
 	@Override
