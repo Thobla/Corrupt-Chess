@@ -1,81 +1,113 @@
 package chessgame.app;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+
+import chessgame.entities.Pawn;
+import chessgame.entities.Enemies;
 import chessgame.entities.Player;
 import chessgame.utils.CameraStyles;
-import chessgame.world.GameMap;
+import chessgame.utils.Constants;
+import chessgame.world.PhysicsWorld;
 import chessgame.world.TiledGameMap;
+import chessgame.utils.EntityManager;
+import chessgame.menues.SaveFile;
 
-public class Game implements ApplicationListener {
+
+public class Game implements Screen {
+	static int PPM = Constants.PixelPerMeter;
+	//Rendering
     OrthographicCamera cam;
     Batch batch;
-    GameMap gameMap;
+    
+    //TiledMap
+    TiledGameMap gameMap;
+    TiledMap tiledMap;
+    
+    //Player
     Player player;
     PlayerController playerController;
-    @Override
-    public void create() {
+    
+    //World generation
+    PhysicsWorld gameWorld;
+    Box2DDebugRenderer debugRenderer;
+    
+    //Entities
+    EntityManager entityManager;
+    
+    
+    public Game(ChessGame game, String map) {
     	
-    	//PlayerController
-    	playerController = new PlayerController();
+    	//World initialisation
+    	gameWorld = new PhysicsWorld();
+    	debugRenderer = new Box2DDebugRenderer();
+    	
+    	entityManager = new EntityManager(gameWorld);
 
         //The camera viewpoint
-        cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        cam = new OrthographicCamera(Gdx.graphics.getWidth() / PPM, Gdx.graphics.getHeight() / PPM);
+        cam.setToOrtho(false, Gdx.graphics.getWidth() / PPM, Gdx.graphics.getHeight() / PPM);
         cam.update();
         
         //Batch
         batch = new SpriteBatch();
-        Gdx.input.setInputProcessor(new PlayerController());
-        
-        //Get sprite
-        Sprite playerSprite = new Sprite(new Texture (Gdx.files.internal("assets/player.png").file().getAbsolutePath()));
+        byte[] controls = SaveFile.readSettings();
+        Gdx.input.setInputProcessor(new PlayerController(controls));
         
         //The Map renderer
-        gameMap = new TiledGameMap("map");
+        gameMap = new TiledGameMap(map);
         
-        //Displays the player at the maps start position.
-        player = new Player(playerSprite , gameMap.getStartPoint());
+        //Creates the player
+        player = new Player(gameMap.getStartPoint(), gameWorld.world);
+        
+        //Creates bodies for TileMap
+        tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+"map"+".tmx").file().getAbsolutePath());
+    	gameWorld.tileMapToBody(tiledMap);
+    	
+    	//Adds a pawn for testing purposes.
+    	gameWorld.tileMapToEnemies(tiledMap, entityManager);
+    	Pawn pawn = new Pawn(gameMap.getStartPoint().mulAdd(new Vector2(100, 100),1), gameWorld.world, entityManager);
+    	
+    	
+    	//Updates the map
+    	entityManager.updateLists();
     }
 
     @Override
     public void dispose() {
     	batch.dispose();
-       gameMap.dispose();
+    	gameMap.dispose();
     }
 
     @Override
-    public void render() {
-    	//Testing playerController.
-    	playerController.myController(player);
-
+    public void render(float delta) {
+    	//Logic step
+    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
         gameMap.render(cam);
-        
+    	//Debug-render
+    	debugRenderer.render(gameWorld.world, cam.combined);
+    	batch.setProjectionMatrix(cam.combined);
+    	
     	batch.begin();
-    	player.getSprite().setPosition(player.getPosition().x - cam.position.x+gameMap.getStartPoint().x, player.getPosition().y - cam.position.y+gameMap.getStartPoint().y);
-    	player.getSprite().draw(batch);
+    	player.updatePlayer(batch);
+    	for(Enemies enemy : entityManager.enemyList) {
+    		enemy.updateState(batch);
+    	}
+    	entityManager.updateLists();
     	batch.end();
     	
     	CameraStyles.lockOnTarget(cam, player.getPosition());
-    	
-    	
-//        cam.position.x += (player.getPosition().x + 20 - cam.position.x) * 0.5 * 4;
-//        cam.position.y = player.getPosition().y;
-//        cam.update();
-   
-
-        
-        
-//        cam.position.set(player.getSprite().getX(), player.getSprite().getY(), 0);
-//        cam.update();
-        
+           
         //Camera within bounds
         cameraBounds();
+        cam.update();
     }
 
     @Override
@@ -91,7 +123,9 @@ public class Game implements ApplicationListener {
     }
     
     /**
-     * Keeps camera within bounds
+     * Keeps camera within bounds of the gameMap
+     * 
+     * @author Mikal
      */
     public void cameraBounds() {
     	//Half of the camera x view
@@ -104,18 +138,31 @@ public class Game implements ApplicationListener {
     		cam.position.x = 0+halfCamWidth;
     	}
     	//Checks if the camera is trying to go right of the map
-    	if(cam.position.x > gameMap.getWidthPixels()-halfCamWidth) {
-    		cam.position.x = gameMap.getWidthPixels()-halfCamWidth;
+    	if(cam.position.x > gameMap.getWidth()-halfCamWidth) {
+    		cam.position.x = gameMap.getWidth()-halfCamWidth;
     	}
     	//Checks if the camera is trying to above the map
     	if(cam.position.y <= 0+halfCamHeight) {
     		cam.position.y = 0+halfCamHeight;
     	}
     	//Checks if the camera is trying to go under the map
-    	if(cam.position.y > gameMap.getHeightPixels()-halfCamHeight) {
-    		cam.position.y = gameMap.getHeightPixels()-halfCamHeight;
+    	if(cam.position.y > gameMap.getHeight()-halfCamHeight) {
+    		cam.position.y = gameMap.getHeight()-halfCamHeight;
     	}
     	//updates camera based on calculation.
     	cam.update();
     }
+
+	@Override
+	public void show() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void hide() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -31,14 +31,6 @@
 			<version>${libgdx.version}</version>
 		</dependency>
 
-		<!-- Platform-specific libraries -->
-		<dependency>
-			<groupId>com.badlogicgames.gdx</groupId>
-			<artifactId>gdx-platform</artifactId>
-			<version>${libgdx.version}</version>
-			<classifier>natives-desktop</classifier>
-		</dependency>
-
 		<dependency>
 			<groupId>com.badlogicgames.gdx</groupId>
 			<artifactId>gdx-backend-lwjgl3</artifactId>
@@ -49,6 +41,19 @@
 		    <groupId>com.badlogicgames.gdx</groupId>
 		    <artifactId>gdx-box2d</artifactId>
 		    <version>${libgdx.version}</version>
+		</dependency>
+		<!-- Platform-specific libraries -->
+		<dependency>
+			<groupId>com.badlogicgames.gdx</groupId>
+			<artifactId>gdx-platform</artifactId>
+			<version>${libgdx.version}</version>
+			<classifier>natives-desktop</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.badlogicgames.gdx</groupId>
+			<artifactId>gdx-box2d-platform</artifactId>
+			<version>${libgdx.version}</version>
+			<classifier>natives-desktop</classifier>
 		</dependency>
 
 		<dependency>
