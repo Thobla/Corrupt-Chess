@@ -23,6 +23,7 @@ public class Player implements Entities{
 	//PlayerStats
 	int health = 3;
 	int attack = 1;
+	public boolean dead = false;
 	
 	//Player size
 	float width = 0.5f;
@@ -154,7 +155,7 @@ public class Player implements Entities{
 
 	@Override
 	public void kill() {
-		//System.out.println("player died");
+		dead = true;
 	}
 
 	@Override
