@@ -73,4 +73,12 @@ public class SaveFile {
 		controls[index] = data;
 		file.writeBytes(controls, false);
 	}
+	
+	/**
+	 * Resets the settingsfile to its default state
+	 */
+	public static void totalReset() {
+		FileHandle file = Gdx.files.local("savefiles/settings.txt");
+		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.S, Keys.D, 50}, false);
+	}
 }
