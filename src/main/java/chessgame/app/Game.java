@@ -11,7 +11,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 
 import chessgame.entities.Pawn;
-import chessgame.entities.Enemies;
+import chessgame.entities.IEnemies;
+import chessgame.entities.IEntities;
 import chessgame.entities.Player;
 import chessgame.utils.CameraStyles;
 import chessgame.utils.Constants;
@@ -72,7 +73,7 @@ public class Game implements Screen {
     	gameWorld.tileMapToBody(tiledMap);
     	
     	//Adds a pawn for testing purposes.
-    	gameWorld.tileMapToEnemies(tiledMap, entityManager);
+    	gameWorld.tileMapToEntities(tiledMap, entityManager);
     	Pawn pawn = new Pawn(gameMap.getStartPoint().mulAdd(new Vector2(100, 100),1), gameWorld.world, entityManager);
     	
     	
@@ -96,9 +97,9 @@ public class Game implements Screen {
     	batch.setProjectionMatrix(cam.combined);
     	
     	batch.begin();
-    	player.updatePlayer(batch);
-    	for(Enemies enemy : entityManager.enemyList) {
-    		enemy.updateState(batch);
+    	player.updateState(batch);
+    	for(IEntities entity : entityManager.entityList) {
+    		entity.updateState(batch);
     	}
     	entityManager.updateLists();
     	batch.end();
