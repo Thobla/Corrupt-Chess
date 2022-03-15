@@ -1,5 +1,8 @@
 package chessgame.world;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -18,7 +21,10 @@ public class ListenerClass implements ContactListener{
 	Player player;
 	IEnemies enemy;
 	
+	private List<String> unjumpable = new ArrayList<String>();
+	
 	ListenerClass(PhysicsWorld world){
+		prepareJumpable();
 		this.world = world;
 	}
 
@@ -28,11 +34,11 @@ public class ListenerClass implements ContactListener{
 		Fixture fixtureB = contact.getFixtureB();
 		
 		//checks if the fixture is the "groundCheck-platter" for the player, if it is, we change the players controller isGrounded to true
-		if(fixtureA.getUserData() == "foot" && fixtureB.getUserData() != "Object") {
+		if(fixtureA.getUserData() == "foot" && checkJumpable(fixtureB.getUserData())) {
 		 	player = (Player) fixtureA.getBody().getUserData();
 		 	player.controller.isGrounded = true;
 		}
-		else if(fixtureB.getUserData() == "foot" && fixtureB.getUserData() != "Object") {
+		else if(fixtureB.getUserData() == "foot" && checkJumpable(fixtureA.getUserData())) {
 			player = (Player) fixtureB.getBody().getUserData();
 		 	player.controller.isGrounded = true;
 		}
@@ -116,6 +122,15 @@ public class ListenerClass implements ContactListener{
 	public void postSolve(Contact contact, ContactImpulse impulse) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private void prepareJumpable() {
+		unjumpable.add("Object");
+		unjumpable.add("Enemy");
+	}
+	
+	private <T> boolean checkJumpable(T name) {
+		return !unjumpable.contains(name);
 	}
 
 }
