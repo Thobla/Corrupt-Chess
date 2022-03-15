@@ -121,11 +121,7 @@
   <object id="39" name="pawn" x="1042" y="2762" width="32" height="32"/>
   <object id="44" name="pawn" x="1622" y="2610" width="32" height="32"/>
   <object id="50" name="pawn" x="1038" y="2852" width="32" height="32"/>
-  <object id="64" name="RatingPoint" x="384" y="2944"/>
-  <object id="71" name="RatingPoint" x="309.333" y="2956"/>
-  <object id="72" name="RatingPoint" x="234.667" y="3006.67"/>
   <object id="73" name="RatingPoint" x="525.333" y="2990.67"/>
-  <object id="74" name="RatingPoint" x="416" y="2996"/>
   <object id="75" name="RatingPoint" x="761.333" y="2938.67"/>
   <object id="76" name="RatingPoint" x="804" y="2936"/>
   <object id="77" name="RatingPoint" x="836" y="2933.33"/>

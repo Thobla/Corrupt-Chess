@@ -19,7 +19,7 @@ public class RatingPoint implements IObjects{
 	Body myBody;
 	World world;
 	EntityManager entityManager;
-	Sprite sprite = new Sprite(new Texture (Gdx.files.internal("assets/player.png").file().getAbsolutePath()));
+	Sprite sprite = new Sprite(new Texture (Gdx.files.internal("assets/Ratingpoint.png").file().getAbsolutePath()));
 	
 	public RatingPoint(Vector2 position, World world, EntityManager entityManager){
 		this.position = new Vector2(position.x/Constants.PixelPerMeter, position.y/Constants.PixelPerMeter);
