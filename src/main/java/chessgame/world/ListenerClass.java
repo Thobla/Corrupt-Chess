@@ -48,7 +48,7 @@ public class ListenerClass implements ContactListener{
 		 	enemy = (IEnemies) fixtureA.getBody().getUserData();
 		 	enemy.takeDamage(player.getAttack());
 			System.out.println("Enemy hit");
-			player.playerBody.setLinearVelocity(player.playerBody.getLinearVelocity().x, 0);
+			player.myBody.setLinearVelocity(player.myBody.getLinearVelocity().x, 0);
 			player.jump(10000f);
 			player.controller.isGrounded = false;
 		}
@@ -57,7 +57,7 @@ public class ListenerClass implements ContactListener{
 			enemy = (IEnemies) fixtureB.getBody().getUserData();
 			enemy.takeDamage(player.getAttack());
 			System.out.println("Enemy hit");
-			player.playerBody.setLinearVelocity(player.playerBody.getLinearVelocity().x, 0);
+			player.myBody.setLinearVelocity(player.myBody.getLinearVelocity().x, 0);
 			player.jump(10000f);
 			player.controller.isGrounded = false;
 		}

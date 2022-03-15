@@ -38,6 +38,8 @@ public interface IEnemies extends IEntities {
 	 */
 	public abstract int getAttack();
 	
-	
-	
+	/**
+	 * Keeps the entity within bounds of the Map.
+	 */
+	public void keepWithinBounds();
 }

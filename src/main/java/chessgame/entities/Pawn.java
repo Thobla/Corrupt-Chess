@@ -111,6 +111,7 @@ public class Pawn implements IEnemies {
 
 	@Override
 	public void updateState(Batch batch) {
+		keepWithinBounds();
 		position = myBody.getPosition();
 		if(batch != null) {
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
@@ -129,6 +130,18 @@ public class Pawn implements IEnemies {
 	@Override
 	public Body getBody() {
 		return myBody;
+	}
+	
+	public void keepWithinBounds() {
+		if(myBody.getPosition().x > 100-width) {
+			myBody.setTransform(new Vector2(100-width, myBody.getPosition().y), 0f);
+		}
+		else if(myBody.getPosition().x < (0+width)) {
+			myBody.setTransform(new Vector2(0+width, myBody.getPosition().y), 0f);
+		}
+		if(myBody.getPosition().y < 0) {
+			kill();
+		}
 	}
 
 }

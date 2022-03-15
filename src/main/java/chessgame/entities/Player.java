@@ -18,7 +18,7 @@ public class Player implements IEntities{
 	Vector2 position;
 	World world;
 	Sprite sprite = new Sprite(new Texture (Gdx.files.internal("assets/player.png").file().getAbsolutePath()));
-	public Body playerBody;
+	public Body myBody;
 	public PlayerController controller;
 	//PlayerStats
 	int health = 3;
@@ -34,7 +34,7 @@ public class Player implements IEntities{
 		this.world = world;
 		createBody();
 		//sets the userData as a pointer to the player (this is used for groundCheck in ListnerClass and PlayerController)
-		playerBody.setUserData(this);
+		myBody.setUserData(this);
 		
 		//TODO load from file, not set to 0
 		ratingScore = 0;
@@ -55,7 +55,7 @@ public class Player implements IEntities{
 	 */
 	@Override
 	public void move(Vector2 movement) {
-		playerBody.setLinearVelocity(movement);
+		myBody.setLinearVelocity(movement);
 	}
 	/**
 	 * Applies upward force to the entity, making it "jump"
@@ -63,10 +63,10 @@ public class Player implements IEntities{
 	 * @author Mikal, Thorgal
 	 */
 	public void jump(float jumpForce) {
-		playerBody.applyForceToCenter(new Vector2(0, jumpForce), true);
+		myBody.applyForceToCenter(new Vector2(0, jumpForce), true);
 	}
 	public Vector2 getVelocity() {
-		return playerBody.getLinearVelocity();
+		return myBody.getLinearVelocity();
 	}
 	
 	@Override
@@ -81,14 +81,14 @@ public class Player implements IEntities{
 		bodyDef.type = BodyDef.BodyType.DynamicBody;
 		bodyDef.position.set(new Vector2(position.x, position.y));
 		
-		playerBody = world.createBody(bodyDef);
+		myBody = world.createBody(bodyDef);
 		
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);
 		
-		playerBody.createFixture(shape, 10f).setUserData("Player");
-		playerBody.setFixedRotation(true);
-		playerBody.setUserData("Hello");
+		myBody.createFixture(shape, 10f).setUserData("Player");
+		myBody.setFixedRotation(true);
+		myBody.setUserData("Hello");
 		
 		//creating a fixture that will serve as the players groundCheck-platter.
 		FixtureDef fixDef = new FixtureDef();
@@ -97,7 +97,7 @@ public class Player implements IEntities{
 		shape.setAsBox(width * 0.95f, height / 20, new Vector2(0f, -height), 0);
 		fixDef.shape = shape;
 		
-		playerBody.createFixture(fixDef).setUserData("foot");
+		myBody.createFixture(fixDef).setUserData("foot");
 		
 		//creating a fixture that will serve as the players skyCheck
 		fixDef = new FixtureDef();
@@ -105,7 +105,7 @@ public class Player implements IEntities{
 		//the shape should be lower than the players width and height
 		shape.setAsBox(width * 1.2f, height * 0.2f, new Vector2(0f, +height), 0);
 		fixDef.shape = shape;
-		playerBody.createFixture(fixDef).setUserData("sky");
+		myBody.createFixture(fixDef).setUserData("sky");
 		
 	}
 	
@@ -140,13 +140,13 @@ public class Player implements IEntities{
 	}
 
 	public void keepWithinBounds() {
-		if(playerBody.getPosition().x > 100-0.5f) {
-			playerBody.setTransform(new Vector2(100-0.5f, playerBody.getPosition().y), 0f);
+		if(myBody.getPosition().x > 100-width) {
+			myBody.setTransform(new Vector2(100-width, myBody.getPosition().y), 0f);
 		}
-		else if(playerBody.getPosition().x < (0+0.5f)) {
-			playerBody.setTransform(new Vector2(0+0.5f, playerBody.getPosition().y), 0f);
+		else if(myBody.getPosition().x < (0+width)) {
+			myBody.setTransform(new Vector2(0+width, myBody.getPosition().y), 0f);
 		}
-		if(playerBody.getPosition().y < 0) {
+		if(myBody.getPosition().y < 0) {
 			kill();
 		}
 	}
@@ -161,10 +161,10 @@ public class Player implements IEntities{
 	@Override
 	public void updateState(Batch batch) {
 	//Sets the maximum speed upward of the player.
-			if(playerBody.getLinearVelocity().y > 30)
-				playerBody.setLinearVelocity(new Vector2(playerBody.getLinearVelocity().x, 20));
+			if(myBody.getLinearVelocity().y > 30)
+				myBody.setLinearVelocity(new Vector2(myBody.getLinearVelocity().x, 20));
 			//Updates position vector2
-			position = playerBody.getPosition();
+			position = myBody.getPosition();
 			
 	    	controller.myController(this);
 			keepWithinBounds();
@@ -180,6 +180,6 @@ public class Player implements IEntities{
 
 	@Override
 	public Body getBody() {
-		return playerBody;
+		return myBody;
 	}
 }
