@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 
 import chessgame.entities.Pawn;
+import chessgame.entities.RatingPoint;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 import chessgame.world.ListenerClass;
@@ -84,23 +85,25 @@ public class PhysicsWorld {
 	 * @param tiledMap
 	 * @param manager
 	 */
-	public void tileMapToEnemies(TiledMap tiledMap, EntityManager manager) {
-		MapObjects enemies = tiledMap.getLayers().get("Enemies").getObjects();
+	public void tileMapToEntities(TiledMap tiledMap, EntityManager manager) {
+		MapObjects entities = tiledMap.getLayers().get("Entities").getObjects();
 		
-		for(MapObject enemy : enemies) {
+		for(MapObject entity : entities) {
 			
-			Rectangle rectangle = ((RectangleMapObject)enemy).getRectangle();
+			Rectangle rectangle = ((RectangleMapObject)entity).getRectangle();
 			Vector2 pos = rectangle.getPosition(new Vector2());
 			
 			//Spawns a pawn
-			if(enemy.getName().equals("pawn")) {;
+			if(entity.getName().toLowerCase().equals("pawn")) {;
 				new Pawn(pos, world, manager);
 			}
 			
-			//Spawns a tower (eventually)
-			if(enemy.getName().equals("tower")) {
-				System.out.println("Spawned Tower");
+			
+			if(entity.getName().toLowerCase().equals("ratingpoint")) {
+				new RatingPoint(pos, world, manager);
 			}
+			
+			
 		}
 	}
 	

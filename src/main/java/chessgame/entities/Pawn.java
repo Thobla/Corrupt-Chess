@@ -11,9 +11,10 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 
-public class Pawn implements Enemies {
+public class Pawn implements IEnemies {
 	int health = 2;
 	int attack;
 	
@@ -28,7 +29,7 @@ public class Pawn implements Enemies {
 	float height = 0.5f;
 	
 	public Pawn (Vector2 position, World world, EntityManager entityManager) {
-		this.position = new Vector2(position.x/32, position.y/32);
+		this.position = new Vector2(position.x/Constants.PixelPerMeter, position.y/Constants.PixelPerMeter);
 		this.world = world;
 		this.entityManager = entityManager;
 		
@@ -40,7 +41,7 @@ public class Pawn implements Enemies {
 		myBody.setUserData(this);
 		
 		//Adds the pawn to the entityManager
-    	entityManager.addEnemy(this);
+    	entityManager.addEntity(this);
 	}
 	
 	@Override
@@ -122,7 +123,7 @@ public class Pawn implements Enemies {
 
 	@Override
 	public void kill() {
-		entityManager.removeEnemy(this);
+		entityManager.removeEntity(this);
 	}
 
 	@Override
@@ -130,9 +131,4 @@ public class Pawn implements Enemies {
 		return myBody;
 	}
 
-	@Override
-	public void keepWithinBounds() {
-		// TODO Auto-generated method stub
-		
-	}
 }

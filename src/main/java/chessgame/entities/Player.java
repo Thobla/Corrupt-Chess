@@ -14,7 +14,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import chessgame.app.PlayerController;
 import chessgame.menues.SaveFile;
 
-public class Player implements Entities{
+public class Player implements IEntities{
 	Vector2 position;
 	World world;
 	Sprite sprite = new Sprite(new Texture (Gdx.files.internal("assets/player.png").file().getAbsolutePath()));
@@ -23,6 +23,7 @@ public class Player implements Entities{
 	//PlayerStats
 	int health = 3;
 	int attack = 1;
+	int ratingScore;
 	
 	//Player size
 	float width = 0.5f;
@@ -34,6 +35,9 @@ public class Player implements Entities{
 		createBody();
 		//sets the userData as a pointer to the player (this is used for groundCheck in ListnerClass and PlayerController)
 		playerBody.setUserData(this);
+		
+		//TODO load from file, not set to 0
+		ratingScore = 0;
 		
     	//PlayerController
 		byte[] controls = SaveFile.readSettings();
@@ -82,7 +86,7 @@ public class Player implements Entities{
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);
 		
-		playerBody.createFixture(shape, 10f);
+		playerBody.createFixture(shape, 10f).setUserData("Player");
 		playerBody.setFixedRotation(true);
 		playerBody.setUserData("Hello");
 		
@@ -106,39 +110,13 @@ public class Player implements Entities{
 	}
 	
 	
-	/**
-	 * Updates some aspects of the players data, such as: 
-	 * Sprite,
-	 * Position
-	 * @author Mikal, Thorgal
-	 * @param batch
-	 */
-	public void updatePlayer(Batch batch) {
-		
-		//Sets the maximum speed upward of the player.
-		if(playerBody.getLinearVelocity().y > 30)
-			playerBody.setLinearVelocity(new Vector2(playerBody.getLinearVelocity().x, 20));
-		//Updates position vector2
-		position = playerBody.getPosition();
-		
-    	controller.myController(this);
-		keepWithinBounds();
-    	
-		sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
-		sprite.setSize(1, 1);
-		sprite.draw(batch);
-		
-		if(health == 0)
-			kill();
-	}
+	
+	
 
-	@Override
 	public int getHealth() {
-		// TODO Auto-generated method stub
 		return health;
 	}
 
-	@Override
 	public void takeDamage(int damage) {
 		if(damage < health)
 			health -= damage;
@@ -146,9 +124,7 @@ public class Player implements Entities{
 			kill();
 	}
 
-	@Override
 	public int getAttack() {
-		// TODO Auto-generated method stub
 		return attack;
 	}
 
@@ -163,7 +139,6 @@ public class Player implements Entities{
 		
 	}
 
-	@Override
 	public void keepWithinBounds() {
 		if(playerBody.getPosition().x > 100-0.5f) {
 			playerBody.setTransform(new Vector2(100-0.5f, playerBody.getPosition().y), 0f);
@@ -174,5 +149,37 @@ public class Player implements Entities{
 		if(playerBody.getPosition().y < 0) {
 			kill();
 		}
+	}
+	
+	/**
+	 * Updates some aspects of the players data, such as: 
+	 * Sprite,
+	 * Position
+	 * @author Mikal, Thorgal
+	 * @param batch
+	 */
+	@Override
+	public void updateState(Batch batch) {
+	//Sets the maximum speed upward of the player.
+			if(playerBody.getLinearVelocity().y > 30)
+				playerBody.setLinearVelocity(new Vector2(playerBody.getLinearVelocity().x, 20));
+			//Updates position vector2
+			position = playerBody.getPosition();
+			
+	    	controller.myController(this);
+			keepWithinBounds();
+	    	
+			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
+			sprite.setSize(1, 1);
+			sprite.draw(batch);
+			
+			if(health == 0)
+				kill();
+	
+	}
+
+	@Override
+	public Body getBody() {
+		return playerBody;
 	}
 }
