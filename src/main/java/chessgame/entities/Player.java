@@ -132,6 +132,10 @@ public class Player implements Entities{
 		if(health == 0)
 			kill();
 	}
+	
+	public void controllerUpdate() {
+		controller.myController(this);
+	}
 
 	@Override
 	public int getHealth() {

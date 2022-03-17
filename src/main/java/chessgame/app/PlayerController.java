@@ -25,6 +25,13 @@ public class PlayerController extends InputMultiplexer {
 	private byte right;
 	private byte sprint;
 	
+	public PlayerController(byte[] controls, ChessGame game){
+		up = controls[0];
+		left = controls[1];
+		right = controls[2];
+		sprint = controls[3];
+	}
+	
 	public PlayerController(byte[] controls){
 		up = controls[0];
 		left = controls[1];
@@ -34,26 +41,31 @@ public class PlayerController extends InputMultiplexer {
 	
 	
 	public void myController(Player player) {
-		//checks if the player is on the ground
-		
-		if(Gdx.input.isKeyPressed(sprint))
-			playerspeed = 16;
-		else 
-			playerspeed = 8;
-		
-		//Movement inputs
-    	if(Gdx.input.isKeyPressed(right) || Gdx.input.isKeyPressed(Keys.RIGHT))
-    		player.move(new Vector2(playerspeed, player.getVelocity().y));
-    	else if(Gdx.input.isKeyPressed(left) || Gdx.input.isKeyPressed(Keys.LEFT))
-    		player.move(new Vector2(-playerspeed, player.getVelocity().y));
-    	else 
-    		player.move(new Vector2(0, player.getVelocity().y));
-
-    	if((Gdx.input.isKeyPressed(up) || Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.SPACE))) {
-    		if(isGrounded && clearJump) {
-	    		player.jump(jumpForce);
-	    		isGrounded = false;
-    		}
+		if (!Game.paused) {
+			//checks if the player is on the ground
+			
+			if(Gdx.input.isKeyPressed(sprint))
+				playerspeed = 16;
+			else 
+				playerspeed = 8;
+			
+			//Movement inputs
+	    	if(Gdx.input.isKeyPressed(right) || Gdx.input.isKeyPressed(Keys.RIGHT))
+	    		player.move(new Vector2(playerspeed, player.getVelocity().y));
+	    	else if(Gdx.input.isKeyPressed(left) || Gdx.input.isKeyPressed(Keys.LEFT))
+	    		player.move(new Vector2(-playerspeed, player.getVelocity().y));
+	    	else 
+	    		player.move(new Vector2(0, player.getVelocity().y));
+	
+	    	if((Gdx.input.isKeyPressed(up) || Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.SPACE))) {
+	    		if(isGrounded && clearJump) {
+		    		player.jump(jumpForce);
+		    		isGrounded = false;
+	    		}
+	    	}
+		}
+    	if(Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+    		Game.pauseGame();
     	}
 	}
 }
