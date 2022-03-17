@@ -7,13 +7,13 @@ import com.badlogic.gdx.files.FileHandle;
 public class SaveFile {
 	
 	/**
-	 * Changes the controls in the settings file back to default (W,A,S,D).
+	 * Changes the controls in the settings file back to default (W,A,D,shift).
 	 * !!DOES NOT CHANGE AUDIO!!
 	 */
 	public static void defaultControls() {
 		byte audio = readSettings()[4];
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
-		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.S, Keys.D, audio}, false);
+		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, audio}, false);
 		
 	}
 	
@@ -24,8 +24,8 @@ public class SaveFile {
 	 * 
 	 * [0]=up input,
 	 * [1]=left input,
-	 * [2]=down input,
-	 * [3]=left input,
+	 * [2]=right input,
+	 * [3]=sprint,
 	 * [4]=audiolvl
 	 * 
 	 * @author Åsmund
@@ -42,8 +42,8 @@ public class SaveFile {
 	 * @see
 	 * [0]=up input,
 	 * [1]=left input,
-	 * [2]=down input,
-	 * [3]=left input,
+	 * [2]=right input,
+	 * [3]=sprint,
 	 * [4]=audiolvl
 	 * 
 	 * @author Åsmund
@@ -61,8 +61,8 @@ public class SaveFile {
 	 * @see
 	 * [0]=up input,
 	 * [1]=left input,
-	 * [2]=down input,
-	 * [3]=left input,
+	 * [2]=right input,
+	 * [3]=sprint,
 	 * [4]=audiolvl
 	 * 
 	 * @author Åsmund
@@ -79,6 +79,6 @@ public class SaveFile {
 	 */
 	public static void totalReset() {
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
-		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.S, Keys.D, 50}, false);
+		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, 50}, false);
 	}
 }

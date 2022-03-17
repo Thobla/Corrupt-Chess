@@ -122,7 +122,7 @@ public class MenuScreen implements Screen {
       //Button for resetting the game
         Button resetButton = new TextButton("RESET",skin,"default");
         resetButton.setSize(colWidth*4,(float) (rowHeight*2));
-        resetButton.setPosition(colWidth*4,(float) (Gdx.graphics.getHeight()-rowHeight*11));
+        resetButton.setPosition(colWidth*20,(float) (Gdx.graphics.getHeight()-rowHeight*16));
         resetButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {

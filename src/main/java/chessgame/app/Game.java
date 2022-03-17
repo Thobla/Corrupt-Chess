@@ -1,6 +1,5 @@
 package chessgame.app;
 
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -13,7 +12,6 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -28,6 +26,7 @@ import chessgame.utils.Constants;
 import chessgame.world.PhysicsWorld;
 import chessgame.world.TiledGameMap;
 import chessgame.utils.EntityManager;
+import chessgame.menues.MenuScreen;
 import chessgame.menues.SaveFile;
 
 
@@ -60,6 +59,8 @@ public class Game implements Screen {
     //Scalable units for size and placements of UI
     int rowHeight = Gdx.graphics.getHeight() / 16;
     int colWidth = Gdx.graphics.getWidth() / 24;
+    //Imported skin for UI
+    Skin skin = new Skin(Gdx.files.internal("assets/skin/goldenspiralui/golden-ui-skin.json"));
     
     public Game(ChessGame game, String map) {
     	
@@ -149,8 +150,7 @@ public class Game implements Screen {
 
     public void gameOverScreen() {
     	
-        //Imported skin for UI
-        Skin skin = new Skin(Gdx.files.internal("assets/skin/goldenspiralui/golden-ui-skin.json"));
+        
     	
         Label gameOverText = new Label("GAME OVER", skin, "title");
         gameOverText.setSize(colWidth*12,rowHeight*2);
@@ -160,7 +160,7 @@ public class Game implements Screen {
     	
     	TextButton retryButton = new TextButton ("Retry?", skin, "default");
     	retryButton.setSize(colWidth*3, (float) (rowHeight*1.8));
-    	retryButton.setPosition(colWidth*8, rowHeight*8);
+    	retryButton.setPosition(colWidth*13, rowHeight*8);
     	retryButton.addListener(new InputListener() {
     		@Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
@@ -173,6 +173,22 @@ public class Game implements Screen {
     		}	
     	});
     	stage.addActor(retryButton);
+    	
+    	TextButton quitButton = new TextButton ("Quit", skin, "default");
+    	quitButton.setSize(colWidth*3, (float) (rowHeight*1.8));
+    	quitButton.setPosition(colWidth*8, rowHeight*8);
+    	quitButton.addListener(new InputListener() {
+    		@Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+    			game.setScreen(new MenuScreen(game));
+    		}
+    		
+    		@Override
+    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+    			return true;
+    		}	
+    	});
+    	stage.addActor(quitButton);
     }
     
     @Override

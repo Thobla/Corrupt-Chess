@@ -12,8 +12,8 @@ public class PlayerController extends InputMultiplexer {
 	/**
 	 * [0]=up
 	 * [1]=left
-	 * [2]=down
-	 * [3]=right
+	 * [2]=right
+	 * [3]=sprint
 	 */
 	private int playerspeed;
 	private float jumpForce = 10000f;
@@ -22,21 +22,21 @@ public class PlayerController extends InputMultiplexer {
 	
 	private byte up;
 	private byte left;
-	private byte down;
 	private byte right;
+	private byte sprint;
 	
 	public PlayerController(byte[] controls){
 		up = controls[0];
 		left = controls[1];
-		down = controls[2];
-		right = controls[3];	
+		right = controls[2];
+		sprint = controls[3];
 	}
 	
 	
 	public void myController(Player player) {
 		//checks if the player is on the ground
 		
-		if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT))
+		if(Gdx.input.isKeyPressed(sprint))
 			playerspeed = 16;
 		else 
 			playerspeed = 8;
