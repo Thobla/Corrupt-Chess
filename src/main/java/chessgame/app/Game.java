@@ -71,9 +71,9 @@ public class Game implements Screen {
     	
     	entityManager = new EntityManager(gameWorld);
     	
+    	//The stage for UI elements
     	stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
-        
+     
         //The camera viewpoint
         cam = new OrthographicCamera(Gdx.graphics.getWidth() / PPM, Gdx.graphics.getHeight() / PPM);
         cam.setToOrtho(false, Gdx.graphics.getWidth() / PPM, Gdx.graphics.getHeight() / PPM);
@@ -84,6 +84,8 @@ public class Game implements Screen {
         batch = new SpriteBatch();
         byte[] controls = SaveFile.readSettings();
         Gdx.input.setInputProcessor(new PlayerController(controls));
+        //stage inputet må væra etter playercontroller for å fungere?
+        Gdx.input.setInputProcessor(stage);
         
         //The Map renderer
         gameMap = new TiledGameMap(map);
@@ -103,24 +105,7 @@ public class Game implements Screen {
     	//Updates the map
     	entityManager.updateLists();
     	
-    	Skin skin = new Skin(Gdx.files.internal("assets/skin/goldenspiralui/golden-ui-skin.json"));
-    	//Button for exiting the game
-        Button quitButton = new TextButton("Quit",skin,"default");
-        quitButton.setSize(colWidth*3,(float) (rowHeight*1.5));
-        quitButton.setPosition(colWidth*4,(float) (Gdx.graphics.getHeight()-rowHeight*8.5));
-        quitButton.addListener(new InputListener(){
-            @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                Gdx.app.exit();
-            }
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                return true;
-            }
-        });
-        stage.addActor(quitButton);
-    	
-        System.out.print(quitButton.isVisible());
+
     }
 
     @Override
