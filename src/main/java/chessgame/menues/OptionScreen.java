@@ -93,7 +93,7 @@ public class OptionScreen implements Screen {
         stage.addActor(backButton);
         
         //Text for up key
-        Label upText = new Label("Key up",skin,"default");
+        Label upText = new Label("Key jump",skin,"default");
         upText.setSize(colWidth*2,(float) (rowHeight*1.5));
         upText.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*12);
         upText.setAlignment(Align.center);
@@ -105,7 +105,7 @@ public class OptionScreen implements Screen {
         upButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-            	game.setScreen(new ControllerChangingScreen(game, "up", 0));
+            	game.setScreen(new ControllerChangingScreen(game, "jump", 0));
             	dispose();
             }
             @Override
