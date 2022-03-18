@@ -14,6 +14,7 @@ public class PlayerController extends InputMultiplexer {
 	 * [1]=left
 	 * [2]=right
 	 * [3]=sprint
+	 * [5]=jumpHelp (bruke det no for laptopp Åsmund. Noko rart med running så me må sjå på seinare)
 	 */
 	private int playerspeed;
 	private float jumpForce = 10000f;
@@ -30,6 +31,9 @@ public class PlayerController extends InputMultiplexer {
 		left = controls[1];
 		right = controls[2];
 		sprint = controls[3];
+		if (controls[5] == 1) {
+			jumpForce = jumpForce *10;
+		}
 	}
 	
 	public PlayerController(byte[] controls){
@@ -37,6 +41,10 @@ public class PlayerController extends InputMultiplexer {
 		left = controls[1];
 		right = controls[2];
 		sprint = controls[3];
+		
+		if (controls[5] == 1) {
+			jumpForce = jumpForce *10;
+		}
 	}
 	
 	

@@ -13,7 +13,7 @@ public class SaveFile {
 	public static void defaultControls() {
 		byte audio = readSettings()[4];
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
-		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, audio}, false);
+		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, audio, 0}, false);
 		
 	}
 	
@@ -27,6 +27,7 @@ public class SaveFile {
 	 * [2]=right input,
 	 * [3]=sprint,
 	 * [4]=audiolvl
+	 * [5]=jumphelp
 	 * 
 	 * @author Åsmund
 	 */
@@ -45,6 +46,7 @@ public class SaveFile {
 	 * [2]=right input,
 	 * [3]=sprint,
 	 * [4]=audiolvl
+	 * [5]=jumphelp
 	 * 
 	 * @author Åsmund
 	 */
@@ -64,6 +66,7 @@ public class SaveFile {
 	 * [2]=right input,
 	 * [3]=sprint,
 	 * [4]=audiolvl
+	 * [5]=jumphelp
 	 * 
 	 * @author Åsmund
 	 */
@@ -79,6 +82,6 @@ public class SaveFile {
 	 */
 	public static void totalReset() {
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
-		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, 50}, false);
+		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, 50, 0}, false);
 	}
 }

@@ -54,9 +54,7 @@ public class Game implements Screen {
     
     final ChessGame game;
     String map;
-    
    
-    
     //Stage for UI elements
     private static Stage stage;
     //Scalable units for size and placements of UI
@@ -64,8 +62,8 @@ public class Game implements Screen {
     static int colWidth = Gdx.graphics.getWidth() / 24;
     //Imported skin for UI
     static Skin skin = new Skin(Gdx.files.internal("assets/skin/goldenspiralui/golden-ui-skin.json"));
-    //UI
-    static Label pauseText = new Label("PAUSED", skin, "title");
+    static //UI
+    Label pauseText = new Label("PAUSED", skin, "title");
     static TextButton resumeButton = new TextButton ("Resume", skin, "default"); 
     static Label gameOverText = new Label("GAME OVER", skin, "title");
     static TextButton retryButton = new TextButton ("Retry?", skin, "default");
@@ -234,7 +232,11 @@ public class Game implements Screen {
     	//updates camera based on calculation.
     	cam.update();
     }
-    
+    /**
+     * Constructs all the buttons making the code less cluttered
+     * 
+     * @author Åsmund
+     */
     private void initilizeButtons() {
     	gameOverText.setSize(colWidth*12,rowHeight*2);
         gameOverText.setPosition((float) (Gdx.graphics.getWidth()/2-colWidth*6),rowHeight*12);
@@ -291,6 +293,7 @@ public class Game implements Screen {
     	quitButtonP.addListener(new InputListener() {
     		@Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+    			pauseGame();
     			game.setScreen(new MenuScreen(game));
     		}
     		

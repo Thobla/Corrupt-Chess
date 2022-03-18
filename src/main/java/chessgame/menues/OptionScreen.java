@@ -11,11 +11,13 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -32,6 +34,7 @@ public class OptionScreen implements Screen {
     private byte left;
     private byte sprint;
     private float audiolvl;
+    private boolean jumpHelp;
 		
 	public OptionScreen(ChessGame game) {
 		
@@ -45,6 +48,11 @@ public class OptionScreen implements Screen {
         right = controls[2]; 
         sprint = controls[3];
         audiolvl = controls[4];
+        if (controls[5] == 1) {
+        	jumpHelp = true;
+        } else {
+        	jumpHelp = false;
+        }
         
         
         //Background image
@@ -179,6 +187,36 @@ public class OptionScreen implements Screen {
             }
         });
         stage.addActor(sprintButton);
+        
+        
+        //Text for jump helping checkbox
+        Label jumpHelpText = new Label("Key jumphelp",skin,"default");
+        jumpHelpText.setSize(colWidth*2,(float) (rowHeight*1.5));
+        jumpHelpText.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*8);
+        jumpHelpText.setAlignment(Align.center);
+        stage.addActor(jumpHelpText);
+        //Checkbox for jump helping 
+        CheckBox jumpHelpButton = new CheckBox(null,skin,"default");
+		jumpHelpButton.setSize(colWidth,rowHeight);
+		jumpHelpButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*8 + jumpHelpButton.getHeight()/3);
+		jumpHelpButton.setChecked(jumpHelp);
+		jumpHelpButton.addListener(new ClickListener(){		
+			@Override
+			public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+				if (jumpHelp) {
+					SaveFile.writeSingleSetting((byte) 0, 5);
+				} else {
+					SaveFile.writeSingleSetting((byte) 1, 5);
+				}
+			}
+			
+			@Override
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				if (pointer == 0 && button != 0) return false;
+				return true;
+			}
+		});
+        stage.addActor(jumpHelpButton);
         
         //Button for default controls reset
         Button defaultControls = new TextButton("Reset to default", skin, "default");
