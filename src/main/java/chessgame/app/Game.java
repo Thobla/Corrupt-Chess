@@ -69,6 +69,8 @@ public class Game implements Screen {
     static TextButton retryButton = new TextButton ("Retry?", skin, "default");
     static TextButton quitButtonGO = new TextButton ("Quit", skin, "default");
     static TextButton quitButtonP = new TextButton ("Quit", skin, "default");
+    static Label timerText = new Label ("000", skin, "default");
+    static float timer;
     
     static boolean paused = false;
     
@@ -116,7 +118,10 @@ public class Game implements Screen {
     	//Updates the map
     	entityManager.updateLists();
     	
-    	initilizeButtons();
+    	initilizeUI();
+    	
+    	timer = 500;
+    	stage.addActor(timerText);
     }
 
     @Override
@@ -144,6 +149,10 @@ public class Game implements Screen {
 	    	batch.end();
 	        
 	    	CameraStyles.lockOnTarget(cam, player.getPosition());
+	    	timer = timer - delta;
+	    	int time = (int) timer;
+	    	timerText.setText(time);
+	    	
 	           
 	        //Camera within bounds
 	        cameraBounds();
@@ -237,7 +246,7 @@ public class Game implements Screen {
      * 
      * @author Åsmund
      */
-    private void initilizeButtons() {
+    private void initilizeUI() {
     	gameOverText.setSize(colWidth*12,rowHeight*2);
         gameOverText.setPosition((float) (Gdx.graphics.getWidth()/2-colWidth*6),rowHeight*12);
         gameOverText.setAlignment(Align.center);
@@ -302,6 +311,10 @@ public class Game implements Screen {
     			return true;
     		}	
     	});
+    	
+    	timerText.setSize(colWidth*2,rowHeight*2);
+        timerText.setPosition(colWidth,rowHeight*12);
+        timerText.setAlignment(Align.center);
     }
     
 	@Override
