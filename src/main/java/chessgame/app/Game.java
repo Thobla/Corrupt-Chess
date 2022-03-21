@@ -236,7 +236,7 @@ public class Game implements Screen {
     
     
     public static void victoryScreen() {
-    	//TODO remove player from game
+    	//TODO remove player from game upon victory
     	stage.addActor(victoryText);
     	stage.addActor(continueButton);
     	stage.addActor(quitButtonP);
