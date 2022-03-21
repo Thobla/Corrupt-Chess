@@ -24,8 +24,10 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import chessgame.entities.Pawn;
-import chessgame.entities.Enemies;
+import chessgame.entities.IEnemies;
+import chessgame.entities.IEntities;
 import chessgame.entities.Player;
+import chessgame.entities.Portal;
 import chessgame.utils.CameraStyles;
 import chessgame.utils.Constants;
 import chessgame.world.PhysicsWorld;
@@ -125,12 +127,16 @@ public class Game implements Screen {
     	gameWorld.tileMapToBody(tiledMap);
     	
     	//Adds a pawn for testing purposes.
-    	gameWorld.tileMapToEnemies(tiledMap, entityManager);
+    	gameWorld.tileMapToEntities(tiledMap, entityManager);
     	Pawn pawn = new Pawn(gameMap.getStartPoint().mulAdd(new Vector2(100, 100),1), gameWorld.world, entityManager);
     	
     	
+    	//PortalTesting
+    	Portal portal = new Portal(new Vector2(40, 8), gameWorld.world, entityManager);
+    	
     	//Updates the map
     	entityManager.updateLists();
+
     	
     	initilizeUI();
     	
@@ -138,6 +144,10 @@ public class Game implements Screen {
     	stage.addActor(timerText);
     	stage.addActor(healthText);
     	stage.addActor(scoreText);
+
+    	entityManager.playerList.add(player);
+    	entityManager.addEntity(portal);
+
     }
 
     @Override
@@ -149,21 +159,21 @@ public class Game implements Screen {
     @Override
     public void render(float delta) {
         if (!paused) {
-        	//Logic step
-	    	gameWorld.logicStep(delta);
+	        //Logic step
+	    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
 	        gameMap.render(cam);
 	    	//Debug-render
 	    	debugRenderer.render(gameWorld.world, cam.combined);
 	    	batch.setProjectionMatrix(cam.combined);
 	    	
 	    	batch.begin();
-	    	player.updatePlayer(batch);
-	    	for(Enemies enemy : entityManager.enemyList) {
-	    		enemy.updateState(batch);
+	    	player.updateState(batch);
+	    	for(IEntities entity : entityManager.entityList) {
+	    		entity.updateState(batch);
 	    	}
 	    	entityManager.updateLists();
 	    	batch.end();
-	        
+
 	    	CameraStyles.lockOnTarget(cam, player.getPosition());
 	    	timer = timer - delta;
 	    	int time = (int) timer;
@@ -181,6 +191,7 @@ public class Game implements Screen {
 	        
 	        
 	        if (player.dead) {
+	        	//TODO remove player from game upon death
 	        	gameOverScreen();
 	        }
         }
@@ -219,6 +230,7 @@ public class Game implements Screen {
     
     
     public static void victoryScreen() {
+    	//TODO remove player from game
     	stage.addActor(victoryText);
     	stage.addActor(continueButton);
     	stage.addActor(quitButtonP);
@@ -282,7 +294,6 @@ public class Game implements Screen {
     		@Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
     			game.setScreen(new Game(game, currentLevelIndex));
-    			dispose();
     		}
     		
     		@Override
@@ -360,7 +371,6 @@ public class Game implements Screen {
     		@Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
     			game.setScreen(new Game(game, currentLevelIndex+1));
-    			dispose();
     		}
     		
     		@Override

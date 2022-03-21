@@ -34,14 +34,14 @@ public class EntityTest {
 	void enemySpawnTest() {
 		Pawn pawn = new Pawn(Vector2.Zero, pworld.world, manager);
 		
-		assertTrue(manager.enemyList.contains(pawn));
+		assertTrue(manager.entityList.contains(pawn));
 		assertEquals(pworld.world.getBodyCount(), 1);
 	}
 	@Test
 	void enemyDeathTest() {
 		Pawn pawn = new Pawn(Vector2.Zero, pworld.world, manager);
 		
-		assertTrue(manager.enemyList.contains(pawn));
+		assertTrue(manager.entityList.contains(pawn));
 		assertEquals(pworld.world.getBodyCount(), 1);
 		
 		pawn.takeDamage(pawn.getHealth());
@@ -49,7 +49,7 @@ public class EntityTest {
 		pawn.updateState(null);
 		manager.updateLists();
 		
-		assertFalse(manager.enemyList.contains(pawn));
+		assertFalse(manager.entityList.contains(pawn));
 		assertEquals(pworld.world.getBodyCount(), 0);
 	}
 }

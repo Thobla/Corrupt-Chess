@@ -3,7 +3,8 @@ package chessgame.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import chessgame.entities.Enemies;
+import chessgame.entities.IEntities;
+import chessgame.entities.Player;
 import chessgame.world.PhysicsWorld;
 
 
@@ -13,8 +14,10 @@ import chessgame.world.PhysicsWorld;
  */
 public class EntityManager {
 	//Lists to keep track of the entity / enemy creation and removal.
-    public List<Enemies> enemyList = new ArrayList<Enemies>();
-    public List<Enemies> enemyRemoveList = new ArrayList<Enemies>();
+	//TODO is linkedlist here more effective??
+    public List<IEntities> entityList = new ArrayList<IEntities>();
+    public List<IEntities> entityRemoveList = new ArrayList<IEntities>();
+    public List<Player> playerList = new ArrayList<Player>();
     
     private PhysicsWorld pworld;
     
@@ -23,21 +26,21 @@ public class EntityManager {
     }
     
     /**
-     * Adds the enemy to the removeList.
-     * @param enemy
+     * Adds the entity to the removeList.
+     * @param entity
      */
-    public void removeEnemy(Enemies enemy) {
-    	if(!enemyRemoveList.contains(enemy))
-    		enemyRemoveList.add(enemy);
+    public void removeEntity(IEntities entity) {
+    	if(!entityRemoveList.contains(entity))
+    		entityRemoveList.add(entity);
     }
     /**
      * Adds the enemy to the enemyList.
      * @param enemy
      * @author mikal, thorgal
      */
-    public void addEnemy(Enemies enemy) {
-    	if(!enemyList.contains(enemy))
-    		enemyList.add(enemy);
+    public void addEntity(IEntities entity) {
+    	if(!entityList.contains(entity))
+    		entityList.add(entity);
     }
     
     /**
@@ -46,12 +49,12 @@ public class EntityManager {
      * @author mikal, thorgal
      */
     public void updateLists() {
-    	for(Enemies enemy : enemyRemoveList) {
-    		if(enemyList.contains(enemy)) {
-    			enemyList.remove(enemy);
-	    		pworld.world.destroyBody(enemy.getBody());
+    	for(IEntities entity : entityRemoveList) {
+    		if(entityList.contains(entity)) {
+    			entityList.remove(entity);
+	    		pworld.world.destroyBody(entity.getBody());
     		}
     	}
-    	enemyRemoveList.clear();
+    	entityRemoveList.clear();
     }
 }
