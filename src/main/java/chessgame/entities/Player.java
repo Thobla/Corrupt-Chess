@@ -23,6 +23,8 @@ public class Player implements IEntities{
 	//PlayerStats
 	int health = 3;
 	int attack = 1;
+	
+	public boolean dead = false;
 	int ratingScore;
 	
 	//Player size
@@ -63,7 +65,8 @@ public class Player implements IEntities{
 	 * @author Mikal, Thorgal
 	 */
 	public void jump(float jumpForce) {
-		myBody.applyForceToCenter(new Vector2(0, jumpForce), true);
+		myBody.applyLinearImpulse(new Vector2(0, jumpForce),this.position ,true);
+
 	}
 	public Vector2 getVelocity() {
 		return myBody.getLinearVelocity();
@@ -110,6 +113,9 @@ public class Player implements IEntities{
 	}
 	
 	
+	public void controllerUpdate() {
+		controller.myController(this);
+	}
 	
 	
 
@@ -120,16 +126,24 @@ public class Player implements IEntities{
 	public void takeDamage(int damage) {
 		if(damage < health)
 			health -= damage;
-		else
+		else {
+			health = 0;
 			kill();
+		}
+			
 	}
 
 	public int getAttack() {
 		return attack;
 	}
+	
+	public int getScore() {
+		return ratingScore;
+	}
 
 	@Override
 	public void kill() {
+		dead = true;
 		System.out.println("player died");
 	}
 

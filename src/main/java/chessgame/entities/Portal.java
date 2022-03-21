@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import chessgame.app.Game;
 import chessgame.utils.EntityManager;
 
 public class Portal implements IEntities {
@@ -57,6 +58,10 @@ public class Portal implements IEntities {
 		myBody.createFixture(fixDef).setUserData("Portal");
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);
+	}
+	
+	public static void victory() {
+		Game.victoryScreen();
 	}
 
 	@Override

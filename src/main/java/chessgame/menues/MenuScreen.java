@@ -53,6 +53,7 @@ public class MenuScreen implements Screen {
         title.setAlignment(Align.center);
         stage.addActor(title);
         
+        
         //Play button for starting the game.
         Button playButton = new TextButton("Play",skin,"default");
         playButton.setSize(colWidth*3,(float) (rowHeight*1.5));
@@ -60,7 +61,7 @@ public class MenuScreen implements Screen {
         playButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(new Game(game,"map"));
+                game.setScreen(new Game(game,0));
     			dispose();
             }
             @Override
@@ -94,7 +95,6 @@ public class MenuScreen implements Screen {
         creditsButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -118,6 +118,22 @@ public class MenuScreen implements Screen {
             }
         });
         stage.addActor(quitButton);
+        
+      //Button for resetting the game
+        Button resetButton = new TextButton("RESET",skin,"default");
+        resetButton.setSize(colWidth*4,(float) (rowHeight*2));
+        resetButton.setPosition(colWidth*20,(float) (Gdx.graphics.getHeight()-rowHeight*16));
+        resetButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                SaveFile.totalReset();
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        stage.addActor(resetButton);
 	}
 	
 	@Override

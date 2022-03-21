@@ -15,6 +15,7 @@ import chessgame.app.PlayerController;
 import chessgame.entities.IEnemies;
 import chessgame.entities.IObjects;
 import chessgame.entities.Player;
+import chessgame.entities.Portal;
 
 public class ListenerClass implements ContactListener{
 	
@@ -117,10 +118,10 @@ public class ListenerClass implements ContactListener{
 		}
 		//Checks if player touches the Portal
 		if(fixtureA.getUserData() == "Portal" && fixtureB.getUserData() == "Player") {
-			System.out.println("Player Won the Game!");
+			Portal.victory();
 		}
 		else if(fixtureB.getUserData() == "Portal" && fixtureA.getUserData() == "Player") {
-			System.out.println("Player Won the Game!");
+			Portal.victory();
 		}
 	}
 

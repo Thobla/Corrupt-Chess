@@ -31,11 +31,9 @@ public class ControllerChangingScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
         
         int rowHeight = Gdx.graphics.getHeight() / 16;
-        int colWidth = Gdx.graphics.getWidth() / 24;
+        //int colWidth = Gdx.graphics.getWidth() / 24;
         
         Skin skin = new Skin(Gdx.files.internal("assets/skin/goldenspiralui/golden-ui-skin.json"));
-        
-        byte[] controls = SaveFile.readSettings();	
         
         //Background image
         Table backgroundTable = new Table();
