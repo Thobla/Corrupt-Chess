@@ -4,6 +4,8 @@
 Eit spill om en sjakkbrikke som prøver å redde sin konge frå motstanderens dronning.
 
 
+<img src="ReadMeAssets/pawnboi.gif" width="200" heigth="200">
+
 ## Trello
 Vi bruker Trello til fordeling av oppgåver og som en sjekkliste for prosjektet.
 Link:
