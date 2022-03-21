@@ -61,10 +61,10 @@ public class Game implements Screen {
     final ChessGame game;
     String map;
     
-    int currentLevelIndex;
-    String[] levels = new String[] {
+    static int currentLevelIndex;
+    public static String[] levels = new String[] {
     	"map",
-    	"map2"
+    	"map2",
     };
     
     //Stage for UI elements
@@ -240,6 +240,7 @@ public class Game implements Screen {
     	stage.addActor(victoryText);
     	stage.addActor(continueButton);
     	stage.addActor(quitButtonP);
+    	SaveFile.writeProgress(currentLevelIndex+2);
     }
     
     @Override

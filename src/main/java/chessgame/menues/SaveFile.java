@@ -75,11 +75,24 @@ public class SaveFile {
 		file.writeBytes(controls, false);
 	}
 	
+	public static byte[] readProgress() {
+		FileHandle file = Gdx.files.local("savefiles/progress.txt");
+		return file.readBytes();
+	}
+	
+	public static void writeProgress(int data) {
+		FileHandle file = Gdx.files.local("savefiles/progress.txt");
+		if (file.readBytes()[0] < data)
+			file.writeBytes(new byte [] {(byte) data}, false);
+	}
+	
 	/**
 	 * Resets the settingsfile to its default state
 	 */
 	public static void totalReset() {
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
 		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, 50}, false);
+		FileHandle file2 = Gdx.files.local("savefiles/progress.txt");
+		file2.writeBytes(new byte[] {1}, false);
 	}
 }
