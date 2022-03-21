@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import chessgame.entities.pawnstates.*;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 
@@ -23,6 +24,13 @@ public class Pawn implements IEnemies {
 	Body myBody;
 	EntityManager entityManager;
 	Sprite sprite;
+	
+	//State	
+	PawnState idleState = new PawnIdle(this);
+	PawnState chaseState = new PawnChase(this);
+	PawnState homeState = new PawnHome(this);
+	PawnState moveState = new PawnMove(this);
+	PawnState currentState = idleState;
 	
 	//Entity size
 	float width = 0.5f;
@@ -42,6 +50,7 @@ public class Pawn implements IEnemies {
 		
 		//Adds the pawn to the entityManager
     	entityManager.addEntity(this);
+ 
 	}
 	
 	@Override
@@ -111,6 +120,9 @@ public class Pawn implements IEnemies {
 
 	@Override
 	public void updateState(Batch batch) {
+		
+		currentState.Update();
+		
 		keepWithinBounds();
 		position = myBody.getPosition();
 		if(batch != null) {
