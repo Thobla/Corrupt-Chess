@@ -1,6 +1,10 @@
 package chessgame.app;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -54,7 +58,13 @@ public class Game implements Screen {
     
     final ChessGame game;
     String map;
-   
+    
+    int currentLevelIndex;
+    String[] levels = new String[] {
+    	"map",
+    	"map2"
+    };
+    
     //Stage for UI elements
     private static Stage stage;
     //Scalable units for size and placements of UI
@@ -62,22 +72,26 @@ public class Game implements Screen {
     static int colWidth = Gdx.graphics.getWidth() / 24;
     //Imported skin for UI
     static Skin skin = new Skin(Gdx.files.internal("assets/skin/goldenspiralui/golden-ui-skin.json"));
-    static //UI
-    Label pauseText = new Label("PAUSED", skin, "title");
+    //UI
+    static Label pauseText = new Label("PAUSED", skin, "title");
     static TextButton resumeButton = new TextButton ("Resume", skin, "default"); 
     static Label gameOverText = new Label("GAME OVER", skin, "title");
     static TextButton retryButton = new TextButton ("Retry?", skin, "default");
     static TextButton quitButtonGO = new TextButton ("Quit", skin, "default");
     static TextButton quitButtonP = new TextButton ("Quit", skin, "default");
+    static Label healthText = new Label ("Health", skin, "default");
+    static Label scoreText = new Label ("Score", skin, "default");
     static Label timerText = new Label ("000", skin, "default");
     static float timer;
+    static Label victoryText = new Label("VICTORY", skin, "title");
+    static TextButton continueButton = new TextButton ("Next level", skin, "default");
     
     static boolean paused = false;
     
-    public Game(ChessGame game, String map) {
+    public Game(ChessGame game, int level) {
     	
     	this.game = game;
-    	this.map = map;
+    	this.map = levels[level];
     	//World initialisation
     	gameWorld = new PhysicsWorld();
     	debugRenderer = new Box2DDebugRenderer();
@@ -107,7 +121,7 @@ public class Game implements Screen {
         player = new Player(gameMap.getStartPoint(), gameWorld.world);
         
         //Creates bodies for TileMap
-        tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+"map"+".tmx").file().getAbsolutePath());
+        tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+map+".tmx").file().getAbsolutePath());
     	gameWorld.tileMapToBody(tiledMap);
     	
     	//Adds a pawn for testing purposes.
@@ -122,6 +136,8 @@ public class Game implements Screen {
     	
     	timer = 500;
     	stage.addActor(timerText);
+    	stage.addActor(healthText);
+    	stage.addActor(scoreText);
     }
 
     @Override
@@ -153,6 +169,8 @@ public class Game implements Screen {
 	    	int time = (int) timer;
 	    	timerText.setText(time);
 	    	
+	    	healthText.setText("Health: " + player.getHealth());
+	    	scoreText.setText("Score: " + player.getScore());
 	           
 	        //Camera within bounds
 	        cameraBounds();
@@ -197,6 +215,13 @@ public class Game implements Screen {
         	stage.addActor(resumeButton);
         	stage.addActor(quitButtonP);
     	}
+    }
+    
+    
+    public static void victoryScreen() {
+    	stage.addActor(victoryText);
+    	stage.addActor(continueButton);
+    	stage.addActor(quitButtonP);
     }
     
     @Override
@@ -256,7 +281,8 @@ public class Game implements Screen {
     	retryButton.addListener(new InputListener() {
     		@Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-    			game.setScreen(new Game(game, map));
+    			game.setScreen(new Game(game, currentLevelIndex));
+    			dispose();
     		}
     		
     		@Override
@@ -313,8 +339,35 @@ public class Game implements Screen {
     	});
     	
     	timerText.setSize(colWidth*2,rowHeight*2);
-        timerText.setPosition(colWidth,rowHeight*12);
+        timerText.setPosition(0,rowHeight*14);
         timerText.setAlignment(Align.center);
+        
+        healthText.setSize(colWidth*2, rowHeight*2);
+        healthText.setPosition(colWidth*2, rowHeight*14);
+        healthText.setAlignment(Align.center);
+        
+        scoreText.setSize(colWidth*2, rowHeight*2);
+        scoreText.setPosition(colWidth*4, rowHeight*14);
+        scoreText.setAlignment(Align.center);
+        
+        victoryText.setSize(colWidth*12,rowHeight*2);
+        victoryText.setPosition((float) (Gdx.graphics.getWidth()/2-colWidth*6),rowHeight*12);
+        victoryText.setAlignment(Align.center);
+        
+        continueButton.setSize(colWidth*3, (float) (rowHeight*1.8));
+        continueButton.setPosition(colWidth*12 - quitButtonP.getWidth()/2, rowHeight*10);
+        continueButton.addListener(new InputListener() {
+    		@Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+    			game.setScreen(new Game(game, currentLevelIndex+1));
+    			dispose();
+    		}
+    		
+    		@Override
+    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+    			return true;
+    		}	
+    	});
     }
     
 	@Override

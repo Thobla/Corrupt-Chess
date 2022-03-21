@@ -9,6 +9,7 @@ public class Main {
         cfg.useVsync(true);
         cfg.setTitle("Chess Game");
         cfg.setWindowedMode(1980, 1000);
+        //cfg.setForegroundFPS(30);
         //cfg.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
         ChessGame game = new ChessGame();
         new Lwjgl3Application(game, cfg);

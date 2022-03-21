@@ -23,6 +23,8 @@ public class Player implements Entities{
 	//PlayerStats
 	int health = 3;
 	int attack = 1;
+	int ratingScore = 0;
+	
 	public boolean dead = false;
 	
 	//Player size
@@ -60,7 +62,7 @@ public class Player implements Entities{
 	 * @author Mikal, Thorgal
 	 */
 	public void jump(float jumpForce) {
-		playerBody.applyForceToCenter(new Vector2(0, jumpForce), true);
+		playerBody.applyLinearImpulse(new Vector2(0, jumpForce),this.position ,true);
 	}
 	public Vector2 getVelocity() {
 		return playerBody.getLinearVelocity();
@@ -155,6 +157,10 @@ public class Player implements Entities{
 	public int getAttack() {
 		// TODO Auto-generated method stub
 		return attack;
+	}
+	
+	public int getScore() {
+		return ratingScore;
 	}
 
 	@Override
