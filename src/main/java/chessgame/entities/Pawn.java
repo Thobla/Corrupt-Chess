@@ -16,7 +16,7 @@ import chessgame.utils.EntityManager;
 
 public class Pawn implements IEnemies {
 	int health = 2;
-	int attack;
+	int attack = 1;
 	
 	Vector2 position;
 	World world;
@@ -55,9 +55,9 @@ public class Pawn implements IEnemies {
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);
 		
-		myBody.createFixture(shape, 1000f);
+		myBody.createFixture(shape, 1000f).setUserData("Enemy");;
 		myBody.setFixedRotation(true);
-		myBody.setUserData("Pawn");
+		myBody.setUserData(this);
 		
 		//creating a fixture that will serve as the players groundCheck-platter.
 		FixtureDef fixDef = new FixtureDef();

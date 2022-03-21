@@ -83,6 +83,20 @@ public class ListenerClass implements ContactListener{
 			player = (Player) fixtureA.getBody().getUserData();
 			object.itemFunction(player);
 		}
+		//TODO make an invulnerability system or something. to prevent player from,
+		//dying when jumping on enemy.
+		
+		//Checks whether the player interacts with an enemy, if so, take damage.
+		if(fixtureA.getUserData() == "Enemy" && fixtureB.getUserData() == "Player") {
+			IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
+			player = (Player) fixtureB.getBody().getUserData();
+			player.takeDamage(enemy.getAttack());
+		}
+		else if(fixtureB.getUserData() == "Enemy" && fixtureA.getUserData() == "Player") {
+			IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
+			player = (Player) fixtureA.getBody().getUserData();
+			player.takeDamage(enemy.getAttack());
+		}
 	}
 
 	@Override
