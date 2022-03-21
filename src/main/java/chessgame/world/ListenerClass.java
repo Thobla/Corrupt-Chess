@@ -3,6 +3,7 @@ package chessgame.world;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -90,12 +91,36 @@ public class ListenerClass implements ContactListener{
 		if(fixtureA.getUserData() == "Enemy" && fixtureB.getUserData() == "Player") {
 			IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
 			player = (Player) fixtureB.getBody().getUserData();
+			
+			//Calulates angle to launch player after damage
+			Vector2 playerPos = player.getPosition();
+			Vector2 enemyPos = enemy.getPosition();
+			Vector2 test = new Vector2(Math.abs(playerPos.x-enemyPos.x), Math.abs(playerPos.y-enemyPos.y));
+			System.out.println("Angle: " + test);
+			
+			player.myBody.applyForceToCenter(new Vector2(5000f * test.x, 5000f * test.y), true);
 			player.takeDamage(enemy.getAttack());
 		}
 		else if(fixtureB.getUserData() == "Enemy" && fixtureA.getUserData() == "Player") {
 			IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
 			player = (Player) fixtureA.getBody().getUserData();
+			
+			//Calulates angle to launch player after damage
+			Vector2 playerPos = player.getPosition();
+			Vector2 enemyPos = enemy.getPosition();
+			
+			Vector2 test = new Vector2(Math.abs(playerPos.x-enemyPos.x), Math.abs(playerPos.y-enemyPos.y));
+			System.out.println("Angle: " + test);
+			
+			player.myBody.applyForceToCenter(new Vector2(5000f * test.x, 5000f * test.y), true);
 			player.takeDamage(enemy.getAttack());
+		}
+		//Checks if player touches the Portal
+		if(fixtureA.getUserData() == "Portal" && fixtureB.getUserData() == "Player") {
+			System.out.println("Player Won the Game!");
+		}
+		else if(fixtureB.getUserData() == "Portal" && fixtureA.getUserData() == "Player") {
+			System.out.println("Player Won the Game!");
 		}
 	}
 
@@ -141,6 +166,7 @@ public class ListenerClass implements ContactListener{
 	private void prepareJumpable() {
 		unjumpable.add("Object");
 		unjumpable.add("Enemy");
+		unjumpable.add("Portal");
 	}
 	
 	private <T> boolean checkJumpable(T name) {

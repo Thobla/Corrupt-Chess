@@ -46,8 +46,8 @@ public class PlayerController extends InputMultiplexer {
     		player.move(new Vector2(playerspeed, player.getVelocity().y));
     	else if(Gdx.input.isKeyPressed(left) || Gdx.input.isKeyPressed(Keys.LEFT))
     		player.move(new Vector2(-playerspeed, player.getVelocity().y));
-    	else 
-    		player.move(new Vector2(0, player.getVelocity().y));
+    	//else 
+    		//player.move(new Vector2(0, player.getVelocity().y));
 
     	if((Gdx.input.isKeyPressed(up) || Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.SPACE))) {
     		if(isGrounded && clearJump) {

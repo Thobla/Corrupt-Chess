@@ -19,12 +19,18 @@ public class PawnChase extends PawnState{
 	@Override
 	public void Update() {
 		Player target = pawn.getClosestPlayer(pawn.aggroRange + 2f);
+		
 		//checks whether to stay in state or change state
 		if(target == null) {
 			pawn.changeState(pawn.idleState);
 		}
 		else {
-			pawn.moveTo(target.getPosition());	
+			//A damper to make the enemy less erratic, when player is above him.
+			float damper = target.getPosition().x - pawn.getPosition().x;
+			damper = Math.abs(damper);
+			
+			if(damper > .5f)
+				pawn.moveTo(target.getPosition());	
 		}
 	}
 }

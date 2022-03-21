@@ -14,6 +14,7 @@ import chessgame.entities.Pawn;
 import chessgame.entities.IEnemies;
 import chessgame.entities.IEntities;
 import chessgame.entities.Player;
+import chessgame.entities.Portal;
 import chessgame.utils.CameraStyles;
 import chessgame.utils.Constants;
 import chessgame.world.PhysicsWorld;
@@ -77,9 +78,13 @@ public class Game implements Screen {
     	Pawn pawn = new Pawn(gameMap.getStartPoint().mulAdd(new Vector2(100, 100),1), gameWorld.world, entityManager);
     	
     	
+    	//PortalTesting
+    	Portal portal = new Portal(new Vector2(40, 8), gameWorld.world, entityManager);
+    	
     	//Updates the map
     	entityManager.updateLists();
     	entityManager.playerList.add(player);
+    	entityManager.addEntity(portal);
     }
 
     @Override
