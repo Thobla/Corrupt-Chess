@@ -3,8 +3,8 @@ package chessgame.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import chessgame.entities.IEnemies;
 import chessgame.entities.IEntities;
+import chessgame.entities.Player;
 import chessgame.world.PhysicsWorld;
 
 
@@ -14,8 +14,10 @@ import chessgame.world.PhysicsWorld;
  */
 public class EntityManager {
 	//Lists to keep track of the entity / enemy creation and removal.
+	//TODO is linkedlist here more effective??
     public List<IEntities> entityList = new ArrayList<IEntities>();
     public List<IEntities> entityRemoveList = new ArrayList<IEntities>();
+    public List<Player> playerList = new ArrayList<Player>();
     
     private PhysicsWorld pworld;
     

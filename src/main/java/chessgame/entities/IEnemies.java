@@ -42,4 +42,10 @@ public interface IEnemies extends IEntities {
 	 * Keeps the entity within bounds of the Map.
 	 */
 	public void keepWithinBounds();
+
+	/**
+	 * Searches for players within the appointed distance, returns the closest player.
+	 * if there are no players returns null.
+	 */
+	public Player getClosestPlayer(Float dist);
 }

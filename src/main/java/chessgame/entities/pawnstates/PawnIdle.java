@@ -20,6 +20,8 @@ public class PawnIdle extends PawnState {
 
 	@Override
 	public void Update() {
-			
+		if(pawn.getClosestPlayer(pawn.aggroRange) != null) {
+			pawn.changeState(pawn.chaseState);
+		}
 	}
 }

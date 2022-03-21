@@ -1,5 +1,7 @@
 package chessgame.entities;
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -18,6 +20,7 @@ import chessgame.utils.EntityManager;
 public class Pawn implements IEnemies {
 	int health = 2;
 	int attack = 1;
+	public float aggroRange = 6f;
 	
 	Vector2 position;
 	World world;
@@ -26,10 +29,10 @@ public class Pawn implements IEnemies {
 	Sprite sprite;
 	
 	//State	
-	PawnState idleState = new PawnIdle(this);
-	PawnState chaseState = new PawnChase(this);
-	PawnState homeState = new PawnHome(this);
-	PawnState moveState = new PawnMove(this);
+	public PawnState idleState = new PawnIdle(this);
+	public PawnState chaseState = new PawnChase(this);
+	public PawnState homeState = new PawnHome(this);
+	public PawnState moveState = new PawnMove(this);
 	PawnState currentState = idleState;
 	
 	//Entity size
@@ -115,7 +118,14 @@ public class Pawn implements IEnemies {
 
 	@Override
 	public void moveTo(Vector2 target) {
+		float xVal = position.x - target.x;
+		float yVal = position.y - target.y;
 		
+		if(xVal > 0) {
+			myBody.setLinearVelocity(-3, myBody.getLinearVelocity().y);
+		} else {
+			myBody.setLinearVelocity(3, myBody.getLinearVelocity().y);
+		}
 	}
 
 	@Override
@@ -154,6 +164,32 @@ public class Pawn implements IEnemies {
 		if(myBody.getPosition().y < 0) {
 			kill();
 		}
+	}
+
+	@Override
+	public Player getClosestPlayer(Float dist) {
+		List<Player> playerList = entityManager.playerList;
+		Player target = null;
+		
+		float finalDist = -1;
+		for(Player player : playerList) {
+			float distance = Vector2.dst(player.getPosition().x, player.getPosition().y, getPosition().x, getPosition().y);
+			if(target == null && distance <= dist) {
+				target = player;
+				finalDist = distance;
+			} else if(distance <= dist && distance < finalDist) {
+				target = player;
+				finalDist = distance;
+			}
+		}
+		return target;
+	}
+	/**
+	 * Changes between the states in the stateMachine
+	 */
+	public void changeState(PawnState state) {
+		currentState = state;
+		currentState.Enter();
 	}
 
 }

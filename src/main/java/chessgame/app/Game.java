@@ -79,6 +79,7 @@ public class Game implements Screen {
     	
     	//Updates the map
     	entityManager.updateLists();
+    	entityManager.playerList.add(player);
     }
 
     @Override
