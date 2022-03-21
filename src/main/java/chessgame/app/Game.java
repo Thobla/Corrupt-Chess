@@ -140,7 +140,7 @@ public class Game implements Screen {
     	
     	initilizeUI();
     	
-    	timer = 500;
+    	timer = 300;
     	stage.addActor(timerText);
     	stage.addActor(healthText);
     	stage.addActor(scoreText);
@@ -175,9 +175,15 @@ public class Game implements Screen {
 	    	batch.end();
 
 	    	CameraStyles.lockOnTarget(cam, player.getPosition());
-	    	timer = timer - delta;
-	    	int time = (int) timer;
-	    	timerText.setText(time);
+	    	if (timer <= 0) {
+	    		gameOverScreen();
+	    	} else {
+	    		timer = timer - delta;
+		    	int time = (int) timer;
+		    	timerText.setText(time);
+	    	}
+	    	
+	    	
 	    	
 	    	healthText.setText("Health: " + player.getHealth());
 	    	scoreText.setText("Score: " + player.getScore());
@@ -191,7 +197,6 @@ public class Game implements Screen {
 	        
 	        
 	        if (player.dead) {
-	        	//TODO remove player from game upon death
 	        	gameOverScreen();
 	        }
         }
@@ -207,7 +212,8 @@ public class Game implements Screen {
         }
     }
 
-    public void gameOverScreen() {   	
+    public void gameOverScreen() {   
+    	//TODO remove player from game upon death
     	stage.addActor(gameOverText);
     	stage.addActor(retryButton);
     	stage.addActor(quitButtonGO);
