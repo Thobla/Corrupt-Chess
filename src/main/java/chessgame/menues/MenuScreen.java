@@ -61,7 +61,10 @@ public class MenuScreen implements Screen {
         playButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(new LevelSelectScreen(game));
+            	if (SaveFile.readProgress()[0] == 1)
+            		game.setScreen(new Game(game, 0));
+            	else 	
+            		game.setScreen(new LevelSelectScreen(game));
     			dispose();
             }
             @Override
