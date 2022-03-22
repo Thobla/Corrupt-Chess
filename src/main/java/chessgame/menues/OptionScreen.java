@@ -29,12 +29,11 @@ public class OptionScreen implements Screen {
 	OrthographicCamera cam;
     final ChessGame game;
     private Stage stage;
-    private byte up;
-    private byte right;
-    private byte left;
-    private byte sprint;
+    private int up;
+    private int right;
+    private int left;
+    private int sprint;
     private float audiolvl;
-    private boolean jumpHelp;
 		
 	public OptionScreen(ChessGame game) {
 		
@@ -42,7 +41,7 @@ public class OptionScreen implements Screen {
 		stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
         
-        byte[] controls = SaveFile.readSettings();
+        int[] controls = SaveFile.readSettings();
         up = controls[0];
         left = controls[1];
         right = controls[2]; 

@@ -62,6 +62,7 @@ public class Game implements Screen {
     String map;
     
     static int currentLevelIndex;
+    //All levels with their file names
     public static String[] levels = new String[] {
     	"map",
     	"map2",
@@ -111,7 +112,7 @@ public class Game implements Screen {
 		
         //Batch
         batch = new SpriteBatch();
-        byte[] controls = SaveFile.readSettings();
+        int[] controls = SaveFile.readSettings();
         Gdx.input.setInputProcessor(new PlayerController(controls, game));
         //stage inputet må væra etter playercontroller for å fungere?
         Gdx.input.setInputProcessor(stage);

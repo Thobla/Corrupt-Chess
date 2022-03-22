@@ -11,10 +11,9 @@ public class SaveFile {
 	 * !!DOES NOT CHANGE AUDIO!!
 	 */
 	public static void defaultControls() {
-		byte audio = readSettings()[4];
+		int audio = readSettings()[4];
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
-		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, audio}, false);
-		
+		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, (byte) audio}, false);
 	}
 	
 	/**
@@ -31,9 +30,19 @@ public class SaveFile {
 	 * 
 	 * @author Åsmund
 	 */
-	public static byte[] readSettings() {
+	public static int[] readSettings() {
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
-		return file.readBytes();
+		byte[] input = file.readBytes();
+		int[] output = {0,1,2,3,4,5};
+		int i = 0;
+		for (byte value : input) {
+			if (value < 0)
+				output[i] = value+256;
+			else
+				output[i] = value;
+			i++;
+		}
+		return output;
 	}
 	
 	/**

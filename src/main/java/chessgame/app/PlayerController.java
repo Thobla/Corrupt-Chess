@@ -20,19 +20,19 @@ public class PlayerController extends InputMultiplexer {
 	public boolean isGrounded = false;
 	public boolean clearJump = true;
 	
-	private byte up;
-	private byte left;
-	private byte right;
-	private byte sprint;
+	private int up;
+	private int left;
+	private int right;
+	private int sprint;
 	
-	public PlayerController(byte[] controls, ChessGame game){
+	public PlayerController(int[] controls, ChessGame game){
 		up = controls[0];
 		left = controls[1];
 		right = controls[2];
 		sprint = controls[3];
 	}
 	
-	public PlayerController(byte[] controls){
+	public PlayerController(int[] controls){
 		up = controls[0];
 		left = controls[1];
 		right = controls[2];

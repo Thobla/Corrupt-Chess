@@ -42,7 +42,7 @@ public class Player implements IEntities{
 		ratingScore = 0;
 		
     	//PlayerController
-		byte[] controls = SaveFile.readSettings();
+		int[] controls = SaveFile.readSettings();
     	controller = new PlayerController(controls);
 	}
 
