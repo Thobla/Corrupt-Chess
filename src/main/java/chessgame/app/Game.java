@@ -2,9 +2,6 @@ package chessgame.app;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -23,8 +20,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import chessgame.entities.Pawn;
-import chessgame.entities.IEnemies;
 import chessgame.entities.IEntities;
 import chessgame.entities.Player;
 import chessgame.entities.Portal;
@@ -126,10 +121,8 @@ public class Game implements Screen {
         //Creates bodies for TileMap
         tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+map+".tmx").file().getAbsolutePath());
     	gameWorld.tileMapToBody(tiledMap);
-    	
-    	//Adds a pawn for testing purposes.
     	gameWorld.tileMapToEntities(tiledMap, entityManager);
-    	Pawn pawn = new Pawn(gameMap.getStartPoint().mulAdd(new Vector2(100, 100),1), gameWorld.world, entityManager);
+
     	
     	
     	//PortalTesting
