@@ -61,9 +61,6 @@ public class OptionScreen implements Screen {
         backgroundTable.setDebug(true);
         stage.addActor(backgroundTable);
         
-       
-        
-        
         //Title for this menu
         Label title = new Label("Options", skin, "title");
         title.setSize(Gdx.graphics.getWidth(),rowHeight*2);
@@ -222,9 +219,6 @@ public class OptionScreen implements Screen {
             }
         });
         stage.addActor(audioSlider);
-        
-        
-        
 	}
 	
 	public void changeButton(TextButton button, String text, int index) {

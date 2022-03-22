@@ -39,7 +39,6 @@ public class PlayerController extends InputMultiplexer {
 		sprint = controls[3];
 	}
 	
-	
 	public void myController(Player player) {
 		if (!Game.paused) {
 			//checks if the player is on the ground

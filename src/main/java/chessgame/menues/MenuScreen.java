@@ -53,7 +53,6 @@ public class MenuScreen implements Screen {
         title.setAlignment(Align.center);
         stage.addActor(title);
         
-        
         //Play button for starting the game.
         Button playButton = new TextButton("Play",skin,"default");
         playButton.setSize(colWidth*3,(float) (rowHeight*1.5));
@@ -141,7 +140,6 @@ public class MenuScreen implements Screen {
 	
 	@Override
 	public void show() {
-		
 	}
 
 	@Override
@@ -155,32 +153,22 @@ public class MenuScreen implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

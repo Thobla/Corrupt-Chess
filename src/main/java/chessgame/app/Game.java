@@ -123,15 +123,12 @@ public class Game implements Screen {
     	gameWorld.tileMapToBody(tiledMap);
     	gameWorld.tileMapToEntities(tiledMap, entityManager);
 
-    	
-    	
     	//PortalTesting
     	Portal portal = new Portal(new Vector2(40, 8), gameWorld.world, entityManager);
     	
     	//Updates the map
     	entityManager.updateLists();
 
-    	
     	initilizeUI();
     	
     	timer = 300;
@@ -176,8 +173,6 @@ public class Game implements Screen {
 		    	int time = (int) timer;
 		    	timerText.setText(time);
 	    	}
-	    	
-	    	
 	    	
 	    	healthText.setText("Health: " + player.getHealth());
 	    	scoreText.setText("Score: " + player.getScore());
