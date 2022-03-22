@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         Lwjgl3ApplicationConfiguration cfg = new Lwjgl3ApplicationConfiguration();
         cfg.useVsync(true);
-        cfg.setTitle("Chess Game");
+        cfg.setTitle("Corrupt Chess");
         cfg.setWindowedMode(1980, 1000);
         //cfg.setForegroundFPS(30);
         //cfg.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());

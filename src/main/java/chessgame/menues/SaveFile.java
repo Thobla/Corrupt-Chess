@@ -26,15 +26,15 @@ public class SaveFile {
 	 * [2]=right input,
 	 * [3]=sprint,
 	 * [4]=audiolvl
-	 * [5]=jumphelp
 	 * 
 	 * @author Åsmund
 	 */
 	public static int[] readSettings() {
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
 		byte[] input = file.readBytes();
-		int[] output = {0,1,2,3,4,5};
+		int[] output = {0,1,2,3,4};
 		int i = 0;
+		//Some key values are larger than the byte limit of 2^7-1 and needs to be converted back to their original int.
 		for (byte value : input) {
 			if (value < 0)
 				output[i] = value+256;
@@ -63,6 +63,26 @@ public class SaveFile {
 		file.writeBytes(data, false);
 	}
 	
+	/**
+	 * Writes the input data to the settings file.
+	 * 
+	 * @param data Data to be saved.
+	 * @see
+	 * [0]=up input,
+	 * [1]=left input,
+	 * [2]=right input,
+	 * [3]=sprint,
+	 * [4]=audiolvl
+	 * 
+	 * @author Åsmund
+	 */
+	public static void writeSettings(int[] data) {
+		byte[] output = {0,1,2,3,4};
+		for (int i = 0; i<5 ; i++) {
+			output[i] = (byte) data[i];
+		}
+		writeSettings(output);
+	}
 	/**
 	 * Writes the input data to the specified location in the settings file.
 	 * 
@@ -104,4 +124,6 @@ public class SaveFile {
 		FileHandle file2 = Gdx.files.local("savefiles/progress.txt");
 		file2.writeBytes(new byte[] {1}, false);
 	}
+
+	
 }
