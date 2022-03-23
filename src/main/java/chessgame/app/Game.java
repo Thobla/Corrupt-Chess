@@ -203,7 +203,6 @@ public class Game implements Screen {
 	    	player.renderPlayer(batch);
 	    	batch.end();
 	    	
-        	
         	//Camera within bounds
 	        cameraBounds();
 	        cam.update();
