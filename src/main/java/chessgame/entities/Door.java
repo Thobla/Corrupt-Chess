@@ -3,9 +3,7 @@ package chessgame.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -13,33 +11,42 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
-import chessgame.app.Game;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 
-public class Portal implements IEntities {
+public class Door implements IObjects {
+	
 	Vector2 position;
+	Sprite sprite;
+	Body myBody;
 	World world;
 	EntityManager entityManager;
-	Body myBody;
-	Sprite sprite;
+	
+	Sprite spriteOpen;
+	Sprite spriteClosed;
+	
+	Boolean open;
+	int activationCode;
 	
 	float width = 0.5f;
-	float height = 0.5f;
+	float height = 1f;
 	
-	//ParticleTesting
-	TextureAtlas particleAtlas;
-	ParticleEffect particle = new ParticleEffect();
 	
-	public Portal(Vector2 position, World world, EntityManager entityManager){
+	public Door(Vector2 position, World world, EntityManager entityManager, int code){
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		this.entityManager = entityManager;
+		this.activationCode = code;
 		
-		sprite = new Sprite(new Texture (Gdx.files.internal("assets/portal.png").file().getAbsolutePath()));
+		spriteOpen = new Sprite(new Texture (Gdx.files.internal("assets/dooropen.png").file().getAbsolutePath()));
+		spriteClosed = new Sprite(new Texture (Gdx.files.internal("assets/doorclosed.png").file().getAbsolutePath()));
+		sprite = spriteClosed;
+		
+		open = false;
 		createBody();
 		
 		entityManager.addEntity(this);
+		entityManager.doorMap.put(activationCode, this);
 	}
 	
 	@Override
@@ -53,18 +60,9 @@ public class Portal implements IEntities {
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);
 		
-		FixtureDef fixDef = new FixtureDef();
-		fixDef.isSensor = true;
-		shape.setAsBox(width * 0.95f, height / 10, new Vector2(0f, height), 0);
-		fixDef.shape = shape;
-		
-		myBody.createFixture(fixDef).setUserData("Portal");
+		myBody.createFixture(shape, 1000f).setUserData("Door");;
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);
-	}
-	
-	public static void victory() {
-		Game.victoryScreen();
 	}
 
 	@Override
@@ -74,12 +72,10 @@ public class Portal implements IEntities {
 
 	@Override
 	public void move(Vector2 newPos) {
-		//Redundant for a portal to move
-		//Unless we want it to be elusive :O
 	}
 
 	@Override
-	public Sprite getSprite() {		
+	public Sprite getSprite() {
 		return sprite;
 	}
 
@@ -90,22 +86,40 @@ public class Portal implements IEntities {
 
 	@Override
 	public void kill() {
-		//Portal does not need to get removed
 	}
 
 	@Override
 	public void removeBody() {
-		//Does not need to remove body, as it laods a new map when touched.
 	}
 
 	@Override
 	public void updateState(Batch batch) {
 		position = myBody.getPosition();
+		
 		if(batch != null) {
-			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
-			sprite.setSize(1, 1);
+			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y-sprite.getHeight()/2);
+			sprite.setSize(1, 2);
 			sprite.draw(batch);	
 		}
+		
 	}
 	
+	public void doorState() {
+		if(!open) {
+			myBody.getFixtureList().get(0).setSensor(true);
+			sprite = spriteOpen;
+			open = true;
+		} else {
+			myBody.getFixtureList().get(0).setSensor(false);
+			sprite = spriteClosed;
+			open = false;
+		}
+	}
+
+	@Override
+	public void itemFunction(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

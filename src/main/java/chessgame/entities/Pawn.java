@@ -40,7 +40,7 @@ public class Pawn implements IEnemies {
 	float height = 0.5f;
 	
 	public Pawn (Vector2 position, World world, EntityManager entityManager) {
-		this.position = new Vector2(position.x/Constants.PixelPerMeter, position.y/Constants.PixelPerMeter);
+		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		this.entityManager = entityManager;
 		
