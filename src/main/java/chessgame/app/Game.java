@@ -20,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import chessgame.entities.Button;
 import chessgame.entities.IEntities;
 import chessgame.entities.Player;
 import chessgame.entities.Portal;
@@ -122,9 +123,6 @@ public class Game implements Screen {
         tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+map+".tmx").file().getAbsolutePath());
     	gameWorld.tileMapToBody(tiledMap);
     	gameWorld.tileMapToEntities(tiledMap, entityManager);
-
-    	//PortalTesting
-    	Portal portal = new Portal(new Vector2(40, 8), gameWorld.world, entityManager);
     	
     	//Updates the map
     	entityManager.updateLists();
@@ -137,8 +135,6 @@ public class Game implements Screen {
     	stage.addActor(scoreText);
 
     	entityManager.playerList.add(player);
-    	entityManager.addEntity(portal);
-
     }
 
     @Override
@@ -157,12 +153,14 @@ public class Game implements Screen {
 	    	debugRenderer.render(gameWorld.world, cam.combined);
 	    	batch.setProjectionMatrix(cam.combined);
 	    	
+	    	//Updates all entities
 	    	batch.begin();
-	    	player.updateState(batch);
 	    	for(IEntities entity : entityManager.entityList) {
 	    		entity.updateState(batch);
 	    	}
 	    	entityManager.updateLists();
+	    	
+	    	player.updateState(batch);
 	    	batch.end();
 
 	    	CameraStyles.lockOnTarget(cam, player.getPosition());

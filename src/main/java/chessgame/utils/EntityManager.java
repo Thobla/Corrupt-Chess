@@ -1,8 +1,10 @@
 package chessgame.utils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import chessgame.entities.Door;
 import chessgame.entities.IEntities;
 import chessgame.entities.Player;
 import chessgame.world.PhysicsWorld;
@@ -18,6 +20,7 @@ public class EntityManager {
     public List<IEntities> entityList = new ArrayList<IEntities>();
     public List<IEntities> entityRemoveList = new ArrayList<IEntities>();
     public List<Player> playerList = new ArrayList<Player>();
+    public HashMap<Integer, Door> doorMap = new HashMap<Integer, Door>();
     
     private PhysicsWorld pworld;
     

@@ -16,7 +16,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 
+import chessgame.entities.Button;
+import chessgame.entities.Door;
 import chessgame.entities.Pawn;
+import chessgame.entities.Portal;
 import chessgame.entities.RatingPoint;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
@@ -95,14 +98,28 @@ public class PhysicsWorld {
 			Rectangle rectangle = ((RectangleMapObject)entity).getRectangle();
 			Vector2 pos = rectangle.getPosition(new Vector2());
 			
+			if(entity.getName() == null) {
+				break;
+			}
 			//Spawns a pawn
 			if(entity.getName().toLowerCase().equals("pawn")) {;
 				new Pawn(pos, world, manager);
 			}
-			
-			
+			//Spawns a coin	
 			if(entity.getName().toLowerCase().equals("ratingpoint")) {
 				new RatingPoint(pos, world, manager);
+			}
+			//Spawns a door
+			if(entity.getName().toLowerCase().equals("door")) {
+				int code =(int) entity.getProperties().get("code");
+				new Door(pos, world, manager, code);
+			}
+			if(entity.getName().toLowerCase().equals("button")) {
+				int code =(int) entity.getProperties().get("code");
+				new Button(pos, world, manager, code);
+			}
+			if(entity.getName().toLowerCase().equals("portal")) {
+				new Portal(pos, world, manager);
 			}
 			
 			
