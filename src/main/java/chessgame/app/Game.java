@@ -157,14 +157,17 @@ public class Game implements Screen {
 	    	
 	    	//Updates all entities
 	    	batch.begin();
-	    	for(IEntities entity : entityManager.entityList) {
-	    		entity.updateState(batch);
-	    	}
-	    	entityManager.updateLists();
-	    	
+	    	entityManager.updateEntities(batch);
 	    	player.updateState(batch);
 	    	batch.end();
-
+	    	
+	    	entityManager.updateLists();
+	    	
+	    	//UI updates
+	    	healthText.setText("Health: " + player.getHealth());
+	    	scoreText.setText("Score: " + player.getScore());
+	           
+	        //Camera Updates
 	    	CameraStyles.lockOnTarget(cam, player.getPosition());
 	    	if (timer <= 0) {
 	    		paused = true;
@@ -174,18 +177,15 @@ public class Game implements Screen {
 		    	int time = (int) timer;
 		    	timerText.setText(time);
 	    	}
-	    	
-	    	healthText.setText("Health: " + player.getHealth());
-	    	scoreText.setText("Score: " + player.getScore());
-	           
-	        //Camera within bounds
 	        cameraBounds();
 	        cam.update();
+	        
 	        
 	        stage.act();
 	        stage.draw();
 	        
 	        
+	        //Player Value updates
 	        if (player.dead) {
 	        	gameOverScreen();
 	        }

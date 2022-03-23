@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
+
 import chessgame.entities.Door;
 import chessgame.entities.IEntities;
 import chessgame.entities.Player;
@@ -59,5 +61,11 @@ public class EntityManager {
     		}
     	}
     	entityRemoveList.clear();
+    }
+    
+    public void updateEntities(Batch batch) {
+    	for(IEntities entity : entityList) {
+    		entity.updateState(batch);
+    	}
     }
 }
