@@ -112,12 +112,7 @@ public class Button implements IObjects{
 			sprite.draw(batch);	
 		}
 	}
-	
-	//Sets the activation code of the button (activates the door with matching code)
-	public void setActivationCode(int code) {
-		activationCode = code;
-	}
-	//gets the activation code of the button (activates the door with matching code)
+
 	public void getActivationCode(int code) {
 		activationCode = code;
 	}

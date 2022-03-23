@@ -48,4 +48,6 @@ public interface IEnemies extends IEntities {
 	 * if there are no players returns null.
 	 */
 	public Player getClosestPlayer(Float dist);
+	
+	public IState getCurrentState();
 }

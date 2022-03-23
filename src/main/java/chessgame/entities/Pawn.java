@@ -189,4 +189,9 @@ public class Pawn implements IEnemies {
 		currentState = state;
 		currentState.Enter();
 	}
+
+	@Override
+	public IState getCurrentState() {
+		return currentState;
+	}
 }

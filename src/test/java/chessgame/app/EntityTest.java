@@ -33,25 +33,5 @@ public class EntityTest {
 	@BeforeEach
 	void setUpBeforeEach() {
 	}
-	
-	@Test	
-	void getClosesPlayerTest(){
-		Pawn pawn = new Pawn(new Vector2(2,2), pworld.world, manager);
-		
-		Player target = pawn.getClosestPlayer(1000f);
-		assertEquals(null, target);
-		
-		Player mockPlayer = mock(Player.class);
-		when(mockPlayer.getPosition()).thenReturn(new Vector2(2,3));
-		Player mockPlayer2 = mock(Player.class);
-		when(mockPlayer2.getPosition()).thenReturn(new Vector2(50,3));
-		
-		manager.playerList.add(mockPlayer);
-		manager.playerList.add(mockPlayer2);
-		
-		target = pawn.getClosestPlayer(1000f);
-		assertEquals(mockPlayer, target);
-		
-	}
 
 }

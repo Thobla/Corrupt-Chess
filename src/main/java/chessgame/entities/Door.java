@@ -14,7 +14,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 
-public class Door implements IObjects {
+public class Door implements IEntities {
 	
 	Vector2 position;
 	Sprite sprite;
@@ -105,7 +105,11 @@ public class Door implements IObjects {
 		}
 		
 	}
-	
+	/**
+	 * Changes the door state based on previous state.
+	 * If this is called when door is open, it closes
+	 * If this is called when door is closed, it opens.
+	 */
 	public void doorState() {
 		if(!open) {
 			myBody.getFixtureList().get(0).setSensor(true);
@@ -117,11 +121,4 @@ public class Door implements IObjects {
 			open = false;
 		}
 	}
-
-	@Override
-	public void itemFunction(Player player) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
