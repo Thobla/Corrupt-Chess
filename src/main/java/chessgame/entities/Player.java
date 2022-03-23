@@ -59,7 +59,33 @@ public class Player implements IEntities{
 	 */
 	@Override
 	public void move(Vector2 movement) {
-		myBody.setLinearVelocity(movement);
+		float maxSpeed = 10f;
+		Vector2 playerVelocity = myBody.getLinearVelocity();
+		
+		if(movement.x > 0) {
+			if(playerVelocity.x < maxSpeed) {
+				myBody.applyForce(new Vector2(200f, 0), this.position, true);
+			} else {
+				myBody.setLinearVelocity(new Vector2(maxSpeed, playerVelocity.y));
+			}
+		}
+		else if(movement.x < 0) {
+			if(playerVelocity.x > -maxSpeed) {
+				myBody.applyForce(new Vector2(-200f, 0), this.position, true);
+			}
+			else {
+				myBody.setLinearVelocity(new Vector2(-maxSpeed, playerVelocity.y));
+			}
+		}
+		else if(movement.x == 0 && controller.isGrounded) {
+			myBody.applyForce(new Vector2(-playerVelocity.x*50, 0), this.position, true);
+		}
+		else if(movement.x == 0 && controller.isGrounded) {
+			myBody.applyForce(new Vector2(-playerVelocity.x*20, 0), this.position, true);
+		}
+		
+		
+		System.out.println(myBody.getLinearVelocity().x);
 	}
 	/**
 	 * Applies upward force to the entity, making it "jump"

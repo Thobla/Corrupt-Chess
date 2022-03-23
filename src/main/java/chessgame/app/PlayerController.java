@@ -9,12 +9,6 @@ import chessgame.entities.Player;
 
 public class PlayerController extends InputMultiplexer {
 	
-	/**
-	 * [0]=up
-	 * [1]=left
-	 * [2]=right
-	 * [3]=sprint
-	 */
 	private int playerspeed;
 	private float jumpForce = 500f;
 	public boolean isGrounded = false;
