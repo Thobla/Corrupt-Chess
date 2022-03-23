@@ -104,11 +104,27 @@ public class SaveFile {
 		file.writeBytes(controls, false);
 	}
 	
+	/**
+	 * Reads the progress file and returns data about player progression.
+	 * 
+	 * @return
+	 * 
+	 * [0]=level progress
+	 * 
+	 * @author Åsmund
+	 */
 	public static byte[] readProgress() {
 		FileHandle file = Gdx.files.local("savefiles/progress.txt");
 		return file.readBytes();
 	}
 	
+	/**
+	 * Writes level progress to the progression file. Will only update if the level is a new one.
+	 * 
+	 * @param data Unlocked level
+	 * 
+	 * @author Åsmund
+	 */
 	public static void writeProgress(int data) {
 		FileHandle file = Gdx.files.local("savefiles/progress.txt");
 		if (file.readBytes()[0] < data)

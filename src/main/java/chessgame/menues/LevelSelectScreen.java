@@ -67,6 +67,7 @@ public class LevelSelectScreen implements Screen{
         });
         stage.addActor(backButton);
         
+        //Adds levels equal to the progression of the player.
         byte[] progress = SaveFile.readProgress();
         int i = 1;
         for (String level : Game.levels) {

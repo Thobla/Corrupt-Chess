@@ -66,9 +66,5 @@ public class PlayerController extends InputMultiplexer {
     	if(Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
     		Game.pauseGame();
     	}
-    	if(Gdx.input.isKeyJustPressed(Keys.V)) {
-    		Game.victoryScreen();
-
-    	}
 	}
 }

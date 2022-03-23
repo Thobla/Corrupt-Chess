@@ -60,6 +60,7 @@ public class MenuScreen implements Screen {
         playButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            	//If the player hasnt completed the first level yet, they will skip the levelSelectScreen and begin at lvl 1
             	if (SaveFile.readProgress()[0] == 1)
             		game.setScreen(new Game(game, 0));
             	else 	

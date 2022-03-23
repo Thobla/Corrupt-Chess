@@ -274,7 +274,7 @@ public class Game implements Screen {
     	cam.update();
     }
     /**
-     * Constructs all the buttons making the code less cluttered
+     * Constructs all the UI making the code less cluttered
      * 
      * @author Åsmund
      */
