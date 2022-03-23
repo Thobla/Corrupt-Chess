@@ -98,6 +98,16 @@ public class Door implements IEntities {
 	public void updateState(Batch batch) {
 		position = myBody.getPosition();
 		
+		if(open) {
+			myBody.getFixtureList().get(0).setSensor(true);
+			myBody.setUserData("air");
+			sprite = spriteOpen;
+		} else {
+			myBody.getFixtureList().get(0).setSensor(false);
+			myBody.setUserData("Door");
+			sprite = spriteClosed;
+		}
+		
 		if(batch != null) {
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y-sprite.getHeight()/2);
 			sprite.setSize(1, 2);
@@ -112,13 +122,16 @@ public class Door implements IEntities {
 	 */
 	public void doorState() {
 		if(!open) {
-			myBody.getFixtureList().get(0).setSensor(true);
-			sprite = spriteOpen;
 			open = true;
 		} else {
-			myBody.getFixtureList().get(0).setSensor(false);
-			sprite = spriteClosed;
 			open = false;
 		}
+	}
+	/**
+	 * checks whether the door is open or not, return boolean
+	 * @return open
+	 */
+	public boolean isOpen() {
+		return open;
 	}
 }

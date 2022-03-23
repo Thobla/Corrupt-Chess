@@ -10,28 +10,55 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 import chessgame.entities.Pawn;
 import chessgame.entities.Player;
+import chessgame.entities.Portal;
 import chessgame.utils.EntityManager;
 import chessgame.world.PhysicsWorld;
 
 @ExtendWith(MockitoExtension.class)
 public class EntityTest {
 	
-	PhysicsWorld pworld = new PhysicsWorld();
-	EntityManager manager = new EntityManager(pworld);
+	PhysicsWorld pworld;
+	EntityManager manager;
 	
-	@BeforeAll
-	static void setUpBeforeAll() {
+	@BeforeEach
+	void setUpBeforeEach() {
+		pworld = new PhysicsWorld();
+		manager = new EntityManager(pworld);
 	}
 
 	/**
-	 * Setup method called before each of the test methods
+	 * Checks that an entity can take damage
 	 */
-	@BeforeEach
-	void setUpBeforeEach() {
+	@Test
+	void entityDamage() {
+		Pawn pawn = new Pawn(Vector2.Zero, pworld.world, manager);
+		int Health = pawn.getHealth();
+		pawn.takeDamage(1);
+		assertEquals(Health-1, pawn.getHealth());
 	}
-
+	
+	/**
+	 * Checks that the entity dies when its health reaches 0
+	 */
+	@Test
+	void entityDeath() {
+		Pawn pawn = new Pawn(Vector2.Zero, pworld.world, manager);
+		manager.addEntity(pawn);
+		pawn.createBody();
+		pawn.sprite = new Sprite();
+		
+		//Before death, 1 entity
+		assertEquals(1, manager.entityList.size());
+		
+		pawn.takeDamage(2* pawn.getHealth());
+		manager.updateLists();
+		//After death, 0 entities
+		assertEquals(0, manager.entityList.size());
+	}
 }

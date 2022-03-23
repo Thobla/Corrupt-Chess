@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.app.PlayerController;
 import chessgame.menues.SaveFile;
+import chessgame.utils.Constants;
 
 public class Player implements IEntities{
 	Vector2 position;
@@ -32,7 +33,7 @@ public class Player implements IEntities{
 	float height = 0.5f;
 	
 	public Player (Vector2 position, World world) {
-		this.position = new Vector2(position.x/32, position.y/32);
+		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		//TODO load from file, not set to 0
 		ratingScore = 0;

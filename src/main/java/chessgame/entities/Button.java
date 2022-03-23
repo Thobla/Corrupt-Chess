@@ -127,7 +127,9 @@ public class Button implements IObjects{
 			active = false;
 			sprite = spriteOff;
 		}
-		Door door = entityManager.doorMap.get(activationCode);
-		door.doorState();
+		if(entityManager.doorMap.containsKey(activationCode)) {
+			Door door = entityManager.doorMap.get(activationCode);
+			door.doorState();
+		}
 	}
 }

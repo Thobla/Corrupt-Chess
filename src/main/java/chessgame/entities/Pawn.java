@@ -18,15 +18,15 @@ import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 
 public class Pawn implements IEnemies {
-	int health = 2;
-	int attack = 1;
+	int health;
+	int attack;
 	public float aggroRange = 6f;
 	
 	Vector2 position;
 	World world;
 	Body myBody;
 	public EntityManager entityManager;
-	Sprite sprite;
+	public Sprite sprite;
 	
 	//State	
 	public PawnState idleState = new PawnIdle(this);
@@ -43,6 +43,8 @@ public class Pawn implements IEnemies {
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		this.entityManager = entityManager;
+		health = 2;
+		attack = 1;
 	}
 	
 	public void initialize() {
@@ -106,6 +108,9 @@ public class Pawn implements IEnemies {
 	public void takeDamage(int damage) {
 		if(damage <= health)
 			health -= damage;
+		else {
+			kill();
+		}
 	}
 
 	@Override
@@ -165,16 +170,17 @@ public class Pawn implements IEnemies {
 
 	@Override
 	public Player getClosestPlayer(Float dist) {
-		List<Player> playerList = this.entityManager.playerList;
+		List<Player> playerList = entityManager.playerList;
 		Player target = null;
 		
 		float finalDist = -1;
 		for(Player player : playerList) {
-			float distance = Vector2.dst(player.getPosition().x, player.getPosition().y, this.getPosition().x, this.getPosition().y);
-			if((target == null && distance <= dist) || dist == null && target == null) {
+			float distance = (position.dst2(player.getPosition().x, player.getPosition().y)/Constants.PixelPerMeter);
+			System.out.println("Distance: " + distance);
+			if((target == null && distance <= dist)) {
 				target = player;
 				finalDist = distance;
-			} else if((distance <= dist && distance < finalDist) || dist == null && distance < finalDist) {
+			} else if((distance <= dist && distance < finalDist)) {
 				target = player;
 				finalDist = distance;
 			}
