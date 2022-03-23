@@ -1,4 +1,4 @@
-package chessgame.app;
+package chessgame.entities;
 
 public class PlayerTest {
 

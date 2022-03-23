@@ -1,4 +1,4 @@
-package chessgame.app;
+package chessgame.entities;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

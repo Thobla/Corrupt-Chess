@@ -1,4 +1,4 @@
-package chessgame.app;
+package chessgame.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
