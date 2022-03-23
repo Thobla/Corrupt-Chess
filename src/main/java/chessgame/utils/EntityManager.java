@@ -63,6 +63,10 @@ public class EntityManager {
     	entityRemoveList.clear();
     }
     
+    /**
+     * Updates the sprites and renders of the current acting entities in the world.
+     * @param batch
+     */
     public void updateEntities(Batch batch) {
     	for(IEntities entity : entityList) {
     		entity.updateState(batch);
