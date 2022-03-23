@@ -60,6 +60,9 @@ public interface IEntities {
 	 */
 	public abstract void updateState(Batch batchs);
 	
-	
-
+	/**
+	 * initializes values that needs to be fetched from files.
+	 * And runs the methods needed before the object is ready for use.
+	 */
+	public abstract void initialize();
 }

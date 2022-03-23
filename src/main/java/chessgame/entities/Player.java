@@ -17,7 +17,7 @@ import chessgame.menues.SaveFile;
 public class Player implements IEntities{
 	Vector2 position;
 	World world;
-	Sprite sprite = new Sprite(new Texture (Gdx.files.internal("assets/player.png").file().getAbsolutePath()));
+	Sprite sprite;
 	public Body myBody;
 	public PlayerController controller;
 	//PlayerStats
@@ -34,12 +34,13 @@ public class Player implements IEntities{
 	public Player (Vector2 position, World world) {
 		this.position = new Vector2(position.x/32, position.y/32);
 		this.world = world;
-		createBody();
-		//sets the userData as a pointer to the player (this is used for groundCheck in ListnerClass and PlayerController)
-		myBody.setUserData(this);
-		
 		//TODO load from file, not set to 0
 		ratingScore = 0;
+	}
+	
+	public void initialize() {
+		sprite = new Sprite(new Texture (Gdx.files.internal("assets/player/player.png").file().getAbsolutePath()));
+		createBody();
 		
     	//PlayerController
 		int[] controls = SaveFile.readSettings();
@@ -91,7 +92,7 @@ public class Player implements IEntities{
 		
 		myBody.createFixture(shape, 10f).setUserData("Player");
 		myBody.setFixedRotation(true);
-		myBody.setUserData("Hello");
+		myBody.setUserData(this);
 		
 		//creating a fixture that will serve as the players groundCheck-platter.
 		FixtureDef fixDef = new FixtureDef();

@@ -35,10 +35,10 @@ public class Portal implements IEntities {
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		this.entityManager = entityManager;
-		
+	}
+	public void initialize() {
 		sprite = new Sprite(new Texture (Gdx.files.internal("assets/portal.png").file().getAbsolutePath()));
 		createBody();
-		
 		entityManager.addEntity(this);
 	}
 	

@@ -118,6 +118,7 @@ public class Game implements Screen {
         
         //Creates the player
         player = new Player(gameMap.getStartPoint(), gameWorld.world);
+        player.initialize();
         
         //Creates bodies for TileMap
         tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+map+".tmx").file().getAbsolutePath());

@@ -36,7 +36,9 @@ public class Button implements IObjects{
 		this.world = world;
 		this.entityManager = entityManager;
 		activationCode = code;
-		
+	}
+	
+	public void initialize() {
 		spriteOff = new Sprite(new Texture (Gdx.files.internal("assets/buttonTestOn.png").file().getAbsolutePath()));
 		spriteOn = new Sprite(new Texture (Gdx.files.internal("assets/buttonTestOff.png").file().getAbsolutePath()));
 		sprite = spriteOff;

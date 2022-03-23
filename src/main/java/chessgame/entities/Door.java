@@ -37,12 +37,14 @@ public class Door implements IObjects {
 		this.world = world;
 		this.entityManager = entityManager;
 		this.activationCode = code;
-		
+		open = false;
+	}
+	
+	public void initialize() {
 		spriteOpen = new Sprite(new Texture (Gdx.files.internal("assets/dooropen.png").file().getAbsolutePath()));
 		spriteClosed = new Sprite(new Texture (Gdx.files.internal("assets/doorclosed.png").file().getAbsolutePath()));
 		sprite = spriteClosed;
 		
-		open = false;
 		createBody();
 		
 		entityManager.addEntity(this);

@@ -25,7 +25,7 @@ public class Pawn implements IEnemies {
 	Vector2 position;
 	World world;
 	Body myBody;
-	EntityManager entityManager;
+	public EntityManager entityManager;
 	Sprite sprite;
 	
 	//State	
@@ -43,17 +43,14 @@ public class Pawn implements IEnemies {
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		this.entityManager = entityManager;
-		
-		//if(Gdx.files.internal("assets/badguy.png").file()!= null)
-		sprite = new Sprite(new Texture (Gdx.files.internal("assets/badguy.png").file().getAbsolutePath()));
-		
+	}
+	
+	public void initialize() {
+		sprite = new Sprite(new Texture (Gdx.files.internal("assets/pawn/badguy.png").file().getAbsolutePath()));
 		createBody();
-		//sets the userData as a pointer to the pawn (this is used for collisionchecking)
-		myBody.setUserData(this);
 		
 		//Adds the pawn to the entityManager
     	entityManager.addEntity(this);
- 
 	}
 	
 	@Override
@@ -168,22 +165,23 @@ public class Pawn implements IEnemies {
 
 	@Override
 	public Player getClosestPlayer(Float dist) {
-		List<Player> playerList = entityManager.playerList;
+		List<Player> playerList = this.entityManager.playerList;
 		Player target = null;
 		
 		float finalDist = -1;
 		for(Player player : playerList) {
-			float distance = Vector2.dst(player.getPosition().x, player.getPosition().y, getPosition().x, getPosition().y);
-			if(target == null && distance <= dist) {
+			float distance = Vector2.dst(player.getPosition().x, player.getPosition().y, this.getPosition().x, this.getPosition().y);
+			if((target == null && distance <= dist) || dist == null && target == null) {
 				target = player;
 				finalDist = distance;
-			} else if(distance <= dist && distance < finalDist) {
+			} else if((distance <= dist && distance < finalDist) || dist == null && distance < finalDist) {
 				target = player;
 				finalDist = distance;
 			}
 		}
 		return target;
 	}
+	
 	/**
 	 * Changes between the states in the stateMachine
 	 */
@@ -191,5 +189,4 @@ public class Pawn implements IEnemies {
 		currentState = state;
 		currentState.Enter();
 	}
-
 }

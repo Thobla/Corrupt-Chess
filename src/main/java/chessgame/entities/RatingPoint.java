@@ -19,18 +19,21 @@ public class RatingPoint implements IObjects{
 	Body myBody;
 	World world;
 	EntityManager entityManager;
-	Sprite sprite = new Sprite(new Texture (Gdx.files.internal("assets/Ratingpoint.png").file().getAbsolutePath()));
+	Sprite sprite;
 	
 	public RatingPoint(Vector2 position, World world, EntityManager entityManager){
 		this.position = new Vector2(position.x/Constants.PixelPerMeter, position.y/Constants.PixelPerMeter);
 		this.world = world;
 		this.entityManager = entityManager;
-		
+
+	}
+	
+	public void initialize() {
+		sprite = new Sprite(new Texture (Gdx.files.internal("assets/Ratingpoint.png").file().getAbsolutePath()));
 		createBody();
 		
-		entityManager.addEntity(this);
-		
-		
+		//Adds the pawn to the entityManager
+    	entityManager.addEntity(this);
 	}
 	
 	@Override
