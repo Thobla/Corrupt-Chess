@@ -29,6 +29,9 @@ public class Pawn implements IEnemies {
 	public EntityManager entityManager;
 	public Sprite sprite;
 	
+	boolean invisFrame;
+	long hitTime;
+	
 	//State	
 	public PawnState idleState = new PawnIdle(this);
 	public PawnState chaseState = new PawnChase(this);
@@ -75,7 +78,7 @@ public class Pawn implements IEnemies {
 		FixtureDef fixDef = new FixtureDef();
 		fixDef.isSensor = true;
 		//the shape should be lower than the players width and height
-		shape.setAsBox(width * 0.95f, height / 10, new Vector2(0f, height), 0);
+		shape.setAsBox(width * 0.95f, height / 3.5f, new Vector2(0f, height), 0);
 		fixDef.shape = shape;
 		
 		myBody.createFixture(fixDef).setUserData("weakpoint");
@@ -107,21 +110,18 @@ public class Pawn implements IEnemies {
 
 	@Override
 	public void takeDamage(int damage) {
-		float deltaTime = Gdx.graphics.getDeltaTime();
-		
-		int timeSinceCollision = 0;
-		timeSinceCollision += deltaTime;
-		if(timeSinceCollision > 1.0f) {
-			sprite.setColor(Color.RED);
-		} else {
-			sprite.setColor(Color.WHITE);
-		}
-		
+		attack = 0;
 		if(damage <= health)
 			health -= damage;
 		else {
 			kill();
+			return;
 		}
+		
+		invisFrame = true;
+		hitTime = System.currentTimeMillis();
+			//sprite.setColor(Color.WHITE);
+		
 	}
 
 	@Override
@@ -155,6 +155,14 @@ public class Pawn implements IEnemies {
 		}
 		if(health <= 0)
 			kill();
+		
+		if(System.currentTimeMillis() < hitTime + 100) {
+			sprite.setColor(Color.RED);
+			attack = 0;
+		} else {
+			sprite.setColor(Color.WHITE);
+			attack = 1;
+		}
 	}
 
 	@Override

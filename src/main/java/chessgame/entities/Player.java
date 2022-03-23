@@ -89,9 +89,7 @@ public class Player implements IEntities{
 		else if(movement.x == 0 && controller.isGrounded) {
 			myBody.applyForce(new Vector2(-playerVelocity.x*20, 0), this.position, true);
 		}
-		
-		
-		System.out.println(myBody.getLinearVelocity().x);
+	
 	}
 	/**
 	 * Applies upward force to the entity, making it "jump"
@@ -140,7 +138,7 @@ public class Player implements IEntities{
 		fixDef = new FixtureDef();
 		fixDef.isSensor = true;
 		//the shape should be lower than the players width and height
-		shape.setAsBox(width * 1.2f, height * 0.2f, new Vector2(0f, +height), 0);
+		shape.setAsBox(width * 0.95f, height * 0.2f, new Vector2(0f, +height), 0);
 		fixDef.shape = shape;
 		myBody.createFixture(fixDef).setUserData("sky");
 		
