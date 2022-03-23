@@ -85,7 +85,7 @@ public class Game implements Screen {
     static Label victoryText = new Label("VICTORY", skin, "title");
     static TextButton continueButton = new TextButton ("Next level", skin, "default");
     
-    static boolean paused = false;
+    static boolean paused;
     
     public Game(ChessGame game, int level) {
     	
@@ -134,6 +134,7 @@ public class Game implements Screen {
     	stage.addActor(timerText);
     	stage.addActor(healthText);
     	stage.addActor(scoreText);
+    	paused = false;
 
     	entityManager.playerList.add(player);
     }
@@ -289,6 +290,7 @@ public class Game implements Screen {
     		@Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
     			game.setScreen(new Game(game, currentLevelIndex));
+    			dispose();
     		}
     		
     		@Override
@@ -303,6 +305,7 @@ public class Game implements Screen {
     		@Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
     			game.setScreen(new MenuScreen(game));
+    			dispose();
     		}
     		
     		@Override
@@ -334,7 +337,6 @@ public class Game implements Screen {
     	quitButtonP.addListener(new InputListener() {
     		@Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-    			pauseGame();
     			game.setScreen(new MenuScreen(game));
     		}
     		
@@ -366,6 +368,7 @@ public class Game implements Screen {
     		@Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
     			game.setScreen(new Game(game, currentLevelIndex+1));
+    			dispose();
     		}
     		
     		@Override

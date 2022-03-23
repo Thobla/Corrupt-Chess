@@ -63,14 +63,20 @@ public class Player implements IEntities{
 		Vector2 playerVelocity = myBody.getLinearVelocity();
 		
 		if(movement.x > 0) {
-			if(playerVelocity.x < maxSpeed) {
+			if (playerVelocity.x < 0) {
+				myBody.applyForce(new Vector2(200f-playerVelocity.x*50, 0), this.position, true);
+			}
+			else if(playerVelocity.x < maxSpeed) {
 				myBody.applyForce(new Vector2(200f, 0), this.position, true);
 			} else {
 				myBody.setLinearVelocity(new Vector2(maxSpeed, playerVelocity.y));
 			}
 		}
 		else if(movement.x < 0) {
-			if(playerVelocity.x > -maxSpeed) {
+			if (playerVelocity.x > 0) {
+				myBody.applyForce(new Vector2(-200f-playerVelocity.x*50, 0), this.position, true);
+			}
+			else if(playerVelocity.x > -maxSpeed) {
 				myBody.applyForce(new Vector2(-200f, 0), this.position, true);
 			}
 			else {
