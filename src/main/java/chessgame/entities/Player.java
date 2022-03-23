@@ -112,7 +112,7 @@ public class Player implements IEntities{
 		
 	}
 	
-	
+	//The player is not simulated but can still get input
 	public void controllerUpdate() {
 		controller.myController(this);
 	}
