@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import chessgame.app.Game;
 import chessgame.app.PlayerController;
 import chessgame.menues.SaveFile;
 import chessgame.utils.Constants;
@@ -142,14 +143,7 @@ public class Player implements IEntities{
 		fixDef.shape = shape;
 		myBody.createFixture(fixDef).setUserData("sky");
 		
-	}
-	
-	//The player is not simulated but can still get input
-	public void controllerUpdate() {
-		controller.myController(this);
-	}
-	
-	
+	}	
 
 	public int getHealth() {
 		return health;
@@ -222,6 +216,15 @@ public class Player implements IEntities{
 			if(health == 0)
 				kill();
 	
+	}
+	
+	public void renderPlayer(Batch batch) {
+		controller.myController(this);
+		keepWithinBounds();
+    	
+		sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
+		sprite.setSize(1, 1);
+		sprite.draw(batch);
 	}
 
 	@Override
