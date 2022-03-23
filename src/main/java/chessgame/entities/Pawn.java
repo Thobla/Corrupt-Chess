@@ -3,6 +3,7 @@ package chessgame.entities;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -106,6 +107,16 @@ public class Pawn implements IEnemies {
 
 	@Override
 	public void takeDamage(int damage) {
+		float deltaTime = Gdx.graphics.getDeltaTime();
+		
+		int timeSinceCollision = 0;
+		timeSinceCollision += deltaTime;
+		if(timeSinceCollision > 1.0f) {
+			sprite.setColor(Color.RED);
+		} else {
+			sprite.setColor(Color.WHITE);
+		}
+		
 		if(damage <= health)
 			health -= damage;
 		else {
@@ -176,7 +187,6 @@ public class Pawn implements IEnemies {
 		float finalDist = -1;
 		for(Player player : playerList) {
 			float distance = (position.dst2(player.getPosition().x, player.getPosition().y)/Constants.PixelPerMeter);
-			System.out.println("Distance: " + distance);
 			if((target == null && distance <= dist)) {
 				target = player;
 				finalDist = distance;
