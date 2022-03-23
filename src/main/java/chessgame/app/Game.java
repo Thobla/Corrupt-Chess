@@ -167,6 +167,7 @@ public class Game implements Screen {
 
 	    	CameraStyles.lockOnTarget(cam, player.getPosition());
 	    	if (timer <= 0) {
+	    		paused = true;
 	    		gameOverScreen();
 	    	} else {
 	    		timer = timer - delta;
@@ -190,7 +191,18 @@ public class Game implements Screen {
 	        }
         }
         else {
-        	player.controllerUpdate();
+        	gameMap.render(cam);
+        	debugRenderer.render(gameWorld.world, cam.combined);
+	    	batch.setProjectionMatrix(cam.combined);
+        	
+	    	//Updates all entities
+	    	batch.begin();
+	    	for(IEntities entity : entityManager.entityList) {
+	    		entity.updateState(batch);
+	    	}
+	    	player.renderPlayer(batch);
+	    	batch.end();
+	    	
         	
         	//Camera within bounds
 	        cameraBounds();
@@ -290,7 +302,6 @@ public class Game implements Screen {
     		@Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
     			game.setScreen(new Game(game, currentLevelIndex));
-    			dispose();
     		}
     		
     		@Override
@@ -305,7 +316,6 @@ public class Game implements Screen {
     		@Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
     			game.setScreen(new MenuScreen(game));
-    			dispose();
     		}
     		
     		@Override
