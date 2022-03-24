@@ -6,26 +6,7 @@ import com.esotericsoftware.kryonet.Server;
 import java.util.Date;
 
 public class LocalNetwork extends Listener {
-//    static Server server;
-//
-//    static int udpPort = 27960, tcpPort = 27960;
-//
-//    public static void main(String[] args) throws Exception{
-//        System.out.println("Creating the server ...");
-//        server = new Server();
-//
-//        server.getKryo().register(PacketMessage.class);
-//
-//        server.bind(tcpPort,udpPort);
-//
-//        server.start();
-//        server.addListener(new Network());
-//
-//        System.out.println("server is operational!");
-//
-//
-//    }
-//
+
 //Server object
 static Server server;
     //Ports to listen on
@@ -58,7 +39,7 @@ static Server server;
         //Create a message packet.
         PacketMessage packetMessage = new PacketMessage();
         //Assign the message text.
-        packetMessage.message = "Hello friend! The time is: "+new Date().toString();
+        packetMessage.message = "Hei";
 
         //Send the message
         c.sendTCP(packetMessage);
