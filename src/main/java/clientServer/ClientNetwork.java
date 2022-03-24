@@ -9,7 +9,7 @@ public class ClientNetwork extends Listener {
     //Our client object.
     static Client client;
     //IP to connect to.
-    static String ip = "localhost";
+    static String ip = "10.111.15.225";
     //Ports to connect on.
     static int tcpPort = 27960, udpPort = 27960;
 
