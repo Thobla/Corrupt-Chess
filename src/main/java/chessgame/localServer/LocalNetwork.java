@@ -41,6 +41,7 @@ static Server server;
         //Assign the message text.
         packetMessage.message = "Hei";
 
+
         //Send the message
         c.sendTCP(packetMessage);
         //Alternatively, we could do:
