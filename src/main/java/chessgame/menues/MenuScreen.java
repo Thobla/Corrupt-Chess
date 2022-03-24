@@ -44,12 +44,12 @@ public class MenuScreen implements Screen {
         int rowHeight = Gdx.graphics.getHeight() / 16;
         int colWidth = Gdx.graphics.getWidth() / 24;
         //Imported skin for UI
-        Skin skin = new Skin(Gdx.files.internal("assets/skin/goldenspiralui/golden-ui-skin.json"));
+        Skin skin = new Skin(Gdx.files.internal("assets/skin/chess/chess.json"));
         
         //Text for this menu
-        Label title = new Label("Chess Game", skin, "title");
-        title.setSize((float) (Gdx.graphics.getWidth()/2.2),rowHeight*2);
-        title.setPosition(0,Gdx.graphics.getHeight()-rowHeight*2);
+        Label title = new Label("Chess Game", skin, "title-light");
+        title.setSize((float) (Gdx.graphics.getWidth()/1.5),rowHeight*6);
+        title.setPosition(0,0);
         title.setAlignment(Align.center);
         stage.addActor(title);
         

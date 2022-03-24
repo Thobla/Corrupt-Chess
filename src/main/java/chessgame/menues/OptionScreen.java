@@ -38,7 +38,7 @@ public class OptionScreen implements Screen {
     int rowHeight = Gdx.graphics.getHeight() / 16;
     int colWidth = Gdx.graphics.getWidth() / 24;
     //Imported skin for UI
-    Skin skin = new Skin(Gdx.files.internal("assets/skin/goldenspiralui/golden-ui-skin.json"));
+    Skin skin = new Skin(Gdx.files.internal("assets/skin/chess/chess.json"));
     
     int[] controls = SaveFile.readSettings();
     
@@ -62,7 +62,7 @@ public class OptionScreen implements Screen {
         stage.addActor(backgroundTable);
         
         //Title for this menu
-        Label title = new Label("Options", skin, "title");
+        Label title = new Label("Options", skin, "title-light");
         title.setSize(Gdx.graphics.getWidth(),rowHeight*2);
         title.setPosition(0,Gdx.graphics.getHeight()-rowHeight*2);
         title.setAlignment(Align.center);

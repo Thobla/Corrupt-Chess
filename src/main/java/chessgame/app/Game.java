@@ -60,8 +60,8 @@ public class Game implements Screen {
     static int currentLevelIndex;
     //All levels with their file names
     public static String[] levels = new String[] {
-    	"map",
-    	"map2",
+    	"1-1",
+    	"1-2",
     };
     
     //Stage for UI elements
@@ -70,11 +70,11 @@ public class Game implements Screen {
     static int rowHeight = Gdx.graphics.getHeight() / 16;
     static int colWidth = Gdx.graphics.getWidth() / 24;
     //Imported skin for UI
-    static Skin skin = new Skin(Gdx.files.internal("assets/skin/goldenspiralui/golden-ui-skin.json"));
+    static Skin skin = new Skin(Gdx.files.internal("assets/skin/chess/chess.json"));
     //UI
-    static Label pauseText = new Label("PAUSED", skin, "title");
+    static Label pauseText = new Label("PAUSED", skin, "title-light");
     static TextButton resumeButton = new TextButton ("Resume", skin, "default"); 
-    static Label gameOverText = new Label("GAME OVER", skin, "title");
+    static Label gameOverText = new Label("GAME OVER", skin, "title-dark");
     static TextButton retryButton = new TextButton ("Retry?", skin, "default");
     static TextButton quitButtonGO = new TextButton ("Quit", skin, "default");
     static TextButton quitButtonP = new TextButton ("Quit", skin, "default");
@@ -82,7 +82,7 @@ public class Game implements Screen {
     static Label scoreText = new Label ("Score", skin, "default");
     static Label timerText = new Label ("000", skin, "default");
     static float timer;
-    static Label victoryText = new Label("VICTORY", skin, "title");
+    static Label victoryText = new Label("VICTORY", skin, "title-light");
     static TextButton continueButton = new TextButton ("Next level", skin, "default");
     
     static boolean paused;
@@ -179,7 +179,6 @@ public class Game implements Screen {
 	    	}
 	        cameraBounds();
 	        cam.update();
-	        
 	        
 	        stage.act();
 	        stage.draw();

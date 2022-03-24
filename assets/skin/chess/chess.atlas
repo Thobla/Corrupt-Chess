@@ -1,0 +1,90 @@
+
+chess.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+ButtonHover
+  rotate: false
+  xy: 1029, 1387
+  size: 238, 80
+  orig: 238, 80
+  offset: 0, 0
+  index: -1
+ButtonPress
+  rotate: false
+  xy: 1, 163
+  size: 238, 80
+  orig: 238, 80
+  offset: 0, 0
+  index: -1
+Sprite-0002 (1)
+  rotate: false
+  xy: 515, 581
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+boootooon (3)
+  rotate: false
+  xy: 515, 873
+  size: 238, 80
+  orig: 238, 80
+  offset: 0, 0
+  index: -1
+knob
+  rotate: false
+  xy: 1029, 1095
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+smollButton
+  rotate: false
+  xy: 1029, 1225
+  size: 158, 160
+  orig: 158, 160
+  offset: 0, 0
+  index: -1
+smollButtonHover
+  rotate: false
+  xy: 1, 1
+  size: 158, 160
+  orig: 158, 160
+  offset: 0, 0
+  index: -1
+smollButtonPress
+  rotate: false
+  xy: 515, 711
+  size: 158, 160
+  orig: 158, 160
+  offset: 0, 0
+  index: -1
+Goblin
+  rotate: false
+  xy: 1, 245
+  size: 506, 194
+  orig: 506, 194
+  offset: 0, 0
+  index: -1
+Goblin-big_0
+  rotate: false
+  xy: 1, 955
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+Goblin-big_1
+  rotate: false
+  xy: 1, 441
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+Goblin-big_2
+  rotate: false
+  xy: 515, 955
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
