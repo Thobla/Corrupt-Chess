@@ -12,7 +12,7 @@ Spillet er forsatt godt under utvikling, og bruker placeholder-grafikk medan det
 Multiplayeren er godt under utvikling og kan bli lagd til fortløpende.
 Noen levels er planlagd, men grunna usikkerhet rundt hvilke features vi har ferdigstilt og vil bruke videre.
 
-## How to run
+## Hvordan kjøre spillet
 Pull prosjektet frå git ved bruk av clone knappen. velg din prefererte metode (SSH / HTTPS).
 For å så starte programmet runner du Main.java, ettersom programmet enda ikkje er exportet må dette gjøres med en IDE.
 
