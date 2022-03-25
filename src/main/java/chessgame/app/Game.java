@@ -87,6 +87,7 @@ public class Game implements Screen {
     static TextButton continueButton = new TextButton ("Next level", skin, "default");
     
     static boolean paused;
+    static boolean dead;
     
     public Game(ChessGame game, int level) {
     	
@@ -137,6 +138,7 @@ public class Game implements Screen {
     	stage.addActor(healthText);
     	stage.addActor(scoreText);
     	paused = false;
+    	dead = false;
 
     	entityManager.playerList.add(player);
     }
@@ -201,7 +203,8 @@ public class Game implements Screen {
 	    	for(IEntities entity : entityManager.entityList) {
 	    		entity.updateState(batch);
 	    	}
-	    	player.renderPlayer(batch);
+	    	if (!dead)
+	    		player.renderPlayer(batch);
 	    	batch.end();
 	    	
         	//Camera within bounds
@@ -213,8 +216,9 @@ public class Game implements Screen {
         }
     }
 
-    public void gameOverScreen() {   
-    	//TODO remove player from game upon death
+    public void gameOverScreen() {  
+    	paused = true;
+    	dead = true;
     	stage.addActor(gameOverText);
     	stage.addActor(retryButton);
     	stage.addActor(quitButtonGO);
@@ -237,11 +241,12 @@ public class Game implements Screen {
     
     
     public static void victoryScreen() {
-    	//TODO remove player from game upon victory
+    	paused = true;
+    	dead = true;
     	stage.addActor(victoryText);
     	stage.addActor(continueButton);
     	stage.addActor(quitButtonP);
-    	SaveFile.writeProgress(currentLevelIndex+2);
+    	SaveFile.writeProgress(currentLevelIndex+1);
     }
     
     @Override
@@ -381,7 +386,6 @@ public class Game implements Screen {
     				game.setScreen(new MenuScreen(game));
     			} else {
     				game.setScreen(new Game(game, currentLevelIndex+1));
-    				dispose();
     			}
     			
     		}

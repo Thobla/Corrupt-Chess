@@ -58,7 +58,6 @@ public class LevelSelectScreen implements Screen{
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
             	game.setScreen(new MenuScreen(game));
-            	dispose();
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -69,12 +68,12 @@ public class LevelSelectScreen implements Screen{
         
         //Adds levels equal to the progression of the player.
         byte[] progress = SaveFile.readProgress();
-        int i = 1;
+        int i = 0;
         for (String level : Game.levels) {
         	if (progress[0] < i) {
         		continue;
         	}
-        	int z = i-1;
+        	int z = i;
         	TextButton levelButton = new TextButton(level, skin, "small");
         	levelButton.setSize((float) (colWidth*1.2), rowHeight);
         	levelButton.setPosition((float) (colWidth*(4+i*1.5)), rowHeight*12);

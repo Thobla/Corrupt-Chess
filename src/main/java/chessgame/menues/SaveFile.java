@@ -138,7 +138,7 @@ public class SaveFile {
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
 		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, 50}, false);
 		FileHandle file2 = Gdx.files.local("savefiles/progress.txt");
-		file2.writeBytes(new byte[] {1}, false);
+		file2.writeBytes(new byte[] {0}, false);
 	}
 
 	
