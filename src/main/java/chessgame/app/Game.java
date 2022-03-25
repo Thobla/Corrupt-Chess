@@ -1,23 +1,32 @@
 package chessgame.app;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import chessgame.entities.Pawn;
-import chessgame.entities.Enemies;
+import chessgame.entities.IEntities;
 import chessgame.entities.Player;
 import chessgame.utils.CameraStyles;
 import chessgame.utils.Constants;
 import chessgame.world.PhysicsWorld;
 import chessgame.world.TiledGameMap;
 import chessgame.utils.EntityManager;
+import chessgame.menues.MenuScreen;
 import chessgame.menues.SaveFile;
 
 
@@ -42,74 +51,209 @@ public class Game implements Screen {
     //Entities
     EntityManager entityManager;
     
+    final ChessGame game;
+    String map;
     
-    public Game(ChessGame game, String map) {
+    static int currentLevelIndex;
+    //All levels with their file names
+    public static String[] levels = new String[] {
+    	"1-1",
+    	"1-2"
     	
+    };
+    
+    //Stage for UI elements
+    private static Stage stage;
+    //Scalable units for size and placements of UI
+    static int rowHeight = Gdx.graphics.getHeight() / 16;
+    static int colWidth = Gdx.graphics.getWidth() / 24;
+    //Imported skin for UI
+    static Skin skin = new Skin(Gdx.files.internal("assets/skin/chess/chess.json"));
+    //UI
+    static Label pauseText = new Label("PAUSED", skin, "title-light");
+    static TextButton resumeButton = new TextButton ("Resume", skin, "default"); 
+    static Label gameOverText = new Label("GAME OVER", skin, "title-dark");
+    static TextButton retryButton = new TextButton ("Retry?", skin, "default");
+    static TextButton quitButtonGO = new TextButton ("Quit", skin, "default");
+    static TextButton quitButtonP = new TextButton ("Quit", skin, "default");
+    static Label healthText = new Label ("Health", skin, "default");
+    static Label scoreText = new Label ("Score", skin, "default");
+    static Label timerText = new Label ("000", skin, "default");
+    static float timer;
+    static Label victoryText = new Label("VICTORY", skin, "title-light");
+    static TextButton continueButton = new TextButton ("Next level", skin, "default");
+    static boolean firstTime = true;
+    
+    static boolean paused;
+    static boolean dead;
+    
+    public Game(ChessGame game, int level) {
+    	this.game = game;
+    	this.map = levels[level];
+    	currentLevelIndex = level;
+    	System.out.println(currentLevelIndex);
     	//World initialisation
     	gameWorld = new PhysicsWorld();
     	debugRenderer = new Box2DDebugRenderer();
     	
-    	entityManager = new EntityManager(gameWorld);
-
+    	entityManager = gameWorld.entityManager;
+    	
+    	//The stage for UI elements
+    	stage = new Stage(new ScreenViewport());
+     
         //The camera viewpoint
         cam = new OrthographicCamera(Gdx.graphics.getWidth() / PPM, Gdx.graphics.getHeight() / PPM);
         cam.setToOrtho(false, Gdx.graphics.getWidth() / PPM, Gdx.graphics.getHeight() / PPM);
         cam.update();
         
+		
         //Batch
         batch = new SpriteBatch();
-        byte[] controls = SaveFile.readSettings();
-        Gdx.input.setInputProcessor(new PlayerController(controls));
+        int[] controls = SaveFile.readSettings();
+        Gdx.input.setInputProcessor(new PlayerController(controls, game));
+        //stage inputet må væra etter playercontroller for å fungere?
+        Gdx.input.setInputProcessor(stage);
         
         //The Map renderer
         gameMap = new TiledGameMap(map);
         
-        //Creates the player
-        player = new Player(gameMap.getStartPoint(), gameWorld.world);
-        
         //Creates bodies for TileMap
-        tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+"map"+".tmx").file().getAbsolutePath());
+        tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+map+".tmx").file().getAbsolutePath());
     	gameWorld.tileMapToBody(tiledMap);
+    	gameWorld.tileMapToEntities(tiledMap, entityManager);
     	
-    	//Adds a pawn for testing purposes.
-    	gameWorld.tileMapToEnemies(tiledMap, entityManager);
-    	Pawn pawn = new Pawn(gameMap.getStartPoint().mulAdd(new Vector2(100, 100),1), gameWorld.world, entityManager);
-    	
-    	
+    	//Creates the player
+     	player = entityManager.addPlayer();
+     	
     	//Updates the map
     	entityManager.updateLists();
+    	
+    	if (firstTime)
+    		initilizeUI();
+    	
+    	timer = 300;
+    	stage.addActor(timerText);
+    	stage.addActor(healthText);
+    	stage.addActor(scoreText);
+    	paused = false;
+
     }
 
     @Override
     public void dispose() {
     	batch.dispose();
     	gameMap.dispose();
+    	stage.dispose();
     }
 
     @Override
     public void render(float delta) {
-    	//Logic step
-    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
-        gameMap.render(cam);
-    	//Debug-render
-    	debugRenderer.render(gameWorld.world, cam.combined);
-    	batch.setProjectionMatrix(cam.combined);
-    	
-    	batch.begin();
-    	player.updatePlayer(batch);
-    	for(Enemies enemy : entityManager.enemyList) {
-    		enemy.updateState(batch);
-    	}
-    	entityManager.updateLists();
-    	batch.end();
-    	
-    	CameraStyles.lockOnTarget(cam, player.getPosition());
-           
-        //Camera within bounds
-        cameraBounds();
-        cam.update();
+        if (!paused) {
+	        //Logic step
+	    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
+	        gameMap.render(cam);
+	    	
+	        /**Debug-render to be off when not debugging.
+	    	debugRenderer.render(gameWorld.world, cam.combined);
+	    	*/
+	        
+	    	batch.setProjectionMatrix(cam.combined);
+	    	
+	    	
+	    	//Updates all entities
+	    	batch.begin();
+	    	entityManager.updateEntities(batch);
+	    	entityManager.updatePlayers(batch);
+	    	batch.end();
+	    	
+	    	entityManager.updateLists();
+	    	
+	    	//UI updates
+	    	healthText.setText("Health: " + player.getHealth());
+	    	scoreText.setText("Score: " + player.getScore());
+	           
+	        //Camera Updates
+	    	CameraStyles.lockOnTarget(cam, player.getPosition());
+	    	if (timer <= 0) {
+	    		paused = true;
+	    		gameOverScreen();
+	    	} else {
+	    		timer = timer - delta;
+		    	int time = (int) timer;
+		    	timerText.setText(time);
+	    	}
+	        cameraBounds();
+	        cam.update();
+	        
+	        stage.act();
+	        stage.draw();
+	        
+	        
+	        //Player Value updates
+	        if (player.dead) {
+	        	gameOverScreen();
+	        }
+        }
+        else {
+        	gameMap.render(cam);
+        	
+        	/**Debug-render to be off when not debugging.
+	    	debugRenderer.render(gameWorld.world, cam.combined);
+	    	*/
+        	
+	    	batch.setProjectionMatrix(cam.combined);
+        	
+	    	//Updates all entities
+	    	batch.begin();
+	    	entityManager.updateEntities(batch);
+	    	if (!dead)
+	    		player.renderPlayer(batch);
+	    	batch.end();
+	    	
+	    	entityManager.updateLists();
+	    	
+        	//Camera within bounds
+	        cameraBounds();
+	        cam.update();
+	        
+	        stage.act();
+	        stage.draw();
+        }
     }
 
+    public void gameOverScreen() {  
+    	paused = true;
+    	dead = true;
+    	stage.addActor(gameOverText);
+    	stage.addActor(retryButton);
+    	stage.addActor(quitButtonGO);
+    }
+    
+    public static void pauseGame() {
+    	if (paused) {
+    		paused = false;
+    		stage.addAction(Actions.removeActor(pauseText));
+    		stage.addAction(Actions.removeActor(resumeButton));
+    		stage.addAction(Actions.removeActor(quitButtonP));
+    	}
+    	else {
+    		paused = true;	
+        	stage.addActor(pauseText);
+        	stage.addActor(resumeButton);
+        	stage.addActor(quitButtonP);
+    	}
+    }
+    
+    
+    public static void victoryScreen() {
+    	paused = true;
+    	dead = true;
+    	stage.addActor(victoryText);
+    	stage.addActor(continueButton);
+    	stage.addActor(quitButtonP);
+    	SaveFile.writeProgress(currentLevelIndex+1);
+    }
+    
     @Override
     public void resize(int width, int height) {
     }
@@ -152,7 +296,115 @@ public class Game implements Screen {
     	//updates camera based on calculation.
     	cam.update();
     }
-
+    /**
+     * Constructs all the UI making the code less cluttered
+     * 
+     * @author Åsmund
+     */
+    private void initilizeUI() {
+    	
+    	firstTime = false;
+    	
+    	gameOverText.setSize(colWidth*12,rowHeight*2);
+        gameOverText.setPosition((float) (Gdx.graphics.getWidth()/2-colWidth*6),rowHeight*12);
+        gameOverText.setAlignment(Align.center);
+        
+        retryButton.setSize(colWidth*3, (float) (rowHeight*1.8));
+    	retryButton.setPosition(colWidth*13, rowHeight*8);
+    	retryButton.addListener(new InputListener() {
+    		@Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+    			game.setScreen(new Game(game, currentLevelIndex));
+    		}
+    		
+    		@Override
+    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+    			return true;
+    		}	
+    	});
+    	
+    	quitButtonGO.setSize(colWidth*3, (float) (rowHeight*1.8));
+    	quitButtonGO.setPosition(colWidth*8, rowHeight*8);
+    	quitButtonGO.addListener(new InputListener() {
+    		@Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+    			game.setScreen(new MenuScreen(game));
+    		}
+    		
+    		@Override
+    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+    			return true;
+    		}	
+    	});
+    	
+    	pauseText.setSize(colWidth*12,rowHeight*2);
+        pauseText.setPosition((float) (Gdx.graphics.getWidth()/2-colWidth*6),rowHeight*12);
+        pauseText.setAlignment(Align.center);
+        
+        resumeButton.setSize(colWidth*3, (float) (rowHeight*1.8));
+    	resumeButton.setPosition(colWidth*12 - resumeButton.getWidth()/2, rowHeight*10);
+    	resumeButton.addListener(new InputListener() {
+    		@Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+    			pauseGame();
+    		}
+    		
+    		@Override
+    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+    			return true;
+    		}	
+    	});
+    	
+    	quitButtonP.setSize(colWidth*3, (float) (rowHeight*1.8));
+    	quitButtonP.setPosition(colWidth*12 - quitButtonP.getWidth()/2, rowHeight*8);
+    	quitButtonP.addListener(new InputListener() {
+    		@Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+    			game.setScreen(new MenuScreen(game));
+    		}
+    		
+    		@Override
+    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+    			return true;
+    		}	
+    	});
+    	
+    	timerText.setSize(colWidth*2,rowHeight*2);
+        timerText.setPosition(0,rowHeight*14);
+        timerText.setAlignment(Align.center);
+        
+        healthText.setSize(colWidth*2, rowHeight*2);
+        healthText.setPosition(colWidth*3, rowHeight*14);
+        healthText.setAlignment(Align.center);
+        
+        scoreText.setSize(colWidth*2, rowHeight*2);
+        scoreText.setPosition(colWidth*6, rowHeight*14);
+        scoreText.setAlignment(Align.center);
+        
+        victoryText.setSize(colWidth*12,rowHeight*2);
+        victoryText.setPosition((float) (Gdx.graphics.getWidth()/2-colWidth*6),rowHeight*12);
+        victoryText.setAlignment(Align.center);
+        
+        continueButton.setSize(colWidth*3, (float) (rowHeight*1.8));
+        continueButton.setPosition(colWidth*12 - quitButtonP.getWidth()/2, rowHeight*10);
+        continueButton.addListener(new InputListener() {
+    		@Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+    			if (currentLevelIndex+1 >= levels.length) {
+    				game.setScreen(new MenuScreen(game));
+    			} else {
+    				game.setScreen(new Game(game, currentLevelIndex+1));
+    			}
+    			
+    		}
+    		
+    		@Override
+    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+    			return true;
+    		}	
+    	});
+    }
+    
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub

@@ -1,5 +1,8 @@
 package chessgame.world;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -13,20 +16,28 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 
+import chessgame.entities.Button;
+import chessgame.entities.Door;
 import chessgame.entities.Pawn;
+import chessgame.entities.Portal;
+import chessgame.entities.RatingPoint;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
-import chessgame.world.ListenerClass;
 
 public class PhysicsWorld {
 	static int PPM = Constants.PixelPerMeter;
 	static float gravity = Constants.Gravity;
 	public World world;
-	//The worlds gravity
-
+	public EntityManager entityManager;
+	
+	/**
+	 * A class to keep track of the Entity world, and ContactListener.
+	 * As well as add objects into the world.
+	 */
 	public PhysicsWorld() {
 		world = new World(new Vector2(0, -gravity), true);
 		world.setContactListener(new ListenerClass(this));
+		entityManager = new EntityManager(this);
 	}
 	
 	/**
@@ -84,23 +95,47 @@ public class PhysicsWorld {
 	 * @param tiledMap
 	 * @param manager
 	 */
-	public void tileMapToEnemies(TiledMap tiledMap, EntityManager manager) {
-		MapObjects enemies = tiledMap.getLayers().get("Enemies").getObjects();
+	public void tileMapToEntities(TiledMap tiledMap, EntityManager manager) {
+		MapObjects entities = tiledMap.getLayers().get("Entities").getObjects();
 		
-		for(MapObject enemy : enemies) {
+		for(MapObject entity : entities) {
 			
-			Rectangle rectangle = ((RectangleMapObject)enemy).getRectangle();
+			Rectangle rectangle = ((RectangleMapObject)entity).getRectangle();
 			Vector2 pos = rectangle.getPosition(new Vector2());
 			
+			if(entity.getName() == null) {
+				break;
+			}
 			//Spawns a pawn
-			if(enemy.getName().equals("pawn")) {;
-				new Pawn(pos, world, manager);
+			if(entity.getName().toLowerCase().equals("pawn")) {;
+				Pawn pawn = new Pawn(pos, world, manager);
+				pawn.initialize();
+			}
+			//Spawns a coin	
+			if(entity.getName().toLowerCase().equals("ratingpoint")) {
+				RatingPoint point = new RatingPoint(pos, world, manager);
+				point.initialize();
+			}
+			//Spawns a door
+			if(entity.getName().toLowerCase().equals("door")) {
+				int code =(int) entity.getProperties().get("code");
+				Door door = new Door(pos, world, manager, code);
+				door.initialize();
+			}
+			if(entity.getName().toLowerCase().equals("button")) {
+				int code =(int) entity.getProperties().get("code");
+				Button button = new Button(pos, world, manager, code);
+				button.initialize();
+			}
+			if(entity.getName().toLowerCase().equals("portal")) {
+				Portal portal = new Portal(pos, world, manager);
+				portal.initialize();
+			}
+			if(entity.getName().toLowerCase().equals("player")) {
+				manager.addPlayerSpawn(pos);
 			}
 			
-			//Spawns a tower (eventually)
-			if(enemy.getName().equals("tower")) {
-				System.out.println("Spawned Tower");
-			}
+			
 		}
 	}
 	

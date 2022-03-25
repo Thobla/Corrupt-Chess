@@ -1,16 +1,26 @@
 package chessgame.entities;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 
-public interface Entities {
+/**
+ * Interface for all entities in the game, such as player, items, enemies and bosses
+ * @author Mikal, Throgal
+ *
+ */
+public interface IEntities {
 	/**
 	 * Creates the entity body
 	 * @author Thorgal, Mikal
 	 * 
 	 * 
 	 */
+	
 	abstract void createBody();
+	
+	
 	/**
 	 * Gets the position of the entity according to the gameMap.
 	 * @return the position.
@@ -27,26 +37,13 @@ public interface Entities {
 	 * @return the sprite.
 	 */
 	public abstract Sprite getSprite();
-	/**
-	 * Returns the amount of health of the entity
-	 * @return - health
-	 * @author Mikal, Thorgal
-	 */
-	public abstract int getHealth();
 	
 	/**
-	 * Reduces the HP of the entity by the input value.
-	 * @param damage
-	 * @author Mikal, Thorgal
+	 * gets the entities body
+	 * @return - Body
 	 */
-	public abstract void takeDamage(int damage);
+	public abstract Body getBody();
 	
-	/**
-	 * Gets the Attack-Damage of the entity.
-	 * @return damage
-	 * @author Thorgal, Mikal
-	 */
-	public abstract int getAttack();
 	
 	/**
 	 * Kills the entity.
@@ -59,8 +56,13 @@ public interface Entities {
 	public void removeBody();
 	
 	/**
-	 * Keeps the player within the confines of the map.
-	 * @author Mikal
+	 * updates the current state of the Enemy.
 	 */
-	public void keepWithinBounds();
+	public abstract void updateState(Batch batchs);
+	
+	/**
+	 * initializes values that needs to be fetched from files.
+	 * And runs the methods needed before the object is ready for use.
+	 */
+	public abstract void initialize();
 }

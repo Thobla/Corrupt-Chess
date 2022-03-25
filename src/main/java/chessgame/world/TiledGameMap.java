@@ -45,29 +45,6 @@ public class TiledGameMap extends GameMap{
 		tiledMap.dispose();
 		
 	}
-	/**
-	 * Gets the tileType in the map, based on its layer, column and row
-	 * 
-	 * @return TileType of said tile
-	 */
-	@Override
-	public TileType getTileTypeByCoordinate(int layer, int col, int row) {
-		//Gets the cell at the wanted location
-		Cell cell = (((TiledMapTileLayer) tiledMap.getLayers().get(layer)).getCell(col, row));
-		//checks that the cell is not empty, or out of bounds
-		if(cell != null) {
-			//Gets the tile inside the cell
-			TiledMapTile tile = cell.getTile();
-			
-			//If the tile is not empty ->
-			if (tile != null) {
-				int id = tile.getId();
-				//return the TileType, with said id.
-				return TileType.getTileById(id);
-			}
-		}
-		return null;
-	}
 	@Override
 	/**
 	 * Returns the width of the map in Tiles.

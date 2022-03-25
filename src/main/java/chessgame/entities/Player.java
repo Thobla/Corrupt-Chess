@@ -13,30 +13,38 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.app.PlayerController;
 import chessgame.menues.SaveFile;
+import chessgame.utils.Constants;
 
-public class Player implements Entities{
+public class Player implements IEntities{
 	Vector2 position;
 	World world;
-	Sprite sprite = new Sprite(new Texture (Gdx.files.internal("assets/player.png").file().getAbsolutePath()));
-	public Body playerBody;
+	Sprite sprite;
+	public Body myBody;
 	public PlayerController controller;
 	//PlayerStats
 	int health = 3;
 	int attack = 1;
+	
+	public boolean dead = false;
+	int ratingScore;
 	
 	//Player size
 	float width = 0.5f;
 	float height = 0.5f;
 	
 	public Player (Vector2 position, World world) {
-		this.position = new Vector2(position.x/32, position.y/32);
+		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
+		//TODO load from file, not set to 0
+		ratingScore = 0;
+	}
+	
+	public void initialize() {
+		sprite = new Sprite(new Texture (Gdx.files.internal("assets/player/player.png").file().getAbsolutePath()));
 		createBody();
-		//sets the userData as a pointer to the player (this is used for groundCheck in ListnerClass and PlayerController)
-		playerBody.setUserData(this);
 		
     	//PlayerController
-		byte[] controls = SaveFile.readSettings();
+		int[] controls = SaveFile.readSettings();
     	controller = new PlayerController(controls);
 	}
 
@@ -51,7 +59,37 @@ public class Player implements Entities{
 	 */
 	@Override
 	public void move(Vector2 movement) {
-		playerBody.setLinearVelocity(movement);
+		float maxSpeed = 10f;
+		Vector2 playerVelocity = myBody.getLinearVelocity();
+		
+		if(movement.x > 0) {
+			if (playerVelocity.x < 0) {
+				myBody.applyForce(new Vector2(200f-playerVelocity.x*50, 0), this.position, true);
+			}
+			else if(playerVelocity.x < maxSpeed) {
+				myBody.applyForce(new Vector2(200f, 0), this.position, true);
+			} else {
+				myBody.setLinearVelocity(new Vector2(maxSpeed, playerVelocity.y));
+			}
+		}
+		else if(movement.x < 0) {
+			if (playerVelocity.x > 0) {
+				myBody.applyForce(new Vector2(-200f-playerVelocity.x*50, 0), this.position, true);
+			}
+			else if(playerVelocity.x > -maxSpeed) {
+				myBody.applyForce(new Vector2(-200f, 0), this.position, true);
+			}
+			else {
+				myBody.setLinearVelocity(new Vector2(-maxSpeed, playerVelocity.y));
+			}
+		}
+		else if(movement.x == 0 && controller.isGrounded) {
+			myBody.applyForce(new Vector2(-playerVelocity.x*50, 0), this.position, true);
+		} 
+		else if(movement.x == 0 && !controller.isGrounded) {
+			myBody.applyForce(new Vector2(-playerVelocity.x*10, 0), this.position, true);
+		}
+	
 	}
 	/**
 	 * Applies upward force to the entity, making it "jump"
@@ -59,10 +97,11 @@ public class Player implements Entities{
 	 * @author Mikal, Thorgal
 	 */
 	public void jump(float jumpForce) {
-		playerBody.applyForceToCenter(new Vector2(0, jumpForce), true);
+		myBody.applyLinearImpulse(new Vector2(0, jumpForce),this.position ,true);
+
 	}
 	public Vector2 getVelocity() {
-		return playerBody.getLinearVelocity();
+		return myBody.getLinearVelocity();
 	}
 	
 	@Override
@@ -70,41 +109,88 @@ public class Player implements Entities{
 		return sprite;
 	}
 	
-	
 	@Override
 	public void createBody() {
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyDef.BodyType.DynamicBody;
 		bodyDef.position.set(new Vector2(position.x, position.y));
 		
-		playerBody = world.createBody(bodyDef);
+		myBody = world.createBody(bodyDef);
 		
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);
 		
-		playerBody.createFixture(shape, 10f);
-		playerBody.setFixedRotation(true);
-		playerBody.setUserData("Hello");
+		myBody.createFixture(shape, 10f).setUserData("Player");
+		myBody.setFixedRotation(true);
+		myBody.setUserData(this);
 		
 		//creating a fixture that will serve as the players groundCheck-platter.
 		FixtureDef fixDef = new FixtureDef();
 		fixDef.isSensor = true;
 		//the shape should be lower than the players width and height
-		shape.setAsBox(width * 0.95f, height / 20, new Vector2(0f, -height), 0);
+		shape.setAsBox(width * 0.95f, height / 2, new Vector2(0f, -height), 0);
 		fixDef.shape = shape;
 		
-		playerBody.createFixture(fixDef).setUserData("foot");
+		myBody.createFixture(fixDef).setUserData("foot");
 		
 		//creating a fixture that will serve as the players skyCheck
 		fixDef = new FixtureDef();
 		fixDef.isSensor = true;
 		//the shape should be lower than the players width and height
-		shape.setAsBox(width * 1.2f, height * 0.2f, new Vector2(0f, +height), 0);
+		shape.setAsBox(width * 0.95f, height * 0.2f, new Vector2(0f, +height), 0);
 		fixDef.shape = shape;
-		playerBody.createFixture(fixDef).setUserData("sky");
+		myBody.createFixture(fixDef).setUserData("sky");
+		
+	}	
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void takeDamage(int damage) {
+		if(damage < health)
+			health -= damage;
+		else {
+			health = 0;
+			kill();
+		}
+			
+	}
+
+	public int getAttack() {
+		return attack;
+	}
+	
+	public int getScore() {
+		return ratingScore;
+	}
+
+	@Override
+	public void kill() {
+		dead = true;
+	}
+
+	@Override
+	public void removeBody() {
+		// TODO Auto-generated method stub
 		
 	}
 	
+	public void updatePosition() {
+		position = myBody.getPosition();
+	}
+
+	public void keepWithinBounds() {
+		if(myBody.getPosition().x > 100-width) {
+			myBody.setTransform(new Vector2(100-width, myBody.getPosition().y), 0f);
+		}
+		else if(myBody.getPosition().x < (0+width)) {
+			myBody.setTransform(new Vector2(0+width, myBody.getPosition().y), 0f);
+		}
+		if(myBody.getPosition().y < 0) {
+			kill();
+		}
+	}
 	
 	/**
 	 * Updates some aspects of the players data, such as: 
@@ -113,66 +199,37 @@ public class Player implements Entities{
 	 * @author Mikal, Thorgal
 	 * @param batch
 	 */
-	public void updatePlayer(Batch batch) {
-		
-		//Sets the maximum speed upward of the player.
-		if(playerBody.getLinearVelocity().y > 30)
-			playerBody.setLinearVelocity(new Vector2(playerBody.getLinearVelocity().x, 20));
-		//Updates position vector2
-		position = playerBody.getPosition();
-		
-    	controller.myController(this);
+	@Override
+	public void updateState(Batch batch) {
+	//Sets the maximum speed upward of the player.
+			if(myBody.getLinearVelocity().y > 30)
+				myBody.setLinearVelocity(new Vector2(myBody.getLinearVelocity().x, 20));
+			//Updates position vector2
+			updatePosition();
+			
+	    	controller.myController(this);
+			keepWithinBounds();
+	    	
+			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
+			sprite.setSize(1, 1);
+			sprite.draw(batch);
+			
+			if(health == 0)
+				kill();
+	
+	}
+	
+	public void renderPlayer(Batch batch) {
+		controller.myController(this);
 		keepWithinBounds();
     	
 		sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
 		sprite.setSize(1, 1);
 		sprite.draw(batch);
-		
-		if(health == 0)
-			kill();
 	}
 
 	@Override
-	public int getHealth() {
-		// TODO Auto-generated method stub
-		return health;
-	}
-
-	@Override
-	public void takeDamage(int damage) {
-		if(damage < health)
-			health -= damage;
-		else
-			kill();
-	}
-
-	@Override
-	public int getAttack() {
-		// TODO Auto-generated method stub
-		return attack;
-	}
-
-	@Override
-	public void kill() {
-		//System.out.println("player died");
-	}
-
-	@Override
-	public void removeBody() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keepWithinBounds() {
-		if(playerBody.getPosition().x > 100-0.5f) {
-			playerBody.setTransform(new Vector2(100-0.5f, playerBody.getPosition().y), 0f);
-		}
-		else if(playerBody.getPosition().x < (0+0.5f)) {
-			playerBody.setTransform(new Vector2(0+0.5f, playerBody.getPosition().y), 0f);
-		}
-		if(playerBody.getPosition().y < 0) {
-			kill();
-		}
+	public Body getBody() {
+		return myBody;
 	}
 }
