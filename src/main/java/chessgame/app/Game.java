@@ -85,15 +85,16 @@ public class Game implements Screen {
     static float timer;
     static Label victoryText = new Label("VICTORY", skin, "title-light");
     static TextButton continueButton = new TextButton ("Next level", skin, "default");
+    static boolean firstTime = true;
     
     static boolean paused;
     static boolean dead;
     
     public Game(ChessGame game, int level) {
-    	
     	this.game = game;
     	this.map = levels[level];
     	currentLevelIndex = level;
+    	System.out.println(currentLevelIndex);
     	//World initialisation
     	gameWorld = new PhysicsWorld();
     	debugRenderer = new Box2DDebugRenderer();
@@ -130,8 +131,9 @@ public class Game implements Screen {
     	
     	//Updates the map
     	entityManager.updateLists();
-
-    	initilizeUI();
+    	
+    	if (firstTime)
+    		initilizeUI();
     	
     	timer = 300;
     	stage.addActor(timerText);
@@ -147,6 +149,7 @@ public class Game implements Screen {
     public void dispose() {
     	batch.dispose();
     	gameMap.dispose();
+    	stage.dispose();
     }
 
     @Override
@@ -208,12 +211,12 @@ public class Game implements Screen {
         	
 	    	//Updates all entities
 	    	batch.begin();
-	    	for(IEntities entity : entityManager.entityList) {
-	    		entity.updateState(batch);
-	    	}
+	    	entityManager.updateEntities(batch);
 	    	if (!dead)
 	    		player.renderPlayer(batch);
 	    	batch.end();
+	    	
+	    	entityManager.updateLists();
 	    	
         	//Camera within bounds
 	        cameraBounds();
@@ -305,6 +308,9 @@ public class Game implements Screen {
      * @author Åsmund
      */
     private void initilizeUI() {
+    	
+    	firstTime = false;
+    	
     	gameOverText.setSize(colWidth*12,rowHeight*2);
         gameOverText.setPosition((float) (Gdx.graphics.getWidth()/2-colWidth*6),rowHeight*12);
         gameOverText.setAlignment(Align.center);
