@@ -7,6 +7,14 @@ Redd kongen din ved hjelp av en rekke ulike transformasjoner, som hver gir deg e
 
 <img src="ReadMeAssets/pawnboi.gif" width="200" heigth="200">
 
+## Hvordan vinne spillet
+Enn så lenge må du nå en portal for å komme videre i spillet. Dette må du gjøre uten å miste all din HP (Health)
+
+Dette er en portal:
+![alt text](assets/portal.png)
+
+Dette må du også klare å gjøre før tiden løper ut.
+
 ## Spillets - Status
 Spillet er forsatt godt under utvikling, og bruker placeholder-grafikk medan det blir lagd aktuell grafikk for spillet.
 Multiplayeren er godt under utvikling og kan bli lagd til fortløpende.
