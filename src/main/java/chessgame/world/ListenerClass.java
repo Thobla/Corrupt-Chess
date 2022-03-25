@@ -51,7 +51,6 @@ public class ListenerClass implements ContactListener{
 			player = (Player) fixtureB.getBody().getUserData();
 		 	enemy = (IEnemies) fixtureA.getBody().getUserData();
 		 	enemy.takeDamage(player.getAttack());
-			System.out.println("Enemy hit");
 			player.myBody.setLinearVelocity(player.myBody.getLinearVelocity().x, 0);
 			player.jump(10000f);
 			player.controller.isGrounded = false;
@@ -60,19 +59,16 @@ public class ListenerClass implements ContactListener{
 			player = (Player) fixtureA.getBody().getUserData();
 			enemy = (IEnemies) fixtureB.getBody().getUserData();
 			enemy.takeDamage(player.getAttack());
-			System.out.println("Enemy hit");
 			player.myBody.setLinearVelocity(player.myBody.getLinearVelocity().x, 0);
 			player.jump(10000f);
 			player.controller.isGrounded = false;
 		}
 		//Checks if there is an object above the player
 		if(fixtureA.getUserData() != "air" && fixtureB.getUserData() == "sky") {
-			System.out.println("Can not Jump!");
 			player = (Player) fixtureB.getBody().getUserData();
 			player.controller.clearJump = false;
 		}
 		else if(fixtureB.getUserData() != "air" && fixtureA.getUserData() == "sky") {
-			System.out.println("Can not Jump!");
 			player = (Player) fixtureA.getBody().getUserData();
 			player.controller.clearJump = false;
 		}
@@ -144,12 +140,10 @@ public class ListenerClass implements ContactListener{
 		 	//player.controller.isGrounded = false;
 		}
 		if(fixtureA.getUserData() == "sky") {
-			System.out.println("Can Jump!");
 			player = (Player) fixtureA.getBody().getUserData();
 			player.controller.clearJump = true;
 		}
 		if(fixtureB.getUserData() == "sky") {
-			System.out.println("Can Jump!");
 			player = (Player) fixtureB.getBody().getUserData();
 			player.controller.clearJump = true;
 		}

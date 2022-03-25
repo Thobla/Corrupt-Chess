@@ -120,8 +120,7 @@ public class Game implements Screen {
     	gameWorld.tileMapToBody(tiledMap);
     	gameWorld.tileMapToEntities(tiledMap, entityManager);
     	
-    	
-        //Creates the player
+    	//Creates the player
      	player = entityManager.addPlayer();
      	
     	//Updates the map

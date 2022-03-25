@@ -86,7 +86,16 @@ public class EntityManager {
      * creates a player with location equal to one of the designated spawnpoints.
      */
     public Player addPlayer() {
-        Player player = new Player(playerSpawns.remove(0), pworld.world);
+    	Player player;
+    	
+    	/* Spawn player at spawn location, if there are no location, places player at
+    	 * (200, 200)
+    	 */
+    	if(playerSpawns.size() > 0)
+    		player = new Player(playerSpawns.remove(0), pworld.world);
+    	else
+    		player = new Player(new Vector2(200,200), pworld.world);
+    	
         player.initialize();
         playerList.add(player);
         return player;
