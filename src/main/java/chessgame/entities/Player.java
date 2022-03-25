@@ -25,6 +25,7 @@ public class Player implements IEntities{
 	int health = 3;
 	int attack = 1;
 	
+	public boolean sprint = false;
 	public boolean dead = false;
 	int ratingScore;
 	
@@ -59,25 +60,36 @@ public class Player implements IEntities{
 	 */
 	@Override
 	public void move(Vector2 movement) {
-		float maxSpeed = 10f;
+		float maxSpeed;
+		float moveForce;
+		
+		if(sprint) {
+			maxSpeed = 20f;
+			moveForce = 400f;
+		}
+		else {
+			maxSpeed = 10f;
+			moveForce = 200f;
+		}
+		
 		Vector2 playerVelocity = myBody.getLinearVelocity();
 		
 		if(movement.x > 0) {
 			if (playerVelocity.x < 0) {
-				myBody.applyForce(new Vector2(200f-playerVelocity.x*50, 0), this.position, true);
+				myBody.applyForce(new Vector2(moveForce-playerVelocity.x*50, 0), this.position, true);
 			}
 			else if(playerVelocity.x < maxSpeed) {
-				myBody.applyForce(new Vector2(200f, 0), this.position, true);
+				myBody.applyForce(new Vector2(moveForce, 0), this.position, true);
 			} else {
 				myBody.setLinearVelocity(new Vector2(maxSpeed, playerVelocity.y));
 			}
 		}
 		else if(movement.x < 0) {
 			if (playerVelocity.x > 0) {
-				myBody.applyForce(new Vector2(-200f-playerVelocity.x*50, 0), this.position, true);
+				myBody.applyForce(new Vector2(-moveForce-playerVelocity.x*50, 0), this.position, true);
 			}
 			else if(playerVelocity.x > -maxSpeed) {
-				myBody.applyForce(new Vector2(-200f, 0), this.position, true);
+				myBody.applyForce(new Vector2(-moveForce, 0), this.position, true);
 			}
 			else {
 				myBody.setLinearVelocity(new Vector2(-maxSpeed, playerVelocity.y));
