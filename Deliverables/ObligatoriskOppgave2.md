@@ -146,3 +146,115 @@ Testkvalitet/ Testdekning: Vi har nå J-unit tester i prosjektet, og lagt til no
 
 ### Klassediagram: 
 Klassediagram skal finnes under src → main → chess-game.umlcd.
+
+## Manuelle Tester:
+
+* Test for å kjøre spillet:
+Når man kjører Main.java skal det åpnes et nytt vindu med en meny-skjerm som inneholder knappene; Play, Options, Credits,  Quit og Reset.
+
+### Test av knappene:
+	
+* Play:
+
+Når man trykker på Play skal brukeren få valg om å spille bane 1 (1-1) eller bane 2 (1-2).
+
+* Options:
+
+Når man trykker på Options skal en ny meny kalt Options vises. Her skal man kunne endre knappene for å bevege spilleren, øke og minske lyden i spillet, tilbakestille bevegelses-knappene og tilbake knapp.
+
+* Endre knappene for å bevege spilleren:
+
+Key jump: denne skal kunne la brukeren endre knappen for å hoppe.
+
+Key right: denne knappe skal kunne la brukeren endre knappen for å bevege til høyre.
+
+Key left: denne knappe skal kunne la brukeren endre knappen for å bevege til venstre.
+
+Key Sprint: denne knappe skal kunne la brukeren endre knappen for å bevege seg raskere.
+
+* Test av knapper:
+
+Gitt at knappene er endret til:
+
+Key jump: er endret til “T”
+
+Key right:  er endret til “H”
+
+Key left: er endret til “F”
+
+Key sprint:  er endret til “S”
+
+Key jump: Hvis man trykker på denne knappen så skal man se at spilleren hopper	opp.
+
+Key right: Hvis man trykker på denne knappen så skal man se at spilleren beveger seg mot høyre.
+
+Key left: Hvis man trykker på denne knappen så skal man se at spilleren beveger seg mot venstre.
+
+Key left + Key right: Hvis man trykker på disse knappene skal ikke spilleren bevege på seg.
+
+Key sprint: Hvis man trykker på denne knappen alene skal ikke spilleren gjøre noe.
+
+Key jump + Key right: Hvis man trykker på denne knappen så skal man se at spilleren hoppe opp og beveger seg mot høyre.
+
+Key jump + Key left: Hvis man trykker på denne knappen så skal man se at spilleren hoppe opp og beveger seg mot venstre.
+
+Key sprint + Key left: Hvis man trykker på denne knappen skal spilleren bevege seg raskere mot venstre.
+
+Key Sprint + Key Right: Hvis man trykker på denne knappen skal spilleren bevege seg raskere mot venstre.
+
+* Øke og minske lyden i spillet:
+
+Sound level: Bevege slideren mot høyre skal øke lyden og venstre minske lyden. NB! (Denne er foreløpig ikke implementert).
+Tilbakestille bevegelses-knappene:
+
+Reset to default: Denne knappen skal tilbakestille alle knappene til			hva det var originalt.
+
+Key jump: skal bli “W”
+
+Key right: skal bli “D”
+
+Key left: skal bli “A”
+
+Key sprint: skal bli “L-Shift”
+
+* Tilbake knapp:
+
+Back: Denne knappen skal ta brukeren tilbake til hovedmenyen fra			
+
+* Play og Options.
+
+Credits: Denne knappen skal ikke gjøre noe ennå.
+
+Quit: Når man trykker på denne skal spillet avsluttes og lukkes.
+
+Reset: Når man trykker på denne knappen skal alle endringer gjort i Options tilbakestilles.
+
+* Teste bevegelse av spiller på spillebrett:
+
+Gitt at bevegelses-knappene er:
+
+Key jump: er “W”
+
+Key right: er “D”
+
+Key left: er “A”
+
+Key sprint: er “L-Shift”
+
+Key jump: Hvis man trykker på denne knappen så skal man se at spilleren hopper	opp.
+
+Key right: Hvis man trykker på denne knappen så skal man se at spilleren beveger seg mot høyre.
+
+Key left: Hvis man trykker på denne knappen så skal man se at spilleren beveger seg mot venstre.
+
+Key left + Key right: Hvis man trykker på disse knappene skal ikke spilleren bevege på seg.
+
+Key sprint: Hvis man trykker på denne knappen alene skal ikke spilleren gjøre noe.
+
+Key jump + Key right: Hvis man trykker på denne knappen så skal man se at spilleren hoppe opp og beveger seg mot høyre.
+
+Key jump + Key left: Hvis man trykker på denne knappen så skal man se at spilleren hoppe opp og beveger seg mot venstre.
+
+Key sprint + Key left: Hvis man trykker på denne knappen skal spilleren bevege seg raskere mot venstre.
+
+Key Sprint + Key Right: Hvis man trykker på denne knappen skal spilleren bevege seg raskere mot venstre.
