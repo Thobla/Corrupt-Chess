@@ -13,7 +13,6 @@ public class PawnChase extends PawnState{
 		
 	@Override
 	public void Enter() {
-			System.out.println("Pawn is now angry! >:(");
 	}
 
 	@Override

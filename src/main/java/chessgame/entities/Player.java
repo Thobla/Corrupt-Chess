@@ -169,7 +169,6 @@ public class Player implements IEntities{
 	@Override
 	public void kill() {
 		dead = true;
-		System.out.println("player died");
 	}
 
 	@Override
