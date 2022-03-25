@@ -133,7 +133,7 @@ public class OptionScreen implements Screen {
         stage.addActor(leftButton);
         
         //Text for right key
-        Label rightText = new Label("Key rightp",skin,"default");
+        Label rightText = new Label("Key right",skin,"default");
         rightText.setSize(colWidth*2,(float) (rowHeight*1.5));
         rightText.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*10);
         rightText.setAlignment(Align.center);
@@ -224,7 +224,7 @@ public class OptionScreen implements Screen {
 	public void changeButton(TextButton button, String text, int index) {
 		
 		//Text prompting you to type new input for key
-        Label prompt = new Label("Press the button for the new " + text + " key." , skin, "title");
+        Label prompt = new Label("Press the button for the new " + text + " key." , skin, "title-light");
         prompt.setSize(Gdx.graphics.getWidth(),rowHeight*2);
         prompt.setPosition(0,Gdx.graphics.getHeight()-rowHeight*6);
         prompt.setAlignment(Align.center);
