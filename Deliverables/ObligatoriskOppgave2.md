@@ -1,6 +1,6 @@
-#6 CHICKS - Innlevering 2
+# 6 CHICKS - Innlevering 2
 
-##Møtereferat:
+## Møtereferat:
 
 11.03.22 - Møte fredag
 Tilstede: Mikal, Emil, Olaug, Johnarthan, Thorgal, Åsmund
@@ -25,7 +25,7 @@ Gjord deloppgave 1 og 2 til innlevering 2.
 tilstede: Mikal, Johnarthan, Thorgal, Olaug, Emil og Åsmund 
 I dag har det vært fokus på å skrive ferdig innleveringen som skal inn idag. Noen har jobbet med bugs, og noen har jobbet med karakter design. 
 
-##Deloppgave 1:
+## Deloppgave 1:
 * Hvordan fungerer rollene i teamet? Trenger dere å oppdatere hvem som er teamlead eller kundekontakt?
 Alle virker fornøyde med ansvaret de selv har. Emil fungerer for alle som en god teamleder. 
 Trenger dere andre roller? Skriv ned noen linjer om hva de ulike rollene faktisk innebærer for dere.
@@ -68,8 +68,8 @@ Lage flere små frister til ulike MVP.
 Lage flere tester / og mer dokumentasjon. 
 Legge til akseptansekriterier til alle arbeidsoppgaver evt. skrive de i beskrivelse under trello-kortet. 
 
-##Deloppgave 2:
-###«Stretch goal»
+## Deloppgave 2:
+### «Stretch goals»
 * Bestem dere for én litt mer avansert ting som dere vil prøve å få til utover et vanlig single-player platform spill. Dette kan være f.eks.: multiplayer (på samme maskin eller over nett), å porte til en annen platform (Android eller Web, f.eks.), å bytte ut grafikk-frontenden, e.l.
 
 Vi bestemte oss tidlig for å få til multiplayer over lokalt nett. Det jobbes med, men blir nok ikke ferdig til innlevering 2. 
@@ -77,7 +77,7 @@ Mulitplayer progresjon: Maskinene kan kobles sammen, og den ene maskinen kan sen
 
 
 
-###MVP og annet 
+### MVP og annet 
 * Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige gang. Er dere kommet forbi MVP? Forklar hvordan dere prioriterer 
 
 Siden sist innlevering har vi jobbet med å få frem flere enemies og få interaktivitet mellom player, fiender og terreng. Vi har jobbet mer med movement til spiller. Vi har fått på plass mainmeny, optionsmeny og in-game-UI. Vi har fått lagt til poengscore i spillet, og et mål for spillbrettet. I tillegg har man nå en timer i spillet. Spiller kan også nå dø ved å havne utenfor mapen, hvis tiden renner ut og hvis man er i kontakt med fiender for lenge. Vi har fått på plass en save-file for progresjon og innstillinger. 
@@ -108,7 +108,7 @@ Vi har litt bugs i playermovement med hensyn til collision-detection. Man kan av
 
 * Kravlista er lang, men det er ikke nødvendig å levere på alle kravene hvis det ikke er realistisk. Det er viktigere at de oppgavene som er utført holder høy kvalitet. Utførte oppgaver skal være ferdige.
 
-###Deloppgave 3:
+### Deloppgave 3:
 Utbedring av feil:
 
 Prosjektmetodikk: Vi valgte å bruke scrum fordi det virket som en metode som passet oss, og som gjør at vi kan forkusere på det viktigste for så å bygge på eterhvert. I tillegg viste vi at vi skulle ha møter hver mandag og fredag, og da ble det enklere om vi lagde sprints mellom hver gang vi skulle møtes. Da kunne vi lett gi tilbakemeldinger på de tingene vi hadde jobbet med siden sist. Vi valgte også i starten parprogrammering siden vi tenkte det kulle bli lettere å ha en oversikt over alles arbeid da, men innså etterhvert at dette ble vanskelig i og med at vi ikke kunne møtes ofte nok til å bruke dette. 
@@ -137,5 +137,5 @@ Hvor stor andel av koden brukes i praksis: Det meste av ubrukt kode skal være s
 
 Testkvalitet/ Testdekning: Vi har nå J-unit tester i prosjektet, og lagt til noen flere manuelltester. 
 
-###Klassediagram: 
+### Klassediagram: 
 Klassediagram skal finnes under src → main → chess-game.umlcd.
