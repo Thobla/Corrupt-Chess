@@ -138,4 +138,4 @@ Hvor stor andel av koden brukes i praksis: Det meste av ubrukt kode skal være s
 Testkvalitet/ Testdekning: Vi har nå J-unit tester i prosjektet, og lagt til noen flere manuelltester. 
 
 ###Klassediagram: 
-Klassediagram skal finnes under src → main → chess-game.umlcd
+Klassediagram skal finnes under src → main → chess-game.umlcd.
