@@ -5,10 +5,12 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -16,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import chessgame.app.ChessGame;
@@ -38,7 +41,6 @@ public class MenuScreen implements Screen {
         Table backgroundTable = new Table();
         backgroundTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("assets/background.png"))));
         backgroundTable.setFillParent(true);
-        backgroundTable.setDebug(true);
         stage.addActor(backgroundTable);
         //Scalable units for size and placements of UI
         int rowHeight = Gdx.graphics.getHeight() / 16;
@@ -46,17 +48,16 @@ public class MenuScreen implements Screen {
         //Imported skin for UI
         Skin skin = new Skin(Gdx.files.internal("assets/skin/chess/chess.json"));
         
-        //Text for this menu
-        Label title = new Label("Chess Game", skin, "title-light");
-        title.setSize((float) (Gdx.graphics.getWidth()/1.5),rowHeight*6);
-        title.setPosition(0,0);
-        title.setAlignment(Align.center);
-        stage.addActor(title);
+        Image logo = new Image(new Texture("assets/corruptChess.png"));
+        logo.setSize(colWidth*5, rowHeight*4);
+        logo.setPosition(colWidth*3, Gdx.graphics.getHeight()-rowHeight*4);
+        logo.setAlign(Align.center);
+        stage.addActor(logo);      
         
         //Play button for starting the game.
         Button playButton = new TextButton("Play",skin,"default");
         playButton.setSize(colWidth*3,(float) (rowHeight*1.5));
-        playButton.setPosition(colWidth*4,Gdx.graphics.getHeight()-rowHeight*4);
+        playButton.setPosition(colWidth*4,Gdx.graphics.getHeight()-rowHeight*6);
         playButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
@@ -80,7 +81,7 @@ public class MenuScreen implements Screen {
         //Button for going to the option screen.
         Button optionButton = new TextButton("Options",skin,"default");
         optionButton.setSize(colWidth*3,(float) (rowHeight*1.5));
-        optionButton.setPosition(colWidth*4,(float) (Gdx.graphics.getHeight()-rowHeight*5.5));
+        optionButton.setPosition(colWidth*4,(float) (Gdx.graphics.getHeight()-rowHeight*7.5));
         optionButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
@@ -97,7 +98,7 @@ public class MenuScreen implements Screen {
         //Currently unused button
         Button creditsButton = new TextButton("Credits",skin, "default");
         creditsButton.setSize(colWidth*3, (float) (rowHeight*1.5));
-        creditsButton.setPosition(colWidth*4, Gdx.graphics.getHeight()-rowHeight*7);
+        creditsButton.setPosition(colWidth*4, Gdx.graphics.getHeight()-rowHeight*9);
         creditsButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
@@ -112,7 +113,7 @@ public class MenuScreen implements Screen {
         //Button for exiting the game
         Button quitButton = new TextButton("Quit",skin,"default");
         quitButton.setSize(colWidth*3,(float) (rowHeight*1.5));
-        quitButton.setPosition(colWidth*4,(float) (Gdx.graphics.getHeight()-rowHeight*8.5));
+        quitButton.setPosition(colWidth*4,(float) (Gdx.graphics.getHeight()-rowHeight*10.5));
         quitButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
