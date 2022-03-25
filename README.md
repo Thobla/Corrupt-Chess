@@ -11,7 +11,8 @@ Redd kongen din ved hjelp av en rekke ulike transformasjoner, som hver gir deg e
 Enn så lenge må du nå en portal for å komme videre i spillet. Dette må du gjøre uten å miste all din HP (Health) \
 
 Dette er en portal: 
-![alt text](assets/portal.png)
+<img src="assets/portal.png" width="32" heigth="32">
+
  \
 Dette må du også klare å gjøre før tiden løper ut.
 
@@ -30,9 +31,9 @@ er compilet. Du kan compile det om du vil, men det er ikkje nødvendig.
 
 ## Hvordan spille spillet
 Spillet bruker et opsett av "WASD" eller piltaster til å bevege spilleren. \
-W / ↑ / Space - Hopp \
-A / ← - Gå mot venstre \
-D / → - Gå mot høgre \
+W - Hopp \
+A - Gå mot venstre \
+D - Gå mot høgre \
 L-shift - Sprintknapp \
  \
 Det er også lagt opp til å endre spilltastene i "options" på hovumenyen.
