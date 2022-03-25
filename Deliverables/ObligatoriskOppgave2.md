@@ -120,7 +120,7 @@ Brukerhistorie: Vi får tilbakemelding på at vi enten kan droppe eller gi flere
 Aksptansekriterier: Dette var heller ikke noe vi tenkte måtte være med i innleveringen, men har gjort det ved noen pågående oppgaver og vil gjøre med fremtidige. Igjen, får tilbakemelding på prosjektet alt for sent så vil ta for lang tid å gjøre dette ved alle tidligere oppgaver. 
 
 Arbeidsoppgaver: 
-Emil - Satt opp trello-board og jobbet med kamera. I tillegg til level-design.
+Emil - Satt opp trello-board og jobbet med kamera. I tillegg til level-design..
 Mikal - Har jobbet med fysikk, interaksjon mellom spiller og terreng, har implementert tile-map, implementert poeng og basic fiender og lagd en god måte å ta ta alle elementene fra tile-map inn i spillet. 
 Thorgal - Har jobbet med fysikk, interaksjon mellom spiller og terreng, har implementert tile-map, implementert poeng og basic fiender og lagd en god måte å ta ta alle elementene fra tile-map inn i spillet.  Thorgal og Mikal har gjort det meste ilag.  
 Olaug - Har jobbet mye med alt av skriving til innleveringene. I tillegg har hun vært med på multiplayer og level-design. 
