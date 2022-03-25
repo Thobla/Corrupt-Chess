@@ -199,7 +199,11 @@ public class Game implements Screen {
         }
         else {
         	gameMap.render(cam);
-        	debugRenderer.render(gameWorld.world, cam.combined);
+        	
+        	/**Debug-render to be off when not debugging.
+	    	debugRenderer.render(gameWorld.world, cam.combined);
+	    	*/
+        	
 	    	batch.setProjectionMatrix(cam.combined);
         	
 	    	//Updates all entities
