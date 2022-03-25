@@ -24,6 +24,7 @@ public class Pawn implements IEnemies {
 	public float aggroRange = 6f;
 	
 	Vector2 position;
+	Vector2 homePosition;
 	World world;
 	Body myBody;
 	public EntityManager entityManager;
@@ -44,7 +45,8 @@ public class Pawn implements IEnemies {
 	float height = 0.5f;
 	
 	public Pawn (Vector2 position, World world, EntityManager entityManager) {
-		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
+		homePosition = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
+		this.position = homePosition;
 		this.world = world;
 		this.entityManager = entityManager;
 		health = 2;

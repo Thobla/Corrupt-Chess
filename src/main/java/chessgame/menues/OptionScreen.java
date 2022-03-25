@@ -62,7 +62,7 @@ public class OptionScreen implements Screen {
         stage.addActor(backgroundTable);
         
         //Title for this menu
-        Label title = new Label("Options", skin, "title-light");
+        Label title = new Label("OPTIONS", skin, "title-light");
         title.setSize(Gdx.graphics.getWidth(),rowHeight*2);
         title.setPosition(0,Gdx.graphics.getHeight()-rowHeight*2);
         title.setAlignment(Align.center);
@@ -88,13 +88,13 @@ public class OptionScreen implements Screen {
         
         //Text for up key
         Label upText = new Label("Key jump",skin,"default");
-        upText.setSize(colWidth*2,(float) (rowHeight*1.5));
+        upText.setSize(colWidth*2,rowHeight);
         upText.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*12);
         upText.setAlignment(Align.center);
         stage.addActor(upText);
         //Button for up key
 		TextButton upButton = new TextButton(Keys.toString(up),skin,"default");
-        upButton.setSize((float) (colWidth*2.2),(float) (rowHeight*1.5));
+        upButton.setSize((float) (colWidth*2.2), rowHeight);
         upButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*12);
         upButton.addListener(new InputListener(){
             @Override
@@ -111,13 +111,13 @@ public class OptionScreen implements Screen {
         
         //Text for left key
         Label leftText = new Label("Key left",skin,"default");
-        leftText.setSize(colWidth*2,(float) (rowHeight*1.5));
+        leftText.setSize(colWidth*2,rowHeight);
         leftText.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*11);
         leftText.setAlignment(Align.center);
         stage.addActor(leftText);
         //Button for left key
         TextButton leftButton = new TextButton(Keys.toString(left),skin,"default");
-        leftButton.setSize((float) (colWidth*2.2),(float) (rowHeight*1.5));
+        leftButton.setSize((float) (colWidth*2.2), rowHeight);
         leftButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*11);
         leftButton.addListener(new InputListener(){
             @Override
@@ -134,13 +134,13 @@ public class OptionScreen implements Screen {
         
         //Text for right key
         Label rightText = new Label("Key right",skin,"default");
-        rightText.setSize(colWidth*2,(float) (rowHeight*1.5));
+        rightText.setSize(colWidth*2,rowHeight);
         rightText.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*10);
         rightText.setAlignment(Align.center);
         stage.addActor(rightText);
         //Button for right key
         TextButton rightButton = new TextButton(Keys.toString(right),skin,"default");
-        rightButton.setSize((float) (colWidth*2.2),(float) (rowHeight*1.5));
+        rightButton.setSize((float) (colWidth*2.2),rowHeight);
         rightButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*10);
         rightButton.addListener(new InputListener(){
             @Override
@@ -157,13 +157,13 @@ public class OptionScreen implements Screen {
         
       //Text for sprint key
         Label sprintText = new Label("Key sprint",skin,"default");
-        sprintText.setSize(colWidth*2,(float) (rowHeight*1.5));
+        sprintText.setSize(colWidth*2,rowHeight);
         sprintText.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*9);
         sprintText.setAlignment(Align.center);
         stage.addActor(sprintText);
         //Button for sprint key
         TextButton sprintButton = new TextButton(Keys.toString(sprint),skin,"default");
-        sprintButton.setSize((float) (colWidth*2.2),(float) (rowHeight*1.5));
+        sprintButton.setSize((float) (colWidth*2.2), (rowHeight*1));
         sprintButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*9);
         sprintButton.addListener(new InputListener(){
             @Override
