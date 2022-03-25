@@ -153,9 +153,11 @@ public class Game implements Screen {
 	        //Logic step
 	    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
 	        gameMap.render(cam);
-	    	//Debug-render
+	    	
+	        /**Debug-render to be off when not debugging.
 	    	debugRenderer.render(gameWorld.world, cam.combined);
 	    	batch.setProjectionMatrix(cam.combined);
+	    	*/
 	    	
 	    	//Updates all entities
 	    	batch.begin();
