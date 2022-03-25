@@ -61,7 +61,8 @@ public class Game implements Screen {
     //All levels with their file names
     public static String[] levels = new String[] {
     	"1-1",
-    	"1-2",
+    	"1-2"
+    	
     };
     
     //Stage for UI elements
@@ -91,6 +92,7 @@ public class Game implements Screen {
     	
     	this.game = game;
     	this.map = levels[level];
+    	currentLevelIndex = level;
     	//World initialisation
     	gameWorld = new PhysicsWorld();
     	debugRenderer = new Box2DDebugRenderer();
@@ -375,7 +377,7 @@ public class Game implements Screen {
         continueButton.addListener(new InputListener() {
     		@Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-    			if (currentLevelIndex >= levels.length) {
+    			if (currentLevelIndex+1 >= levels.length) {
     				game.setScreen(new MenuScreen(game));
     			} else {
     				game.setScreen(new Game(game, currentLevelIndex+1));
