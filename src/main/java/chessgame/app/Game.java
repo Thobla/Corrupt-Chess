@@ -359,11 +359,11 @@ public class Game implements Screen {
         timerText.setAlignment(Align.center);
         
         healthText.setSize(colWidth*2, rowHeight*2);
-        healthText.setPosition(colWidth*2, rowHeight*14);
+        healthText.setPosition(colWidth*3, rowHeight*14);
         healthText.setAlignment(Align.center);
         
         scoreText.setSize(colWidth*2, rowHeight*2);
-        scoreText.setPosition(colWidth*4, rowHeight*14);
+        scoreText.setPosition(colWidth*6, rowHeight*14);
         scoreText.setAlignment(Align.center);
         
         victoryText.setSize(colWidth*12,rowHeight*2);
