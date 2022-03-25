@@ -94,7 +94,7 @@ public class OptionScreen implements Screen {
         stage.addActor(upText);
         //Button for up key
 		TextButton upButton = new TextButton(Keys.toString(up),skin,"default");
-        upButton.setSize(colWidth*2,(float) (rowHeight*1.5));
+        upButton.setSize((float) (colWidth*2.2),(float) (rowHeight*1.5));
         upButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*12);
         upButton.addListener(new InputListener(){
             @Override
@@ -117,7 +117,7 @@ public class OptionScreen implements Screen {
         stage.addActor(leftText);
         //Button for left key
         TextButton leftButton = new TextButton(Keys.toString(left),skin,"default");
-        leftButton.setSize(colWidth*2,(float) (rowHeight*1.5));
+        leftButton.setSize((float) (colWidth*2.2),(float) (rowHeight*1.5));
         leftButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*11);
         leftButton.addListener(new InputListener(){
             @Override
@@ -140,7 +140,7 @@ public class OptionScreen implements Screen {
         stage.addActor(rightText);
         //Button for right key
         TextButton rightButton = new TextButton(Keys.toString(right),skin,"default");
-        rightButton.setSize(colWidth*2,(float) (rowHeight*1.5));
+        rightButton.setSize((float) (colWidth*2.2),(float) (rowHeight*1.5));
         rightButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*10);
         rightButton.addListener(new InputListener(){
             @Override
@@ -163,7 +163,7 @@ public class OptionScreen implements Screen {
         stage.addActor(sprintText);
         //Button for sprint key
         TextButton sprintButton = new TextButton(Keys.toString(sprint),skin,"default");
-        sprintButton.setSize(colWidth*2,(float) (rowHeight*1.5));
+        sprintButton.setSize((float) (colWidth*2.2),(float) (rowHeight*1.5));
         sprintButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*9);
         sprintButton.addListener(new InputListener(){
             @Override

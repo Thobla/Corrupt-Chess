@@ -375,8 +375,13 @@ public class Game implements Screen {
         continueButton.addListener(new InputListener() {
     		@Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-    			game.setScreen(new Game(game, currentLevelIndex+1));
-    			dispose();
+    			if (currentLevelIndex >= levels.length) {
+    				game.setScreen(new MenuScreen(game));
+    			} else {
+    				game.setScreen(new Game(game, currentLevelIndex+1));
+    				dispose();
+    			}
+    			
     		}
     		
     		@Override
