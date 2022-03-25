@@ -30,9 +30,9 @@ er compilet. Du kan compile det om du vil, men det er ikkje nødvendig.
 
 ## Hvordan spille spillet
 Spillet bruker et opsett av "WASD" eller piltaster til å bevege spilleren. \
-W / ↑ / Space - Hopp \
-A / ← - Gå mot venstre \
-D / → - Gå mot høgre \
+W - Hopp \
+A - Gå mot venstre \
+D - Gå mot høgre \
 L-shift - Sprintknapp \
  \
 Det er også lagt opp til å endre spilltastene i "options" på hovumenyen.
