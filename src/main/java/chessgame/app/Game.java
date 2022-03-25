@@ -91,7 +91,6 @@ public class Game implements Screen {
     	this.game = game;
     	this.map = levels[level];
     	currentLevelIndex = level;
-    	System.out.println(currentLevelIndex);
     	//World initialisation
     	gameWorld = new PhysicsWorld();
     	debugRenderer = new Box2DDebugRenderer();
