@@ -29,12 +29,12 @@ er compilet. Du kan compile det om du vil, men det er ikkje nødvendig.
 5. Når du har fått kjørt Main.java, skal du se eit spill-vindu dukke op med en hovudMeny.
 
 ## Hvordan spille spillet
-Spillet bruker et opsett av "WASD" eller piltaster til å bevege spilleren.
-W / ↑ / Space - Hopp
-A / ← - Gå mot venstre
-D / → - Gå mot høgre
-L-shift - Sprintknapp
-
+Spillet bruker et opsett av "WASD" eller piltaster til å bevege spilleren. \
+W / ↑ / Space - Hopp \
+A / ← - Gå mot venstre \
+D / → - Gå mot høgre \
+L-shift - Sprintknapp \
+ \
 Det er også lagt opp til å endre spilltastene i "options" på hovumenyen.
 
 ## Trello
