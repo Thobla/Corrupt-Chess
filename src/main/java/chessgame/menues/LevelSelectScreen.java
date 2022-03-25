@@ -36,7 +36,6 @@ public class LevelSelectScreen implements Screen{
         Table backgroundTable = new Table();
         backgroundTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("assets/background.png"))));
         backgroundTable.setFillParent(true);
-        backgroundTable.setDebug(true);
         stage.addActor(backgroundTable);
         //Scalable units for size and placements of UI
         int rowHeight = Gdx.graphics.getHeight() / 16;

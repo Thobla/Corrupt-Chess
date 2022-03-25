@@ -58,7 +58,6 @@ public class OptionScreen implements Screen {
         Table backgroundTable = new Table();
         backgroundTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("assets/background.png"))));
         backgroundTable.setFillParent(true);
-        backgroundTable.setDebug(true);
         stage.addActor(backgroundTable);
         
         //Title for this menu
