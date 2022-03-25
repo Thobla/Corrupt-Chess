@@ -110,7 +110,6 @@ public class Player implements IEntities{
 		return sprite;
 	}
 	
-	
 	@Override
 	public void createBody() {
 		BodyDef bodyDef = new BodyDef();
@@ -178,6 +177,10 @@ public class Player implements IEntities{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void updatePosition() {
+		position = myBody.getPosition();
+	}
 
 	public void keepWithinBounds() {
 		if(myBody.getPosition().x > 100-width) {
@@ -204,7 +207,7 @@ public class Player implements IEntities{
 			if(myBody.getLinearVelocity().y > 30)
 				myBody.setLinearVelocity(new Vector2(myBody.getLinearVelocity().x, 20));
 			//Updates position vector2
-			position = myBody.getPosition();
+			updatePosition();
 			
 	    	controller.myController(this);
 			keepWithinBounds();
