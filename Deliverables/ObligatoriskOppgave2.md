@@ -48,7 +48,7 @@ Olaug (skriveansvarlig)  - Får alltid en del å gjøre når det skal leveres in
 
 Parprogrammering har vært vanskelig, siden vi ikke møtes nok. Scrum synes vi gjennomføres bra mtp sprinter vi selv lager i trello, så vi ser ikke noe grunn til å ikke bruke scrum lengre. Vi hadde nok litt for store ambisjoner for hvor mye tid vi kom til å ha sammen, og derfor trodde vi at parprogrammering var lurt. Har vist seg å være vanskeligere enn vi trodde, men likevel så blir parprogrammering brukt når vi kan/møtes. 
 
-*Hvordan er gruppedynamikken? Er det uenigheter som bør løses?
+* Hvordan er gruppedynamikken? Er det uenigheter som bør løses?
 
 Vi synes gruppen samarbeider godt og trives godt i hverandre sine selskap. Må bli flinkere til å gi beskjed om man kommer eller ikke og dersom man ikke kan komme være tilgjengelig på discord om man kan. 
 Hvordan fungerer kommunikasjonen for dere?
@@ -90,6 +90,8 @@ Dette har ikke blitt gjort  i tidligere krav da vi ikke visste dette var nødven
 
 * Dersom dere har oppgaver som dere skal til å starte med, hvor dere har oversikt over både brukerhistorie, akseptansekriterier og arbeidsoppgaver, kan dere ta med disse i innleveringen også.
 
+Oversikt over kommende oppgaver har vi i Trello. Brukerhistorie og akseptansekriterier finnes i beskrivelsen under trello-kortet. 
+
 * Forklar kort hvordan dere har prioritert oppgavene fremover
 
 Fremover skal vi jobbe mer sammen med multiplayer siden vi har funnet ut at dette krever en del tid og kunnskap. I tillegg skal vi forbedre de elementene vi har i spillet, før vi eventuelt starter med mer utvikling. 
@@ -129,7 +131,7 @@ Johnarthan - Har hatt ansvar for multiplayer implementasjon, karakter-design og 
 
 Kravene er oppfylt: I innleveringen sto det at krav 1-3 skulle bli gjennomført, men vi fikk trekk siden vi ikke hadde gjort 1-5. Vi synes dette var veldig rart. Nå derimot er alle MVP-kravene gjennomført. 
 
-Dokumentasjon om teknisk produktoppsett: 
+Dokumentasjon om teknisk produktoppsett: Det er fikset nå, og står i README-filen. 
 
 Beskrivelse av prosjektet: Det skal være fikset nå. 
 
