@@ -88,10 +88,9 @@ public class Player implements IEntities{
 			if (playerVelocity.x > 0) {
 				myBody.applyForce(new Vector2(-moveForce-playerVelocity.x*50, 0), this.position, true);
 			}
-			else if(playerVelocity.x > -maxSpeed) {
+			else if(-playerVelocity.x < maxSpeed) {
 				myBody.applyForce(new Vector2(-moveForce, 0), this.position, true);
-			}
-			else {
+			} else {
 				myBody.setLinearVelocity(new Vector2(-maxSpeed, playerVelocity.y));
 			}
 		}
@@ -101,7 +100,6 @@ public class Player implements IEntities{
 		else if(movement.x == 0 && !controller.isGrounded) {
 			myBody.applyForce(new Vector2(-playerVelocity.x*10, 0), this.position, true);
 		}
-	
 	}
 	/**
 	 * Applies upward force to the entity, making it "jump"
