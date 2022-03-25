@@ -52,6 +52,7 @@ public class PlayerController extends InputMultiplexer {
 	
 	    	if((Gdx.input.isKeyPressed(up) || Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.SPACE))) {
 	    		if(isGrounded && clearJump) {
+	    			player.move(Vector2.Zero);
 		    		player.jump(jumpForce);
 		    		isGrounded = false;
 	    		}
