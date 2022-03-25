@@ -86,9 +86,9 @@ public class Player implements IEntities{
 		}
 		else if(movement.x == 0 && controller.isGrounded) {
 			myBody.applyForce(new Vector2(-playerVelocity.x*50, 0), this.position, true);
-		}
-		else if(movement.x == 0 && controller.isGrounded) {
-			myBody.applyForce(new Vector2(-playerVelocity.x*20, 0), this.position, true);
+		} 
+		else if(movement.x == 0 && !controller.isGrounded) {
+			myBody.applyForce(new Vector2(-playerVelocity.x*10, 0), this.position, true);
 		}
 	
 	}
@@ -169,7 +169,6 @@ public class Player implements IEntities{
 	@Override
 	public void kill() {
 		dead = true;
-		System.out.println("player died");
 	}
 
 	@Override

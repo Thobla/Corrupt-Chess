@@ -15,7 +15,6 @@ public class PawnIdle extends PawnState {
 	@Override
 	public void Enter() {
 		pawn.getBody().setLinearVelocity(Vector2.Zero);
-		System.out.println("Pawn in idle.");
 	}
 
 	@Override
