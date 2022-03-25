@@ -21,8 +21,21 @@ Multiplayeren er godt under utvikling og kan bli lagd til fortløpende.
 Noen levels er planlagd, men grunna usikkerhet rundt hvilke features vi har ferdigstilt og vil bruke videre.
 
 ## Hvordan kjøre spillet
-Pull prosjektet frå git ved bruk av clone knappen. velg din prefererte metode (SSH / HTTPS).
-For å så starte programmet runner du Main.java, ettersom programmet enda ikkje er exportet må dette gjøres med en IDE.
+1. Last ned Java 17, ettersom det er testet på den versjonen er vi sikker på at det funker.
+2. Ha en IDE som støtter Java, og som har Maven installert.
+3. Clone Prosjektet ved hjelp av Git, (HTTPS / SSH)
+4. Når du har fått en kopi av spillet, kjør Main.java, ettersom det enda ikkje
+er compilet. Du kan compile det om du vil, men det er ikkje nødvendig.
+5. Når du har fått kjørt Main.java, skal du se eit spill-vindu dukke op med en hovudMeny.
+
+## Hvordan spille spillet
+Spillet bruker et opsett av "WASD" eller piltaster til å bevege spilleren.
+W / ↑ / Space - Hopp
+A / ← - Gå mot venstre
+D / → - Gå mot høgre
+L-shift - Sprintknapp
+
+Det er også lagt opp til å endre spilltastene i "options" på hovumenyen.
 
 ## Trello
 Vi bruker Trello til fordeling av oppgåver og som en sjekkliste for prosjektet.
