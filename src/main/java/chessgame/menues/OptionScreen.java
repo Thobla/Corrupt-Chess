@@ -3,6 +3,7 @@ package chessgame.menues;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -33,6 +34,7 @@ public class OptionScreen implements Screen {
     private int left;
     private int sprint;
     private float audiolvl;
+    private float volume;
 	
     //Scalable units for size and placements of UI
     int rowHeight = Gdx.graphics.getHeight() / 16;
@@ -53,7 +55,11 @@ public class OptionScreen implements Screen {
         right = controls[2]; 
         sprint = controls[3];
         audiolvl = controls[4];
-
+        
+        Sound click = Gdx.audio.newSound(Gdx.files.internal("assets/sound/menuClick.mp3"));
+        volume = ((float) audiolvl) / 100;
+        
+        
         //Background image
         Table backgroundTable = new Table();
         backgroundTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("assets/background.png"))));
@@ -80,6 +86,7 @@ public class OptionScreen implements Screen {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	click.play(volume);
                 return true;
             }
         });
@@ -102,7 +109,7 @@ public class OptionScreen implements Screen {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	
+            	click.play(volume);
                 return true;
             }
         });
@@ -125,7 +132,7 @@ public class OptionScreen implements Screen {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	
+            	click.play(volume);
                 return true;
             }
         });
@@ -148,7 +155,7 @@ public class OptionScreen implements Screen {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	
+            	click.play(volume);
                 return true;
             }
         });
@@ -171,7 +178,7 @@ public class OptionScreen implements Screen {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	
+            	click.play(volume);
                 return true;
             }
         });
@@ -190,6 +197,7 @@ public class OptionScreen implements Screen {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	click.play(volume);
                 return true;
             }
         });
@@ -211,9 +219,11 @@ public class OptionScreen implements Screen {
         	@Override
         	public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
         		controls[4] = (int) audioSlider.getValue();
+        		volume = ((float) controls[4]) / 100;
         	}
         	@Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+        		click.play(volume);
                 return true;
             }
         });

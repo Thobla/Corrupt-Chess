@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -87,6 +88,9 @@ public class Game implements Screen {
     static boolean paused;
     static boolean dead;
     
+    float volume;
+    Sound click;
+    
     public Game(ChessGame game, int level) {
     	this.game = game;
     	this.map = levels[level];
@@ -135,6 +139,11 @@ public class Game implements Screen {
     	stage.addActor(healthText);
     	stage.addActor(scoreText);
     	paused = false;
+    	
+    	int[] settings = SaveFile.readSettings();
+        volume = ((float)settings[4])/100;
+        
+        click = Gdx.audio.newSound(Gdx.files.internal("assets/sound/menuClick.mp3"));
 
     }
 
@@ -318,6 +327,7 @@ public class Game implements Screen {
     		
     		@Override
     		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+    			click.play(volume);
     			return true;
     		}	
     	});
@@ -332,6 +342,7 @@ public class Game implements Screen {
     		
     		@Override
     		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+    			click.play(volume);
     			return true;
     		}	
     	});
@@ -350,6 +361,7 @@ public class Game implements Screen {
     		
     		@Override
     		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+    			click.play(volume);
     			return true;
     		}	
     	});
@@ -364,6 +376,7 @@ public class Game implements Screen {
     		
     		@Override
     		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+    			click.play(volume);
     			return true;
     		}	
     	});
@@ -399,6 +412,7 @@ public class Game implements Screen {
     		
     		@Override
     		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+    			click.play(volume);
     			return true;
     		}	
     	});

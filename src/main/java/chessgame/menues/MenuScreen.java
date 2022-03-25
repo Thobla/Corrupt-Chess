@@ -2,6 +2,7 @@ package chessgame.menues;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -36,6 +37,11 @@ public class MenuScreen implements Screen {
 		this.game = game;
 		stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
+        
+        int[] settings = SaveFile.readSettings();
+        float volume = ((float)settings[4])/100;
+        
+        Sound click = Gdx.audio.newSound(Gdx.files.internal("assets/sound/menuClick.mp3"));
         
         //Background image
         Table backgroundTable = new Table();
@@ -73,6 +79,7 @@ public class MenuScreen implements Screen {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	click.play(volume);
                 return true;
             }
         });
@@ -90,6 +97,7 @@ public class MenuScreen implements Screen {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	click.play(volume);
                 return true;
             }
         });
@@ -105,6 +113,7 @@ public class MenuScreen implements Screen {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	click.play(volume);
                 return true;
             }
         });
@@ -121,6 +130,7 @@ public class MenuScreen implements Screen {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	click.play(volume);
                 return true;
             }
         });
@@ -137,6 +147,7 @@ public class MenuScreen implements Screen {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	click.play(volume);
                 return true;
             }
         });
