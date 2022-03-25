@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
 
 import chessgame.entities.Door;
 import chessgame.entities.IEntities;
@@ -22,6 +23,7 @@ public class EntityManager {
     public List<IEntities> entityList = new ArrayList<IEntities>();
     public List<IEntities> entityRemoveList = new ArrayList<IEntities>();
     public List<Player> playerList = new ArrayList<Player>();
+    public List<Vector2> playerSpawns = new ArrayList<Vector2>();
     public HashMap<Integer, Door> doorMap = new HashMap<Integer, Door>();
     
     private PhysicsWorld pworld;
@@ -72,4 +74,43 @@ public class EntityManager {
     		entity.updateState(batch);
     	}
     }
+    /**
+     * Adds a spawn location to the spawnLocation list
+     * @param pos
+     */
+    public void addPlayerSpawn(Vector2 pos) {
+    	playerSpawns.add(pos);
+    }
+    
+    /**
+     * creates a player with location equal to one of the designated spawnpoints.
+     */
+    public Player addPlayer() {
+        Player player = new Player(playerSpawns.remove(0), pworld.world);
+        player.initialize();
+        playerList.add(player);
+        return player;
+    }
+    /**
+     * Updates the sprites and renders of the current acting players in the world.
+     * @param batch
+     */
+    public void updatePlayers(Batch batch) {
+    	for(Player player : playerList) {
+    		player.updateState(batch);
+    	}
+    }
+    /**
+     * Fetches the player from the player list at input index
+     * @param index
+     * @return
+     */
+    public Player getPlayer(int index) {
+    	return playerList.get(index);
+    }
+    
+    public void removePlayer(Player player) {
+    	playerList.remove(player);
+    }
+    
 }

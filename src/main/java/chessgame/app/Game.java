@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -20,10 +19,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import chessgame.entities.Button;
 import chessgame.entities.IEntities;
 import chessgame.entities.Player;
-import chessgame.entities.Portal;
 import chessgame.utils.CameraStyles;
 import chessgame.utils.Constants;
 import chessgame.world.PhysicsWorld;
@@ -97,7 +94,7 @@ public class Game implements Screen {
     	gameWorld = new PhysicsWorld();
     	debugRenderer = new Box2DDebugRenderer();
     	
-    	entityManager = new EntityManager(gameWorld);
+    	entityManager = gameWorld.entityManager;
     	
     	//The stage for UI elements
     	stage = new Stage(new ScreenViewport());
@@ -118,15 +115,15 @@ public class Game implements Screen {
         //The Map renderer
         gameMap = new TiledGameMap(map);
         
-        //Creates the player
-        player = new Player(gameMap.getStartPoint(), gameWorld.world);
-        player.initialize();
-        
         //Creates bodies for TileMap
         tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+map+".tmx").file().getAbsolutePath());
     	gameWorld.tileMapToBody(tiledMap);
     	gameWorld.tileMapToEntities(tiledMap, entityManager);
     	
+    	
+        //Creates the player
+     	player = entityManager.addPlayer();
+     	
     	//Updates the map
     	entityManager.updateLists();
 
@@ -137,8 +134,6 @@ public class Game implements Screen {
     	stage.addActor(healthText);
     	stage.addActor(scoreText);
     	paused = false;
-
-    	entityManager.playerList.add(player);
     }
 
     @Override
@@ -164,7 +159,7 @@ public class Game implements Screen {
 	    	//Updates all entities
 	    	batch.begin();
 	    	entityManager.updateEntities(batch);
-	    	player.updateState(batch);
+	    	entityManager.updatePlayers(batch);
 	    	batch.end();
 	    	
 	    	entityManager.updateLists();

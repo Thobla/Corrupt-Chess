@@ -16,10 +16,12 @@ import chessgame.entities.IEnemies;
 import chessgame.entities.IObjects;
 import chessgame.entities.Player;
 import chessgame.entities.Portal;
+import chessgame.utils.EntityManager;
 
 public class ListenerClass implements ContactListener{
 	
 	private PhysicsWorld world;
+	EntityManager manager;
 	Player player;
 	IEnemies enemy;
 	
@@ -97,7 +99,6 @@ public class ListenerClass implements ContactListener{
 			Vector2 playerPos = player.getPosition();
 			Vector2 enemyPos = enemy.getPosition();
 			Vector2 test = new Vector2(Math.abs(playerPos.x-enemyPos.x), Math.abs(playerPos.y-enemyPos.y));
-			System.out.println("Angle: " + test);
 			
 			player.myBody.applyForceToCenter(new Vector2(5000f * test.x, 5000f * test.y), true);
 			player.takeDamage(enemy.getAttack());
@@ -111,16 +112,19 @@ public class ListenerClass implements ContactListener{
 			Vector2 enemyPos = enemy.getPosition();
 			
 			Vector2 test = new Vector2(Math.abs(playerPos.x-enemyPos.x), Math.abs(playerPos.y-enemyPos.y));
-			System.out.println("Angle: " + test);
 			
 			player.myBody.applyForceToCenter(new Vector2(5000f * test.x, 5000f * test.y), true);
 			player.takeDamage(enemy.getAttack());
 		}
 		//Checks if player touches the Portal
 		if(fixtureA.getUserData() == "Portal" && fixtureB.getUserData() == "Player") {
+			player = (Player) fixtureB.getBody().getUserData();
+			world.entityManager.removePlayer(player);
 			Portal.victory();
 		}
 		else if(fixtureB.getUserData() == "Portal" && fixtureA.getUserData() == "Player") {
+			player = (Player) fixtureA.getBody().getUserData();
+			world.entityManager.removePlayer(player);
 			Portal.victory();
 		}
 	}

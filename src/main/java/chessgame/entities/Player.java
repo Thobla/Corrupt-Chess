@@ -11,7 +11,6 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
-import chessgame.app.Game;
 import chessgame.app.PlayerController;
 import chessgame.menues.SaveFile;
 import chessgame.utils.Constants;

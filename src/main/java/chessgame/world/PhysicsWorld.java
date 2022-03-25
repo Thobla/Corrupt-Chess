@@ -28,11 +28,16 @@ public class PhysicsWorld {
 	static int PPM = Constants.PixelPerMeter;
 	static float gravity = Constants.Gravity;
 	public World world;
-	//The worlds gravity
-
+	public EntityManager entityManager;
+	
+	/**
+	 * A class to keep track of the Entity world, and ContactListener.
+	 * As well as add objects into the world.
+	 */
 	public PhysicsWorld() {
 		world = new World(new Vector2(0, -gravity), true);
 		world.setContactListener(new ListenerClass(this));
+		entityManager = new EntityManager(this);
 	}
 	
 	/**
@@ -125,6 +130,9 @@ public class PhysicsWorld {
 			if(entity.getName().toLowerCase().equals("portal")) {
 				Portal portal = new Portal(pos, world, manager);
 				portal.initialize();
+			}
+			if(entity.getName().toLowerCase().equals("player")) {
+				manager.addPlayerSpawn(pos);
 			}
 			
 			
