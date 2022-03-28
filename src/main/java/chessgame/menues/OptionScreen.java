@@ -1,26 +1,20 @@
 package chessgame.menues;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import chessgame.app.ChessGame;
@@ -37,7 +31,6 @@ public class OptionScreen implements Screen {
     private int left;
     private int sprint;
     private float audiolvl;
-    private float volume;
 	
     //Scalable units for size and placements of UI
     int rowHeight = Gdx.graphics.getHeight() / 16;
@@ -45,7 +38,7 @@ public class OptionScreen implements Screen {
     //Imported skin for UI
     Skin skin = new Skin(Gdx.files.internal("assets/skin/chess/chess.json"));
     
-    int[] controls = SaveFile.readSettings();
+    static int[] controls = SaveFile.readSettings();
     
 	public OptionScreen(ChessGame game) {
 		
@@ -57,11 +50,7 @@ public class OptionScreen implements Screen {
         left = controls[1];
         right = controls[2]; 
         sprint = controls[3];
-        audiolvl = controls[4];
-        
-        Sound click = Gdx.audio.newSound(Gdx.files.internal("assets/sound/menuClick.mp3"));
-        volume = ((float) audiolvl) / 100;
-        
+        audiolvl = controls[4];  
         
         //Background image
         Table backgroundTable = new Table();
@@ -113,25 +102,8 @@ public class OptionScreen implements Screen {
         Label audio = UI.label(new Vector2(3,2), new Vector2(10.5f,6.8f), "Sound level", "default");
         stage.addActor(audio);
         //Slider for controlling audio
-        Slider audioSlider = new Slider(0, 100, 1, false, skin, "default-horizontal");
-        audioSlider.setSize(colWidth*6, (float) (rowHeight*1.5));
-        audioSlider.setPosition(Gdx.graphics.getWidth()/2 - colWidth*6/2,rowHeight*6);
-        audioSlider.setValue(audiolvl);
-        audioSlider.setSnapToValues(new float[] {0, 50, 100}, 3);
-        audioSlider.addListener(new InputListener() {
-        	@Override
-        	public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-        		controls[4] = (int) audioSlider.getValue();
-        		volume = ((float) controls[4]) / 100;
-        	}
-        	@Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-        		click.play(volume);
-                return true;
-            }
-        });
-        stage.addActor(audioSlider);
-        
+        Slider audioSlider = UI.audioSlider(audiolvl, controls);
+        stage.addActor(audioSlider);  
 	}
 	
 	@Override

@@ -2,7 +2,6 @@ package chessgame.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
@@ -12,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Null;
@@ -34,7 +34,6 @@ public class UI {
     Sound click = Gdx.audio.newSound(Gdx.files.internal("assets/sound/menuClick.mp3"));
     static float volume = ((float)SaveFile.readSettings()[4])/100;
 
-    
     /**
      * Creates a "blank" button without a InputListener
      * 
@@ -115,6 +114,32 @@ public class UI {
 		return label;
 	}
 	
+	public static Slider audioSlider(float audiolvl, int[] controls) {
+		Slider audioSlider = new Slider(0, 100, 1, false, skin, "default-horizontal");
+        audioSlider.setSize(colWidth*6, (float) (rowHeight*1.5));
+        audioSlider.setPosition(Gdx.graphics.getWidth()/2 - colWidth*6/2,rowHeight*6);
+        audioSlider.setValue(audiolvl);
+        audioSlider.setSnapToValues(new float[] {0, 50, 100}, 3);
+        audioSlider.addListener(new InputListener() {
+        	@Override
+        	public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+        		controls[4] = (int) audioSlider.getValue();
+        		volume = ((float) controls[4]) / 100;
+        	}
+        	@Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+        		click.play(volume);
+                return true;
+            }
+        });
+		return audioSlider;
+	}
+	
+	public static int[] newAudiolvl(int value, int[] controls) {
+		controls[4] = value;
+		volume = value/100;
+		return controls;
+	}
 	
 	public static TextButton playButton(Vector2 size, Vector2 position, ChessGame game) {
 		TextButton button = button(size, position, "Play");

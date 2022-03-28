@@ -5,15 +5,11 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -40,16 +36,8 @@ public class LevelSelectScreen implements Screen{
         backgroundTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("assets/background.png"))));
         backgroundTable.setFillParent(true);
         stage.addActor(backgroundTable);
-        //Scalable units for size and placements of UI
-        int rowHeight = Gdx.graphics.getHeight() / 16;
-        int colWidth = Gdx.graphics.getWidth() / 24;
-        //Imported skin for UI
-        Skin skin = new Skin(Gdx.files.internal("assets/skin/chess/chess.json"));
         
-        Label title = new Label("Select level", skin, "title-light");
-        title.setSize(Gdx.graphics.getWidth(),rowHeight*2);
-        title.setPosition(0,Gdx.graphics.getHeight()-rowHeight*2);
-        title.setAlignment(Align.center);
+        Label title = UI.label(new Vector2(24,2), new Vector2(0,14), "LEVEL SELECT", "title-light");
         stage.addActor(title);
         
         //Button back to Title screen
@@ -64,20 +52,7 @@ public class LevelSelectScreen implements Screen{
         		continue;
         	}
         	int z = i;
-        	TextButton levelButton = new TextButton(level, skin, "small");
-        	levelButton.setSize((float) (colWidth*1.2), rowHeight);
-        	levelButton.setPosition((float) (colWidth*(4+i*1.5)), rowHeight*12);
-        	levelButton.addListener(new InputListener() {
-        		@Override
-                public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                	game.setScreen(new Game(game,z));
-                	dispose();
-                }
-                @Override
-                public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                    return true;
-                }
-        	});
+        	TextButton levelButton = UI.newScreenButton(new Vector2(1.2f,1), new Vector2(4+i*1.5f,12), level, ScreenType.Game, game, z);
         	stage.addActor(levelButton);
         	i++;
         }
