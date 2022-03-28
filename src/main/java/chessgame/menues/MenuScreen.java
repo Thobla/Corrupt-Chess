@@ -25,6 +25,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import chessgame.app.ChessGame;
 import chessgame.app.Game;
+import chessgame.utils.ScreenType;
 import chessgame.utils.UI;
 
 
@@ -86,18 +87,7 @@ public class MenuScreen implements Screen {
         stage.addActor(playButton);
         
         //Button for going to the option screen.
-        Button optionButton = UI.button(new Vector2(3, 1.5f), new Vector2(4, 8.5f), "Options");
-        optionButton.addListener(new InputListener() {
-        	@Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-        		game.setScreen(new OptionScreen(game));
-            }
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
-                return true;
-            }
-        });
+        Button optionButton = UI.newScreenButton(new Vector2(3, 1.5f), new Vector2(4, 8.5f), "Options", ScreenType.OptionScreen, game, 0);
         stage.addActor(optionButton);
         
         //Currently unused button

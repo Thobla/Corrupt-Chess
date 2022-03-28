@@ -11,8 +11,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Null;
 
 import chessgame.app.ChessGame;
+import chessgame.app.Game;
+import chessgame.menues.MenuScreen;
+import chessgame.menues.OptionScreen;
 import chessgame.menues.SaveFile;
 
 public class UI {
@@ -45,25 +49,36 @@ public class UI {
 	}
     
     /**
-     * !!!CURRENTLY UNSUSED BECAUSE OF INPUT ISSUES WITH ADDING A LISTENER OUTSIDE OF THE CLASS THE BUTTON IS USED IN!!!
-     * 
-     * Creates a TextButton with the given parameters that changes to the inputed screen on activation. 
+     * Creates a new TextButton that changes to a new screen on activation
      * 
      * @param size of the button
      * @param position on the screen by 16 rows and 24 columns
      * @param text of what the button is saying
-     * @param screen of what the button is switching to
-     * @param game (needs the ChessGame component to switch screens)
+     * @param screen to switch to
+     * @param game 
+     * @param Variable if set screen needs an extra variable
      * @return a new TextButton
      * 
      * @author Åsmund
-     *
-	public static TextButton screenButton(Vector2 size, Vector2 position, String text, Screen screen, ChessGame game) {
+     */
+	public static TextButton newScreenButton(Vector2 size, Vector2 position, String text, ScreenType screen, ChessGame game,@Null int Variable) {
 		TextButton button = button(size, position, text);
 		button.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-            	game.setScreen(screen);
+            	switch (screen) {
+            	case MenuScreen:
+            		game.setScreen(new MenuScreen(game));
+            		break;
+            	case OptionScreen:
+            		game.setScreen(new OptionScreen(game));
+            		break;
+				case Game:
+					game.setScreen(new Game(game, Variable));
+					break;
+				default:
+					break;
+            	}	
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -73,7 +88,7 @@ public class UI {
         });
 		return button;
 	}
-    */
+    
     
 	/**
 	 * Creates a TextButton with the given parameters that closes the application on activation.
@@ -111,7 +126,7 @@ public class UI {
 	 * 
 	 * @author Åsmund
 	 */
-	public static Label text(Vector2 size, Vector2 position, String text, String style) {
+	public static Label label(Vector2 size, Vector2 position, String text, String style) {
 		Label label = new Label(text, skin, style);
 		label.setSize(colWidth*size.x, rowHeight*size.y);
 		label.setPosition(colWidth*position.x, rowHeight*position.y);
@@ -119,3 +134,4 @@ public class UI {
 		return label;
 	}
 }
+

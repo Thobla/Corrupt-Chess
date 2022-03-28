@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -23,6 +24,8 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import chessgame.app.ChessGame;
+import chessgame.utils.ScreenType;
+import chessgame.utils.UI;
 
 public class OptionScreen implements Screen {
 
@@ -67,29 +70,11 @@ public class OptionScreen implements Screen {
         stage.addActor(backgroundTable);
         
         //Title for this menu
-        Label title = new Label("OPTIONS", skin, "title-light");
-        title.setSize(Gdx.graphics.getWidth(),rowHeight*2);
-        title.setPosition(0,Gdx.graphics.getHeight()-rowHeight*2);
-        title.setAlignment(Align.center);
+        Label title = UI.label(new Vector2(24,2), new Vector2(0,14), "OPTIONS", "title-light");
         stage.addActor(title);
         
         //Button back to Title screen
-        TextButton backButton = new TextButton("Back",skin,"default");
-        backButton.setSize(colWidth*3,(float) (rowHeight*1.5));
-        backButton.setPosition(Gdx.graphics.getWidth()/2 - colWidth*3/2,rowHeight);
-        backButton.addListener(new InputListener(){
-            @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-            	SaveFile.writeSettings(controls);
-            	game.setScreen(new MenuScreen(game));
-            	dispose();
-            }
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
-                return true;
-            }
-        });
+        TextButton backButton = UI.newScreenButton(new Vector2(3,1.5f), new Vector2(10.5f,1), "Back", ScreenType.MenuScreen, game, 0);
         stage.addActor(backButton);
         
         //Text for up key
@@ -279,6 +264,7 @@ public class OptionScreen implements Screen {
 
 	@Override
 	public void hide() {
+		SaveFile.writeSettings(controls);
 	}
 
 	@Override
