@@ -54,8 +54,6 @@ public class MenuScreen implements Screen {
         //Scalable units for size and placements of UI
         int rowHeight = Gdx.graphics.getHeight() / 16;
         int colWidth = Gdx.graphics.getWidth() / 24;
-        //Imported skin for UI
-        Skin skin = new Skin(Gdx.files.internal("assets/skin/chess/chess.json"));
         
         Image logo = new Image(new Texture("assets/corruptChess.png"));
         logo.setSize(colWidth*5, rowHeight*4);
@@ -64,26 +62,7 @@ public class MenuScreen implements Screen {
         stage.addActor(logo);      
         
         //Play button for starting the game.
-        Button playButton = UI.button(new Vector2(3, 1.5f), new Vector2(4, 10), "Play");
-        playButton.addListener(new InputListener(){
-            @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-            	//If the player hasnt completed the first level yet, they will skip the levelSelectScreen and begin at lvl 1
-            	if (SaveFile.readProgress()[0] == 0) {
-            		game.setScreen(new Game(game, 0));
-            		dispose();
-            	}	
-            	else {
-            		game.setScreen(new LevelSelectScreen(game));
-            		dispose();
-            	}		
-            }
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
-                return true;
-            }
-        });
+        Button playButton = UI.playButton(new Vector2(3, 1.5f), new Vector2(4, 10), game);
         stage.addActor(playButton);
         
         //Button for going to the option screen.

@@ -1,12 +1,15 @@
 package chessgame.utils;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -15,6 +18,7 @@ import com.badlogic.gdx.utils.Null;
 
 import chessgame.app.ChessGame;
 import chessgame.app.Game;
+import chessgame.menues.LevelSelectScreen;
 import chessgame.menues.MenuScreen;
 import chessgame.menues.OptionScreen;
 import chessgame.menues.SaveFile;
@@ -90,6 +94,50 @@ public class UI {
 	}
     
     
+	
+	
+	/**
+	 * Creates a new Label with the given size, position, text and style
+	 * 
+	 * @param size of the text
+	 * @param position on the screen by 16 rows and 24 columns
+	 * @param text 
+	 * @param style of the text defined the skin
+	 * @return a new Label
+	 * 
+	 * @author Åsmund
+	 */
+	public static Label label(Vector2 size, Vector2 position, String text, String style) {
+		Label label = new Label(text, skin, style);
+		label.setSize(colWidth*size.x, rowHeight*size.y);
+		label.setPosition(colWidth*position.x, rowHeight*position.y);
+		label.setAlignment(Align.center);
+		return label;
+	}
+	
+	
+	public static TextButton playButton(Vector2 size, Vector2 position, ChessGame game) {
+		TextButton button = button(size, position, "Play");
+		button.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            	//If the player hasnt completed the first level yet, they will skip the levelSelectScreen and begin at lvl 1
+            	if (SaveFile.readProgress()[0] == 0) {
+            		game.setScreen(new Game(game, 0));
+            	}	
+            	else {
+            		game.setScreen(new LevelSelectScreen(game));
+            	}		
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	click.play(volume);
+                return true;
+            }
+        });
+		return button;
+	}
+	
 	/**
 	 * Creates a TextButton with the given parameters that closes the application on activation.
 	 * 
@@ -115,23 +163,58 @@ public class UI {
 		return button;
 	}
 	
-	/**
-	 * Creates a new Label with the given size, position, text and style
-	 * 
-	 * @param size of the text
-	 * @param position on the screen by 16 rows and 24 columns
-	 * @param text 
-	 * @param style of the text defined the skin
-	 * @return a new Label
-	 * 
-	 * @author Åsmund
-	 */
-	public static Label label(Vector2 size, Vector2 position, String text, String style) {
-		Label label = new Label(text, skin, style);
-		label.setSize(colWidth*size.x, rowHeight*size.y);
-		label.setPosition(colWidth*position.x, rowHeight*position.y);
-		label.setAlignment(Align.center);
-		return label;
+	public static TextButton changeButton(Vector2 size, Vector2 position, String buttonText, String promptText, int index, Stage stage, int[] controls) {
+		TextButton button = button(size, position, buttonText);
+		button.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int buttona) {
+            	changeButtonInput(button, promptText, index, stage, controls);
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	click.play(volume);
+                return true;
+            }
+        });
+		return button;
+	}
+	
+	private static int[] changeButtonInput(TextButton button, String text, int index, Stage stage, int[] controls) {
+		
+		//Text prompting you to type new input for key
+        Label prompt = UI.label(new Vector2(24,2), new Vector2(0,10),"Press the button for the new " + text + " key.", "title-light");
+        stage.addActor(prompt);
+        
+        Gdx.input.setInputProcessor(new InputAdapter () {
+     	   @Override
+     	   public boolean keyDown (int keycode) {
+     		   controls[index] = keycode;
+     		   button.setText(Keys.toString(keycode));
+     		   stage.addAction(Actions.removeActor(prompt));
+     		   Gdx.input.setInputProcessor(stage);
+     		   return true;
+     	   }
+     	});
+        
+        return controls;
+	}
+	
+	
+	public static TextButton defaultControlsButton(Vector2 size, Vector2 position, ChessGame game) {
+		TextButton button = UI.button(size, position, "Default controls");
+        button.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            	SaveFile.defaultControls();
+            	game.setScreen(new OptionScreen(game));
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	click.play(volume);
+                return true;
+            }
+        });
+		return button;
 	}
 }
 

@@ -78,121 +78,39 @@ public class OptionScreen implements Screen {
         stage.addActor(backButton);
         
         //Text for up key
-        Label upText = new Label("Key jump",skin,"default");
-        upText.setSize(colWidth*2,rowHeight);
-        upText.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*12);
-        upText.setAlignment(Align.center);
+        Label upText = UI.label(new Vector2(2,1), new Vector2(10,12), "Key up", "default");
         stage.addActor(upText);
         //Button for up key
-		TextButton upButton = new TextButton(Keys.toString(up),skin,"default");
-        upButton.setSize((float) (colWidth*2.2), rowHeight);
-        upButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*12);
-        upButton.addListener(new InputListener(){
-            @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-            	changeButton(upButton,"jump", 0);
-            }
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
-                return true;
-            }
-        });
+		TextButton upButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12,12), Keys.toString(up), "jump", 0, stage, controls);
         stage.addActor(upButton);
         
         //Text for left key
-        Label leftText = new Label("Key left",skin,"default");
-        leftText.setSize(colWidth*2,rowHeight);
-        leftText.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*11);
-        leftText.setAlignment(Align.center);
+        Label leftText = UI.label(new Vector2(2,1), new Vector2(10,11), "Key left", "default");
         stage.addActor(leftText);
         //Button for left key
-        TextButton leftButton = new TextButton(Keys.toString(left),skin,"default");
-        leftButton.setSize((float) (colWidth*2.2), rowHeight);
-        leftButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*11);
-        leftButton.addListener(new InputListener(){
-            @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-            	changeButton(leftButton, "left", 1);
-            }
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
-                return true;
-            }
-        });
+        TextButton leftButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12,11), Keys.toString(left), "left", 1, stage, controls);
         stage.addActor(leftButton);
         
         //Text for right key
-        Label rightText = new Label("Key right",skin,"default");
-        rightText.setSize(colWidth*2,rowHeight);
-        rightText.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*10);
-        rightText.setAlignment(Align.center);
+        Label rightText = UI.label(new Vector2(2,1), new Vector2(10,10), "Key right", "default");
         stage.addActor(rightText);
         //Button for right key
-        TextButton rightButton = new TextButton(Keys.toString(right),skin,"default");
-        rightButton.setSize((float) (colWidth*2.2),rowHeight);
-        rightButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*10);
-        rightButton.addListener(new InputListener(){
-            @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-            	changeButton(rightButton, "right", 2);
-            }
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
-                return true;
-            }
-        });
+        TextButton rightButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12,10), Keys.toString(right), "right", 2, stage, controls);
         stage.addActor(rightButton);
         
-      //Text for sprint key
-        Label sprintText = new Label("Key sprint",skin,"default");
-        sprintText.setSize(colWidth*2,rowHeight);
-        sprintText.setPosition(Gdx.graphics.getWidth()/2-colWidth*2,rowHeight*9);
-        sprintText.setAlignment(Align.center);
+        //Text for sprint key
+        Label sprintText = UI.label(new Vector2(2,1), new Vector2(10,9), "Key sprint", "default");
         stage.addActor(sprintText);
         //Button for sprint key
-        TextButton sprintButton = new TextButton(Keys.toString(sprint),skin,"default");
-        sprintButton.setSize((float) (colWidth*2.2), (rowHeight*1));
-        sprintButton.setPosition(Gdx.graphics.getWidth()/2,rowHeight*9);
-        sprintButton.addListener(new InputListener(){
-            @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-            	changeButton(sprintButton, "sprint", 3);
-            }
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
-                return true;
-            }
-        });
+        TextButton sprintButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12,9), Keys.toString(sprint), "sprint", 3, stage, controls);
         stage.addActor(sprintButton);
         
         //Button for default controls reset
-        TextButton defaultControls = new TextButton("Reset to default", skin, "default");
-        defaultControls.setSize(colWidth*6, (float) (rowHeight*1.8));
-        defaultControls.setPosition(Gdx.graphics.getWidth()/2 - colWidth*6/2,rowHeight*3);
-        defaultControls.addListener(new InputListener(){
-            @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-            	SaveFile.defaultControls();
-            	game.setScreen(new OptionScreen(game));
-                dispose();
-            }
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
-                return true;
-            }
-        });
+        TextButton defaultControls = UI.defaultControlsButton(new Vector2(6,1.8f), new Vector2(9,3), game);
         stage.addActor(defaultControls);
         
         //Text for audioSlider
-        Label audio = new Label("Sound level", skin, "default");
-        audio.setSize(colWidth*3, (rowHeight*2));
-        audio.setPosition(Gdx.graphics.getWidth()/2-colWidth*3/2,(float) (rowHeight*6.8));
-        audio.setAlignment(Align.center);
+        Label audio = UI.label(new Vector2(3,2), new Vector2(10.5f,6.8f), "Sound level", "default");
         stage.addActor(audio);
         //Slider for controlling audio
         Slider audioSlider = new Slider(0, 100, 1, false, skin, "default-horizontal");
@@ -214,27 +132,6 @@ public class OptionScreen implements Screen {
         });
         stage.addActor(audioSlider);
         
-	}
-	
-	public void changeButton(TextButton button, String text, int index) {
-		
-		//Text prompting you to type new input for key
-        Label prompt = new Label("Press the button for the new " + text + " key." , skin, "title-light");
-        prompt.setSize(Gdx.graphics.getWidth(),rowHeight*2);
-        prompt.setPosition(0,Gdx.graphics.getHeight()-rowHeight*6);
-        prompt.setAlignment(Align.center);
-        stage.addActor(prompt);
-        
-        Gdx.input.setInputProcessor(new InputAdapter () {
-     	   @Override
-     	   public boolean keyDown (int keycode) {
-     		   controls[index] = keycode;
-     		   button.setText(Keys.toString(keycode));
-     		   stage.addAction(Actions.removeActor(prompt));
-     		   Gdx.input.setInputProcessor(stage);
-     		   return true;
-     	   }
-     	});
 	}
 	
 	@Override
