@@ -11,14 +11,11 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import chessgame.entities.IEntities;
@@ -86,7 +83,6 @@ public class Game implements Screen {
     static float timer;
     static Label victoryText;
     static TextButton continueButton;
-    static boolean firstTime = true;
     
     static boolean paused;
     static boolean dead;
@@ -96,10 +92,11 @@ public class Game implements Screen {
     
     public Game(ChessGame game, int level) {
     	this.game = game;
-    	if(level >= levels.length)
-    		game.setScreen(new MenuScreen(game));
-    	this.map = levels[level];
     	currentLevelIndex = level;
+    	if(currentLevelIndex >= levels.length) 
+    		return;
+    	this.map = levels[level];
+    	
     	//World initialisation
     	gameWorld = new PhysicsWorld();
     	debugRenderer = new Box2DDebugRenderer();
@@ -136,8 +133,8 @@ public class Game implements Screen {
     	//Updates the map
     	entityManager.updateLists();
     	
-    	if (firstTime)
-    		initilizeUI();
+
+    	initilizeUI();
     	
     	timer = 300;
     	stage.addActor(timerText);
@@ -161,6 +158,10 @@ public class Game implements Screen {
 
     @Override
     public void render(float delta) {
+    	if(currentLevelIndex >= levels.length) {
+    		game.setScreen(new MenuScreen(game));
+    		return;
+    	}
         if (!paused) {
 	        //Logic step
 	    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
@@ -233,7 +234,6 @@ public class Game implements Screen {
 	        stage.draw();
         }
     }
-
     public void gameOverScreen() {  
     	paused = true;
     	dead = true;
@@ -316,41 +316,37 @@ public class Game implements Screen {
      */
     private void initilizeUI() {
     	
-    	firstTime = false;
-    	
     	Vector2 buttonSize = new Vector2(3,1.8f);
     	Vector2 smallUISize = new Vector2(2,2);
     	Vector2 titleSize = new Vector2(12,2);
     	
     	gameOverText = UI.label(titleSize, new Vector2(6,12), "GAME OVER", "title-dark");
+    	
+        pauseText = UI.label(titleSize, new Vector2(6,12), "PAUSED", "title-light");
         
-        retryButton = UI.newScreenButton(buttonSize, new Vector2(13,8), "Retry?", ScreenType.Game, game, currentLevelIndex);
-    	
-    	quitButtonGO = UI.newScreenButton(buttonSize, new Vector2(8,8), "Quit", ScreenType.MenuScreen, game, 0);
-
-    	pauseText = UI.label(titleSize, new Vector2(6,12), "PAUSED", "title-light");
-        
-    	resumeButton = UI.resumeButton(buttonSize, new Vector2(10.5f,10));
-    	
-    	quitButtonP = UI.newScreenButton(buttonSize, new Vector2(10.5f,8), "Quit", ScreenType.MenuScreen, game, 0);
-    	
-    	timerText = UI.label(smallUISize, new Vector2(0,14), "000", "default");
+        timerText = UI.label(smallUISize, new Vector2(0,14), "000", "default");
         
     	healthText = UI.label(smallUISize, new Vector2(3,14), "Health: ", "default");
 
     	scoreText = UI.label(smallUISize, new Vector2(6,14), "Score: ", "default");
 
-    	victoryText = UI.label(smallUISize, new Vector2(6,12), "VICTORY", "title-light");
-        
+    	victoryText = UI.label(titleSize, new Vector2(6,12), "VICTORY", "title-light");
+    	
+        retryButton = UI.newScreenButton(buttonSize, new Vector2(13,8), "Retry?", ScreenType.Game, game, currentLevelIndex);
+    	
+    	quitButtonGO = UI.newScreenButton(buttonSize, new Vector2(8,8), "Quit", ScreenType.MenuScreen, game, 0);
+    	
+    	quitButtonP = UI.newScreenButton(buttonSize, new Vector2(10.5f,8), "Quit", ScreenType.MenuScreen, game, 0);
+    	
     	continueButton = UI.newScreenButton(buttonSize, new Vector2(10.5f,10), "Continue", ScreenType.Game, game, currentLevelIndex+1);
+    	
+    	resumeButton = UI.resumeButton(buttonSize, new Vector2(10.5f,10));
     }
     
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
-
 
 	@Override
 	public void hide() {

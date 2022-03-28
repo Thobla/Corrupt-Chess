@@ -231,7 +231,7 @@ public class UI {
     			return true;
     		}	
     	});
-		return null;
+		return button;
 	}
 }
 
