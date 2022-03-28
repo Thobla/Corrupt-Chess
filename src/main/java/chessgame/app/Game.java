@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -27,6 +28,8 @@ import chessgame.utils.Constants;
 import chessgame.world.PhysicsWorld;
 import chessgame.world.TiledGameMap;
 import chessgame.utils.EntityManager;
+import chessgame.utils.ScreenType;
+import chessgame.utils.UI;
 import chessgame.menues.MenuScreen;
 import chessgame.menues.SaveFile;
 
@@ -60,8 +63,7 @@ public class Game implements Screen {
     public static String[] levels = new String[] {
     	"1-1",
     	"1-2",
-    	"height-test"
-    	
+    	"1-3"
     };
     
     //Stage for UI elements
@@ -72,18 +74,18 @@ public class Game implements Screen {
     //Imported skin for UI
     static Skin skin = new Skin(Gdx.files.internal("assets/skin/chess/chess.json"));
     //UI
-    static Label pauseText = new Label("PAUSED", skin, "title-light");
-    static TextButton resumeButton = new TextButton ("Resume", skin, "default"); 
-    static Label gameOverText = new Label("GAME OVER", skin, "title-dark");
-    static TextButton retryButton = new TextButton ("Retry?", skin, "default");
-    static TextButton quitButtonGO = new TextButton ("Quit", skin, "default");
-    static TextButton quitButtonP = new TextButton ("Quit", skin, "default");
-    static Label healthText = new Label ("Health", skin, "default");
-    static Label scoreText = new Label ("Score", skin, "default");
-    static Label timerText = new Label ("000", skin, "default");
+    static Label pauseText;
+    static TextButton resumeButton; 
+    static Label gameOverText;
+    static TextButton retryButton;
+    static TextButton quitButtonGO;
+    static TextButton quitButtonP;
+    static Label healthText;
+    static Label scoreText;
+    static Label timerText;
     static float timer;
-    static Label victoryText = new Label("VICTORY", skin, "title-light");
-    static TextButton continueButton = new TextButton ("Next level", skin, "default");
+    static Label victoryText;
+    static TextButton continueButton;
     static boolean firstTime = true;
     
     static boolean paused;
@@ -94,6 +96,8 @@ public class Game implements Screen {
     
     public Game(ChessGame game, int level) {
     	this.game = game;
+    	if(level >= levels.length)
+    		game.setScreen(new MenuScreen(game));
     	this.map = levels[level];
     	currentLevelIndex = level;
     	//World initialisation
@@ -314,109 +318,31 @@ public class Game implements Screen {
     	
     	firstTime = false;
     	
-    	gameOverText.setSize(colWidth*12,rowHeight*2);
-        gameOverText.setPosition((float) (Gdx.graphics.getWidth()/2-colWidth*6),rowHeight*12);
-        gameOverText.setAlignment(Align.center);
-        
-        retryButton.setSize(colWidth*3, (float) (rowHeight*1.8));
-    	retryButton.setPosition(colWidth*13, rowHeight*8);
-    	retryButton.addListener(new InputListener() {
-    		@Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-    			game.setScreen(new Game(game, currentLevelIndex));
-    		}
-    		
-    		@Override
-    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-    			click.play(volume);
-    			return true;
-    		}	
-    	});
+    	Vector2 buttonSize = new Vector2(3,1.8f);
+    	Vector2 smallUISize = new Vector2(2,2);
+    	Vector2 titleSize = new Vector2(12,2);
     	
-    	quitButtonGO.setSize(colWidth*3, (float) (rowHeight*1.8));
-    	quitButtonGO.setPosition(colWidth*8, rowHeight*8);
-    	quitButtonGO.addListener(new InputListener() {
-    		@Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-    			game.setScreen(new MenuScreen(game));
-    		}
-    		
-    		@Override
-    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-    			click.play(volume);
-    			return true;
-    		}	
-    	});
+    	gameOverText = UI.label(titleSize, new Vector2(6,12), "GAME OVER", "title-dark");
+        
+        retryButton = UI.newScreenButton(buttonSize, new Vector2(13,8), "Retry?", ScreenType.Game, game, currentLevelIndex);
     	
-    	pauseText.setSize(colWidth*12,rowHeight*2);
-        pauseText.setPosition((float) (Gdx.graphics.getWidth()/2-colWidth*6),rowHeight*12);
-        pauseText.setAlignment(Align.center);
+    	quitButtonGO = UI.newScreenButton(buttonSize, new Vector2(8,8), "Quit", ScreenType.MenuScreen, game, 0);
+
+    	pauseText = UI.label(titleSize, new Vector2(6,12), "PAUSED", "title-light");
         
-        resumeButton.setSize(colWidth*3, (float) (rowHeight*1.8));
-    	resumeButton.setPosition(colWidth*12 - resumeButton.getWidth()/2, rowHeight*10);
-    	resumeButton.addListener(new InputListener() {
-    		@Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-    			pauseGame();
-    		}
-    		
-    		@Override
-    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-    			click.play(volume);
-    			return true;
-    		}	
-    	});
+    	resumeButton = UI.resumeButton(buttonSize, new Vector2(10.5f,10));
     	
-    	quitButtonP.setSize(colWidth*3, (float) (rowHeight*1.8));
-    	quitButtonP.setPosition(colWidth*12 - quitButtonP.getWidth()/2, rowHeight*8);
-    	quitButtonP.addListener(new InputListener() {
-    		@Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-    			game.setScreen(new MenuScreen(game));
-    		}
-    		
-    		@Override
-    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-    			click.play(volume);
-    			return true;
-    		}	
-    	});
+    	quitButtonP = UI.newScreenButton(buttonSize, new Vector2(10.5f,8), "Quit", ScreenType.MenuScreen, game, 0);
     	
-    	timerText.setSize(colWidth*2,rowHeight*2);
-        timerText.setPosition(0,rowHeight*14);
-        timerText.setAlignment(Align.center);
+    	timerText = UI.label(smallUISize, new Vector2(0,14), "000", "default");
         
-        healthText.setSize(colWidth*2, rowHeight*2);
-        healthText.setPosition(colWidth*3, rowHeight*14);
-        healthText.setAlignment(Align.center);
+    	healthText = UI.label(smallUISize, new Vector2(3,14), "Health: ", "default");
+
+    	scoreText = UI.label(smallUISize, new Vector2(6,14), "Score: ", "default");
+
+    	victoryText = UI.label(smallUISize, new Vector2(6,12), "VICTORY", "title-light");
         
-        scoreText.setSize(colWidth*2, rowHeight*2);
-        scoreText.setPosition(colWidth*6, rowHeight*14);
-        scoreText.setAlignment(Align.center);
-        
-        victoryText.setSize(colWidth*12,rowHeight*2);
-        victoryText.setPosition((float) (Gdx.graphics.getWidth()/2-colWidth*6),rowHeight*12);
-        victoryText.setAlignment(Align.center);
-        
-        continueButton.setSize(colWidth*3, (float) (rowHeight*1.8));
-        continueButton.setPosition(colWidth*12 - quitButtonP.getWidth()/2, rowHeight*10);
-        continueButton.addListener(new InputListener() {
-    		@Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-    			if (currentLevelIndex+1 >= levels.length) {
-    				game.setScreen(new MenuScreen(game));
-    			} else {
-    				game.setScreen(new Game(game, currentLevelIndex+1));
-    			}
-    			
-    		}
-    		
-    		@Override
-    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-    			click.play(volume);
-    			return true;
-    		}	
-    	});
+    	continueButton = UI.newScreenButton(buttonSize, new Vector2(10.5f,10), "Continue", ScreenType.Game, game, currentLevelIndex+1);
     }
     
 	@Override

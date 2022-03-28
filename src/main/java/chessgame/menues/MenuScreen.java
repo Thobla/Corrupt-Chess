@@ -74,7 +74,7 @@ public class MenuScreen implements Screen {
         stage.addActor(creditsButton);
         
         //Button for exiting the game
-        Button quitButton = UI.quitButton(new Vector2(3, 1.5f), new Vector2(4, 5.5f));
+        Button quitButton = UI.exitButton(new Vector2(3, 1.5f), new Vector2(4, 5.5f));
         stage.addActor(quitButton);
         
         

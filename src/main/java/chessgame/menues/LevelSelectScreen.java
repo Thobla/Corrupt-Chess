@@ -17,9 +17,12 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 
 import chessgame.app.ChessGame;
 import chessgame.app.Game;
+import chessgame.utils.ScreenType;
+import chessgame.utils.UI;
 
 public class LevelSelectScreen implements Screen{
 
@@ -50,19 +53,7 @@ public class LevelSelectScreen implements Screen{
         stage.addActor(title);
         
         //Button back to Title screen
-        Button backButton = new TextButton("Back",skin,"default");
-        backButton.setSize(colWidth*3,(float) (rowHeight*1.5));
-        backButton.setPosition(Gdx.graphics.getWidth()/2 - colWidth*3/2,rowHeight);
-        backButton.addListener(new InputListener(){
-            @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-            	game.setScreen(new MenuScreen(game));
-            }
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                return true;
-            }
-        });
+        Button backButton = UI.newScreenButton(new Vector2(3,1.5f), new Vector2(10.5f,1), "Back", ScreenType.MenuScreen, game, 0);
         stage.addActor(backButton);
         
         //Adds levels equal to the progression of the player.

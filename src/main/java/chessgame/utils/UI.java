@@ -147,7 +147,7 @@ public class UI {
 	 * 
 	 * @author Åsmund
 	 */
-	public static TextButton quitButton(Vector2 size, Vector2 position) {
+	public static TextButton exitButton(Vector2 size, Vector2 position) {
 		TextButton button = button(size, position, "Quit");
 		button.addListener(new InputListener(){
             @Override
@@ -215,6 +215,23 @@ public class UI {
             }
         });
 		return button;
+	}
+
+	public static TextButton resumeButton(Vector2 size, Vector2 position) {
+		TextButton button = button(size, position, "Resume");
+		button.addListener(new InputListener() {
+    		@Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+    			Game.pauseGame();
+    		}
+    		
+    		@Override
+    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+    			click.play(volume);
+    			return true;
+    		}	
+    	});
+		return null;
 	}
 }
 
