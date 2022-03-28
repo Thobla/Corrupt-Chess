@@ -1,0 +1,121 @@
+package chessgame.utils;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.Align;
+
+import chessgame.app.ChessGame;
+import chessgame.menues.SaveFile;
+
+public class UI {
+	
+	//Scalable units for size and placements of UI
+    static int rowHeight = Gdx.graphics.getHeight() / 16;
+    static int colWidth = Gdx.graphics.getWidth() / 24;
+    //Imported skin for UI
+    static Skin skin = new Skin(Gdx.files.internal("assets/skin/chess/chess.json"));
+    static //Sound for clicking buttons
+    Sound click = Gdx.audio.newSound(Gdx.files.internal("assets/sound/menuClick.mp3"));
+    static float volume = ((float)SaveFile.readSettings()[4])/100;
+
+    
+    /**
+     * Creates a "blank" button without a InputListener
+     * 
+     * @param size of the button
+     * @param position on the screen by 16 rows and 24 columns
+     * @param text of what the button is saying
+     * @return a new TextButton
+     * 
+     * @author Åsmund
+     */
+    public static TextButton button(Vector2 size, Vector2 position, String text) {
+		TextButton button = new TextButton(text, skin, "default");
+		button.setSize(colWidth*size.x, rowHeight*size.y);
+		button.setPosition(colWidth*position.x, rowHeight*position.y);
+		return button;
+	}
+    
+    /**
+     * !!!CURRENTLY UNSUSED BECAUSE OF INPUT ISSUES WITH ADDING A LISTENER OUTSIDE OF THE CLASS THE BUTTON IS USED IN!!!
+     * 
+     * Creates a TextButton with the given parameters that changes to the inputed screen on activation. 
+     * 
+     * @param size of the button
+     * @param position on the screen by 16 rows and 24 columns
+     * @param text of what the button is saying
+     * @param screen of what the button is switching to
+     * @param game (needs the ChessGame component to switch screens)
+     * @return a new TextButton
+     * 
+     * @author Åsmund
+     *
+	public static TextButton screenButton(Vector2 size, Vector2 position, String text, Screen screen, ChessGame game) {
+		TextButton button = button(size, position, text);
+		button.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            	game.setScreen(screen);
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	click.play(volume);
+                return true;
+            }
+        });
+		return button;
+	}
+    */
+    
+	/**
+	 * Creates a TextButton with the given parameters that closes the application on activation.
+	 * 
+	 * @param size of the button
+	 * @param position on the screen by 16 rows and 24 columns
+	 * @return a new TextButton
+	 * 
+	 * @author Åsmund
+	 */
+	public static TextButton quitButton(Vector2 size, Vector2 position) {
+		TextButton button = button(size, position, "Quit");
+		button.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            	Gdx.app.exit();
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	click.play(volume);
+                return true;
+            }
+        });
+		return button;
+	}
+	
+	/**
+	 * Creates a new Label with the given size, position, text and style
+	 * 
+	 * @param size of the text
+	 * @param position on the screen by 16 rows and 24 columns
+	 * @param text 
+	 * @param style of the text defined the skin
+	 * @return a new Label
+	 * 
+	 * @author Åsmund
+	 */
+	public static Label text(Vector2 size, Vector2 position, String text, String style) {
+		Label label = new Label(text, skin, style);
+		label.setSize(colWidth*size.x, rowHeight*size.y);
+		label.setPosition(colWidth*position.x, rowHeight*position.y);
+		label.setAlignment(Align.center);
+		return label;
+	}
+}

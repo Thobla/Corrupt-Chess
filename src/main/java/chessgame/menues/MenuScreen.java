@@ -21,9 +21,11 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 
 import chessgame.app.ChessGame;
 import chessgame.app.Game;
+import chessgame.utils.UI;
 
 
 public class MenuScreen implements Screen {
@@ -61,9 +63,7 @@ public class MenuScreen implements Screen {
         stage.addActor(logo);      
         
         //Play button for starting the game.
-        Button playButton = new TextButton("Play",skin,"default");
-        playButton.setSize(colWidth*3,(float) (rowHeight*1.5));
-        playButton.setPosition(colWidth*4,Gdx.graphics.getHeight()-rowHeight*6);
+        Button playButton = UI.button(new Vector2(3, 1.5f), new Vector2(4, 10), "Play");
         playButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
@@ -86,14 +86,11 @@ public class MenuScreen implements Screen {
         stage.addActor(playButton);
         
         //Button for going to the option screen.
-        Button optionButton = new TextButton("Options",skin,"default");
-        optionButton.setSize(colWidth*3,(float) (rowHeight*1.5));
-        optionButton.setPosition(colWidth*4,(float) (Gdx.graphics.getHeight()-rowHeight*7.5));
-        optionButton.addListener(new InputListener(){
-            @Override
+        Button optionButton = UI.button(new Vector2(3, 1.5f), new Vector2(4, 8.5f), "Options");
+        optionButton.addListener(new InputListener() {
+        	@Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(new OptionScreen(game));
-                dispose();
+        		game.setScreen(new OptionScreen(game));
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -104,42 +101,16 @@ public class MenuScreen implements Screen {
         stage.addActor(optionButton);
         
         //Currently unused button
-        Button creditsButton = new TextButton("Credits",skin, "default");
-        creditsButton.setSize(colWidth*3, (float) (rowHeight*1.5));
-        creditsButton.setPosition(colWidth*4, Gdx.graphics.getHeight()-rowHeight*9);
-        creditsButton.addListener(new InputListener(){
-            @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-            }
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
-                return true;
-            }
-        });
+        Button creditsButton = UI.button(new Vector2(3, 1.5f), new Vector2(4, 7), "Credits");
         stage.addActor(creditsButton);
         
         //Button for exiting the game
-        Button quitButton = new TextButton("Quit",skin,"default");
-        quitButton.setSize(colWidth*3,(float) (rowHeight*1.5));
-        quitButton.setPosition(colWidth*4,(float) (Gdx.graphics.getHeight()-rowHeight*10.5));
-        quitButton.addListener(new InputListener(){
-            @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                Gdx.app.exit();
-            }
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
-                return true;
-            }
-        });
+        Button quitButton = UI.quitButton(new Vector2(3, 1.5f), new Vector2(4, 5.5f));
         stage.addActor(quitButton);
         
-      //Button for resetting the game
-        Button resetButton = new TextButton("RESET",skin,"default");
-        resetButton.setSize(colWidth*4,(float) (rowHeight*2));
-        resetButton.setPosition(colWidth*20,(float) (Gdx.graphics.getHeight()-rowHeight*16));
+        
+        //Button for resetting the game
+        Button resetButton = UI.button(new Vector2(4,2), new Vector2(20,0), "RESET");
         resetButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
@@ -152,6 +123,7 @@ public class MenuScreen implements Screen {
             }
         });
         stage.addActor(resetButton);
+        
 	}
 	
 	@Override

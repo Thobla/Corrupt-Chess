@@ -228,6 +228,7 @@ public class OptionScreen implements Screen {
             }
         });
         stage.addActor(audioSlider);
+        
 	}
 	
 	public void changeButton(TextButton button, String text, int index) {
