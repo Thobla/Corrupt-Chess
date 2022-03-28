@@ -138,7 +138,7 @@ public class Player implements IEntities{
 		FixtureDef fixDef = new FixtureDef();
 		fixDef.isSensor = true;
 		//the shape should be lower than the players width and height
-		shape.setAsBox(width * 0.95f, height / 2, new Vector2(0f, -height), 0);
+		shape.setAsBox(width * 0.95f, height / 8, new Vector2(0f, -height), 0);
 		fixDef.shape = shape;
 		
 		myBody.createFixture(fixDef).setUserData("foot");

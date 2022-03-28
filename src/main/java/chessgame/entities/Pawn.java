@@ -30,7 +30,7 @@ public class Pawn implements IEnemies {
 	public EntityManager entityManager;
 	public Sprite sprite;
 	
-	boolean invisFrame;
+	public boolean dmgOff;
 	long hitTime;
 	
 	//State	
@@ -76,11 +76,11 @@ public class Pawn implements IEnemies {
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);
 		
-		//creating a fixture that will serve as the players groundCheck-platter.
+		//creating a fixture that will serve as the enemies weakpoint
 		FixtureDef fixDef = new FixtureDef();
 		fixDef.isSensor = true;
 		//the shape should be lower than the players width and height
-		shape.setAsBox(width * 0.95f, height / 3.5f, new Vector2(0f, height), 0);
+		shape.setAsBox(width * 1.05f, height / 3.5f, new Vector2(0f, height), 0);
 		fixDef.shape = shape;
 		
 		myBody.createFixture(fixDef).setUserData("weakpoint");
@@ -112,23 +112,22 @@ public class Pawn implements IEnemies {
 
 	@Override
 	public void takeDamage(int damage) {
-		attack = 0;
 		if(damage <= health)
 			health -= damage;
 		else {
 			kill();
 			return;
 		}
-		
-		invisFrame = true;
 		hitTime = System.currentTimeMillis();
-			//sprite.setColor(Color.WHITE);
+		//sprite.setColor(Color.WHITE);
 		
 	}
 
 	@Override
 	public int getAttack() {
-		return attack;
+		if(!dmgOff)
+			return attack;
+		return 0;
 	}
 
 	@Override
@@ -160,10 +159,8 @@ public class Pawn implements IEnemies {
 		
 		if(System.currentTimeMillis() < hitTime + 100) {
 			sprite.setColor(Color.RED);
-			attack = 0;
 		} else {
 			sprite.setColor(Color.WHITE);
-			attack = 1;
 		}
 	}
 

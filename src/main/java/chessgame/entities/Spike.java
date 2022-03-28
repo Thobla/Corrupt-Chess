@@ -7,14 +7,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 
-public class Door implements IEntities {
+public class Spike implements IObjects {
 	
 	Vector2 position;
 	Sprite sprite;
@@ -22,33 +21,22 @@ public class Door implements IEntities {
 	World world;
 	EntityManager entityManager;
 	
-	Sprite spriteOpen;
-	Sprite spriteClosed;
-	
-	Boolean open;
-	int activationCode;
-	
 	float width = 0.5f;
-	float height = 1f;
+	float height = 0.5f;
 	
-	
-	public Door(Vector2 position, World world, EntityManager entityManager, int code){
+	public Spike(Vector2 position, World world, EntityManager entityManager, float width){
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		this.entityManager = entityManager;
-		this.activationCode = code;
-		open = false;
+		this.width = width;
 	}
 	
+	@Override
 	public void initialize() {
-		spriteOpen = new Sprite(new Texture (Gdx.files.internal("assets/dooropen.png").file().getAbsolutePath()));
-		spriteClosed = new Sprite(new Texture (Gdx.files.internal("assets/doorclosed.png").file().getAbsolutePath()));
-		sprite = spriteClosed;
+		sprite = new Sprite(new Texture (Gdx.files.internal("assets/spike.png").file().getAbsolutePath()));
 		
 		createBody();
-		
 		entityManager.addEntity(this);
-		entityManager.doorMap.put(activationCode, this);
 	}
 	
 	@Override
@@ -60,9 +48,9 @@ public class Door implements IEntities {
 		myBody = world.createBody(bodyDef);
 		
 		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(width, height);
+		shape.setAsBox(width, height*0.5f);
 		
-		myBody.createFixture(shape, 1000f).setUserData("air");;
+		myBody.createFixture(shape, 1000f).setUserData("UltraKill");;
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);
 	}
@@ -74,6 +62,7 @@ public class Door implements IEntities {
 
 	@Override
 	public void move(Vector2 newPos) {
+		
 	}
 
 	@Override
@@ -88,50 +77,27 @@ public class Door implements IEntities {
 
 	@Override
 	public void kill() {
+
 	}
 
 	@Override
 	public void removeBody() {
+		
 	}
 
 	@Override
 	public void updateState(Batch batch) {
 		position = myBody.getPosition();
-		
-		if(open) {
-			myBody.getFixtureList().get(0).setSensor(true);
-			myBody.setUserData("air");
-			sprite = spriteOpen;
-		} else {
-			myBody.getFixtureList().get(0).setSensor(false);
-			myBody.setUserData("Door");
-			sprite = spriteClosed;
-		}
-		
+
 		if(batch != null) {
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y-sprite.getHeight()/2);
 			sprite.setSize(1, 2);
 			sprite.draw(batch);	
 		}
-		
 	}
-	/**
-	 * Changes the door state based on previous state.
-	 * If this is called when door is open, it closes
-	 * If this is called when door is closed, it opens.
-	 */
-	public void doorState() {
-		if(!open) {
-			open = true;
-		} else {
-			open = false;
-		}
-	}
-	/**
-	 * checks whether the door is open or not, return boolean
-	 * @return open
-	 */
-	public boolean isOpen() {
-		return open;
+
+	@Override
+	public void itemFunction(Player player) {
+		player.kill();
 	}
 }
