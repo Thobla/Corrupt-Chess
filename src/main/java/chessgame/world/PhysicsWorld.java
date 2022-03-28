@@ -21,6 +21,7 @@ import chessgame.entities.Door;
 import chessgame.entities.Pawn;
 import chessgame.entities.Portal;
 import chessgame.entities.RatingPoint;
+import chessgame.entities.Spike;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 
@@ -130,6 +131,10 @@ public class PhysicsWorld {
 			if(entity.getName().toLowerCase().equals("portal")) {
 				Portal portal = new Portal(pos, world, manager);
 				portal.initialize();
+			}
+			if(entity.getName().toLowerCase().equals("spike")) {
+				Spike spike = new Spike(pos, world, manager, rectangle.getWidth());
+				spike.initialize();
 			}
 			if(entity.getName().toLowerCase().equals("player")) {
 				manager.addPlayerSpawn(pos);

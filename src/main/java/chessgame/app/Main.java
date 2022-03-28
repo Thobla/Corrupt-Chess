@@ -9,7 +9,7 @@ public class Main {
         cfg.useVsync(false);
         cfg.setTitle("Corrupt Chess");
         cfg.setWindowedMode(1980, 1000);
-        cfg.setForegroundFPS(350);
+        cfg.setForegroundFPS(60);
         cfg.setIdleFPS(30);
         //cfg.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
         ChessGame game = new ChessGame();

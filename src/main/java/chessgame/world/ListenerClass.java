@@ -90,27 +90,18 @@ public class ListenerClass implements ContactListener{
 		if(fixtureA.getUserData() == "Enemy" && fixtureB.getUserData() == "Player") {
 			IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
 			player = (Player) fixtureB.getBody().getUserData();
-			
-			//Calulates angle to launch player after damage
-			Vector2 playerPos = player.getPosition();
-			Vector2 enemyPos = enemy.getPosition();
-			Vector2 test = new Vector2(Math.abs(playerPos.x-enemyPos.x), Math.abs(playerPos.y-enemyPos.y));
-			
-			player.myBody.applyForceToCenter(new Vector2(5000f * test.x, 5000f * test.y), true);
-			player.takeDamage(enemy.getAttack());
+
+			if(player.myBody.getLinearVelocity().y >= 0) {
+				player.takeDamage(enemy.getAttack());
+			}
 		}
 		else if(fixtureB.getUserData() == "Enemy" && fixtureA.getUserData() == "Player") {
 			IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
 			player = (Player) fixtureA.getBody().getUserData();
 			
-			//Calulates angle to launch player after damage
-			Vector2 playerPos = player.getPosition();
-			Vector2 enemyPos = enemy.getPosition();
-			
-			Vector2 test = new Vector2(Math.abs(playerPos.x-enemyPos.x), Math.abs(playerPos.y-enemyPos.y));
-			
-			player.myBody.applyForceToCenter(new Vector2(5000f * test.x, 5000f * test.y), true);
-			player.takeDamage(enemy.getAttack());
+			if(player.myBody.getLinearVelocity().y >= 0) {
+				player.takeDamage(enemy.getAttack());
+			}
 		}
 		//Checks if player touches the Portal
 		if(fixtureA.getUserData() == "Portal" && fixtureB.getUserData() == "Player") {
@@ -152,14 +143,12 @@ public class ListenerClass implements ContactListener{
 
 	@Override
 	public void preSolve(Contact contact, Manifold oldManifold) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void postSolve(Contact contact, ContactImpulse impulse) {
-		// TODO Auto-generated method stub
-		
+
 	}
 	
 	private void prepareJumpable() {
