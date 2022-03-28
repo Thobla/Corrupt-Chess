@@ -59,7 +59,8 @@ public class Game implements Screen {
     //All levels with their file names
     public static String[] levels = new String[] {
     	"1-1",
-    	"1-2"
+    	"1-2",
+    	"height-test"
     	
     };
     
