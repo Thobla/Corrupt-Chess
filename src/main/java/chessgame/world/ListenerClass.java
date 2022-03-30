@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 
 import chessgame.app.PlayerController;
 import chessgame.entities.IEnemies;
+import chessgame.entities.IEntities;
 import chessgame.entities.IObjects;
 import chessgame.entities.Player;
 import chessgame.entities.Portal;
@@ -123,6 +124,39 @@ public class ListenerClass implements ContactListener{
 			world.entityManager.removePlayer(player);
 			Portal.victory();
 		}
+		
+		//checks if an entities jump-sensor is hitting any non-entity objects, making sure
+		//it differenciates leftJumpSensor from rightJunpSensor depending on linearvelocity.
+		//start
+		if((fixtureA.getUserData() == "rightJumpSensor" || fixtureA.getUserData() == "leftJumpSensor") && !(fixtureB.getBody().getUserData() instanceof IEntities)) {
+			if (fixtureA.getUserData() == "rightJumpSensor" && fixtureA.getBody().getLinearVelocity().x > 0) {
+				IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
+				System.out.println("sensor");
+				enemy.jump();
+			}
+			else if(fixtureA.getUserData() == "leftJumpSensor" && fixtureA.getBody().getLinearVelocity().x < 0) {
+				IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
+				System.out.println("sensor");
+				enemy.jump();
+			}
+			
+		}
+
+		else if((fixtureB.getUserData() == "rightJumpSensor" || fixtureB.getUserData() == "leftJumpSensor") && !(fixtureA.getBody().getUserData() instanceof IEntities)) {
+			if (fixtureB.getUserData() == "rightJumpSensor" && fixtureB.getBody().getLinearVelocity().x > 0) {
+				IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
+				System.out.println("sensor");
+				enemy.jump();
+			}
+			else if(fixtureB.getUserData() == "leftJumpSensor" && fixtureB.getBody().getLinearVelocity().x < 0) {
+				IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
+				System.out.println("sensor");
+				enemy.jump();
+			}
+			
+		}
+		//end
+		
 	}
 
 	@Override

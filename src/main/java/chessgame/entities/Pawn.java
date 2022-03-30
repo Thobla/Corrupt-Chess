@@ -43,7 +43,7 @@ public class Pawn implements IEnemies {
 	//Entity size
 	float width = 0.5f;
 	float height = 0.5f;
-	float jumpSensorwidth = 1f;
+	float jumpSensorwidth = 0.5f;
 	
 	public Pawn (Vector2 position, World world, EntityManager entityManager) {
 		homePosition = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
@@ -80,8 +80,9 @@ public class Pawn implements IEnemies {
 		//adding a weakpoint
 		addNewBoxSensor(myBody, width * 0.95f, height / 3.5f, new Vector2(0f, height), "weakpoint");
 		
-		//adding a sensor to detect when the pawn needs to jump
-		addNewBoxSensor(myBody, this.jumpSensorwidth, 0.3f, new Vector2(this.width, -this.height), "jumpSensor");
+		//adding a rightJumpSensor and leftJumpSensor to detect when the pawn needs to jump
+		addNewBoxSensor(myBody, this.jumpSensorwidth, 0.05f, new Vector2(1f, 0f), "rightJumpSensor");
+		addNewBoxSensor(myBody, this.jumpSensorwidth, 0.05f, new Vector2(-1f, 0f), "leftJumpSensor");
 		
 		
 		
@@ -165,6 +166,7 @@ public class Pawn implements IEnemies {
 			sprite.setColor(Color.WHITE);
 			attack = 1;
 		}
+		
 	}
 
 	@Override
@@ -239,6 +241,12 @@ public class Pawn implements IEnemies {
 		
 		myBody.createFixture(fixDef).setUserData(userData);
 		
+		
+	}
+
+	@Override
+	public void jump() {
+		myBody.setLinearVelocity(new Vector2(myBody.getLinearVelocity().x, 20f));
 		
 	}
 }
