@@ -1,6 +1,5 @@
 package chessgame.entities;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
@@ -44,6 +43,7 @@ public class Pawn implements IEnemies {
 	//Entity size
 	float width = 0.5f;
 	float height = 0.5f;
+	float jumpSensorwidth = 1f;
 	
 	public Pawn (Vector2 position, World world, EntityManager entityManager) {
 		homePosition = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
@@ -77,14 +77,13 @@ public class Pawn implements IEnemies {
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);
 		
-		//creating a fixture that will serve as the players groundCheck-platter.
-		FixtureDef fixDef = new FixtureDef();
-		fixDef.isSensor = true;
-		//the shape should be lower than the players width and height
-		shape.setAsBox(width * 0.95f, height / 3.5f, new Vector2(0f, height), 0);
-		fixDef.shape = shape;
+		//adding a weakpoint
+		addNewBoxSensor(myBody, width * 0.95f, height / 3.5f, new Vector2(0f, height), "weakpoint");
 		
-		myBody.createFixture(fixDef).setUserData("weakpoint");
+		//adding a sensor to detect when the pawn needs to jump
+		addNewBoxSensor(myBody, this.jumpSensorwidth, 0.3f, new Vector2(this.width, -this.height), "jumpSensor");
+		
+		
 		
 	}
 	
@@ -222,29 +221,24 @@ public class Pawn implements IEnemies {
 		return currentState;
 	}
 	
-	
-	
 	/**
-	 * if i am going to create eclliptic like sensors instead of circles later:
-	PolygonShape createEcllipticSensor(float height, float width, int corners){
+	 * Method to give an existing body a new box-sensor
+	 * @param thisBody - the body to add the sensor to
+	 * @param length - the length of the sensor
+	 * @param height - the height of the sensor
+	 * @param centerPosition - the position of the box, relative to the body
+	 * @param userData - the user-data to add to the added shape
+	 */
+	void addNewBoxSensor(Body thisBody, float length, float height, Vector2 centerPosition, String userData) {
 		PolygonShape shape = new PolygonShape();
-		if(corners > 0 && corners % 4 == 0) {
-			float newHeight = height - this.height;
-			float newWidth = width - this.width;
-			List<Vector2>vectorList = new ArrayList<Vector2>();
-			//might need to throw exception if else
-			if(newHeight > 0 && newWidth > 0) {
-				for(int i = 1; i < corners; i ++) {
-					float x = newWidth * Math.cos((2*Math.PI.floatValue()) * (i/corners));
-				}
-			}
-		}
+		//creating a fixture that will serve as a sensor for the pawn
+		FixtureDef fixDef = new FixtureDef();
+		fixDef.isSensor = true;
+		shape.setAsBox(length, height, centerPosition, 0);
+		fixDef.shape = shape;
 		
+		myBody.createFixture(fixDef).setUserData(userData);
 		
-		
-		return null;
 		
 	}
-	*/
-	
 }
