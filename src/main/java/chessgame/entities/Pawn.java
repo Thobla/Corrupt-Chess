@@ -24,7 +24,7 @@ public class Pawn implements IEnemies {
 	public float aggroRange = 6f;
 	
 	Vector2 position;
-	Vector2 homePosition;
+	public Vector2 homePosition;
 	World world;
 	Body myBody;
 	public EntityManager entityManager;
