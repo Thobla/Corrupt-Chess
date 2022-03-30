@@ -21,7 +21,7 @@ public class PawnChase extends PawnState{
 		
 		//checks whether to stay in state or change state
 		if(target == null) {
-			pawn.changeState(pawn.homeState);
+			pawn.changeState(pawn.idleState);
 		}
 		else {
 			//A damper to make the enemy less erratic, when player is above him.
