@@ -14,6 +14,9 @@
     </sourceRole>
     <targetRole xmi:id="_t63tZqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="position" navigable="true">
       <modelElement href="../chess-game.uml#_5AfMYatcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xKNzoKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AfzcKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t63tZ6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t63taKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -31,6 +34,9 @@
     </sourceRole>
     <targetRole xmi:id="_t65ilatdEeyaCaH1QWMgHg" aggregationKind="NONE" name="sprite" navigable="true">
       <modelElement href="../chess-game.uml#_5AfzcatcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xKVvcKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AfzcqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t65ilqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t65il6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -48,6 +54,9 @@
     </sourceRole>
     <targetRole xmi:id="_t66wtqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="myBody" navigable="true">
       <modelElement href="../chess-game.uml#_5Afzc6tcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xKaA4KwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AfzdKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t66wt6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t66wuKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -65,6 +74,9 @@
     </sourceRole>
     <targetRole xmi:id="_t67XxqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="world" navigable="true">
       <modelElement href="../chess-game.uml#_5AgagKtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xKdEMKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AgagatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t67Xx6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t67XyKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -87,6 +99,9 @@
     <targetRole xmi:id="_t67-1qtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="entityManager" navigable="true">
       <modelElement href="../chess-game.uml#_5AgagqtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnPvoatdEeyaCaH1QWMgHg" position="-136.0,-418.0"/>
+      <stereotypes xmi:id="_xKgHgKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5Agag6tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t67-16tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t67-2KtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -104,6 +119,9 @@
     </sourceRole>
     <targetRole xmi:id="_t67-36tdEeyaCaH1QWMgHg" aggregationKind="NONE" name="spriteOn" navigable="true">
       <modelElement href="../chess-game.uml#_5AhBkatcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xKh8sKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AhBkqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t67-4KtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t67-4atdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -121,6 +139,9 @@
     </sourceRole>
     <targetRole xmi:id="_t68l5qtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="spriteOff" navigable="true">
       <modelElement href="../chess-game.uml#_5AhBk6tcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xKlAAKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AhBlKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t68l56tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t68l6KtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -138,6 +159,9 @@
     </sourceRole>
     <targetRole xmi:id="_t8Z-dqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="batch" navigable="true">
       <modelElement href="../chess-game.uml#_5ATmMKtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xKoDUKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AUNQKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t8Z-d6tdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_t8algKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -155,6 +179,9 @@
     </sourceRole>
     <targetRole xmi:id="_t8wjxqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="font" navigable="true">
       <modelElement href="../chess-game.uml#_5AUNQatcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xKrGoKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AUNQqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t8wjx6tdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_t8wjyKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -172,6 +199,9 @@
     </sourceRole>
     <targetRole xmi:id="_t9YO0atdEeyaCaH1QWMgHg" aggregationKind="NONE" name="position" navigable="true">
       <modelElement href="../chess-game.uml#_5Ajd0KtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xKuJ8KwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5Ajd0atcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t9arE6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t9arEqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -189,6 +219,9 @@
     </sourceRole>
     <targetRole xmi:id="_t9YO1atdEeyaCaH1QWMgHg" aggregationKind="NONE" name="sprite" navigable="true">
       <modelElement href="../chess-game.uml#_5Ajd0qtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xKv_IKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AkE4KtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t9bSIqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t9bSIatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -206,6 +239,9 @@
     </sourceRole>
     <targetRole xmi:id="_t9YO2atdEeyaCaH1QWMgHg" aggregationKind="NONE" name="myBody" navigable="true">
       <modelElement href="../chess-game.uml#_5AkE4atcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xKybYKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AkE4qtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t9bSJ6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t9bSJqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -223,6 +259,9 @@
     </sourceRole>
     <targetRole xmi:id="_t9Y146tdEeyaCaH1QWMgHg" aggregationKind="NONE" name="world" navigable="true">
       <modelElement href="../chess-game.uml#_5AkE46tcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xKzpgKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AkE5KtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t9bSLKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t9bSK6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -245,6 +284,9 @@
     <targetRole xmi:id="_t9Y156tdEeyaCaH1QWMgHg" aggregationKind="NONE" name="entityManager" navigable="true">
       <modelElement href="../chess-game.uml#_5Akr8KtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnQ9wKtdEeyaCaH1QWMgHg" position="15.0,-1419.0"/>
+      <stereotypes xmi:id="_xK03oKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5Akr8atcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t9b5M6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t9b5MqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -262,6 +304,9 @@
     </sourceRole>
     <targetRole xmi:id="_t9Zc8KtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="spriteOpen" navigable="true">
       <modelElement href="../chess-game.uml#_5Akr8qtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xK3T4KwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5Akr86tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t9b5OKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t9b5N6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -279,6 +324,9 @@
     </sourceRole>
     <targetRole xmi:id="_t9Zc9KtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="spriteClosed" navigable="true">
       <modelElement href="../chess-game.uml#_5Akr9KtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xK5wIKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AlTAKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t9cgQKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t9b5PKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -303,6 +351,9 @@
     <targetRole xmi:id="_t-khoqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="playerList" navigable="true">
       <modelElement href="../chess-game.uml#_5BAw1atcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnRk0atdEeyaCaH1QWMgHg" position="-96.0,6.0"/>
+      <stereotypes xmi:id="_xK9agKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BBX4atcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t-lIs6tdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_t-lIsqtdEeyaCaH1QWMgHg" label="1..*" max="-1" min="1"/>
     </targetRole>
@@ -329,6 +380,9 @@
     <targetRole xmi:id="_t-lvxqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="entityList" navigable="true">
       <modelElement href="../chess-game.uml#_5BAJxqtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnTaAKtdEeyaCaH1QWMgHg" position="-1745.0,5.0"/>
+      <stereotypes xmi:id="_xK-BkKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BAw0KtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t-lvx6tdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_t-lvyKtdEeyaCaH1QWMgHg" label="1..*" max="-1" min="1"/>
     </targetRole>
@@ -353,6 +407,9 @@
     <targetRole xmi:id="_t-m95qtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="entityRemoveList" navigable="true">
       <modelElement href="../chess-game.uml#_5BAw0atcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnUBEatdEeyaCaH1QWMgHg" position="-1909.0,6.000000000000455"/>
+      <stereotypes xmi:id="_xK-ooKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BAw1KtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t-m956tdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_t-m96KtdEeyaCaH1QWMgHg" label="1..*" max="-1" min="1"/>
     </targetRole>
@@ -370,6 +427,12 @@
     </sourceRole>
     <targetRole xmi:id="_t-nk9qtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="doorMap" navigable="true">
       <modelElement href="../chess-game.uml#_5BBX4qtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLBE4KwgEeyGssW9pRht_g" name="Generics">
+        <modelElement href="../chess-game.uml#_5BBX46tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
+      <stereotypes xmi:id="_xLBE4awgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BBX5atcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t-nk96tdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_t-nk-KtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -391,6 +454,9 @@
     <targetRole xmi:id="_t-oMBqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="pworld" navigable="true">
       <modelElement href="../chess-game.uml#_5BB-8KtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnUoIqtdEeyaCaH1QWMgHg" position="-76.0,-70.0"/>
+      <stereotypes xmi:id="_xLC6EKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BB-8atcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_t-oMB6tdEeyaCaH1QWMgHg" label="-"/>
       <cardinality xmi:id="_t-oMCKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -412,6 +478,9 @@
     <targetRole xmi:id="_uA_jgKtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="entityManager" navigable="true">
       <modelElement href="../chess-game.uml#_5AXQk6tcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnVPMqtdEeyaCaH1QWMgHg" position="5.0,-71.99999999999955"/>
+      <stereotypes xmi:id="_xLDhIKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AXQlKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBFqJKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBFqI6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -433,6 +502,9 @@
     <targetRole xmi:id="_uBAKk6tdEeyaCaH1QWMgHg" aggregationKind="NONE" name="game" navigable="true">
       <modelElement href="../chess-game.uml#_5AXQlatcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnWdUKtdEeyaCaH1QWMgHg" position="-67.0,6.0"/>
+      <stereotypes xmi:id="_xLEIMKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AX3oKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBFqKatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBFqKKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -450,6 +522,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBFDEKtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="batch" navigable="true">
       <modelElement href="../chess-game.uml#_5AVbY6tcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLGkcKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AWCcKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBIGYatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBIGYKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -473,6 +548,9 @@
     <targetRole xmi:id="_uBFDFKtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="player" navigable="true">
       <modelElement href="../chess-game.uml#_5AWCdatcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnXEYKtdEeyaCaH1QWMgHg" position="6.0,5.0"/>
+      <stereotypes xmi:id="_xLIZoKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AWpgKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBIGZqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBIGZatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -495,6 +573,9 @@
     <targetRole xmi:id="_uBFDGKtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="gameWorld" navigable="true">
       <modelElement href="../chess-game.uml#_5AWpg6tcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnXrcatdEeyaCaH1QWMgHg" position="5.0,-72.0"/>
+      <stereotypes xmi:id="_xLJAsKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AXQkKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBItcKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBIGaqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -514,6 +595,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBKipqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="cam" navigable="true">
       <modelElement href="../chess-game.uml#_5AVbYatcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLK14KwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AVbYqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBKip6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBKiqKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -537,6 +621,9 @@
     <targetRole xmi:id="_uBLJtqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="gameMap" navigable="true">
       <modelElement href="../chess-game.uml#_5AWCcatcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnYSgatdEeyaCaH1QWMgHg" position="3.0,5.0"/>
+      <stereotypes xmi:id="_xLMrEKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AWCcqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBLJt6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBLJuKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -554,6 +641,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBLwxqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="tiledMap" navigable="true">
       <modelElement href="../chess-game.uml#_5AWCc6tcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLOgQKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AWCdKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBLwx6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBLwyKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -575,6 +665,9 @@
     <targetRole xmi:id="_uBM-5qtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="playerController" navigable="true">
       <modelElement href="../chess-game.uml#_5AWpgatcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnY5kqtdEeyaCaH1QWMgHg" position="6.0,5.0"/>
+      <stereotypes xmi:id="_xLQVcKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AWpgqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBM-56tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBM-6KtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -592,6 +685,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBM-76tdEeyaCaH1QWMgHg" aggregationKind="NONE" name="debugRenderer" navigable="true">
       <modelElement href="../chess-game.uml#_5AXQkatcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLSKoKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AXQkqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBM-8KtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBM-8atdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -609,6 +705,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBONBqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="stage" navigable="true">
       <modelElement href="../chess-game.uml#_5AYesqtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLVN8KwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AYes6tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBONB6tdEeyaCaH1QWMgHg" label="-"/>
       <cardinality xmi:id="_uBONCKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -626,6 +725,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBO0FqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="skin" navigable="true">
       <modelElement href="../chess-game.uml#_5AZFwqtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLXqMKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AZFxKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBO0F6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBO0GKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -643,6 +745,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBPbJqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="pauseText" navigable="true">
       <modelElement href="../chess-game.uml#_5AZFxatcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLbUkKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AZs0KtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBPbJ6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBPbKKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -660,6 +765,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBPbL6tdEeyaCaH1QWMgHg" aggregationKind="NONE" name="resumeButton" navigable="true">
       <modelElement href="../chess-game.uml#_5AZs0atcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLdw0KwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AZs06tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBPbMKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBPbMatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -677,6 +785,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBQCNqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="gameOverText" navigable="true">
       <modelElement href="../chess-game.uml#_5AZs1KtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLfmAKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AZs1qtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBQCN6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBQCOKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -694,6 +805,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBQpRqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="retryButton" navigable="true">
       <modelElement href="../chess-game.uml#_5AZs16tcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLiCQKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AaT4atcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBQpR6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBQpSKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -711,6 +825,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBRQVqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="quitButtonGO" navigable="true">
       <modelElement href="../chess-game.uml#_5AaT4qtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLkegKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AaT5KtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBRQV6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBRQWKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -728,6 +845,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBR3ZqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="quitButtonP" navigable="true">
       <modelElement href="../chess-game.uml#_5AaT5atcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLmTsKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AaT56tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBR3Z6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBR3aKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -745,6 +865,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBSedqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="healthText" navigable="true">
       <modelElement href="../chess-game.uml#_5Aa68KtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLoI4KwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5Aa68qtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBSed6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBSeeKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -762,6 +885,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBTFhqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="scoreText" navigable="true">
       <modelElement href="../chess-game.uml#_5Aa686tcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLp-EKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5Aa69atcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBTFh6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBTFiKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -779,6 +905,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBTslqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="timerText" navigable="true">
       <modelElement href="../chess-game.uml#_5AbiAKtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLsaUKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AbiAqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBTsl6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBTsmKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -796,6 +925,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBUTpqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="victoryText" navigable="true">
       <modelElement href="../chess-game.uml#_5AbiBatcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLu2kKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AbiB6tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBUTp6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBUTqKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -813,6 +945,9 @@
     </sourceRole>
     <targetRole xmi:id="_uBU6tqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="continueButton" navigable="true">
       <modelElement href="../chess-game.uml#_5AbiCKtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLxS0KwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AcJEatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uBU6t6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBU6uKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -835,6 +970,9 @@
     </sourceRole>
     <targetRole xmi:id="_uDk9cqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="tiledMap" navigable="true">
       <modelElement href="../chess-game.uml#_5BEbM6tcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xLzIAKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BFCQKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uDmLkqtdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uDmLkatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -887,6 +1025,9 @@
     </sourceRole>
     <targetRole xmi:id="_uGknEqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="position" navigable="true">
       <modelElement href="../chess-game.uml#_5AtO0KtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xL0WIKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AtO0atcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uGmcQ6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uGmcQqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -904,6 +1045,9 @@
     </sourceRole>
     <targetRole xmi:id="_uGlOIKtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="world" navigable="true">
       <modelElement href="../chess-game.uml#_5AtO0qtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xL2LUKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5At14KtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uGmcSKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uGmcR6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -921,6 +1065,9 @@
     </sourceRole>
     <targetRole xmi:id="_uGlOJKtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="sprite" navigable="true">
       <modelElement href="../chess-game.uml#_5At14atcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xL4nkKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5At14qtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uGmcTatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uGmcTKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -938,6 +1085,9 @@
     </sourceRole>
     <targetRole xmi:id="_uGlOKKtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="myBody" navigable="true">
       <modelElement href="../chess-game.uml#_5At146tcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xL6cwKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5Auc8KtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uGnDUatdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uGnDUKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -959,6 +1109,9 @@
     <targetRole xmi:id="_uGlOLKtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="controller" navigable="true">
       <modelElement href="../chess-game.uml#_5Auc8atcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnr0gatdEeyaCaH1QWMgHg" position="-97.0,6.0"/>
+      <stereotypes xmi:id="_xL7q4KwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5Auc8qtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uGnDVqtdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uGnDVatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1018,6 +1171,9 @@
     <targetRole xmi:id="_uNd5QatdEeyaCaH1QWMgHg" aggregationKind="NONE" name="game" navigable="true">
       <modelElement href="../chess-game.uml#_5A6DIqtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnauwKtdEeyaCaH1QWMgHg" position="5.0,-72.0"/>
+      <stereotypes xmi:id="_xL85AKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A6DI6tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uNfucKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uNfHZqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1035,6 +1191,9 @@
     </sourceRole>
     <targetRole xmi:id="_uNfHYqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="cam" navigable="true">
       <modelElement href="../chess-game.uml#_5A6DIKtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xL-uMKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A6DIatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uNgVg6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uNgVgqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1052,6 +1211,9 @@
     </sourceRole>
     <targetRole xmi:id="_uNfudKtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="stage" navigable="true">
       <modelElement href="../chess-game.uml#_5A6qMKtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xL_8UKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A6qMatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uNgViKtdEeyaCaH1QWMgHg" label="-"/>
       <cardinality xmi:id="_uNgVh6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1078,6 +1240,9 @@
     <targetRole xmi:id="_uPhHsqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="player" navigable="true">
       <modelElement href="../chess-game.uml#_5BCmAKtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnbV0KtdEeyaCaH1QWMgHg" position="-56.00000000000091,-475.00000000000045"/>
+      <stereotypes xmi:id="_xMBKcKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BCmAatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uPi85qtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uPi85atdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1099,6 +1264,9 @@
     <targetRole xmi:id="_uPhHtqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="enemy" navigable="true">
       <modelElement href="../chess-game.uml#_5BCmAqtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vndLAKtdEeyaCaH1QWMgHg" position="64.375,2.0"/>
+      <stereotypes xmi:id="_xMBKcawgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BCmA6tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uPi866tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uPi86qtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1120,6 +1288,9 @@
     <targetRole xmi:id="_uPi84atdEeyaCaH1QWMgHg" aggregationKind="NONE" name="world" navigable="true">
       <modelElement href="../chess-game.uml#_5BB-8qtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vndyEatdEeyaCaH1QWMgHg" position="8.0,5.0"/>
+      <stereotypes xmi:id="_xMBxgKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BB-86tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uPjj86tdEeyaCaH1QWMgHg" label="-"/>
       <cardinality xmi:id="_uPjj8qtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1141,6 +1312,9 @@
     <targetRole xmi:id="_uS1hcqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="game" navigable="true">
       <modelElement href="../chess-game.uml#_5A7RQqtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vneZIqtdEeyaCaH1QWMgHg" position="8.0,5.0"/>
+      <stereotypes xmi:id="_xMBxgawgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A74UKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uS3WoKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uS2vlqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1158,6 +1332,9 @@
     </sourceRole>
     <targetRole xmi:id="_uS2vkqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="cam" navigable="true">
       <modelElement href="../chess-game.uml#_5A7RQKtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMDmsKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A7RQatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uS39s6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uS39sqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1175,6 +1352,9 @@
     </sourceRole>
     <targetRole xmi:id="_uS3WpKtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="stage" navigable="true">
       <modelElement href="../chess-game.uml#_5A74UatcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMFb4KwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A74UqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uS39uKtdEeyaCaH1QWMgHg" label="-"/>
       <cardinality xmi:id="_uS39t6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1196,6 +1376,9 @@
     <targetRole xmi:id="_uVJ1oqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="game" navigable="true">
       <modelElement href="../chess-game.uml#_5A8fYqtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnfAMatdEeyaCaH1QWMgHg" position="-70.0,-70.0"/>
+      <stereotypes xmi:id="_xMGqAKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A8fY6tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uVMR56tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uVMR5qtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1213,6 +1396,9 @@
     </sourceRole>
     <targetRole xmi:id="_uVMR4qtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="cam" navigable="true">
       <modelElement href="../chess-game.uml#_5A8fYKtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMH4IKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A8fYatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uVNgA6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uVNgAqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1230,6 +1416,9 @@
     </sourceRole>
     <targetRole xmi:id="_uVMR66tdEeyaCaH1QWMgHg" aggregationKind="NONE" name="stage" navigable="true">
       <modelElement href="../chess-game.uml#_5A9GcKtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMJtUKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A9GcatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uVOHEKtdEeyaCaH1QWMgHg" label="-"/>
       <cardinality xmi:id="_uVNgB6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1247,6 +1436,9 @@
     </sourceRole>
     <targetRole xmi:id="_uVMR76tdEeyaCaH1QWMgHg" aggregationKind="NONE" name="skin" navigable="true">
       <modelElement href="../chess-game.uml#_5A-UlatcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMK7cKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A-7oKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uVOHFatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uVOHFKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1270,6 +1462,9 @@
     <targetRole xmi:id="_uYVsg6tdEeyaCaH1QWMgHg" aggregationKind="NONE" name="entityManager" navigable="true">
       <modelElement href="../chess-game.uml#_5ApkcKtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnfnQatdEeyaCaH1QWMgHg" position="-146.0,612.0000000000005"/>
+      <stereotypes xmi:id="_xMMwoKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5ApkcatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uYwjQatdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uYwjQKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1291,6 +1486,9 @@
     </sourceRole>
     <targetRole xmi:id="_uYv8MqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="position" navigable="true">
       <modelElement href="../chess-game.uml#_5AoWU6tcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMNXsKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5Ao9YKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uYxxY6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uYxxYqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1308,6 +1506,9 @@
     </sourceRole>
     <targetRole xmi:id="_uYv8NqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="world" navigable="true">
       <modelElement href="../chess-game.uml#_5Ao9YatcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMQbAKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5Ao9YqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uYyYdKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uYyYc6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1325,6 +1526,9 @@
     </sourceRole>
     <targetRole xmi:id="_uYv8OqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="myBody" navigable="true">
       <modelElement href="../chess-game.uml#_5Ao9Y6tcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMRpIKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5Ao9ZKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uYyYeatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uYyYeKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1342,11 +1546,13 @@
     </sourceRole>
     <targetRole xmi:id="_uYwjRatdEeyaCaH1QWMgHg" aggregationKind="NONE" name="sprite" navigable="true">
       <modelElement href="../chess-game.uml#_5ApkcqtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMTeUKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5Apkc6tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uYy_gatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uYy_gKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
   </edges>
-  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_uYuHAKtdEeyaCaH1QWMgHg" targetItem="_uY2DbKtdEeyaCaH1QWMgHg" sourceItem="_uYs44KtdEeyaCaH1QWMgHg"/>
   <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_uY0NoKtdEeyaCaH1QWMgHg" sourceAnchor="675.0,386.0" targetAnchor="78.0,102.0" target="_um2poKtdEeyaCaH1QWMgHg" source="_uY2C2atdEeyaCaH1QWMgHg">
     <modelElement href="../chess-game.uml#_5CL1h6tcEeyaCaH1QWMgHg"/>
     <bendpoints xmi:id="_MLyHIKteEeyaCaH1QWMgHg" sourceX="78" sourceY="2" targetX="1" targetY="802"/>
@@ -1365,6 +1571,9 @@
     <targetRole xmi:id="_uY0NpqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="idleState" navigable="true">
       <modelElement href="../chess-game.uml#_5ApkdKtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vngOUqtdEeyaCaH1QWMgHg" position="-26.999999999999886,69.0"/>
+      <stereotypes xmi:id="_xMUFYKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AqLgKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uY0Np6tdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uY0NqKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1387,6 +1596,9 @@
     <targetRole xmi:id="_uY00tqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="chaseState" navigable="true">
       <modelElement href="../chess-game.uml#_5AqLgatcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vng1YqtdEeyaCaH1QWMgHg" position="-50.0,6.0"/>
+      <stereotypes xmi:id="_xMUscKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AqLg6tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uY00t6tdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uY00uKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1409,6 +1621,9 @@
     <targetRole xmi:id="_uY1bxqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="homeState" navigable="true">
       <modelElement href="../chess-game.uml#_5AqLhKtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vniDgatdEeyaCaH1QWMgHg" position="41.0,1.0"/>
+      <stereotypes xmi:id="_xMUscawgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AqykKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uY1bx6tdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uY1byKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1431,6 +1646,9 @@
     <targetRole xmi:id="_uY1bz6tdEeyaCaH1QWMgHg" aggregationKind="NONE" name="moveState" navigable="true">
       <modelElement href="../chess-game.uml#_5AqykatcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vniqkatdEeyaCaH1QWMgHg" position="-102.0,-106.0"/>
+      <stereotypes xmi:id="_xMVTgKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5Aqyk6tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uY1b0KtdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uY1b0atdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1453,6 +1671,9 @@
     <targetRole xmi:id="_uY2C1qtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="currentState" navigable="true">
       <modelElement href="../chess-game.uml#_5AqylKtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnjRoatdEeyaCaH1QWMgHg" position="-104.0,41.0"/>
+      <stereotypes xmi:id="_xMVTgawgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5ArZoKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uY2C16tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uY2C2KtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1474,6 +1695,9 @@
     <targetRole xmi:id="_ubS54qtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="pawn" navigable="true">
       <modelElement href="../chess-game.uml#_5A2YwKtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnj4satdEeyaCaH1QWMgHg" position="-62.0,-133.0"/>
+      <stereotypes xmi:id="_xMV6kKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A2_0KtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_ucB5satdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_ucB5sKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1503,6 +1727,12 @@
     <targetRole xmi:id="_ucksQqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="PawnIdle" navigable="true">
       <modelElement href="../chess-game.uml#_5A4N8qtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnoKIKtdEeyaCaH1QWMgHg" position="98.0,-70.0"/>
+      <stereotypes xmi:id="_xMV6kawgEeyGssW9pRht_g" name="MultiDeclaration">
+        <modelElement href="../chess-game.uml#_5A41AKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
+      <stereotypes xmi:id="_xMWhoKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A41AatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_ucl6Y6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_ucl6YqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1527,6 +1757,12 @@
     <targetRole xmi:id="_uclTUqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="PawnMove" navigable="true">
       <modelElement href="../chess-game.uml#_5BuigKtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnoxMatdEeyaCaH1QWMgHg" position="103.0,-180.0"/>
+      <stereotypes xmi:id="_xMWhoawgEeyGssW9pRht_g" name="MultiDeclaration">
+        <modelElement href="../chess-game.uml#_5BuigatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
+      <stereotypes xmi:id="_xMWhoqwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BuigqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_ucmhcKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_ucl6aKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1551,6 +1787,12 @@
     <targetRole xmi:id="_uclTVqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="PawnChase" navigable="true">
       <modelElement href="../chess-game.uml#_5Buig6tcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnpYQqtdEeyaCaH1QWMgHg" position="102.0,-291.0"/>
+      <stereotypes xmi:id="_xMXIsKwgEeyGssW9pRht_g" name="MultiDeclaration">
+        <modelElement href="../chess-game.uml#_5BuihKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
+      <stereotypes xmi:id="_xMXIsawgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BuihatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_ucmhdqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_ucmhdatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1575,6 +1817,12 @@
     <targetRole xmi:id="_uclTWqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="PawnHome" navigable="true">
       <modelElement href="../chess-game.uml#_5BuihqtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnqmYKtdEeyaCaH1QWMgHg" position="244.0,-70.0"/>
+      <stereotypes xmi:id="_xMXvwKwgEeyGssW9pRht_g" name="MultiDeclaration">
+        <modelElement href="../chess-game.uml#_5BvJkKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
+      <stereotypes xmi:id="_xMXvwawgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BvJkatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_ucmhfKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_ucmhe6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1599,6 +1847,12 @@
     <targetRole xmi:id="_uclTXqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="current" navigable="true">
       <modelElement href="../chess-game.uml#_5BvJkqtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnrNcatdEeyaCaH1QWMgHg" position="368.0,-72.0"/>
+      <stereotypes xmi:id="_xMYW0KwgEeyGssW9pRht_g" name="MultiDeclaration">
+        <modelElement href="../chess-game.uml#_5BvJk6tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
+      <stereotypes xmi:id="_xMYW0awgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BvJlKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_ucmhgqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_ucmhgatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1627,6 +1881,9 @@
     <targetRole xmi:id="_ugTVsqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="pawn" navigable="true">
       <modelElement href="../chess-game.uml#_5A2_0atcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnkfwqtdEeyaCaH1QWMgHg" position="77.99999999999989,-67.0"/>
+      <stereotypes xmi:id="_xMYW0qwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A2_0qtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_ugT8w6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_ugT8wqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1654,6 +1911,9 @@
     <targetRole xmi:id="_uiu-oqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="pawn" navigable="true">
       <modelElement href="../chess-game.uml#_5A3m4KtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnlG0qtdEeyaCaH1QWMgHg" position="47.0,7.0"/>
+      <stereotypes xmi:id="_xMY94KwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A3m4atcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uiu-p6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uiu-pqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1680,6 +1940,9 @@
     <targetRole xmi:id="_ulnTgqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="pawn" navigable="true">
       <modelElement href="../chess-game.uml#_5A4N8KtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnmU8atdEeyaCaH1QWMgHg" position="-62.0,-132.0"/>
+      <stereotypes xmi:id="_xMY94awgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A4N8atcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_ulohoKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uln6kqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1702,6 +1965,9 @@
     </sourceRole>
     <targetRole xmi:id="_uqelYqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="world" navigable="true">
       <modelElement href="../chess-game.uml#_5BD0JKtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMazEKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BD0JatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_uqfMdKtdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uqfMc6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1723,6 +1989,9 @@
     <targetRole xmi:id="_u3XK0qtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="entityManager" navigable="true">
       <modelElement href="../chess-game.uml#_5AyHUatcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vnsbkqtdEeyaCaH1QWMgHg" position="-144.0,-494.0"/>
+      <stereotypes xmi:id="_xMbaIKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AyHUqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_u3fGq6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u3fGqqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1743,6 +2012,9 @@
     </sourceRole>
     <targetRole xmi:id="_u3fGoqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="position" navigable="true">
       <modelElement href="../chess-game.uml#_5AxgQKtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMcBMKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AxgQatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_u3gUw6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u3gUwqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1760,6 +2032,9 @@
     </sourceRole>
     <targetRole xmi:id="_u3fGpqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="world" navigable="true">
       <modelElement href="../chess-game.uml#_5AxgQqtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMd2YKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AyHUKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_u3g70qtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u3g70atdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1777,6 +2052,9 @@
     </sourceRole>
     <targetRole xmi:id="_u3ftsatdEeyaCaH1QWMgHg" aggregationKind="NONE" name="myBody" navigable="true">
       <modelElement href="../chess-game.uml#_5AyHU6tcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMfEgKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AyuYKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_u3g716tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u3g71qtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1794,6 +2072,9 @@
     </sourceRole>
     <targetRole xmi:id="_u3fttatdEeyaCaH1QWMgHg" aggregationKind="NONE" name="sprite" navigable="true">
       <modelElement href="../chess-game.uml#_5AyuYatcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMg5sKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AyuYqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_u3g73KtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u3g726tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1811,6 +2092,9 @@
     </sourceRole>
     <targetRole xmi:id="_u3iJ9qtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="particleAtlas" navigable="true">
       <modelElement href="../chess-game.uml#_5AzVdKtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMiH0KwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5AzVdatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_u3iJ96tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u3iJ-KtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1828,6 +2112,9 @@
     </sourceRole>
     <targetRole xmi:id="_u3ixBqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="particle" navigable="true">
       <modelElement href="../chess-game.uml#_5Az8gKtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMjV8KwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5Az8gqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_u3ixB6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u3ixCKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1850,6 +2137,9 @@
     <targetRole xmi:id="_u8lCA6tdEeyaCaH1QWMgHg" aggregationKind="NONE" name="entityManager" navigable="true">
       <modelElement href="../chess-game.uml#_5A1KpKtcEeyaCaH1QWMgHg"/>
       <visualProperties xmi:id="_vntCoqtdEeyaCaH1QWMgHg" position="-1362.0,-70.0"/>
+      <stereotypes xmi:id="_xMkkEKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A1xsKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_u9IbqatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u9IbqKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1872,6 +2162,9 @@
     </sourceRole>
     <targetRole xmi:id="_u9H0kqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="position" navigable="true">
       <modelElement href="../chess-game.uml#_5A0jkKtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMmZQKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A0jkatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_u9Jpw6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u9JpwqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1889,6 +2182,9 @@
     </sourceRole>
     <targetRole xmi:id="_u9IboKtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="myBody" navigable="true">
       <modelElement href="../chess-game.uml#_5A1KoKtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMnnYKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A1KoatcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_u9JpyKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u9Jpx6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1906,6 +2202,9 @@
     </sourceRole>
     <targetRole xmi:id="_u9IbpKtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="world" navigable="true">
       <modelElement href="../chess-game.uml#_5A1KoqtcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMo1gKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A1Ko6tcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_u9JpzatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u9JpzKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1923,6 +2222,9 @@
     </sourceRole>
     <targetRole xmi:id="_u9IbratdEeyaCaH1QWMgHg" aggregationKind="NONE" name="sprite" navigable="true">
       <modelElement href="../chess-game.uml#_5A1xsatcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMqqsKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5A1xsqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_u9KQ06tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u9KQ0qtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1940,6 +2242,9 @@
     </sourceRole>
     <targetRole xmi:id="_vCA7pqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="tiledMapRenderer" navigable="true">
       <modelElement href="../chess-game.uml#_5BFCQatcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMtG8KwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BFCQqtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_vCA7p6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_vCA7qKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
@@ -1957,10 +2262,33 @@
     </sourceRole>
     <targetRole xmi:id="_vDPDpqtdEeyaCaH1QWMgHg" aggregationKind="NONE" name="properties" navigable="true">
       <modelElement href="../chess-game.uml#_5BFCQ6tcEeyaCaH1QWMgHg"/>
+      <stereotypes xmi:id="_xMuVEKwgEeyGssW9pRht_g" name="LegacyStyledElement">
+        <modelElement href="../chess-game.uml#_5BFCRKtcEeyaCaH1QWMgHg"/>
+      </stereotypes>
       <visibility xmi:id="_vDPDp6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_vDPDqKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
     </targetRole>
   </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_1A5xUKwgEeyGssW9pRht_g" sourceItem="_0_xI4KwgEeyGssW9pRht_g"/>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_1C-08KwgEeyGssW9pRht_g" source="_uY2C2atdEeyaCaH1QWMgHg">
+    <modelElement href="../chess-game.uml#_07gT8KwgEeyGssW9pRht_g"/>
+    <stereotypes xmi:id="_1C-08awgEeyGssW9pRht_g" name="Reference">
+      <modelElement href="../chess-game.uml#_07iJIKwgEeyGssW9pRht_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_1C-08qwgEeyGssW9pRht_g" text=""/>
+    <sourceRole xmi:id="_1C-086wgEeyGssW9pRht_g" aggregationKind="NONE" name="">
+      <modelElement href="../chess-game.uml#_07gT8awgEeyGssW9pRht_g"/>
+      <visibility xmi:id="_1C-09KwgEeyGssW9pRht_g" label="+"/>
+      <cardinality xmi:id="_1C-09awgEeyGssW9pRht_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_1C-09qwgEeyGssW9pRht_g" aggregationKind="NONE" name="homePosition" navigable="true">
+      <modelElement href="../chess-game.uml#_07Wi8KwgEeyGssW9pRht_g"/>
+      <stereotypes xmi:id="_1Dub0KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_1C-096wgEeyGssW9pRht_g" label="~"/>
+      <cardinality xmi:id="_1C-0-KwgEeyGssW9pRht_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_UY3wYKw6EeyGssW9pRht_g" targetItem="_uY2DbKtdEeyaCaH1QWMgHg" sourceItem="_UVP0oKw6EeyGssW9pRht_g"/>
   <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_t9VykKtdEeyaCaH1QWMgHg" sourceConnectionVisual="_t9WZoKtdEeyaCaH1QWMgHg" text="Changes the door state based on previous state.&#xD;&#xA;&#x9; * If this is called when door is open, it closes&#xD;&#xA;&#x9; * If this is called when door is closed, it opens." item="_t9duwatdEeyaCaH1QWMgHg">
     <modelElement href="../chess-game.uml#_5BsGQKtcEeyaCaH1QWMgHg"/>
   </nodes>
@@ -2057,9 +2385,6 @@
   <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_uLPEoKtdEeyaCaH1QWMgHg" sourceConnectionVisual="_uLimoKtdEeyaCaH1QWMgHg" text="What happens in the state, and what triggers it to change state" item="_uLlC5qtdEeyaCaH1QWMgHg">
     <modelElement href="../chess-game.uml#_5BsGVKtcEeyaCaH1QWMgHg"/>
   </nodes>
-  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_uYs44KtdEeyaCaH1QWMgHg" sourceConnectionVisual="_uYuHAKtdEeyaCaH1QWMgHg" text="Changes between the states in the stateMachine" item="_uY2DbKtdEeyaCaH1QWMgHg">
-    <modelElement href="../chess-game.uml#_5BtUYKtcEeyaCaH1QWMgHg"/>
-  </nodes>
   <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_ucfMsKtdEeyaCaH1QWMgHg" sourceConnectionVisual="_ucjeIKtdEeyaCaH1QWMgHg" text="An abstract class to keep track of the different states, the Enemy &quot;Pawn&quot; can be in&#xD;&#xA;&#xD;&#xA;@author Thorgal, Mikal&#xD;&#xA; *" item="_um2poKtdEeyaCaH1QWMgHg">
     <modelElement href="../chess-game.uml#_5BtUYqtcEeyaCaH1QWMgHg"/>
   </nodes>
@@ -2069,9 +2394,11 @@
     <visibility xmi:id="_t69M8atdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_t69M8qtdEeyaCaH1QWMgHg" name="position">
       <modelElement href="../chess-game.uml#_5AfMYatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t69M86tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AfzcKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xQvSYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xQy8wKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXGZEKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_R1MSsKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WhnlkKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t69M9KtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t69M9atdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t69M9qtdEeyaCaH1QWMgHg" name="Vector2">
@@ -2080,9 +2407,11 @@
     </attributes>
     <attributes xmi:id="_t69M96tdEeyaCaH1QWMgHg" name="sprite">
       <modelElement href="../chess-game.uml#_5AfzcatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t69M-KtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AfzcqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xQ2nIKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xQ5DYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXHnMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_R3jDIKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WfNx0Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t69M-atdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t69M-qtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t69M-6tdEeyaCaH1QWMgHg" name="Sprite">
@@ -2091,9 +2420,11 @@
     </attributes>
     <attributes xmi:id="_t69M_KtdEeyaCaH1QWMgHg" name="myBody">
       <modelElement href="../chess-game.uml#_5Afzc6tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t69M_atdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AfzdKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xQ8twKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xQ_KAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXI1UKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_R40OcKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Wd48IKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t69M_qtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t69M_6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t69NAKtdEeyaCaH1QWMgHg" name="Body">
@@ -2102,9 +2433,11 @@
     </attributes>
     <attributes xmi:id="_t69NAatdEeyaCaH1QWMgHg" name="world">
       <modelElement href="../chess-game.uml#_5AgagKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t69NAqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AgagatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xRCNUKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xRFQoKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXKDcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_R7PQUKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WbfvcKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t69NA6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t69NBKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t69NBatdEeyaCaH1QWMgHg" name="World">
@@ -2113,9 +2446,11 @@
     </attributes>
     <attributes xmi:id="_t69NBqtdEeyaCaH1QWMgHg" name="entityManager">
       <modelElement href="../chess-game.uml#_5AgagqtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t69NB6tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5Agag6tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xRHs4KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xRKJIKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXKqgKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_R8zWkKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WbehUKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t69NCKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t69NCatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t69NCqtdEeyaCaH1QWMgHg" name="EntityManager">
@@ -2135,9 +2470,11 @@
     </attributes>
     <attributes xmi:id="_t69NEKtdEeyaCaH1QWMgHg" name="spriteOn">
       <modelElement href="../chess-game.uml#_5AhBkatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t69NEatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AhBkqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xRMlYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xRNzgKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXMfsKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_R81LwKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WaDlAKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t69NEqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t69NE6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t69NFKtdEeyaCaH1QWMgHg" name="Sprite">
@@ -2146,9 +2483,11 @@
     </attributes>
     <attributes xmi:id="_t69NFatdEeyaCaH1QWMgHg" name="spriteOff">
       <modelElement href="../chess-game.uml#_5AhBk6tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t69NFqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AhBlKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xRQ20KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xRSsAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXNt0KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_R_NxYKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WXpxQKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t69NF6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t69NGKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t69NGatdEeyaCaH1QWMgHg" name="Sprite">
@@ -2390,9 +2729,11 @@
     <visibility xmi:id="_t8xK0qtdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_t8xK06tdEeyaCaH1QWMgHg" name="batch">
       <modelElement href="../chess-game.uml#_5ATmMKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t8xK1KtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AUNQKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xRVIQKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xRW9cKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXQKEKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RTYmIKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XOmAUKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t8xK1atdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_t8xK1qtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t8xK16tdEeyaCaH1QWMgHg" name="SpriteBatch">
@@ -2401,9 +2742,11 @@
     </attributes>
     <attributes xmi:id="_t8xK2KtdEeyaCaH1QWMgHg" name="font">
       <modelElement href="../chess-game.uml#_5AUNQatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t8xK2atdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AUNQqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xRaAwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xRb18KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXRYMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RU96gKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XNd-8Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t8xK2qtdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_t8xK26tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t8xK3KtdEeyaCaH1QWMgHg" name="BitmapFont">
@@ -2432,9 +2775,11 @@
     <visibility xmi:id="_t9duYqtdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_t9duY6tdEeyaCaH1QWMgHg" name="position">
       <modelElement href="../chess-game.uml#_5Ajd0KtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t9duZKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5Ajd0atcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xRe5QKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xRgucKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXTNYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SAqi4Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WOvs4Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t9duZatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t9duZqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t9duZ6tdEeyaCaH1QWMgHg" name="Vector2">
@@ -2443,9 +2788,11 @@
     </attributes>
     <attributes xmi:id="_t9duaKtdEeyaCaH1QWMgHg" name="sprite">
       <modelElement href="../chess-game.uml#_5Ajd0qtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t9duaatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AkE4KtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xRjKsKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xRlm8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXUbgKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SDEWoKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WMVSEKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t9duaqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t9dua6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t9dubKtdEeyaCaH1QWMgHg" name="Sprite">
@@ -2454,9 +2801,11 @@
     </attributes>
     <attributes xmi:id="_t9dubatdEeyaCaH1QWMgHg" name="myBody">
       <modelElement href="../chess-game.uml#_5AkE4atcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t9dubqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AkE4qtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xRoqQKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xRqfcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXWQsKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SEQCYKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WLF78Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t9dub6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t9ducKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t9ducatdEeyaCaH1QWMgHg" name="Body">
@@ -2465,9 +2814,11 @@
     </attributes>
     <attributes xmi:id="_t9ducqtdEeyaCaH1QWMgHg" name="world">
       <modelElement href="../chess-game.uml#_5AkE46tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t9duc6tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AkE5KtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xRtiwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xRvX8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXXe0KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SGrEQKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WIsIMKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t9dudKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t9dudatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t9dudqtdEeyaCaH1QWMgHg" name="World">
@@ -2476,9 +2827,11 @@
     </attributes>
     <attributes xmi:id="_t9dud6tdEeyaCaH1QWMgHg" name="entityManager">
       <modelElement href="../chess-game.uml#_5Akr8KtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t9dueKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5Akr8atcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xRx0MKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xRzpYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXYs8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SIBvIKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WIq6EKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t9dueatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t9dueqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t9due6tdEeyaCaH1QWMgHg" name="EntityManager">
@@ -2487,9 +2840,11 @@
     </attributes>
     <attributes xmi:id="_t9dufKtdEeyaCaH1QWMgHg" name="spriteOpen">
       <modelElement href="../chess-game.uml#_5Akr8qtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t9dufatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5Akr86tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xR2FoKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xR4h4KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXZ7EKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SIC9QKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WHP9wKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t9dufqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t9duf6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t9dugKtdEeyaCaH1QWMgHg" name="Sprite">
@@ -2498,9 +2853,11 @@
     </attributes>
     <attributes xmi:id="_t9dugatdEeyaCaH1QWMgHg" name="spriteClosed">
       <modelElement href="../chess-game.uml#_5Akr9KtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t9dugqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AlTAKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xR6XEKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xR8zUKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXbJMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SKdYEKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WE074Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t9dug6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_t9duhKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t9duhatdEeyaCaH1QWMgHg" name="Sprite">
@@ -2728,9 +3085,11 @@
     <visibility xmi:id="_t-oMC6tdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_t-oMDKtdEeyaCaH1QWMgHg" defaultValue="new ArrayList&lt;IEntities>()" name="entityList">
       <modelElement href="../chess-game.uml#_5BAJxqtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t-oMDatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BAw0KtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xSBr0KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xSC58KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXc-YKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_S7EVoKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Tf4S4Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t-oMDqtdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_t-oMD6tdEeyaCaH1QWMgHg" label="1..*" max="-1" min="1"/>
       <type xmi:id="_t-oMEKtdEeyaCaH1QWMgHg" name="IEntities">
@@ -2739,9 +3098,11 @@
     </attributes>
     <attributes xmi:id="_t-oMEatdEeyaCaH1QWMgHg" defaultValue="new ArrayList&lt;IEntities>()" name="entityRemoveList">
       <modelElement href="../chess-game.uml#_5BAw0atcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t-oMEqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BAw1KtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xSDhAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xSFWMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXezkKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_S7Gx4Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Tf2dsKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t-oME6tdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_t-oMFKtdEeyaCaH1QWMgHg" label="1..*" max="-1" min="1"/>
       <type xmi:id="_t-oMFatdEeyaCaH1QWMgHg" name="IEntities">
@@ -2750,9 +3111,11 @@
     </attributes>
     <attributes xmi:id="_t-oMFqtdEeyaCaH1QWMgHg" defaultValue="new ArrayList&lt;Player>()" name="playerList">
       <modelElement href="../chess-game.uml#_5BAw1atcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t-oMF6tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BBX4atcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xR-ogKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xR_2oKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXgBsKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_S7IAAKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Tf1PkKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t-oMGKtdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_t-oMGatdEeyaCaH1QWMgHg" label="1..*" max="-1" min="1"/>
       <type xmi:id="_t-oMGqtdEeyaCaH1QWMgHg" name="Player">
@@ -2761,12 +3124,18 @@
     </attributes>
     <attributes xmi:id="_t-oMG6tdEeyaCaH1QWMgHg" defaultValue="new HashMap&lt;Integer, Door>()" name="doorMap">
       <modelElement href="../chess-game.uml#_5BBX4qtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t-oMHKtdEeyaCaH1QWMgHg" name="Generics">
-        <modelElement href="../chess-game.uml#_5BBX46tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
-      <stereotypes xmi:id="_t-oMHatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BBX5atcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xSHLYKwgEeyGssW9pRht_g" name="Generics"/>
+      <stereotypes xmi:id="_xSHycKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xSJAkKwgEeyGssW9pRht_g" name="Generics"/>
+      <stereotypes xmi:id="_xSJAkawgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXh24KwgEeyGssW9pRht_g" name="Generics"/>
+      <stereotypes xmi:id="_xXid8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_S7JOIKw6EeyGssW9pRht_g" name="Generics"/>
+      <stereotypes xmi:id="_S8bnkKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_S-4eoKw6EeyGssW9pRht_g" name="Generics"/>
+      <stereotypes xmi:id="_TAK4EKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TcYS8Kw6EeyGssW9pRht_g" name="Generics"/>
+      <stereotypes xmi:id="_TdYYgKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t-oMHqtdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_t-oMH6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t-oMIKtdEeyaCaH1QWMgHg" name="HashMap">
@@ -2775,9 +3144,11 @@
     </attributes>
     <attributes xmi:id="_t-oMIatdEeyaCaH1QWMgHg" name="pworld">
       <modelElement href="../chess-game.uml#_5BB-8KtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_t-oMIqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BB-8atcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xSLc0KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xSNSAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXjsEKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TCnvIKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TcWdwKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_t-oMI6tdEeyaCaH1QWMgHg" label="-"/>
       <cardinality xmi:id="_t-oMJKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_t-oMJatdEeyaCaH1QWMgHg" name="PhysicsWorld">
@@ -2850,9 +3221,11 @@
     </attributes>
     <attributes xmi:id="_uBVhyKtdEeyaCaH1QWMgHg" name="cam">
       <modelElement href="../chess-game.uml#_5AVbYatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBVhyatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AVbYqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xSoIwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xSp98KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXlhQKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RXWgIKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XK2v0Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBVhyqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBVhy6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBVhzKtdEeyaCaH1QWMgHg" name="OrthographicCamera">
@@ -2861,9 +3234,11 @@
     </attributes>
     <attributes xmi:id="_uBVhzatdEeyaCaH1QWMgHg" name="batch">
       <modelElement href="../chess-game.uml#_5AVbY6tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBVhzqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AWCcKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xSYRIKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xSatYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXmvYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RX_ZUKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XKF60Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBVhz6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBVh0KtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBVh0atdEeyaCaH1QWMgHg" name="Batch">
@@ -2872,9 +3247,11 @@
     </attributes>
     <attributes xmi:id="_uBVh0qtdEeyaCaH1QWMgHg" name="gameMap">
       <modelElement href="../chess-game.uml#_5AWCcatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBVh06tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AWCcqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xSrzIKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xStoUKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXn9gKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RaabMKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XKEssKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBVh1KtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBVh1atdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBVh1qtdEeyaCaH1QWMgHg" name="TiledGameMap">
@@ -2883,9 +3260,11 @@
     </attributes>
     <attributes xmi:id="_uBVh16tdEeyaCaH1QWMgHg" name="tiledMap">
       <modelElement href="../chess-game.uml#_5AWCc6tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBVh2KtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AWCdKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xSwEkKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xSzH4KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXpLoKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RadegKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XHsuIKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBVh2atdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBVh2qtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBVh26tdEeyaCaH1QWMgHg" name="TiledMap">
@@ -2894,9 +3273,11 @@
     </attributes>
     <attributes xmi:id="_uBVh3KtdEeyaCaH1QWMgHg" name="player">
       <modelElement href="../chess-game.uml#_5AWCdatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBVh3atdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AWpgKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xSdJoKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xSgM8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXqZwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RbtbsKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XHsHEKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBVh3qtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBVh36tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBVh4KtdEeyaCaH1QWMgHg" name="Player">
@@ -2905,9 +3286,11 @@
     </attributes>
     <attributes xmi:id="_uBVh4atdEeyaCaH1QWMgHg" name="playerController">
       <modelElement href="../chess-game.uml#_5AWpgatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBVh4qtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AWpgqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xS09EKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xS2yQKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXrA0KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RbuCwKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XHrgAKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBVh46tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBVh5KtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBVh5atdEeyaCaH1QWMgHg" name="PlayerController">
@@ -2916,9 +3299,11 @@
     </attributes>
     <attributes xmi:id="_uBVh5qtdEeyaCaH1QWMgHg" name="gameWorld">
       <modelElement href="../chess-game.uml#_5AWpg6tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBVh56tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AXQkKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xSjQQKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xSlFcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXsO8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RbvQ4Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XHq48Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBVh6KtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBVh6atdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBVh6qtdEeyaCaH1QWMgHg" name="PhysicsWorld">
@@ -2927,9 +3312,11 @@
     </attributes>
     <attributes xmi:id="_uBVh66tdEeyaCaH1QWMgHg" name="debugRenderer">
       <modelElement href="../chess-game.uml#_5AXQkatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBVh7KtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AXQkqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xS51kKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xS8R0KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXtdEKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Rbv38Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XGcw8Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBVh7atdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBVh7qtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBVh76tdEeyaCaH1QWMgHg" name="Box2DDebugRenderer">
@@ -2938,9 +3325,11 @@
     </attributes>
     <attributes xmi:id="_uBVh8KtdEeyaCaH1QWMgHg" name="entityManager">
       <modelElement href="../chess-game.uml#_5AXQk6tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBVh8atdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AXQlKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xSPHMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xSQ8YKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXurMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_ReJrsKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XGa7wKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBVh8qtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBVh86tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBVh9KtdEeyaCaH1QWMgHg" name="EntityManager">
@@ -2949,9 +3338,11 @@
     </attributes>
     <attributes xmi:id="_uBVh9atdEeyaCaH1QWMgHg" name="game">
       <modelElement href="../chess-game.uml#_5AXQlatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBVh9qtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AX3oKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xSSxkKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xSUmwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXv5UKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_ReNWEKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XGZGkKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBVh96tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBVh-KtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBVh-atdEeyaCaH1QWMgHg" name="ChessGame">
@@ -2996,9 +3387,11 @@
     </attributes>
     <attributes xmi:id="_uBViCqtdEeyaCaH1QWMgHg" name="stage" staticAttribute="true">
       <modelElement href="../chess-game.uml#_5AYesqtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBViC6tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AYes6tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xS_VIKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xTBKUKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXxugKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_ReUDwKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XD-rwKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBViDKtdEeyaCaH1QWMgHg" label="-"/>
       <cardinality xmi:id="_uBViDatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBViDqtdEeyaCaH1QWMgHg" name="Stage">
@@ -3029,9 +3422,11 @@
     </attributes>
     <attributes xmi:id="_uBViGatdEeyaCaH1QWMgHg" defaultValue="new Skin(Gdx.files.internal(&quot;assets/skin/goldenspiralui/golden-ui-skin.json&quot;))" name="skin" staticAttribute="true">
       <modelElement href="../chess-game.uml#_5AZFwqtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBViGqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AZFxKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xTDmkKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xTFbwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xX0KwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RfpggKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XCpPAKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBViG6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBViHKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBViHatdEeyaCaH1QWMgHg" name="Skin">
@@ -3040,9 +3435,11 @@
     </attributes>
     <attributes xmi:id="_uBViHqtdEeyaCaH1QWMgHg" defaultValue="new Label(&quot;PAUSED&quot;, skin, &quot;title&quot;)" name="pauseText" staticAttribute="true">
       <modelElement href="../chess-game.uml#_5AZFxatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBViH6tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AZs0KtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xTHQ8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xTJGIKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xX1_8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RiCtMKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XAO0MKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBViIKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBViIatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBViIqtdEeyaCaH1QWMgHg" name="Label">
@@ -3051,9 +3448,11 @@
     </attributes>
     <attributes xmi:id="_uBViI6tdEeyaCaH1QWMgHg" defaultValue="new TextButton (&quot;Resume&quot;, skin, &quot;default&quot;)" name="resumeButton" staticAttribute="true">
       <modelElement href="../chess-game.uml#_5AZs0atcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBViJKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AZs06tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xTK7UKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xTMJcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xX3OEKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Ris0gKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_W-0e8Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBViJatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBViJqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBViJ6tdEeyaCaH1QWMgHg" name="TextButton">
@@ -3062,9 +3461,11 @@
     </attributes>
     <attributes xmi:id="_uBViKKtdEeyaCaH1QWMgHg" defaultValue="new Label(&quot;GAME OVER&quot;, skin, &quot;title&quot;)" name="gameOverText" staticAttribute="true">
       <modelElement href="../chess-game.uml#_5AZs1KtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBViKatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AZs1qtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xTPMwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xTRB8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xX4cMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RlGBMKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_W8aEIKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBViKqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBViK6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBViLKtdEeyaCaH1QWMgHg" name="Label">
@@ -3073,9 +3474,11 @@
     </attributes>
     <attributes xmi:id="_uBViLatdEeyaCaH1QWMgHg" defaultValue="new TextButton (&quot;Retry?&quot;, skin, &quot;default&quot;)" name="retryButton" staticAttribute="true">
       <modelElement href="../chess-game.uml#_5AZs16tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBViLqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AaT4atcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xTTeMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xTVTYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xX6RYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RltFMKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_W7I40Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBViL6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBViMKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBViMatdEeyaCaH1QWMgHg" name="TextButton">
@@ -3084,9 +3487,11 @@
     </attributes>
     <attributes xmi:id="_uBViMqtdEeyaCaH1QWMgHg" defaultValue="new TextButton (&quot;Quit&quot;, skin, &quot;default&quot;)" name="quitButtonGO" staticAttribute="true">
       <modelElement href="../chess-game.uml#_5AaT4qtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBViM6tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AaT5KtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xTWhgKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xTYWsKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xX7fgKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RoIuIKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_W4so0Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBViNKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBViNatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBViNqtdEeyaCaH1QWMgHg" name="TextButton">
@@ -3095,9 +3500,11 @@
     </attributes>
     <attributes xmi:id="_uBViN6tdEeyaCaH1QWMgHg" defaultValue="new TextButton (&quot;Quit&quot;, skin, &quot;default&quot;)" name="quitButtonP" staticAttribute="true">
       <modelElement href="../chess-game.uml#_5AaT5atcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBViOKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AaT56tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xTaL4KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xTcoIKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xX8toKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RpTy0Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_W3d5wKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBViOatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBViOqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBViO6tdEeyaCaH1QWMgHg" name="TextButton">
@@ -3106,9 +3513,11 @@
     </attributes>
     <attributes xmi:id="_uBViPKtdEeyaCaH1QWMgHg" defaultValue="new Label (&quot;Health&quot;, skin, &quot;default&quot;)" name="healthText" staticAttribute="true">
       <modelElement href="../chess-game.uml#_5Aa68KtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBViPatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5Aa68qtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xTfEYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xTiHsKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xX97wKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Rru0sKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_W1De8Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBViPqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBViP6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBViQKtdEeyaCaH1QWMgHg" name="Label">
@@ -3117,9 +3526,11 @@
     </attributes>
     <attributes xmi:id="_uBViQatdEeyaCaH1QWMgHg" defaultValue="new Label (&quot;Score&quot;, skin, &quot;default&quot;)" name="scoreText" staticAttribute="true">
       <modelElement href="../chess-game.uml#_5Aa686tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBViQqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5Aa69atcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xTkj8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xTnAMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xX_J4KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RthkcKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Wzrl8Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBViQ6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBViRKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBViRatdEeyaCaH1QWMgHg" name="Label">
@@ -3128,9 +3539,11 @@
     </attributes>
     <attributes xmi:id="_uBViRqtdEeyaCaH1QWMgHg" defaultValue="new Label (&quot;000&quot;, skin, &quot;default&quot;)" name="timerText" staticAttribute="true">
       <modelElement href="../chess-game.uml#_5AbiAKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBViR6tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AbiAqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xTqqkKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xTsfwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYAYAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Rv7YMKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WxRLIKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBViSKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBViSatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBViSqtdEeyaCaH1QWMgHg" name="Label">
@@ -3150,9 +3563,11 @@
     </attributes>
     <attributes xmi:id="_uBViUKtdEeyaCaH1QWMgHg" defaultValue="new Label(&quot;VICTORY&quot;, skin, &quot;title&quot;)" name="victoryText" staticAttribute="true">
       <modelElement href="../chess-game.uml#_5AbiBatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBViUatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AbiB6tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xTvjEKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xTxYQKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYBmIKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RxPm0Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Wv8VcKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBViUqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBViU6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBViVKtdEeyaCaH1QWMgHg" name="Label">
@@ -3161,9 +3576,11 @@
     </attributes>
     <attributes xmi:id="_uBViVatdEeyaCaH1QWMgHg" defaultValue="new TextButton (&quot;Next level&quot;, skin, &quot;default&quot;)" name="continueButton" staticAttribute="true">
       <modelElement href="../chess-game.uml#_5AbiCKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uBViVqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AcJEatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xTz0gKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xT1psKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYC0QKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_RzqosKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WtihsKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uBViV6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uBViWKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uBViWatdEeyaCaH1QWMgHg" name="TextButton">
@@ -3563,9 +3980,11 @@
     <visibility xmi:id="_uNg8kqtdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_uNg8k6tdEeyaCaH1QWMgHg" name="cam">
       <modelElement href="../chess-game.uml#_5A6DIKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uNg8lKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A6DIatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xUZDUKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xUbfkKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYEpcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_StLqoKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XvUu0Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uNg8latdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uNg8lqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uNg8l6tdEeyaCaH1QWMgHg" name="OrthographicCamera">
@@ -3574,9 +3993,11 @@
     </attributes>
     <attributes xmi:id="_uNg8mKtdEeyaCaH1QWMgHg" name="game">
       <modelElement href="../chess-game.uml#_5A6DIqtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uNg8matdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A6DI6tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xUUx4KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xUWnEKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYFQgKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SvhM8Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XvUHwKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uNg8mqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uNg8m6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uNg8nKtdEeyaCaH1QWMgHg" name="ChessGame">
@@ -3585,9 +4006,11 @@
     </attributes>
     <attributes xmi:id="_uNg8natdEeyaCaH1QWMgHg" name="stage">
       <modelElement href="../chess-game.uml#_5A6qMKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uNg8nqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A6qMatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xUd70KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xUg_IKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYHFsKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SvjpMKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XuDjgKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uNg8n6tdEeyaCaH1QWMgHg" label="-"/>
       <cardinality xmi:id="_uNg8oKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uNg8oatdEeyaCaH1QWMgHg" name="Stage">
@@ -3718,9 +4141,11 @@
     <visibility xmi:id="_uPkyEqtdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_uPkyE6tdEeyaCaH1QWMgHg" name="world">
       <modelElement href="../chess-game.uml#_5BB-8qtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uPkyFKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BB-86tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xUrXMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xUtMYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYHswKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TCpkUKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TcKQgKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uPkyFatdEeyaCaH1QWMgHg" label="-"/>
       <cardinality xmi:id="_uPkyFqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uPkyF6tdEeyaCaH1QWMgHg" name="PhysicsWorld">
@@ -3729,9 +4154,11 @@
     </attributes>
     <attributes xmi:id="_uPkyGKtdEeyaCaH1QWMgHg" name="player">
       <modelElement href="../chess-game.uml#_5BCmAKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uPkyGatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BCmAatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xUjbYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xUlQkKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYI64KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TCrZgKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TcIbUKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uPkyGqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uPkyG6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uPkyHKtdEeyaCaH1QWMgHg" name="Player">
@@ -3740,9 +4167,11 @@
     </attributes>
     <attributes xmi:id="_uPkyHatdEeyaCaH1QWMgHg" name="enemy">
       <modelElement href="../chess-game.uml#_5BCmAqtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uPkyHqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BCmA6tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xUnFwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xUo68KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYKJAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TCt1wKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TcHNMKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uPkyH6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uPkyIKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uPkyIatdEeyaCaH1QWMgHg" name="IEnemies">
@@ -3918,9 +4347,11 @@
     <visibility xmi:id="_uS5L0qtdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_uS5L06tdEeyaCaH1QWMgHg" name="cam">
       <modelElement href="../chess-game.uml#_5A7RQKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uS5L1KtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A7RQatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xUzTAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xU1IMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYL-MKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Sw_zoKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Xn2N0Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uS5L1atdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uS5L1qtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uS5L16tdEeyaCaH1QWMgHg" name="OrthographicCamera">
@@ -3929,9 +4360,11 @@
     </attributes>
     <attributes xmi:id="_uS5L2KtdEeyaCaH1QWMgHg" name="game">
       <modelElement href="../chess-game.uml#_5A7RQqtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uS5L2atdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A74UKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xUvBkKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xUw2wKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYNMUKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SzaOcKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Xn0_sKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uS5L2qtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uS5L26tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uS5L3KtdEeyaCaH1QWMgHg" name="ChessGame">
@@ -3940,9 +4373,11 @@
     </attributes>
     <attributes xmi:id="_uS5L3atdEeyaCaH1QWMgHg" name="stage">
       <modelElement href="../chess-game.uml#_5A74UatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uS5L3qtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A74UqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xU3kcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xU5ZoKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYNzYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SzdRwKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Xmh_MKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uS5L36tdEeyaCaH1QWMgHg" label="-"/>
       <cardinality xmi:id="_uS5L4KtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uS5L4atdEeyaCaH1QWMgHg" name="Stage">
@@ -4073,9 +4508,11 @@
     <visibility xmi:id="_uVOuIqtdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_uVOuI6tdEeyaCaH1QWMgHg" name="cam">
       <modelElement href="../chess-game.uml#_5A8fYKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uVOuJKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A8fYatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xVAHUKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xVBVcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYPokKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_S01KwKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XggPsKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uVOuJatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uVOuJqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uVOuJ6tdEeyaCaH1QWMgHg" name="OrthographicCamera">
@@ -4084,9 +4521,11 @@
     </attributes>
     <attributes xmi:id="_uVOuKKtdEeyaCaH1QWMgHg" name="game">
       <modelElement href="../chess-game.uml#_5A8fYqtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uVOuKatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A8fY6tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xU714KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xU9rEKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYQ2sKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_S3PlkKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XgfooKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uVOuKqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uVOuK6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uVOuLKtdEeyaCaH1QWMgHg" name="ChessGame">
@@ -4095,9 +4534,11 @@
     </attributes>
     <attributes xmi:id="_uVOuLatdEeyaCaH1QWMgHg" name="stage">
       <modelElement href="../chess-game.uml#_5A9GcKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uVOuLqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A9GcatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xVDxsKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xVE_0KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYSE0KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_S3RawKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XfOdUKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uVOuL6tdEeyaCaH1QWMgHg" label="-"/>
       <cardinality xmi:id="_uVOuMKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uVOuMatdEeyaCaH1QWMgHg" name="Stage">
@@ -4183,9 +4624,11 @@
     </attributes>
     <attributes xmi:id="_uVOuVatdEeyaCaH1QWMgHg" defaultValue="new Skin(Gdx.files.internal(&quot;assets/skin/goldenspiralui/golden-ui-skin.json&quot;))" name="skin">
       <modelElement href="../chess-game.uml#_5A-UlatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uVOuVqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A-7oKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xVG1AKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xVJRQKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYVvMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_S4rwAKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_XcyNUKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uVOuV6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uVOuWKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uVOuWatdEeyaCaH1QWMgHg" name="Skin">
@@ -4350,7 +4793,7 @@
       </parameters>
     </operations>
   </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_uY2C2atdEeyaCaH1QWMgHg" name="Pawn" associationsIn="_uZ2vcKtdEeyaCaH1QWMgHg _ueFvMKtdEeyaCaH1QWMgHg _uhK4YKtdEeyaCaH1QWMgHg _uj8fkKtdEeyaCaH1QWMgHg" associationsOut="_uWUTQKtdEeyaCaH1QWMgHg _uXtaYKtdEeyaCaH1QWMgHg _uYVFcKtdEeyaCaH1QWMgHg _uYVsgKtdEeyaCaH1QWMgHg _uYVshatdEeyaCaH1QWMgHg _uY0NoKtdEeyaCaH1QWMgHg _uY00sKtdEeyaCaH1QWMgHg _uY1bwKtdEeyaCaH1QWMgHg _uY1byatdEeyaCaH1QWMgHg _uY2C0KtdEeyaCaH1QWMgHg" generalizations="_uXDTEKtdEeyaCaH1QWMgHg">
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_uY2C2atdEeyaCaH1QWMgHg" name="Pawn" associationsIn="_uZ2vcKtdEeyaCaH1QWMgHg _ueFvMKtdEeyaCaH1QWMgHg _uhK4YKtdEeyaCaH1QWMgHg _uj8fkKtdEeyaCaH1QWMgHg" associationsOut="_uWUTQKtdEeyaCaH1QWMgHg _uXtaYKtdEeyaCaH1QWMgHg _uYVFcKtdEeyaCaH1QWMgHg _uYVsgKtdEeyaCaH1QWMgHg _uYVshatdEeyaCaH1QWMgHg _uY0NoKtdEeyaCaH1QWMgHg _uY00sKtdEeyaCaH1QWMgHg _uY1bwKtdEeyaCaH1QWMgHg _uY1byatdEeyaCaH1QWMgHg _uY2C0KtdEeyaCaH1QWMgHg _1C-08KwgEeyGssW9pRht_g" generalizations="_uXDTEKtdEeyaCaH1QWMgHg">
     <modelElement href="../chess-game.uml#_43zKcatcEeyaCaH1QWMgHg"/>
     <visualProperties xmi:id="_uY2C2qtdEeyaCaH1QWMgHg" position="125.0,4371.0" size="-1.0,-1.0"/>
     <visibility xmi:id="_uY2C26tdEeyaCaH1QWMgHg" label="+"/>
@@ -4389,9 +4832,11 @@
     </attributes>
     <attributes xmi:id="_uY2C66tdEeyaCaH1QWMgHg" name="position">
       <modelElement href="../chess-game.uml#_5AoWU6tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uY2C7KtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5Ao9YKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xVQmAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xVTCQKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYYLcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SLrgEKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UpeYMKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uY2C7atdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uY2C7qtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uY2C76tdEeyaCaH1QWMgHg" name="Vector2">
@@ -4400,9 +4845,11 @@
     </attributes>
     <attributes xmi:id="_uY2C8KtdEeyaCaH1QWMgHg" name="world">
       <modelElement href="../chess-game.uml#_5Ao9YatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uY2C8atdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5Ao9YqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xVVegKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xVX6wKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYZZkKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SOF64Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UnFLgKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uY2C8qtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uY2C86tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uY2C9KtdEeyaCaH1QWMgHg" name="World">
@@ -4411,9 +4858,11 @@
     </attributes>
     <attributes xmi:id="_uY2C9atdEeyaCaH1QWMgHg" name="myBody">
       <modelElement href="../chess-game.uml#_5Ao9Y6tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uY2C9qtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5Ao9ZKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xVaXAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xVcMMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYbOwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SPkhkKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Umc5YKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uY2C96tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uY2C-KtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uY2C-atdEeyaCaH1QWMgHg" name="Body">
@@ -4422,9 +4871,11 @@
     </attributes>
     <attributes xmi:id="_uY2C-qtdEeyaCaH1QWMgHg" name="entityManager">
       <modelElement href="../chess-game.uml#_5ApkcKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uY2C-6tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5ApkcatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xVLGcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xVM7oKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYb10KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SR-VUKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UmcSUKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uY2C_KtdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uY2C_atdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uY2C_qtdEeyaCaH1QWMgHg" name="EntityManager">
@@ -4433,9 +4884,11 @@
     </attributes>
     <attributes xmi:id="_uY2C_6tdEeyaCaH1QWMgHg" name="sprite">
       <modelElement href="../chess-game.uml#_5ApkcqtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uY2DAKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5Apkc6tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xVeocKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xVhEsKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYdD8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SSAxkKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UkFh4aw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uY2DAatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uY2DAqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uY2DA6tdEeyaCaH1QWMgHg" name="Sprite">
@@ -4444,9 +4897,11 @@
     </attributes>
     <attributes xmi:id="_uY2DBKtdEeyaCaH1QWMgHg" defaultValue="new PawnIdle(this)" name="idleState">
       <modelElement href="../chess-game.uml#_5ApkdKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uY2DBatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AqLgKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xViS0KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xVkIAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYeSEKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_STMdUKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UkFh4Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uY2DBqtdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uY2DB6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uY2DCKtdEeyaCaH1QWMgHg" name="PawnState">
@@ -4455,9 +4910,11 @@
     </attributes>
     <attributes xmi:id="_uY2DCatdEeyaCaH1QWMgHg" defaultValue="new PawnChase(this)" name="chaseState">
       <modelElement href="../chess-game.uml#_5AqLgatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uY2DCqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AqLg6tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xVlWIKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xVmkQKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYfgMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_STNEYKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UkE60Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uY2DC6tdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uY2DDKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uY2DDatdEeyaCaH1QWMgHg" name="PawnState">
@@ -4466,9 +4923,11 @@
     </attributes>
     <attributes xmi:id="_uY2DDqtdEeyaCaH1QWMgHg" defaultValue="new PawnHome(this)" name="homeState">
       <modelElement href="../chess-game.uml#_5AqLhKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uY2DD6tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AqykKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xVoZcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xVqOoKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYhVYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_STNrcKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UkETwKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uY2DEKtdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uY2DEatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uY2DEqtdEeyaCaH1QWMgHg" name="PawnState">
@@ -4477,9 +4936,11 @@
     </attributes>
     <attributes xmi:id="_uY2DE6tdEeyaCaH1QWMgHg" defaultValue="new PawnMove(this)" name="moveState">
       <modelElement href="../chess-game.uml#_5AqykatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uY2DFKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5Aqyk6tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xVsD0KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xVtR8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYh8cKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_STOSgKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UkDssKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uY2DFatdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uY2DFqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uY2DF6tdEeyaCaH1QWMgHg" name="PawnState">
@@ -4488,9 +4949,11 @@
     </attributes>
     <attributes xmi:id="_uY2DGKtdEeyaCaH1QWMgHg" defaultValue="idleState" name="currentState">
       <modelElement href="../chess-game.uml#_5AqylKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uY2DGatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5ArZoKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xVvHIKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xVw8UKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYjxoKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_STO5kKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UkDFoKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uY2DGqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uY2DG6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uY2DHKtdEeyaCaH1QWMgHg" name="PawnState">
@@ -4676,7 +5139,7 @@
         </type>
       </outParameters>
     </operations>
-    <operations xmi:id="_uY2DbKtdEeyaCaH1QWMgHg" comments="_uYs44KtdEeyaCaH1QWMgHg" targetConnectionVisual="_uYuHAKtdEeyaCaH1QWMgHg" name="changeState">
+    <operations xmi:id="_uY2DbKtdEeyaCaH1QWMgHg" comments="_UVP0oKw6EeyGssW9pRht_g" targetConnectionVisual="_UY3wYKw6EeyGssW9pRht_g" name="changeState">
       <modelElement href="../chess-game.uml#_4-j5wKtcEeyaCaH1QWMgHg"/>
       <visibility xmi:id="_uY2DbatdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uY2DbqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
@@ -4828,9 +5291,11 @@
     </attributes>
     <attributes xmi:id="_uqfzjatdEeyaCaH1QWMgHg" name="world">
       <modelElement href="../chess-game.uml#_5BD0JKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uqfzjqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BD0JatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xWXZQKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xWZOcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYlm0KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TCzVUKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TSfXIKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uqfzj6tdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_uqfzkKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uqfzkatdEeyaCaH1QWMgHg" name="World">
@@ -4917,9 +5382,11 @@
     <visibility xmi:id="_urf5EqtdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_urf5E6tdEeyaCaH1QWMgHg" name="position">
       <modelElement href="../chess-game.uml#_5AtO0KtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_urf5FKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AtO0atcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xT8-cKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xT_asKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYm08KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_STPgoKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UN-vAKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_urf5FatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_urf5FqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_urf5F6tdEeyaCaH1QWMgHg" name="Vector2">
@@ -4928,9 +5395,11 @@
     </attributes>
     <attributes xmi:id="_urf5GKtdEeyaCaH1QWMgHg" name="world">
       <modelElement href="../chess-game.uml#_5AtO0qtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_urf5GatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5At14KtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xUB28KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xUDsIKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYoqIKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SVm4IKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UMrHcKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_urf5GqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_urf5G6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_urf5HKtdEeyaCaH1QWMgHg" name="World">
@@ -4939,9 +5408,11 @@
     </attributes>
     <attributes xmi:id="_urf5HatdEeyaCaH1QWMgHg" name="sprite">
       <modelElement href="../chess-game.uml#_5At14atcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_urf5HqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5At14qtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xUGvcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xUIkoKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYp4QKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SW7t0Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UKQsoKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_urf5H6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_urf5IKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_urf5IatdEeyaCaH1QWMgHg" name="Sprite">
@@ -4950,9 +5421,11 @@
     </attributes>
     <attributes xmi:id="_urf5IqtdEeyaCaH1QWMgHg" name="myBody">
       <modelElement href="../chess-game.uml#_5At146tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_urf5I6tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5Auc8KtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xULn8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xUNdIKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYrGYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SZUTcKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UJGPAKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_urf5JKtdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_urf5JatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_urf5JqtdEeyaCaH1QWMgHg" name="Body">
@@ -4961,9 +5434,11 @@
     </attributes>
     <attributes xmi:id="_urf5J6tdEeyaCaH1QWMgHg" name="controller">
       <modelElement href="../chess-game.uml#_5Auc8atcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_urf5KKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5Auc8qtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xUPSUKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xURHgKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYrtcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SZ-awKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UJEZ0Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_urf5KatdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_urf5KqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_urf5K6tdEeyaCaH1QWMgHg" name="PlayerController">
@@ -5422,9 +5897,11 @@
     <visibility xmi:id="_u3ixC6tdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_u3ixDKtdEeyaCaH1QWMgHg" name="position">
       <modelElement href="../chess-game.uml#_5AxgQKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_u3ixDatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AxgQatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xWeuAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xWf8IKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYxNAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SaA3AKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UC8jsKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_u3ixDqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u3ixD6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_u3ixEKtdEeyaCaH1QWMgHg" name="Vector2">
@@ -5433,9 +5910,11 @@
     </attributes>
     <attributes xmi:id="_u3ixEatdEeyaCaH1QWMgHg" name="world">
       <modelElement href="../chess-game.uml#_5AxgQqtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_u3ixEqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AyHUKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xWiYYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xWjmgKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYzCMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_ScaDsKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UBkqsKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_u3ixE6tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u3ixFKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_u3ixFatdEeyaCaH1QWMgHg" name="World">
@@ -5444,9 +5923,11 @@
     </attributes>
     <attributes xmi:id="_u3ixFqtdEeyaCaH1QWMgHg" name="entityManager">
       <modelElement href="../chess-game.uml#_5AyHUatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_u3ixF6tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AyHUqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xWackKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xWcRwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xYzpQKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Sd9i4Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_UBi1gKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_u3ixGKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u3ixGatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_u3ixGqtdEeyaCaH1QWMgHg" name="EntityManager">
@@ -5455,9 +5936,11 @@
     </attributes>
     <attributes xmi:id="_u3ixG6tdEeyaCaH1QWMgHg" name="myBody">
       <modelElement href="../chess-game.uml#_5AyHU6tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_u3ixHKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AyuYKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xWlbsKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xWnQ4KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xY1ecKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Sd__IKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_T_IasKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_u3ixHatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u3ixHqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_u3ixH6tdEeyaCaH1QWMgHg" name="Body">
@@ -5466,9 +5949,11 @@
     </attributes>
     <attributes xmi:id="_u3ixIKtdEeyaCaH1QWMgHg" name="sprite">
       <modelElement href="../chess-game.uml#_5AyuYatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_u3ixIatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AyuYqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xWofAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xWq7QKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xY2skKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SgX9sKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_T96SsKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_u3ixIqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u3ixI6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_u3ixJKtdEeyaCaH1QWMgHg" name="Sprite">
@@ -5499,9 +5984,11 @@
     </attributes>
     <attributes xmi:id="_u3ixL6tdEeyaCaH1QWMgHg" name="particleAtlas">
       <modelElement href="../chess-game.uml#_5AzVdKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_u3ixMKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5AzVdatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xWswcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xWt-kKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xY4hwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_ShuokKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_T7ge8Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_u3ixMatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u3ixMqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_u3ixM6tdEeyaCaH1QWMgHg" name="TextureAtlas">
@@ -5510,9 +5997,11 @@
     </attributes>
     <attributes xmi:id="_u3ixNKtdEeyaCaH1QWMgHg" defaultValue="new ParticleEffect()" name="particle">
       <modelElement href="../chess-game.uml#_5Az8gKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_u3ixNatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5Az8gqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xWvzwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xWxo8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xY5v4KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SkKRgKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_T6HX0Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_u3ixNqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u3ixN6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_u3ixOKtdEeyaCaH1QWMgHg" name="ParticleEffect">
@@ -5689,9 +6178,11 @@
     <visibility xmi:id="_u9K34qtdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_u9K346tdEeyaCaH1QWMgHg" name="position">
       <modelElement href="../chess-game.uml#_5A0jkKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_u9K35KtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A0jkatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xW16YKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xW3IgKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xY6-AKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Sla1wKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TytvUKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_u9K35atdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u9K35qtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_u9K356tdEeyaCaH1QWMgHg" name="Vector2">
@@ -5700,9 +6191,11 @@
     </attributes>
     <attributes xmi:id="_u9K36KtdEeyaCaH1QWMgHg" name="myBody">
       <modelElement href="../chess-game.uml#_5A1KoKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_u9K36atdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A1KoatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xW49sKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xW6y4KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xY8MIKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Sn13oKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TwTUgKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_u9K36qtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u9K366tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_u9K37KtdEeyaCaH1QWMgHg" name="Body">
@@ -5711,9 +6204,11 @@
     </attributes>
     <attributes xmi:id="_u9K37atdEeyaCaH1QWMgHg" name="world">
       <modelElement href="../chess-game.uml#_5A1KoqtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_u9K37qtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A1Ko6tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xW8BAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xW92MKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xY9aQKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SpPl0Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Tu1U4Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_u9K376tdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u9K38KtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_u9K38atdEeyaCaH1QWMgHg" name="World">
@@ -5722,9 +6217,11 @@
     </attributes>
     <attributes xmi:id="_u9K38qtdEeyaCaH1QWMgHg" name="entityManager">
       <modelElement href="../chess-game.uml#_5A1KpKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_u9K386tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A1xsKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xWy3EKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xW0sQKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xY-oYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_SrpZkKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Tu0GwKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_u9K39KtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u9K39atdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_u9K39qtdEeyaCaH1QWMgHg" name="EntityManager">
@@ -5733,9 +6230,11 @@
     </attributes>
     <attributes xmi:id="_u9K396tdEeyaCaH1QWMgHg" name="sprite">
       <modelElement href="../chess-game.uml#_5A1xsatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_u9K3-KtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A1xsqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xW-dQKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xW_rYKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xY_PcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Srsc4Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Tsa6EKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_u9K3-atdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_u9K3-qtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_u9K3-6tdEeyaCaH1QWMgHg" name="Sprite">
@@ -6034,9 +6533,11 @@
     </attributes>
     <attributes xmi:id="_vDPDsatdEeyaCaH1QWMgHg" name="tiledMap">
       <modelElement href="../chess-game.uml#_5BEbM6tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_vDPDsqtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BFCQKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xT4F8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xT57IKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xZAdkKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TEIyEKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TOPJQKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_vDPDs6tdEeyaCaH1QWMgHg" label="+"/>
       <cardinality xmi:id="_vDPDtKtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_vDPDtatdEeyaCaH1QWMgHg" name="TiledMap">
@@ -6045,9 +6546,11 @@
     </attributes>
     <attributes xmi:id="_vDPDtqtdEeyaCaH1QWMgHg" name="tiledMapRenderer">
       <modelElement href="../chess-game.uml#_5BFCQatcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_vDPDt6tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BFCQqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xXA5gKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXCHoKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xZBrsKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TGil0Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TL18kKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_vDPDuKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_vDPDuatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_vDPDuqtdEeyaCaH1QWMgHg" name="OrthogonalTiledMapRenderer">
@@ -6056,9 +6559,11 @@
     </attributes>
     <attributes xmi:id="_vDPDu6tdEeyaCaH1QWMgHg" name="properties">
       <modelElement href="../chess-game.uml#_5BFCQ6tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_vDPDvKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BFCRKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xXD80KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xXFK8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xZC50KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TIDBsKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TLwdAKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_vDPDvatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_vDPDvqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_vDPDv6tdEeyaCaH1QWMgHg" name="MapProperties">
@@ -6326,12 +6831,18 @@
     <visibility xmi:id="_um2poqtdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_um2po6tdEeyaCaH1QWMgHg" name="PawnIdle" staticAttribute="true">
       <modelElement href="../chess-game.uml#_5A4N8qtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_um2ppKtdEeyaCaH1QWMgHg" name="MultiDeclaration">
-        <modelElement href="../chess-game.uml#_5A41AKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
-      <stereotypes xmi:id="_um2ppatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A41AatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xV3C8KwgEeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_xV3qAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xV44IKwgEeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_xV5fMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xZEvAKwgEeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_xZEvAawgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_StJOYKw6EeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_StJOYaw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_StKcgKw6EeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_StKcgaw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Wi-3gKw6EeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_Wi-3gaw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_um2ppqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_um2pp6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_um2pqKtdEeyaCaH1QWMgHg" name="PawnState">
@@ -6340,12 +6851,18 @@
     </attributes>
     <attributes xmi:id="_um2pqatdEeyaCaH1QWMgHg" name="PawnMove">
       <modelElement href="../chess-game.uml#_5BuigKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_um2pqqtdEeyaCaH1QWMgHg" name="MultiDeclaration">
-        <modelElement href="../chess-game.uml#_5BuigatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
-      <stereotypes xmi:id="_um2pq6tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BuigqtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xV8igKwgEeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_xV9woKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xV--wKwgEeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_xV_l0KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xZF9IKwgEeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_xZGkMKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TKeqoKw6EeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_TKeqoaw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TKhG4Kw6EeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_TKht8Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Wi9pYKw6EeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_Wi9pYaw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_um2prKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_um2pratdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_um2prqtdEeyaCaH1QWMgHg" name="PawnState">
@@ -6354,12 +6871,18 @@
     </attributes>
     <attributes xmi:id="_um2pr6tdEeyaCaH1QWMgHg" name="PawnChase">
       <modelElement href="../chess-game.uml#_5Buig6tcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_um2psKtdEeyaCaH1QWMgHg" name="MultiDeclaration">
-        <modelElement href="../chess-game.uml#_5BuihKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
-      <stereotypes xmi:id="_um2psatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BuihatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xWCCEKwgEeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_xWCCEawgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xWD3QKwgEeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_xWEeUKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xZHyUKwgEeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_xZHyUawgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TKkKMKw6EeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_TKkxQKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TKmmcKw6EeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_TKnNgKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Wi8bQKw6EeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_Wi8bQaw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_um2psqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_um2ps6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_um2ptKtdEeyaCaH1QWMgHg" name="PawnState">
@@ -6368,12 +6891,18 @@
     </attributes>
     <attributes xmi:id="_um2ptatdEeyaCaH1QWMgHg" name="PawnHome">
       <modelElement href="../chess-game.uml#_5BuihqtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_um2ptqtdEeyaCaH1QWMgHg" name="MultiDeclaration">
-        <modelElement href="../chess-game.uml#_5BvJkKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
-      <stereotypes xmi:id="_um2pt6tdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BvJkatcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xWGTgKwgEeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_xWGTgawgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xWHhoKwgEeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_xWIIsKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xZJAcKwgEeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_xZJngKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TKqQ0Kw6EeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_TKq34Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TKstEKw6EeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_TKtUIKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Wi7NIKw6EeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_Wi7NIaw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_um2puKtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_um2puatdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_um2puqtdEeyaCaH1QWMgHg" name="PawnState">
@@ -6382,12 +6911,18 @@
     </attributes>
     <attributes xmi:id="_um2pu6tdEeyaCaH1QWMgHg" name="current">
       <modelElement href="../chess-game.uml#_5BvJkqtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_um2pvKtdEeyaCaH1QWMgHg" name="MultiDeclaration">
-        <modelElement href="../chess-game.uml#_5BvJk6tcEeyaCaH1QWMgHg"/>
-      </stereotypes>
-      <stereotypes xmi:id="_um2pvatdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5BvJlKtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xWJ94KwgEeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_xWKk8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xWLMAKwgEeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_xWLzEKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xZKOkKwgEeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_xZK1oKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TKvwYKw6EeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_TKwXcKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_TKyzsKw6EeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_TKzawKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_Wi6mEKw6EeyGssW9pRht_g" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_Wi6mEaw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_um2pvqtdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_um2pv6tdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_um2pwKtdEeyaCaH1QWMgHg" name="PawnState">
@@ -6411,9 +6946,11 @@
     <visibility xmi:id="_ulpIsqtdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_ulpIs6tdEeyaCaH1QWMgHg" name="pawn">
       <modelElement href="../chess-game.uml#_5A4N8KtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_ulpItKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A4N8atcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xWUV8KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xWVkEKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xZMDwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_StInUaw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WjAssKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_ulpItatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_ulpItqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_ulpIt6tdEeyaCaH1QWMgHg" name="Pawn">
@@ -6468,9 +7005,11 @@
     <visibility xmi:id="_ucnvkqtdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_ucnvk6tdEeyaCaH1QWMgHg" name="pawn">
       <modelElement href="../chess-game.uml#_5A2YwKtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_ucnvlKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A2_0KtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xVzYkKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xV0msKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xZMq0KwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_StGyIKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WjDwAKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_ucnvlatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_ucnvlqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_ucnvl6tdEeyaCaH1QWMgHg" name="Pawn">
@@ -6525,9 +7064,11 @@
     <visibility xmi:id="_uivlsqtdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_uivls6tdEeyaCaH1QWMgHg" name="pawn">
       <modelElement href="../chess-game.uml#_5A3m4KtcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_uivltKtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A3m4atcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xWRSoKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xWSgwKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xZOgAKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_StInUKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WjB60Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_uivltatdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_uivltqtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_uivlt6tdEeyaCaH1QWMgHg" name="Pawn">
@@ -6582,9 +7123,11 @@
     <visibility xmi:id="_ugUj0qtdEeyaCaH1QWMgHg" label="+"/>
     <attributes xmi:id="_ugUj06tdEeyaCaH1QWMgHg" name="pawn">
       <modelElement href="../chess-game.uml#_5A2_0atcEeyaCaH1QWMgHg"/>
-      <stereotypes xmi:id="_ugUj1KtdEeyaCaH1QWMgHg" name="LegacyStyledElement">
-        <modelElement href="../chess-game.uml#_5A2_0qtcEeyaCaH1QWMgHg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_xWNoQKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xWPdcKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_xZPuIKwgEeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_StIAQKw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_WjDI8Kw6EeyGssW9pRht_g" name="LegacyStyledElement"/>
       <visibility xmi:id="_ugUj1atdEeyaCaH1QWMgHg" label="~"/>
       <cardinality xmi:id="_ugUj1qtdEeyaCaH1QWMgHg" label="1" max="1" min="1"/>
       <type xmi:id="_ugUj16tdEeyaCaH1QWMgHg" name="Pawn">
@@ -6714,5 +7257,11 @@
         </type>
       </parameters>
     </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_0_xI4KwgEeyGssW9pRht_g" sourceConnectionVisual="_1A5xUKwgEeyGssW9pRht_g" text="Helping method for createBody() to make a sensor-circle to detect when&#xD;&#xA;&#x9; * another body gets in range of it. &#xD;&#xA;&#x9; * @param width - width of the (sensor - pawn.width)&#xD;&#xA;&#x9; * @param height - height of the (sensor - pawn.height)">
+    <modelElement href="../chess-game.uml#_07cpkKwgEeyGssW9pRht_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_UVP0oKw6EeyGssW9pRht_g" sourceConnectionVisual="_UY3wYKw6EeyGssW9pRht_g" text="Changes between the states in the stateMachine" item="_uY2DbKtdEeyaCaH1QWMgHg">
+    <modelElement href="../chess-game.uml#_5BtUYKtcEeyaCaH1QWMgHg"/>
   </nodes>
 </com.yattasolutions.uml.diagrams.classifier:ClassDiagram>

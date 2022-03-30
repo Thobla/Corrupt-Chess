@@ -1,5 +1,6 @@
 package chessgame.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
@@ -220,4 +221,30 @@ public class Pawn implements IEnemies {
 	public IState getCurrentState() {
 		return currentState;
 	}
+	
+	
+	
+	/**
+	 * if i am going to create eclliptic like sensors instead of circles later:
+	PolygonShape createEcllipticSensor(float height, float width, int corners){
+		PolygonShape shape = new PolygonShape();
+		if(corners > 0 && corners % 4 == 0) {
+			float newHeight = height - this.height;
+			float newWidth = width - this.width;
+			List<Vector2>vectorList = new ArrayList<Vector2>();
+			//might need to throw exception if else
+			if(newHeight > 0 && newWidth > 0) {
+				for(int i = 1; i < corners; i ++) {
+					float x = newWidth * Math.cos((2*Math.PI.floatValue()) * (i/corners));
+				}
+			}
+		}
+		
+		
+		
+		return null;
+		
+	}
+	*/
+	
 }
