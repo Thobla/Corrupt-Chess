@@ -128,7 +128,7 @@ public class ListenerClass implements ContactListener{
 		//checks if an entities jump-sensor is hitting any non-entity objects, making sure
 		//it differenciates leftJumpSensor from rightJunpSensor depending on linearvelocity.
 		//start
-		if((fixtureA.getUserData() == "rightJumpSensor" || fixtureA.getUserData() == "leftJumpSensor") && !(fixtureB.getBody().getUserData() instanceof IEntities)) {
+		if((fixtureA.getUserData() == "rightJumpSensor" || fixtureA.getUserData() == "leftJumpSensor") && (fixtureB.getBody().getUserData() == "ground")) {
 			if (fixtureA.getUserData() == "rightJumpSensor" && fixtureA.getBody().getLinearVelocity().x > 0) {
 				IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
 				System.out.println("sensor");
@@ -142,7 +142,7 @@ public class ListenerClass implements ContactListener{
 			
 		}
 
-		else if((fixtureB.getUserData() == "rightJumpSensor" || fixtureB.getUserData() == "leftJumpSensor") && !(fixtureA.getBody().getUserData() instanceof IEntities)) {
+		else if((fixtureB.getUserData() == "rightJumpSensor" || fixtureB.getUserData() == "leftJumpSensor") && (fixtureA.getBody().getUserData() == "ground")) {
 			if (fixtureB.getUserData() == "rightJumpSensor" && fixtureB.getBody().getLinearVelocity().x > 0) {
 				IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
 				System.out.println("sensor");
