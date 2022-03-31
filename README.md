@@ -1,3 +1,4 @@
+[![pipeline status](https://git.app.uib.no/6-chicks/chess-game/badges/master/pipeline.svg)](https://git.app.uib.no/6-chicks/chess-game/-/commits/master)
 # Chess Game
 ![alt text](ReadMeAssets/corruptChess.png)
 
