@@ -42,7 +42,7 @@ public class Game implements Screen {
     TiledMap tiledMap;
     
     //Player
-    Player player;
+    static Player player;
     PlayerController playerController;
     
     //World generation
@@ -265,6 +265,7 @@ public class Game implements Screen {
     	stage.addActor(continueButton);
     	stage.addActor(quitButtonP);
     	SaveFile.writeProgress(currentLevelIndex+1);
+    	SaveFile.writeScore(player.getScore());
     }
     
     @Override

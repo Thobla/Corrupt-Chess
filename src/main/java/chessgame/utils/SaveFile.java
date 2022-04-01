@@ -128,17 +128,29 @@ public class SaveFile {
 	public static void writeProgress(int data) {
 		FileHandle file = Gdx.files.local("savefiles/progress.txt");
 		if (file.readBytes()[0] < data)
-			file.writeBytes(new byte [] {(byte) data}, false);
+			file.writeBytes(new byte[] {(byte) data}, false);
+	}
+	
+	public static void writeScore(int data) {
+		FileHandle file = Gdx.files.local("savefiles/score.txt");
+		file.writeBytes(new byte[] {(byte) data}, false);
+	}
+	
+	public static byte[] readScore() {
+		FileHandle file = Gdx.files.local("savefiles/score.txt");
+		return file.readBytes();
 	}
 	
 	/**
 	 * Resets the settingsfile to its default state
 	 */
 	public static void totalReset() {
-		FileHandle file = Gdx.files.local("savefiles/settings.txt");
-		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, 50}, false);
-		FileHandle file2 = Gdx.files.local("savefiles/progress.txt");
-		file2.writeBytes(new byte[] {0}, false);
+		FileHandle setting = Gdx.files.local("savefiles/settings.txt");
+		setting.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, 50}, false);
+		FileHandle progress = Gdx.files.local("savefiles/progress.txt");
+		progress.writeBytes(new byte[] {0}, false);
+		FileHandle score = Gdx.files.local("savefiles/score.txt");
+		score.writeBytes(new byte[] {0}, false);
 	}
 
 	

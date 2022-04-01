@@ -44,6 +44,8 @@ public class Player implements IEntities{
 		sprite = new Sprite(new Texture (Gdx.files.internal("assets/player/player.png").file().getAbsolutePath()));
 		createBody();
 		
+		ratingScore = (int) SaveFile.readScore()[0];
+		
     	//PlayerController
 		int[] controls = SaveFile.readSettings();
     	controller = new PlayerController(controls);
