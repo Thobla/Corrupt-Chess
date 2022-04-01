@@ -2,8 +2,10 @@ package chessgame.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -25,15 +27,22 @@ public class Spike implements IObjects {
 	float height = 0.5f;
 	
 	public Spike(Vector2 position, World world, EntityManager entityManager, float width){
-		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
+		this.width = width/(32);
+		this.position = new Vector2(position.x/Constants.PixelPerMeter+(this.width/2), position.y/Constants.PixelPerMeter+(height/2));
 		this.world = world;
 		this.entityManager = entityManager;
-		this.width = width;
 	}
 	
 	@Override
 	public void initialize() {
-		sprite = new Sprite(new Texture (Gdx.files.internal("assets/spike.png").file().getAbsolutePath()));
+		Texture spikeTexture = new Texture (Gdx.files.internal("assets/spike.png").file().getAbsolutePath());
+		Texture portal = new Texture (Gdx.files.internal("assets/portal.png").file().getAbsolutePath());
+		spikeTexture.setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
+		
+		TextureRegion imgTextureRegion = new TextureRegion(spikeTexture);
+		imgTextureRegion.setRegion(1,3, width,height*8);
+		
+		sprite = new Sprite(imgTextureRegion);
 		
 		createBody();
 		entityManager.addEntity(this);
@@ -48,9 +57,9 @@ public class Spike implements IObjects {
 		myBody = world.createBody(bodyDef);
 		
 		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(width, height*0.5f);
+		shape.setAsBox(width*0.5f, height*0.5f);
 		
-		myBody.createFixture(shape, 1000f).setUserData("UltraKill");;
+		myBody.createFixture(shape, 1000f).setUserData("Object");;
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);
 	}
@@ -88,10 +97,11 @@ public class Spike implements IObjects {
 	@Override
 	public void updateState(Batch batch) {
 		position = myBody.getPosition();
-
+		
 		if(batch != null) {
-			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y-sprite.getHeight()/2);
-			sprite.setSize(1, 2);
+			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y-sprite.getHeight()/4);
+			sprite.setSize(width, 1);
+			sprite.setRotation(0);
 			sprite.draw(batch);	
 		}
 	}
