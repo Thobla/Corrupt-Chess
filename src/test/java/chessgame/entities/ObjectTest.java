@@ -18,16 +18,17 @@ import chessgame.world.PhysicsWorld;
 
 public class ObjectTest {
 	PhysicsWorld pworld;
+	EntityManager manager;
 	
 	@BeforeEach
 	void setup() {
 		pworld = new PhysicsWorld();
+		manager = new EntityManager(pworld);
 	}
 	
 	@Test
 	//Checks that a button alters the state of the door.
 	void buttonDoorTest() {
-		EntityManager manager = new EntityManager(pworld);
 		
 		int code = 1;
 		Button button = new Button(Vector2.Zero, pworld.world, manager, code);
@@ -45,7 +46,7 @@ public class ObjectTest {
 	
 	@Test
 	void playerIncreaseRatingTest() {
-		Player player = new Player(new Vector2(0,0), pworld.world);
+		Player player = new Player(new Vector2(0,0), pworld.world, manager);
 		EntityManager mockManager = mock(EntityManager.class);
 		RatingPoint rating = new RatingPoint(new Vector2(0,0), pworld.world, mockManager);
 		

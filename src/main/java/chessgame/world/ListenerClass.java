@@ -91,7 +91,7 @@ public class ListenerClass implements ContactListener{
 			IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
 			player = (Player) fixtureB.getBody().getUserData();
 
-			if(player.myBody.getLinearVelocity().y >= 0) {
+			if(player.myBody.getLinearVelocity().y >= -0.5) {
 				player.takeDamage(enemy.getAttack());
 			}
 		}
@@ -99,7 +99,7 @@ public class ListenerClass implements ContactListener{
 			IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
 			player = (Player) fixtureA.getBody().getUserData();
 			
-			if(player.myBody.getLinearVelocity().y >= 0) {
+			if(player.myBody.getLinearVelocity().y >= -0.5) {
 				player.takeDamage(enemy.getAttack());
 			}
 		}

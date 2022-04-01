@@ -1,6 +1,7 @@
 package chessgame.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import chessgame.app.PlayerController;
 import chessgame.menues.SaveFile;
 import chessgame.utils.Constants;
+import chessgame.utils.EntityManager;
 
 public class Player implements IEntities{
 	Vector2 position;
@@ -21,19 +23,27 @@ public class Player implements IEntities{
 	Sprite sprite;
 	public Body myBody;
 	public PlayerController controller;
+	public EntityManager entityManager;
+	
 	//PlayerStats
 	int health = 3;
 	int attack = 1;
+	int ratingScore;
 	
+	//Hit-Protection
+	long hitTime;
+	boolean invisFrame;
+	
+	//PlayerBools
 	public boolean sprint = false;
 	public boolean dead = false;
-	int ratingScore;
 	
 	//Player size
 	float width = 0.5f;
 	float height = 0.5f;
 	
-	public Player (Vector2 position, World world) {
+	public Player (Vector2 position, World world, EntityManager manager) {
+		this.entityManager = manager;
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		//TODO load from file, not set to 0
@@ -164,7 +174,8 @@ public class Player implements IEntities{
 			health = 0;
 			kill();
 		}
-			
+		
+		hitTime = System.currentTimeMillis();
 	}
 
 	public int getAttack() {
@@ -178,12 +189,12 @@ public class Player implements IEntities{
 	@Override
 	public void kill() {
 		dead = true;
+		entityManager.removePlayer(this);
 	}
 
 	@Override
 	public void removeBody() {
-		// TODO Auto-generated method stub
-		
+		world.destroyBody(myBody);
 	}
 	
 	public void updatePosition() {
@@ -226,7 +237,12 @@ public class Player implements IEntities{
 			
 			if(health == 0)
 				kill();
-	
+			
+			if(System.currentTimeMillis() < hitTime + 100) {
+				sprite.setColor(Color.CYAN);
+			} else {
+				sprite.setColor(Color.WHITE);
+			}
 	}
 	
 	public void renderPlayer(Batch batch) {

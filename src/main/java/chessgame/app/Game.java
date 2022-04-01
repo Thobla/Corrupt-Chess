@@ -213,8 +213,7 @@ public class Game implements Screen {
 	    	//Updates all entities
 	    	batch.begin();
 	    	entityManager.updateEntities(batch);
-	    	if (!dead)
-	    		player.renderPlayer(batch);
+	    	entityManager.updatePlayers(batch);
 	    	batch.end();
 	    	
 	    	entityManager.updateLists();

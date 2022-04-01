@@ -128,13 +128,13 @@ public class PhysicsWorld {
 				Button button = new Button(pos, world, manager, code);
 				button.initialize();
 			}
-			if(entity.getName().toLowerCase().equals("portal")) {
-				Portal portal = new Portal(pos, world, manager);
-				portal.initialize();
-			}
 			if(entity.getName().toLowerCase().equals("spike")) {
 				Spike spike = new Spike(pos, world, manager, rectangle.getWidth());
 				spike.initialize();
+			}
+			if(entity.getName().toLowerCase().equals("portal")) {
+				Portal portal = new Portal(pos, world, manager);
+				portal.initialize();
 			}
 			if(entity.getName().toLowerCase().equals("player")) {
 				manager.addPlayerSpawn(pos);

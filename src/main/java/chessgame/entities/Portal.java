@@ -55,7 +55,7 @@ public class Portal implements IEntities {
 		
 		FixtureDef fixDef = new FixtureDef();
 		fixDef.isSensor = true;
-		shape.setAsBox(width * 0.95f, height / 10, new Vector2(0f, height), 0);
+		shape.setAsBox(width, height, new Vector2(0f, 0f), 0);
 		fixDef.shape = shape;
 		
 		myBody.createFixture(fixDef).setUserData("Portal");
