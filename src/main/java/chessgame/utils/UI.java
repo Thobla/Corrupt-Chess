@@ -305,7 +305,6 @@ public class UI {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 SaveFile.totalReset();
-                System.out.println(Keys.toString(SaveFile.readSettings()[0]));
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
