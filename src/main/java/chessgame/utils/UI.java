@@ -21,7 +21,6 @@ import chessgame.app.Game;
 import chessgame.menues.LevelSelectScreen;
 import chessgame.menues.MenuScreen;
 import chessgame.menues.OptionScreen;
-import chessgame.menues.SaveFile;
 
 public class UI {
 	

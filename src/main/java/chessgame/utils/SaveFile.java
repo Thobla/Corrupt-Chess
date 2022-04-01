@@ -1,4 +1,4 @@
-package chessgame.menues;
+package chessgame.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;

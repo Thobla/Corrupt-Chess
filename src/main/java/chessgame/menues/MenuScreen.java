@@ -19,6 +19,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 import chessgame.app.ChessGame;
+import chessgame.utils.SaveFile;
 import chessgame.utils.ScreenType;
 import chessgame.utils.UI;
 
