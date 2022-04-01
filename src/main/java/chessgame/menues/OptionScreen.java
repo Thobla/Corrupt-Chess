@@ -39,19 +39,22 @@ public class OptionScreen implements Screen {
     //Imported skin for UI
     Skin skin = new Skin(Gdx.files.internal("assets/skin/chess/chess.json"));
     
-    static int[] controls = SaveFile.readSettings();
+    static int[] controls;
     
 	public OptionScreen(ChessGame game) {
 		
 		this.game = game;
 		stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        
+
+        controls = SaveFile.readSettings();
         up = controls[0];
         left = controls[1];
         right = controls[2]; 
         sprint = controls[3];
         audiolvl = controls[4];  
+        
+        System.out.println(Keys.toString(up));
         
         //Background image
         Table backgroundTable = new Table();
@@ -107,6 +110,11 @@ public class OptionScreen implements Screen {
         stage.addActor(audioSlider);  
 	}
 	
+	public static void defaultControls() {
+		SaveFile.defaultControls();
+		controls = SaveFile.readSettings();
+	}
+	
 	@Override
 	public void show() {	
 	}
@@ -139,6 +147,7 @@ public class OptionScreen implements Screen {
 
 	@Override
 	public void dispose() {
+		stage.dispose();
 	}
 
 }

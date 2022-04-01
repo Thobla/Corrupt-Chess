@@ -4,11 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
@@ -111,6 +114,14 @@ public class UI {
 		label.setPosition(colWidth*position.x, rowHeight*position.y);
 		label.setAlignment(Align.center);
 		return label;
+	}
+	
+	public static Image image(Vector2 size, Vector2 position, String imageLocation){
+		Image image = new Image(new Texture(imageLocation));
+		image.setSize(colWidth*size.x, rowHeight*size.y);
+		image.setPosition(colWidth*position.x, rowHeight*position.y);
+		image.setAlign(Align.center);
+		return image;
 	}
 	
 	public static Slider audioSlider(float audiolvl, int[] controls) {
@@ -229,7 +240,7 @@ public class UI {
         button.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-            	SaveFile.defaultControls();
+            	OptionScreen.defaultControls();
             	game.setScreen(new OptionScreen(game));
             }
             @Override
@@ -256,6 +267,30 @@ public class UI {
     		}	
     	});
 		return button;
+	}
+
+	/**
+	 * Temporary button for easier putting the game in an untouched state
+	 * 
+	 * @param size
+	 * @param position
+	 * @return
+	 */
+	public static Button resetButton(Vector2 size, Vector2 position) {
+		Button resetButton = UI.button(size, position, "RESET");
+        resetButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                SaveFile.totalReset();
+                System.out.println(Keys.toString(SaveFile.readSettings()[0]));
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	click.play(volume);
+                return true;
+            }
+        });
+		return resetButton;
 	}
 }
 
