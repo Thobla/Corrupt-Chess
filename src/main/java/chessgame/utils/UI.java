@@ -214,24 +214,47 @@ public class UI {
 		return button;
 	}
 	
+	static Label prompt = UI.label(new Vector2(24,2), new Vector2(0,10),"", "title-light");
+	static Label warning = UI.label(new Vector2(12,2), new Vector2(6,8), "Please select a button that is not already assigned", "default");
+	
 	private static int[] changeButtonInput(TextButton button, String text, int index, Stage stage, int[] controls) {
 		
+		OptionScreen.startTimer(7f);
+		
 		//Text prompting you to type new input for key
-        Label prompt = UI.label(new Vector2(24,2), new Vector2(0,10),"Press the button for the new " + text + " key.", "title-light");
+        prompt.setText("Press the button for the new " + text + " key.");
         stage.addActor(prompt);
+
         
         Gdx.input.setInputProcessor(new InputAdapter () {
      	   @Override
      	   public boolean keyDown (int keycode) {
+     		   if (keycode == Keys.ESCAPE) {
+     			  stage.addActor(warning);
+				  return false;
+     		   }   
+     		   for (int i : controls) {
+     			   if (i == keycode) {
+     				   stage.addActor(warning);
+     				   return false;
+     			   }
+     		   }
      		   controls[index] = keycode;
      		   button.setText(Keys.toString(keycode));
      		   stage.addAction(Actions.removeActor(prompt));
+     		   stage.addAction(Actions.removeActor(warning));
      		   Gdx.input.setInputProcessor(stage);
      		   return true;
      	   }
      	});
         
         return controls;
+	}
+	
+	public static void timesUp(Stage stage) {
+		stage.addAction(Actions.removeActor(prompt));
+		stage.addAction(Actions.removeActor(warning));
+		Gdx.input.setInputProcessor(stage);
 	}
 	
 	

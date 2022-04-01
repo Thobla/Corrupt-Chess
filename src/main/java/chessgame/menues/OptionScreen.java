@@ -41,6 +41,9 @@ public class OptionScreen implements Screen {
     
     static int[] controls;
     
+    static float changingTimer = 0;
+	static boolean timer = false;
+    
 	public OptionScreen(ChessGame game) {
 		
 		this.game = game;
@@ -126,6 +129,18 @@ public class OptionScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
+        
+        if (changingTimer > 0) {
+        	changingTimer = changingTimer - delta;
+        } else if (timer) {
+        	UI.timesUp(stage);
+        	timer = false;
+        }
+	}
+	
+	public static void startTimer(float time) {
+		changingTimer = time;
+		timer = true;
 	}
 
 	@Override
