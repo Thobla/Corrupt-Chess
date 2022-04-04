@@ -10,11 +10,14 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.List;
+import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import chessgame.app.ChessGame;
@@ -109,8 +112,14 @@ public class OptionScreen implements Screen {
         Label audio = UI.label(new Vector2(3,2), new Vector2(10.5f,6.8f), "Sound level", "default");
         stage.addActor(audio);
         //Slider for controlling audio
-        Slider audioSlider = UI.audioSlider(audiolvl, controls);
+        Slider audioSlider = UI.audioSlider(new Vector2(6,1.5f) ,new Vector2(9,6), audiolvl, controls);
         stage.addActor(audioSlider);  
+        
+        Array<String> resItems = new Array<String>();
+        resItems.add("640x480","800x600","1366x768","1600x900");
+        resItems.add("1920x1080","1920x1200");
+        SelectBox<String> resolution = UI.selectBox(new Vector2(2.2f,1), new Vector2(16,6), resItems);
+        stage.addActor(resolution);
 	}
 	
 	public static void defaultControls() {

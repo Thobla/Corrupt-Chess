@@ -13,10 +13,13 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.List;
+import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Null;
 
 import chessgame.app.ChessGame;
@@ -32,6 +35,7 @@ public class UI {
     static int colWidth = Gdx.graphics.getWidth() / 24;
     //Imported skin for UI
     static Skin skin = new Skin(Gdx.files.internal("assets/skin/chess/chess.json"));
+    static Skin tempskin = new Skin(Gdx.files.internal("assets/skin/goldenspiralui/golden-ui-skin.json"));
     static //Sound for clicking buttons
     Sound click = Gdx.audio.newSound(Gdx.files.internal("assets/sound/menuClick.mp3"));
     static float volume = ((float)SaveFile.readSettings()[4])/100;
@@ -124,10 +128,10 @@ public class UI {
 		return image;
 	}
 	
-	public static Slider audioSlider(float audiolvl, int[] controls) {
+	public static Slider audioSlider(Vector2 size, Vector2 position, float audiolvl, int[] controls) {
 		Slider audioSlider = new Slider(0, 100, 1, false, skin, "default-horizontal");
-        audioSlider.setSize(colWidth*6, (float) (rowHeight*1.5));
-        audioSlider.setPosition(Gdx.graphics.getWidth()/2 - colWidth*6/2,rowHeight*6);
+        audioSlider.setSize(colWidth*size.x,rowHeight*size.y);
+        audioSlider.setPosition(colWidth*position.x,rowHeight*position.y);
         audioSlider.setValue(audiolvl);
         audioSlider.setSnapToValues(new float[] {0, 50, 100}, 3);
         audioSlider.addListener(new InputListener() {
@@ -313,6 +317,14 @@ public class UI {
             }
         });
 		return resetButton;
+	}
+	
+	public static SelectBox<String> selectBox(Vector2 size, Vector2 position, Array<String> items) {
+	SelectBox<String> selectbox = new SelectBox<String>(tempskin, "default");
+	selectbox.setSize(size.x*colWidth, size.y*rowHeight);
+	selectbox.setPosition(position.x*colWidth, position.y*rowHeight);
+	selectbox.setItems(items);
+	return selectbox;
 	}
 }
 
