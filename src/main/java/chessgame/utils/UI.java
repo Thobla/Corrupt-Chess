@@ -331,7 +331,7 @@ public class UI {
 	}
 	
 	public static SelectBox<String> selectBox(Vector2 size, Vector2 position, String[] items) {
-		SelectBox<String> selectbox = new SelectBox<String>(tempskin, "default");
+		SelectBox<String> selectbox = new SelectBox<String>(skin, "default");
 		selectbox.setSize(size.x*colWidth, size.y*rowHeight);
 		selectbox.setPosition(position.x*colWidth, position.y*rowHeight);
 		selectbox.setItems(items);
@@ -359,7 +359,7 @@ public class UI {
 	}
 	
 	public static CheckBox checkBox(Vector2 size, Vector2 position, String text) {
-		CheckBox checkBox = new CheckBox(text, tempskin, "default");
+		CheckBox checkBox = new CheckBox(text, skin, "default");
 		checkBox.setSize(size.x*colWidth, size.y*rowHeight);
 		checkBox.setPosition(position.x*colWidth, position.y*rowHeight);
 		return checkBox;

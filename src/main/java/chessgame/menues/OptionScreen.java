@@ -119,10 +119,10 @@ public class OptionScreen implements Screen {
         stage.addActor(audioSlider);  
         
         String[] resItems = Constants.resolutionsString;
-        SelectBox<String> resolution = UI.resolutionBox(new Vector2(2.2f,1), new Vector2(16,6), resItems, resolutionIndex, controls, game);
+        SelectBox<String> resolution = UI.resolutionBox(new Vector2(2.5f,1.5f), new Vector2(16,6), resItems, resolutionIndex, controls, game);
         stage.addActor(resolution);
         
-        CheckBox fullScreen = UI.fullScreenBox(new Vector2(2.2f,1), new Vector2(18,6), controls, game);
+        CheckBox fullScreen = UI.fullScreenBox(new Vector2(2.2f,1), new Vector2(20,6), controls, game);
         stage.addActor(fullScreen);
 	}
 	
