@@ -2,6 +2,8 @@ package chessgame.menues;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -9,18 +11,19 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import chessgame.app.ChessGame;
+import chessgame.app.Main;
+import chessgame.utils.Constants;
 import chessgame.utils.SaveFile;
 import chessgame.utils.ScreenType;
 import chessgame.utils.UI;
@@ -35,6 +38,7 @@ public class OptionScreen implements Screen {
     private int left;
     private int sprint;
     private float audiolvl;
+    private int resolutionIndex;
 	
     //Scalable units for size and placements of UI
     int rowHeight = Gdx.graphics.getHeight() / 16;
@@ -59,8 +63,7 @@ public class OptionScreen implements Screen {
         right = controls[2]; 
         sprint = controls[3];
         audiolvl = controls[4];  
-        
-        System.out.println(Keys.toString(up));
+        resolutionIndex = controls[5];
         
         //Background image
         Table backgroundTable = new Table();
@@ -115,11 +118,12 @@ public class OptionScreen implements Screen {
         Slider audioSlider = UI.audioSlider(new Vector2(6,1.5f) ,new Vector2(9,6), audiolvl, controls);
         stage.addActor(audioSlider);  
         
-        Array<String> resItems = new Array<String>();
-        resItems.add("640x480","800x600","1366x768","1600x900");
-        resItems.add("1920x1080","1920x1200");
-        SelectBox<String> resolution = UI.selectBox(new Vector2(2.2f,1), new Vector2(16,6), resItems);
+        String[] resItems = Constants.resolutionsString;
+        SelectBox<String> resolution = UI.resolutionBox(new Vector2(2.2f,1), new Vector2(16,6), resItems, resolutionIndex, controls, game);
         stage.addActor(resolution);
+        
+        CheckBox fullScreen = UI.fullScreenBox(new Vector2(2.2f,1), new Vector2(18,6), controls, game);
+        stage.addActor(fullScreen);
 	}
 	
 	public static void defaultControls() {

@@ -6,20 +6,21 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Null;
 
 import chessgame.app.ChessGame;
@@ -40,6 +41,15 @@ public class UI {
     Sound click = Gdx.audio.newSound(Gdx.files.internal("assets/sound/menuClick.mp3"));
     static float volume = ((float)SaveFile.readSettings()[4])/100;
 
+    public static void updateScreenSize(int x, int y, boolean fullscreen) {
+    	if (fullscreen)
+    		Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+    	else
+    		Gdx.graphics.setWindowedMode(x,y);
+    	rowHeight = Gdx.graphics.getHeight() / 16;
+    	colWidth = Gdx.graphics.getWidth() / 24;
+    }
+    
     /**
      * Creates a "blank" button without a InputListener
      * 
@@ -309,6 +319,7 @@ public class UI {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 SaveFile.totalReset();
+                Gdx.app.exit();
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -319,12 +330,69 @@ public class UI {
 		return resetButton;
 	}
 	
-	public static SelectBox<String> selectBox(Vector2 size, Vector2 position, Array<String> items) {
-	SelectBox<String> selectbox = new SelectBox<String>(tempskin, "default");
-	selectbox.setSize(size.x*colWidth, size.y*rowHeight);
-	selectbox.setPosition(position.x*colWidth, position.y*rowHeight);
-	selectbox.setItems(items);
-	return selectbox;
+	public static SelectBox<String> selectBox(Vector2 size, Vector2 position, String[] items) {
+		SelectBox<String> selectbox = new SelectBox<String>(tempskin, "default");
+		selectbox.setSize(size.x*colWidth, size.y*rowHeight);
+		selectbox.setPosition(position.x*colWidth, position.y*rowHeight);
+		selectbox.setItems(items);
+		return selectbox;
+	}
+	
+	public static SelectBox<String> resolutionBox(Vector2 size, Vector2 position, String[] items, int selected, int[] controls, ChessGame game){
+		SelectBox<String> selectBox = selectBox(size, position, items);
+		selectBox.setSelectedIndex(selected);
+		selectBox.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				click.play(volume);
+				controls[5] = selectBox.getSelectedIndex();
+				Vector2 newRes = Constants.resolutions[controls[5]];
+				boolean fullscreen = false;
+				if (controls[6] == 1)
+					fullscreen = true;
+        		updateScreenSize((int)newRes.x,(int)newRes.y, fullscreen);
+        		SaveFile.writeSettings(controls);
+        		game.setScreen(new OptionScreen(game));
+			}
+		});
+		return selectBox;
+	}
+	
+	public static CheckBox checkBox(Vector2 size, Vector2 position, String text) {
+		CheckBox checkBox = new CheckBox(text, tempskin, "default");
+		checkBox.setSize(size.x*colWidth, size.y*rowHeight);
+		checkBox.setPosition(position.x*colWidth, position.y*rowHeight);
+		return checkBox;
+	}
+	
+	public static CheckBox fullScreenBox(Vector2 size, Vector2 position, int[] controls, ChessGame game) {
+		CheckBox checkBox = checkBox(size, position, "Fullscreen");
+		if (controls[6] == 1)
+			checkBox.setChecked(true);
+		checkBox.addListener(new InputListener() {
+			@Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                if (checkBox.isChecked()) { 
+                	controls[6] = 1;
+                	updateScreenSize(0, 0, true);
+                	SaveFile.writeSettings(controls);
+            		game.setScreen(new OptionScreen(game));
+                }
+                else {
+                	controls[6] = 0;
+                	Vector2 newRes = Constants.resolutions[controls[5]];
+                	updateScreenSize((int)newRes.x, (int)newRes.y, false);
+                	SaveFile.writeSettings(controls);
+            		game.setScreen(new OptionScreen(game));
+                }
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	click.play(volume);
+                return true;
+            }
+        });
+		return checkBox;
 	}
 }
 
