@@ -37,7 +37,7 @@ public class Portal implements IEntities {
 		this.entityManager = entityManager;
 	}
 	public void initialize() {
-		sprite = new Sprite(new Texture (Gdx.files.internal("assets/portal.png").file().getAbsolutePath()));
+		sprite = new Sprite(new Texture (Gdx.files.internal("assets/objects/portal.png").file().getAbsolutePath()));
 		createBody();
 		entityManager.addEntity(this);
 	}

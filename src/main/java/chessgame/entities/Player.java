@@ -3,6 +3,7 @@ package chessgame.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -12,12 +13,12 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.app.PlayerController;
-import chessgame.utils.Constants;
 import chessgame.utils.SaveFile;
+import chessgame.utils.Constants;
 
 public class Player implements IEntities{
 	Vector2 position;
-	World world;
+	public World world;
 	Sprite sprite;
 	public Body myBody;
 	public PlayerController controller;
@@ -25,9 +26,14 @@ public class Player implements IEntities{
 	int health = 3;
 	int attack = 1;
 	
+	//Player prompt
+	Sprite prompt;
+	public boolean isPrompt;
+	BitmapFont font;
+	
 	public boolean sprint = false;
 	public boolean dead = false;
-	int ratingScore;
+	public int ratingScore = 0;
 	
 	//Player size
 	float width = 0.5f;
@@ -36,19 +42,21 @@ public class Player implements IEntities{
 	public Player (Vector2 position, World world) {
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
-		//TODO load from file, not set to 0
-		ratingScore = 0;
+		isPrompt = false;
 	}
 	
 	public void initialize() {
 		sprite = new Sprite(new Texture (Gdx.files.internal("assets/player/player.png").file().getAbsolutePath()));
+		//prompt = new Sprite(new Texture (Gdx.files.internal("assets/prompt.png").file().getAbsolutePath()));
 		createBody();
 		
-		ratingScore = (int) SaveFile.readScore()[0];
+		//Load rating from saveFile
 		
     	//PlayerController
 		int[] controls = SaveFile.readSettings();
     	controller = new PlayerController(controls);
+    	
+    	font = new BitmapFont();
 	}
 
 	@Override
@@ -108,7 +116,7 @@ public class Player implements IEntities{
 	 * @param jumpForce
 	 * @author Mikal, Thorgal
 	 */
-	public void jump(float jumpForce) {
+	public void jump(float jumpForce) {	
 		myBody.applyLinearImpulse(new Vector2(0, jumpForce),this.position ,true);
 
 	}
@@ -140,7 +148,7 @@ public class Player implements IEntities{
 		FixtureDef fixDef = new FixtureDef();
 		fixDef.isSensor = true;
 		//the shape should be lower than the players width and height
-		shape.setAsBox(width * 0.95f, height / 2, new Vector2(0f, -height), 0);
+		shape.setAsBox(width * 0.95f, height / 8, new Vector2(0f, -height), 0);
 		fixDef.shape = shape;
 		
 		myBody.createFixture(fixDef).setUserData("foot");
@@ -174,7 +182,7 @@ public class Player implements IEntities{
 	}
 	
 	public int getScore() {
-		return ratingScore;
+		return getRatingScore();
 	}
 
 	@Override
@@ -228,6 +236,15 @@ public class Player implements IEntities{
 			
 			if(health == 0)
 				kill();
+			
+			if(isPrompt) {
+				//prompt.setPosition(position.x - sprite.getWidth()/2, position.y + sprite.getHeight()*1.5f);
+				//prompt.setSize(1, 1);
+				//prompt.draw(batch);
+				
+				//font.getData().setScale(0.1f);
+				//font.draw(batch, "E", position.x - sprite.getWidth()/2, position.y + sprite.getHeight()*3f);
+			}
 	
 	}
 	
@@ -243,5 +260,21 @@ public class Player implements IEntities{
 	@Override
 	public Body getBody() {
 		return myBody;
+	}
+	
+	public void setPrompt(Sprite sprite) {
+		//prompt = sprite;
+		isPrompt = true;
+	}
+	public void endPrompt() {
+		isPrompt = false;
+	}
+
+	public int getRatingScore() {
+		return ratingScore;
+	}
+
+	public void setRatingScore(int ratingScore) {
+		this.ratingScore = ratingScore;
 	}
 }

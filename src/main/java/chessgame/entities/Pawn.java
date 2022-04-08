@@ -54,7 +54,7 @@ public class Pawn implements IEnemies {
 	}
 	
 	public void initialize() {
-		sprite = new Sprite(new Texture (Gdx.files.internal("assets/pawn/badguy.png").file().getAbsolutePath()));
+		sprite = new Sprite(new Texture (Gdx.files.internal("assets/enemies/badguy.png").file().getAbsolutePath()));
 		createBody();
 		
 		//Adds the pawn to the entityManager

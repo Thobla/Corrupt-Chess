@@ -29,7 +29,7 @@ public class Door implements IEntities {
 	int activationCode;
 	
 	float width = 0.5f;
-	float height = 1f;
+	float height = 1.5f;
 	
 	
 	public Door(Vector2 position, World world, EntityManager entityManager, int code){
@@ -41,8 +41,8 @@ public class Door implements IEntities {
 	}
 	
 	public void initialize() {
-		spriteOpen = new Sprite(new Texture (Gdx.files.internal("assets/dooropen.png").file().getAbsolutePath()));
-		spriteClosed = new Sprite(new Texture (Gdx.files.internal("assets/doorclosed.png").file().getAbsolutePath()));
+		spriteOpen = new Sprite(new Texture (Gdx.files.internal("assets/objects/IronGateOpen.png").file().getAbsolutePath()));
+		spriteClosed = new Sprite(new Texture (Gdx.files.internal("assets/objects/IronGateClosed.png").file().getAbsolutePath()));
 		sprite = spriteClosed;
 		
 		createBody();
@@ -110,7 +110,7 @@ public class Door implements IEntities {
 		
 		if(batch != null) {
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y-sprite.getHeight()/2);
-			sprite.setSize(1, 2);
+			sprite.setSize(1, 3);
 			sprite.draw(batch);	
 		}
 		

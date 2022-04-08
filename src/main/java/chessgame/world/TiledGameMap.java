@@ -23,7 +23,7 @@ public class TiledGameMap extends GameMap{
 	
 	public TiledGameMap(String map) {
 		
-		tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+map+".tmx").file().getAbsolutePath());
+		tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/levels/"+map+".tmx").file().getAbsolutePath());
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 1f/PPM);
 		properties = tiledMap.getProperties();
 	}

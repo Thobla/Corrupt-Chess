@@ -120,7 +120,7 @@ public class Game implements Screen {
         gameMap = new TiledGameMap(map);
         
         //Creates bodies for TileMap
-        tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+map+".tmx").file().getAbsolutePath());
+        tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/levels/"+map+".tmx").file().getAbsolutePath());
     	gameWorld.tileMapToBody(tiledMap);
     	gameWorld.tileMapToEntities(tiledMap, entityManager);
     	
