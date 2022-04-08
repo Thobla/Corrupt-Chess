@@ -19,7 +19,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import chessgame.entities.IEntities;
 import chessgame.entities.Player;
 import chessgame.utils.CameraStyles;
 import chessgame.utils.Constants;
@@ -58,8 +57,8 @@ public class Game implements Screen {
     //All levels with their file names
     public static String[] levels = new String[] {
     	"1-1",
-    	"1-2"
-    	
+    	"1-2",
+    	"1-3"
     };
     
     //Stage for UI elements
@@ -101,9 +100,9 @@ public class Game implements Screen {
     	stage = new Stage(new ScreenViewport());
      
         //The camera viewpoint
-        cam = new OrthographicCamera(Gdx.graphics.getWidth() / PPM, Gdx.graphics.getHeight() / PPM);
-        cam.setToOrtho(false, Gdx.graphics.getWidth() / PPM, Gdx.graphics.getHeight() / PPM);
-        cam.update();
+		 cam = new OrthographicCamera(Gdx.graphics.getWidth() / (PPM*1.5f), Gdx.graphics.getHeight() / (PPM*1.5f));
+	        cam.setToOrtho(false, Gdx.graphics.getWidth() / (PPM*1.5f), Gdx.graphics.getHeight() / (PPM*1.5f));
+	        cam.update();
         
 		
         //Batch
@@ -117,7 +116,7 @@ public class Game implements Screen {
         gameMap = new TiledGameMap(map);
         
         //Creates bodies for TileMap
-        tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/"+map+".tmx").file().getAbsolutePath());
+        tiledMap = new TmxMapLoader().load(Gdx.files.internal("assets/levels/"+map+".tmx").file().getAbsolutePath());
     	gameWorld.tileMapToBody(tiledMap);
     	gameWorld.tileMapToEntities(tiledMap, entityManager);
     	
@@ -152,9 +151,9 @@ public class Game implements Screen {
 	    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
 	        gameMap.render(cam);
 	    	
-	        /**Debug-render to be off when not debugging.
+	        //Debug-render to be off when not debugging.
 	    	debugRenderer.render(gameWorld.world, cam.combined);
-	    	*/
+	    	
 	        
 	    	batch.setProjectionMatrix(cam.combined);
 	    	

@@ -54,7 +54,7 @@ public class EntityAnimation {
 		Vector2 position = entity.getPosition();
 		
 		if(batch != null) {
-			batch.draw(currentFrame, position.x - (width/32), position.y - (height/32), width/32, height/32);
+			batch.draw(currentFrame, position.x, position.y, width/32, height/32);
 		}
 	}
 }

@@ -36,7 +36,7 @@ public class RatingPoint implements IObjects{
 	
 	public void initialize() {
 		//Creates animation
-		sprite = new Texture (Gdx.files.internal("assets/coin-sheet.png").file().getAbsolutePath());
+		sprite = new Texture (Gdx.files.internal("assets/objects/coin-Sheet.png").file().getAbsolutePath());
 		animation = new EntityAnimation(sprite, 4, 7f, this, new Vector2(32, 32));
 		
 		
