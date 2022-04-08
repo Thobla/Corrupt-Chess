@@ -112,7 +112,7 @@ public class RatingPoint implements IObjects{
 
 	@Override
 	public void itemFunction(Player player) {
-		player.ratingScore += 7;
+		player.setRatingScore(player.getRatingScore() + 7);
 		kill();
 	}
 

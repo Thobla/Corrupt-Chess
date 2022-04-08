@@ -34,7 +34,7 @@ public class Player implements IEntities{
 	
 	public boolean sprint = false;
 	public boolean dead = false;
-	int ratingScore = 0;
+	private int ratingScore = 0;
 	
 	//Player size
 	float width = 0.5f;
@@ -183,7 +183,7 @@ public class Player implements IEntities{
 	}
 	
 	public int getScore() {
-		return ratingScore;
+		return getRatingScore();
 	}
 
 	@Override
@@ -269,5 +269,13 @@ public class Player implements IEntities{
 	}
 	public void endPrompt() {
 		isPrompt = false;
+	}
+
+	public int getRatingScore() {
+		return ratingScore;
+	}
+
+	public void setRatingScore(int ratingScore) {
+		this.ratingScore = ratingScore;
 	}
 }
