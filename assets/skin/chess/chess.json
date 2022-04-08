@@ -6,6 +6,12 @@ com.badlogic.gdx.graphics.g2d.BitmapFont: {
 	Goblin-big: {
 		file: Goblin-big.fnt
 	}
+	momcake: {
+		file: momcake.fnt
+	}
+	PPF: {
+		file: PPF.fnt
+	}
 }
 com.badlogic.gdx.graphics.Color: {
 	black: {
@@ -39,6 +45,13 @@ com.badlogic.gdx.graphics.Color: {
 		a: 1
 	}
 }
+com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
+	default: {
+		checkboxOn: Checkbox_true
+		checkboxOff: Checkbox_false
+		font: Goblin
+	}
+}
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: {
 		font: Goblin
@@ -51,6 +64,29 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	title-light: {
 		font: Goblin-big
 		fontColor: RGBA_55_56_50_255
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
+	default: {
+		font: momcake
+		fontColorSelected: black
+		fontColorUnselected: black
+		selection: selection
+		background: List
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+	default: {
+		background: List
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
+	default: {
+		font: momcake
+		fontColor: black
+		background: akoljefhujiasdgfohuasdfgohj
+		scrollStyle: default
+		listStyle: default
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {

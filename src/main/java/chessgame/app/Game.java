@@ -8,15 +8,13 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import chessgame.entities.IEntities;
@@ -26,8 +24,10 @@ import chessgame.utils.Constants;
 import chessgame.world.PhysicsWorld;
 import chessgame.world.TiledGameMap;
 import chessgame.utils.EntityManager;
+import chessgame.utils.SaveFile;
+import chessgame.utils.ScreenType;
+import chessgame.utils.UI;
 import chessgame.menues.MenuScreen;
-import chessgame.menues.SaveFile;
 
 
 public class Game implements Screen {
@@ -41,7 +41,7 @@ public class Game implements Screen {
     TiledMap tiledMap;
     
     //Player
-    Player player;
+    static Player player;
     PlayerController playerController;
     
     //World generation
@@ -58,8 +58,8 @@ public class Game implements Screen {
     //All levels with their file names
     public static String[] levels = new String[] {
     	"1-1",
-    	"1-2"
-    	
+    	"1-2",
+    	"1-3"
     };
     
     //Stage for UI elements
@@ -70,27 +70,30 @@ public class Game implements Screen {
     //Imported skin for UI
     static Skin skin = new Skin(Gdx.files.internal("assets/skin/chess/chess.json"));
     //UI
-    static Label pauseText = new Label("PAUSED", skin, "title-light");
-    static TextButton resumeButton = new TextButton ("Resume", skin, "default"); 
-    static Label gameOverText = new Label("GAME OVER", skin, "title-dark");
-    static TextButton retryButton = new TextButton ("Retry?", skin, "default");
-    static TextButton quitButtonGO = new TextButton ("Quit", skin, "default");
-    static TextButton quitButtonP = new TextButton ("Quit", skin, "default");
-    static Label healthText = new Label ("Health", skin, "default");
-    static Label scoreText = new Label ("Score", skin, "default");
-    static Label timerText = new Label ("000", skin, "default");
+    static Label pauseText;
+    static TextButton resumeButton; 
+    static Label gameOverText;
+    static TextButton retryButton;
+    static TextButton quitButtonGO;
+    static TextButton quitButtonP;
+    static Label healthText;
+    static Label scoreText;
+    static Label timerText;
     static float timer;
-    static Label victoryText = new Label("VICTORY", skin, "title-light");
-    static TextButton continueButton = new TextButton ("Next level", skin, "default");
-    static boolean firstTime = true;
+    static Label victoryText;
+    static TextButton continueButton;
     
     static boolean paused;
     static boolean dead;
     
+    
     public Game(ChessGame game, int level) {
     	this.game = game;
-    	this.map = levels[level];
     	currentLevelIndex = level;
+    	if(currentLevelIndex >= levels.length) 
+    		return;
+    	this.map = levels[level];
+    	
     	//World initialisation
     	gameWorld = new PhysicsWorld();
     	debugRenderer = new Box2DDebugRenderer();
@@ -127,14 +130,15 @@ public class Game implements Screen {
     	//Updates the map
     	entityManager.updateLists();
     	
-    	if (firstTime)
-    		initilizeUI();
+
+    	initilizeUI();
     	
     	timer = 300;
     	stage.addActor(timerText);
     	stage.addActor(healthText);
     	stage.addActor(scoreText);
     	paused = false;
+    	
 
     }
 
@@ -147,6 +151,10 @@ public class Game implements Screen {
 
     @Override
     public void render(float delta) {
+    	if(currentLevelIndex >= levels.length) {
+    		game.setScreen(new MenuScreen(game));
+    		return;
+    	}
         if (!paused) {
 	        //Logic step
 	    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
@@ -219,7 +227,6 @@ public class Game implements Screen {
 	        stage.draw();
         }
     }
-
     public void gameOverScreen() {  
     	paused = true;
     	dead = true;
@@ -251,6 +258,7 @@ public class Game implements Screen {
     	stage.addActor(continueButton);
     	stage.addActor(quitButtonP);
     	SaveFile.writeProgress(currentLevelIndex+1);
+    	SaveFile.writeScore(player.getScore());
     }
     
     @Override
@@ -302,114 +310,37 @@ public class Game implements Screen {
      */
     private void initilizeUI() {
     	
-    	firstTime = false;
+    	Vector2 buttonSize = new Vector2(3,1.8f);
+    	Vector2 smallUISize = new Vector2(2,2);
+    	Vector2 titleSize = new Vector2(12,2);
     	
-    	gameOverText.setSize(colWidth*12,rowHeight*2);
-        gameOverText.setPosition((float) (Gdx.graphics.getWidth()/2-colWidth*6),rowHeight*12);
-        gameOverText.setAlignment(Align.center);
-        
-        retryButton.setSize(colWidth*3, (float) (rowHeight*1.8));
-    	retryButton.setPosition(colWidth*13, rowHeight*8);
-    	retryButton.addListener(new InputListener() {
-    		@Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-    			game.setScreen(new Game(game, currentLevelIndex));
-    		}
-    		
-    		@Override
-    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-    			return true;
-    		}	
-    	});
+    	gameOverText = UI.label(titleSize, new Vector2(6,12), "GAME OVER", "title-dark");
     	
-    	quitButtonGO.setSize(colWidth*3, (float) (rowHeight*1.8));
-    	quitButtonGO.setPosition(colWidth*8, rowHeight*8);
-    	quitButtonGO.addListener(new InputListener() {
-    		@Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-    			game.setScreen(new MenuScreen(game));
-    		}
-    		
-    		@Override
-    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-    			return true;
-    		}	
-    	});
+        pauseText = UI.label(titleSize, new Vector2(6,12), "PAUSED", "title-light");
+        
+        timerText = UI.label(smallUISize, new Vector2(0,14), "000", "default");
+        
+    	healthText = UI.label(smallUISize, new Vector2(3,14), "Health: ", "default");
+
+    	scoreText = UI.label(smallUISize, new Vector2(6,14), "Score: ", "default");
+
+    	victoryText = UI.label(titleSize, new Vector2(6,12), "VICTORY", "title-light");
     	
-    	pauseText.setSize(colWidth*12,rowHeight*2);
-        pauseText.setPosition((float) (Gdx.graphics.getWidth()/2-colWidth*6),rowHeight*12);
-        pauseText.setAlignment(Align.center);
-        
-        resumeButton.setSize(colWidth*3, (float) (rowHeight*1.8));
-    	resumeButton.setPosition(colWidth*12 - resumeButton.getWidth()/2, rowHeight*10);
-    	resumeButton.addListener(new InputListener() {
-    		@Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-    			pauseGame();
-    		}
-    		
-    		@Override
-    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-    			return true;
-    		}	
-    	});
+        retryButton = UI.newScreenButton(buttonSize, new Vector2(13,8), "Retry?", ScreenType.Game, game, currentLevelIndex);
     	
-    	quitButtonP.setSize(colWidth*3, (float) (rowHeight*1.8));
-    	quitButtonP.setPosition(colWidth*12 - quitButtonP.getWidth()/2, rowHeight*8);
-    	quitButtonP.addListener(new InputListener() {
-    		@Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-    			game.setScreen(new MenuScreen(game));
-    		}
-    		
-    		@Override
-    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-    			return true;
-    		}	
-    	});
+    	quitButtonGO = UI.newScreenButton(buttonSize, new Vector2(8,8), "Quit", ScreenType.MenuScreen, game, 0);
     	
-    	timerText.setSize(colWidth*2,rowHeight*2);
-        timerText.setPosition(0,rowHeight*14);
-        timerText.setAlignment(Align.center);
-        
-        healthText.setSize(colWidth*2, rowHeight*2);
-        healthText.setPosition(colWidth*3, rowHeight*14);
-        healthText.setAlignment(Align.center);
-        
-        scoreText.setSize(colWidth*2, rowHeight*2);
-        scoreText.setPosition(colWidth*6, rowHeight*14);
-        scoreText.setAlignment(Align.center);
-        
-        victoryText.setSize(colWidth*12,rowHeight*2);
-        victoryText.setPosition((float) (Gdx.graphics.getWidth()/2-colWidth*6),rowHeight*12);
-        victoryText.setAlignment(Align.center);
-        
-        continueButton.setSize(colWidth*3, (float) (rowHeight*1.8));
-        continueButton.setPosition(colWidth*12 - quitButtonP.getWidth()/2, rowHeight*10);
-        continueButton.addListener(new InputListener() {
-    		@Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-    			if (currentLevelIndex+1 >= levels.length) {
-    				game.setScreen(new MenuScreen(game));
-    			} else {
-    				game.setScreen(new Game(game, currentLevelIndex+1));
-    			}
-    			
-    		}
-    		
-    		@Override
-    		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-    			return true;
-    		}	
-    	});
+    	quitButtonP = UI.newScreenButton(buttonSize, new Vector2(10.5f,8), "Quit", ScreenType.MenuScreen, game, 0);
+    	
+    	continueButton = UI.newScreenButton(buttonSize, new Vector2(10.5f,10), "Continue", ScreenType.Game, game, currentLevelIndex+1);
+    	
+    	resumeButton = UI.resumeButton(buttonSize, new Vector2(10.5f,10));
     }
     
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
-
 
 	@Override
 	public void hide() {

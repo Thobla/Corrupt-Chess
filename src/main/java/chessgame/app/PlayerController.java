@@ -48,7 +48,7 @@ public class PlayerController extends InputMultiplexer {
 	    	if(Gdx.input.isKeyPressed(right)) {
 		    	player.move(new Vector2(playerspeed, player.getVelocity().y));	
 	    	}
-	    	if(Gdx.input.isKeyPressed(left)) {
+	    	else if(Gdx.input.isKeyPressed(left)) {
 	    		player.move(new Vector2(-playerspeed, player.getVelocity().y));
 	    	}
 	    	else 
