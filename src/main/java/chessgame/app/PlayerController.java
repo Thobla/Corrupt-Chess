@@ -9,7 +9,7 @@ import chessgame.entities.Player;
 
 public class PlayerController extends InputMultiplexer {
 	
-	private int playerspeed;
+	private int playerspeed = 1;
 	private float jumpForce = 500f;
 	public boolean isGrounded = false;
 	public boolean clearJump = true;
@@ -38,19 +38,23 @@ public class PlayerController extends InputMultiplexer {
 			//checks if the player is on the ground
 			
 			if(Gdx.input.isKeyPressed(sprint))
-				playerspeed = 16;
+				player.sprint = true;
 			else 
-				playerspeed = 8;
+				player.sprint = false;
 			
 			//Movement inputs
-	    	if(Gdx.input.isKeyPressed(right) || Gdx.input.isKeyPressed(Keys.RIGHT))
-	    		player.move(new Vector2(playerspeed, player.getVelocity().y));
-	    	else if(Gdx.input.isKeyPressed(left) || Gdx.input.isKeyPressed(Keys.LEFT))
+			if(Gdx.input.isKeyPressed(right) && Gdx.input.isKeyPressed(left))
+				player.move(Vector2.Zero);
+	    	if(Gdx.input.isKeyPressed(right)) {
+		    	player.move(new Vector2(playerspeed, player.getVelocity().y));	
+	    	}
+	    	else if(Gdx.input.isKeyPressed(left)) {
 	    		player.move(new Vector2(-playerspeed, player.getVelocity().y));
+	    	}
 	    	else 
 	    		player.move(new Vector2(0, player.getVelocity().y));
 	
-	    	if((Gdx.input.isKeyPressed(up) || Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.SPACE))) {
+	    	if((Gdx.input.isKeyPressed(up))) {
 	    		if(isGrounded && clearJump) {
 	    			player.move(Vector2.Zero);
 		    		player.jump(jumpForce);

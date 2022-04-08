@@ -1,19 +1,22 @@
-package chessgame.menues;
+package chessgame.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.math.Vector2;
 
 public class SaveFile {
 	
 	/**
 	 * Changes the controls in the settings file back to default (W,A,D,shift).
-	 * !!DOES NOT CHANGE AUDIO!!
 	 */
 	public static void defaultControls() {
-		int audio = readSettings()[4];
+		int[] currentSettings = readSettings();
+		int audio = currentSettings[4];
+		int res = currentSettings[5];
+		int fullScreen = currentSettings[6];
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
-		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, (byte) audio}, false);
+		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, (byte) audio, (byte) res, (byte) fullScreen}, false);
 	}
 	
 	/**
@@ -26,13 +29,15 @@ public class SaveFile {
 	 * [2]=right input,
 	 * [3]=sprint,
 	 * [4]=audiolvl
+	 * [5]=resolution
+	 * [6]=fullscreen
 	 * 
 	 * @author Åsmund
 	 */
 	public static int[] readSettings() {
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
 		byte[] input = file.readBytes();
-		int[] output = {0,1,2,3,4};
+		int[] output = {0,1,2,3,4,5,6};
 		int i = 0;
 		//Some key values are larger than the byte limit of 2^7-1 and needs to be converted back to their original int.
 		for (byte value : input) {
@@ -45,6 +50,11 @@ public class SaveFile {
 		return output;
 	}
 	
+	public static Vector2 getResolution() {
+		int resIndex = readSettings()[5];
+		return Constants.resolutions[resIndex];
+	}
+	
 	/**
 	 * Writes the input data to the settings file.
 	 * 
@@ -55,6 +65,8 @@ public class SaveFile {
 	 * [2]=right input,
 	 * [3]=sprint,
 	 * [4]=audiolvl
+	 * [5]=resolution
+	 * [6]=fullscreen
 	 * 
 	 * @author Åsmund
 	 */
@@ -73,12 +85,14 @@ public class SaveFile {
 	 * [2]=right input,
 	 * [3]=sprint,
 	 * [4]=audiolvl
+	 * [5]=resolution
+	 * [6]=fullscreen
 	 * 
 	 * @author Åsmund
 	 */
 	public static void writeSettings(int[] data) {
-		byte[] output = {0,1,2,3,4};
-		for (int i = 0; i<5 ; i++) {
+		byte[] output = {0,1,2,3,4,5,6};
+		for (int i = 0; i<output.length; i++) {
 			output[i] = (byte) data[i];
 		}
 		writeSettings(output);
@@ -94,6 +108,8 @@ public class SaveFile {
 	 * [2]=right input,
 	 * [3]=sprint,
 	 * [4]=audiolvl
+	 * [5]=resolution
+	 * [6]=fullscreen
 	 * 
 	 * @author Åsmund
 	 */
@@ -128,17 +144,29 @@ public class SaveFile {
 	public static void writeProgress(int data) {
 		FileHandle file = Gdx.files.local("savefiles/progress.txt");
 		if (file.readBytes()[0] < data)
-			file.writeBytes(new byte [] {(byte) data}, false);
+			file.writeBytes(new byte[] {(byte) data}, false);
+	}
+	
+	public static void writeScore(int data) {
+		FileHandle file = Gdx.files.local("savefiles/score.txt");
+		file.writeBytes(new byte[] {(byte) data}, false);
+	}
+	
+	public static byte[] readScore() {
+		FileHandle file = Gdx.files.local("savefiles/score.txt");
+		return file.readBytes();
 	}
 	
 	/**
 	 * Resets the settingsfile to its default state
 	 */
 	public static void totalReset() {
-		FileHandle file = Gdx.files.local("savefiles/settings.txt");
-		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, 50}, false);
-		FileHandle file2 = Gdx.files.local("savefiles/progress.txt");
-		file2.writeBytes(new byte[] {0}, false);
+		FileHandle setting = Gdx.files.local("savefiles/settings.txt");
+		setting.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, 50, 1, 0}, false);
+		FileHandle progress = Gdx.files.local("savefiles/progress.txt");
+		progress.writeBytes(new byte[] {0}, false);
+		FileHandle score = Gdx.files.local("savefiles/score.txt");
+		score.writeBytes(new byte[] {0}, false);
 	}
 
 	

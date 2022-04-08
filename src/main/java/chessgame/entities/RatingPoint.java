@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.utils.Constants;
+import chessgame.utils.EntityAnimation;
 import chessgame.utils.EntityManager;
 
 public class RatingPoint implements IObjects{
@@ -19,7 +20,8 @@ public class RatingPoint implements IObjects{
 	Body myBody;
 	World world;
 	EntityManager entityManager;
-	Sprite sprite;
+	EntityAnimation animation;
+	Texture sprite;
 	
 	public RatingPoint(Vector2 position, World world, EntityManager entityManager){
 		this.position = new Vector2(position.x/Constants.PixelPerMeter, position.y/Constants.PixelPerMeter);
@@ -29,7 +31,8 @@ public class RatingPoint implements IObjects{
 	}
 	
 	public void initialize() {
-		sprite = new Sprite(new Texture (Gdx.files.internal("assets/Ratingpoint.png").file().getAbsolutePath()));
+		sprite = new Texture (Gdx.files.internal("assets/objects/coin-Sheet.png").file().getAbsolutePath());
+		animation = new EntityAnimation(sprite, 4, 7f, this, new Vector2(32,32));
 		createBody();
 		
 		//Adds the pawn to the entityManager
@@ -70,7 +73,7 @@ public class RatingPoint implements IObjects{
 
 	@Override
 	public Sprite getSprite() {
-		return sprite;
+		return null;
 	}
 
 	@Override
@@ -94,9 +97,7 @@ public class RatingPoint implements IObjects{
 	public void updateState(Batch batch) {
 		position = myBody.getPosition();
 		if(batch != null) {
-			sprite.setPosition(position.x , position.y );
-			sprite.setSize(1, 1);
-			sprite.draw(batch);		
+			animation.render(batch);	
 		}
 	}
 
