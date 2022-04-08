@@ -16,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 
+import chessgame.entities.Platform;
 import chessgame.entities.Button;
 import chessgame.entities.Door;
 import chessgame.entities.Pawn;
@@ -135,6 +136,13 @@ public class PhysicsWorld {
 				manager.addPlayerSpawn(pos);
 			}
 			
+			
+			//Spawns a platform
+			if(entity.getName().toLowerCase().equals("platform")) {
+				int speed =(int) entity.getProperties().get("speed");
+				Platform platform = new Platform(pos, world, manager, speed);
+				platform.initialize();
+			}
 			
 		}
 	}
