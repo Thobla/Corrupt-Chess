@@ -1,23 +1,23 @@
-#6 CHICKS - Innlevering 3
+# 6 CHICKS - Innlevering 3
 
-##Møtereferat:
-###28.03.2022 - Møte mandag 
+## Møtereferat:
+### 28.03.2022 - Møte mandag 
 tilstede: Mikal, Johnarthan, Emil, Åsmund, Thorgal, (Olaug - syk)
 Alle satt denne mandagen og jobbet med det de allerede var igang med, også ble det planlagt hva som trengs å bli gjort av hver enkelt frem til neste innlevering. 
 
-###01.04.2022 - Møte fredag 
+### 01.04.2022 - Møte fredag 
 tilstede: Mikal, Johnarthan, Emil, Åsmund, Olaug og Thorgal 
 Disse timene satt alle å jobbet med de oppgavene vi hadde blitt enige om på mandagen. 
 
-###04.04.2022 - Møte mandag
+### 04.04.2022 - Møte mandag
 tilstede: Mikal, Emil, Olaug og Åsmund (Johnarthan - vekkreist, Thorgal - med fra Discord)
 Forberedte oss til innlevering kommende fredag. Fortsatte med de oppgavene som er gitt. 
 
-###08.04.2022 - Møte fredag
+### 08.04.2022 - Møte fredag
 tilstede: Mikal, Olaug, Thorgal (Johnarthan, Emil, Åsmund)
 Disse timene ble brukt på å ferdigstille rapport og oppgaver før innlevering samme dag. 
 
-##Deloppgave 1:
+## Deloppgave 1:
 * Hvordan fungerer rollene i teamet? Trenger dere å oppdatere hvem som er teamlead eller kundekontakt?
 
 Vi er alle ganske fornøyde med de rollene vi har. Vi begynner å finne ut av hvordan vi er mest effektive som et team, og er raske med å høre med hverandre om noen trenger hjelp når noen har fullført sine oppgaver. 
@@ -54,14 +54,14 @@ Vi har klart å gjennomføre metodikken vi satte oss delvis, men fant tidlig ut 
 
 De fleste skal ha comittet litt utover, men Johnarthan vil ha commitet minst siden han har jobbet med multiplayer som ikke er ferdig enda. Olaug har i tillegg skrive ansvar som gjør at hun får flest comits mot slutten av innleveringsfristene.  
 
-*Bli enige om maks tre forbedringspunkter fra retrospektivet, som skal følges opp under neste sprint.
+* Bli enige om maks tre forbedringspunkter fra retrospektivet, som skal følges opp under neste sprint.
 
 Bedre kommunikasjon - Være flinkere på å gi beskjed om man ikke kan komme til avtalte møter eller dersom man blir sen. 
 Bli flinkere på å oppdatere hverandre på hva man jobber med
 
 
-##Deloppgave 2:
-###«Stretch goal»
+## Deloppgave 2:
+### «Stretch goal»
 * Bestem dere for én litt mer avansert ting som dere vil prøve å få til utover et vanlig single-player platform spill. Dette kan være f.eks.: multiplayer (på samme maskin eller over nett), å porte til en annen platform (Android eller Web, f.eks.), å bytte ut grafikk-frontenden, e.l.
 
 Vi bestemte oss tidlig for å få til multiplayer over lokalt nett. Det jobbes med, men blir nok ikke ferdig til innlevering 3. 
@@ -69,7 +69,7 @@ Mulitplayer progresjon: Maskinene kan kobles sammen, og den ene maskinen kan sen
 
 
 
-##MVP og annet 
+## MVP og annet 
 * Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige gang. Er dere kommet forbi MVP? Forklar hvordan dere prioriterer 
 
 Alle MVP var ferdige innen innlevering 2. Vårt mål siden innlevering 2 var å jobbe med de implementajsonene vi allerede hadde, og forbedre dem. SIden sist har vi gjort akkurat dette. Fremover blir multiplayer prioritert i tillegg til å få spillet til å se bra ut og slik vi ønsker innen presentasjonen. Konkrete oppgaver vi har gjort kan leses om under arbeidsoppgaver. 
@@ -100,11 +100,11 @@ En bug er at spiller fortsatt kan dobbelhoppe til tider. Dette er den ene bugen 
 
 * Kravlista er lang, men det er ikke nødvendig å levere på alle kravene hvis det ikke er realistisk. Det er viktigere at de oppgavene som er utført holder høy kvalitet. Utførte oppgaver skal være ferdige.
 
-##Deloppgave 3:
+## Deloppgave 3:
 
 Deloppgave 3 skal handle om å fikse de tilbakemeldingene vi får fra gruppeledere, men siden disse ikke er kommet blir ikke det mulig i denne innleveringen.  
 
-###Arbeidsoppgaver
+### Arbeidsoppgaver
 Mikal - Mikal har de siste ukene jobbet med enemies, en boss, fikse bugs, animasjon og collisions. 
 
 Olaug - Olaug har de siste ukene jobbet med rapport, animasjon og sprite handler. 
