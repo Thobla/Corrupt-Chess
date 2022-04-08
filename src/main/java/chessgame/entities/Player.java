@@ -48,7 +48,7 @@ public class Player implements IEntities{
 	
 	public void initialize() {
 		sprite = new Sprite(new Texture (Gdx.files.internal("assets/player/player.png").file().getAbsolutePath()));
-		prompt = new Sprite(new Texture (Gdx.files.internal("assets/prompt.png").file().getAbsolutePath()));
+		//prompt = new Sprite(new Texture (Gdx.files.internal("assets/prompt.png").file().getAbsolutePath()));
 		createBody();
 		
 		//Load rating from saveFile
@@ -239,9 +239,9 @@ public class Player implements IEntities{
 				kill();
 			
 			if(isPrompt) {
-				prompt.setPosition(position.x - sprite.getWidth()/2, position.y + sprite.getHeight()*1.5f);
-				prompt.setSize(1, 1);
-				prompt.draw(batch);
+				//prompt.setPosition(position.x - sprite.getWidth()/2, position.y + sprite.getHeight()*1.5f);
+				//prompt.setSize(1, 1);
+				//prompt.draw(batch);
 				
 				//font.getData().setScale(0.1f);
 				//font.draw(batch, "E", position.x - sprite.getWidth()/2, position.y + sprite.getHeight()*3f);
