@@ -1,8 +1,5 @@
 package chessgame.world;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -20,7 +17,7 @@ import chessgame.entities.Button;
 import chessgame.entities.Door;
 import chessgame.entities.Pawn;
 import chessgame.entities.Portal;
-import chessgame.entities.RatingPoint;
+import chessgame.entities.objects.RatingPoint;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 

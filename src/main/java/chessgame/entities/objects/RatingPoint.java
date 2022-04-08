@@ -1,9 +1,11 @@
-package chessgame.entities;
+package chessgame.entities.objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -11,15 +13,19 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import chessgame.entities.IObjects;
+import chessgame.entities.Player;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
+import chessgame.utils.EntityAnimation;
 
 public class RatingPoint implements IObjects{
 	Vector2 position;
 	Body myBody;
 	World world;
 	EntityManager entityManager;
-	Sprite sprite;
+	Texture sprite;
+	EntityAnimation animation;
 	
 	public RatingPoint(Vector2 position, World world, EntityManager entityManager){
 		this.position = new Vector2(position.x/Constants.PixelPerMeter, position.y/Constants.PixelPerMeter);
@@ -29,7 +35,11 @@ public class RatingPoint implements IObjects{
 	}
 	
 	public void initialize() {
-		sprite = new Sprite(new Texture (Gdx.files.internal("assets/Ratingpoint.png").file().getAbsolutePath()));
+		//Creates animation
+		sprite = new Texture (Gdx.files.internal("assets/coin-sheet.png").file().getAbsolutePath());
+		animation = new EntityAnimation(sprite, 4, 7f, this, new Vector2(32, 32));
+		
+		
 		createBody();
 		
 		//Adds the pawn to the entityManager
@@ -70,7 +80,8 @@ public class RatingPoint implements IObjects{
 
 	@Override
 	public Sprite getSprite() {
-		return sprite;
+		return null;
+		//return sprite;
 	}
 
 	@Override
@@ -94,9 +105,8 @@ public class RatingPoint implements IObjects{
 	public void updateState(Batch batch) {
 		position = myBody.getPosition();
 		if(batch != null) {
-			sprite.setPosition(position.x , position.y );
-			sprite.setSize(1, 1);
-			sprite.draw(batch);		
+			//renders the animation
+			animation.render(batch);
 		}
 	}
 

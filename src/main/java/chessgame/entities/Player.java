@@ -27,7 +27,7 @@ public class Player implements IEntities{
 	
 	public boolean sprint = false;
 	public boolean dead = false;
-	int ratingScore;
+	public int ratingScore;
 	
 	//Player size
 	float width = 0.5f;
