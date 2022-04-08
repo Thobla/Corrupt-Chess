@@ -366,7 +366,7 @@ public class UI {
 	}
 	
 	public static CheckBox fullScreenBox(Vector2 size, Vector2 position, int[] controls, ChessGame game) {
-		CheckBox checkBox = checkBox(size, position, "Fullscreen");
+		CheckBox checkBox = checkBox(size, position, "");
 		if (controls[6] == 1)
 			checkBox.setChecked(true);
 		checkBox.addListener(new InputListener() {

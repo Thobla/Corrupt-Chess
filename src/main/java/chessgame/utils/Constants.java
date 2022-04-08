@@ -9,6 +9,6 @@ public class Constants {
 	public static final int worldWidth = 100;
 	public static final int worldHeight = 100;
 	//ScreenSizes
-	public static final String[] resolutionsString = {"800x600","1366x768","1600x900","1920x1080","1920x1200"};
-	public static final Vector2[] resolutions = {new Vector2(800,600),new Vector2(1366,768),new Vector2(1600,900),new Vector2(1920,1080),new Vector2(1920,1200)};
+	public static final String[] resolutionsString = {" 1366x768"," 1600x900"," 1920x1080"," 1920x1200"};
+	public static final Vector2[] resolutions = {new Vector2(1366,768),new Vector2(1600,900),new Vector2(1920,1080),new Vector2(1920,1200)};
 }

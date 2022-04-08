@@ -80,31 +80,31 @@ public class OptionScreen implements Screen {
         stage.addActor(backButton);
         
         //Text for up key
-        Label upText = UI.label(new Vector2(2,1), new Vector2(10,12), "Key up", "default");
+        Label upText = UI.label(new Vector2(2,1), new Vector2(10-2,12), "Key up", "default");
         stage.addActor(upText);
         //Button for up key
-		TextButton upButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12,12), Keys.toString(up), "jump", 0, stage, controls);
+		TextButton upButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,12), Keys.toString(up), "jump", 0, stage, controls);
         stage.addActor(upButton);
         
         //Text for left key
-        Label leftText = UI.label(new Vector2(2,1), new Vector2(10,11), "Key left", "default");
+        Label leftText = UI.label(new Vector2(2,1), new Vector2(10-2,11), "Key left", "default");
         stage.addActor(leftText);
         //Button for left key
-        TextButton leftButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12,11), Keys.toString(left), "left", 1, stage, controls);
+        TextButton leftButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,11), Keys.toString(left), "left", 1, stage, controls);
         stage.addActor(leftButton);
         
         //Text for right key
-        Label rightText = UI.label(new Vector2(2,1), new Vector2(10,10), "Key right", "default");
+        Label rightText = UI.label(new Vector2(2,1), new Vector2(10-2,10), "Key right", "default");
         stage.addActor(rightText);
         //Button for right key
-        TextButton rightButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12,10), Keys.toString(right), "right", 2, stage, controls);
+        TextButton rightButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,10), Keys.toString(right), "right", 2, stage, controls);
         stage.addActor(rightButton);
         
         //Text for sprint key
-        Label sprintText = UI.label(new Vector2(2,1), new Vector2(10,9), "Key sprint", "default");
+        Label sprintText = UI.label(new Vector2(2,1), new Vector2(10-2,9), "Key sprint", "default");
         stage.addActor(sprintText);
         //Button for sprint key
-        TextButton sprintButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12,9), Keys.toString(sprint), "sprint", 3, stage, controls);
+        TextButton sprintButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,9), Keys.toString(sprint), "sprint", 3, stage, controls);
         stage.addActor(sprintButton);
         
         //Button for default controls reset
@@ -119,11 +119,14 @@ public class OptionScreen implements Screen {
         stage.addActor(audioSlider);  
         
         String[] resItems = Constants.resolutionsString;
-        SelectBox<String> resolution = UI.resolutionBox(new Vector2(2.5f,1.5f), new Vector2(16,6), resItems, resolutionIndex, controls, game);
+        SelectBox<String> resolution = UI.resolutionBox(new Vector2(3,1.5f), new Vector2(13,11), resItems, resolutionIndex, controls, game);
         stage.addActor(resolution);
         
-        CheckBox fullScreen = UI.fullScreenBox(new Vector2(2.2f,1), new Vector2(20,6), controls, game);
-        stage.addActor(fullScreen);
+        Label fullScreenText = UI.label(new Vector2(2.2f,1), new Vector2(13,9), "Fullscreen", "default");
+        stage.addActor(fullScreenText);
+        
+        CheckBox fullScreenButton = UI.fullScreenBox(new Vector2(2.2f,1), new Vector2(15,9), controls, game);
+        stage.addActor(fullScreenButton);
 	}
 	
 	public static void defaultControls() {
