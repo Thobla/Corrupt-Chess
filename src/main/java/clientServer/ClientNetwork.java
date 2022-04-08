@@ -1,5 +1,8 @@
 package clientServer;
 
+import chessgame.app.Game;
+import chessgame.app.Main;
+import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -9,14 +12,21 @@ public class ClientNetwork extends Listener {
     //Our client object.
     static Client client;
     //IP to connect to.
-    static String ip = "10.111.15.225";
+    static String ip = "10.111.13.76";
     //Ports to connect on.
     static int tcpPort = 27960, udpPort = 27960;
 
     //A boolean value.
     static boolean messageReceived = false;
 
+
     public static void main(String[] args) throws Exception {
+        Kryo kryo = client.getKryo();
+        //Disse klassene må nok endres både her og på local
+        kryo.register(Game.class);
+        kryo.register(Main.class);
+
+
         System.out.println("Connecting to the server...");
         //Create the client.
         client = new Client();
@@ -37,6 +47,9 @@ public class ClientNetwork extends Listener {
         System.out.println("Connected! The client program is now waiting for a packet...\n");
 
         //This is here to stop the program from closing before we receive a message.
+
+
+
         while(!messageReceived){
             Thread.sleep(1000);
         }
