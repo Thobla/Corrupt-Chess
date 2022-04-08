@@ -83,6 +83,8 @@ public class Pawn implements IEnemies {
 		//adding a rightJumpSensor and leftJumpSensor to detect when the pawn needs to jump
 		addNewBoxSensor(myBody, this.jumpSensorwidth, 0.05f, new Vector2(1f, -this.height/2), "rightJumpSensor");
 		addNewBoxSensor(myBody, this.jumpSensorwidth, 0.05f, new Vector2(-1f, -this.height/2), "leftJumpSensor");
+		addNewBoxSensor(myBody, this.jumpSensorwidth/20, 0.05f, new Vector2(1f, -this.height/2), "rightJumpSensor");
+		addNewBoxSensor(myBody, this.jumpSensorwidth/20, 0.05f, new Vector2(-1f, -this.height/2), "leftJumpSensor");
 		
 		
 		

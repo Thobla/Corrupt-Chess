@@ -129,7 +129,7 @@ public class ListenerClass implements ContactListener{
 		//it differenciates leftJumpSensor from rightJunpSensor depending on linearvelocity.
 		//start
 		if((fixtureA.getUserData() == "rightJumpSensor" || fixtureA.getUserData() == "leftJumpSensor") && (fixtureB.getBody().getUserData() == "ground")) {
-			if (fixtureA.getUserData() == "rightJumpSensor" && fixtureA.getBody().getLinearVelocity().x > 0) {
+			if (fixtureA.getUserData() == "rightJumpSensor" || fixtureA.getUserData() == "rightJumpSensor2" && fixtureA.getBody().getLinearVelocity().x > 0) {
 				IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
 				System.out.println("sensor");
 				enemy.jump();
@@ -200,6 +200,8 @@ public class ListenerClass implements ContactListener{
 		unjumpable.add("Object");
 		unjumpable.add("Enemy");
 		unjumpable.add("Portal");
+		unjumpable.add("rightJumpSensor");
+		unjumpable.add("leftJumpSensor");
 	}
 	
 	private <T> boolean checkJumpable(T name) {
