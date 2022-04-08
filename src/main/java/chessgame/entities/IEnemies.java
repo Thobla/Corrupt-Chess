@@ -50,4 +50,6 @@ public interface IEnemies extends IEntities {
 	public Player getClosestPlayer(Float dist);
 	
 	public IState getCurrentState();
+
+	public abstract void jump();
 }

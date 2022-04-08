@@ -12,11 +12,10 @@ public class PawnMove extends PawnState{
 		
 	@Override
 	public void Enter() {
-			
 	}
 
 	@Override
 	public void Update() {
-			
+		pawn.changeState(pawn.idleState);
 	}
 }

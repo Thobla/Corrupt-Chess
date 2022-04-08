@@ -24,7 +24,7 @@ public class Pawn implements IEnemies {
 	public float aggroRange = 6f;
 	
 	Vector2 position;
-	Vector2 homePosition;
+	public Vector2 homePosition;
 	World world;
 	Body myBody;
 	public EntityManager entityManager;
@@ -43,6 +43,7 @@ public class Pawn implements IEnemies {
 	//Entity size
 	float width = 0.5f;
 	float height = 0.5f;
+	float jumpSensorwidth = 0.5f;
 	
 	public Pawn (Vector2 position, World world, EntityManager entityManager) {
 		homePosition = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
@@ -54,7 +55,7 @@ public class Pawn implements IEnemies {
 	}
 	
 	public void initialize() {
-		sprite = new Sprite(new Texture (Gdx.files.internal("assets/enemies/badguy.png").file().getAbsolutePath()));
+		sprite = new Sprite(new Texture (Gdx.files.internal("assets/pawn/badguy.png").file().getAbsolutePath()));
 		createBody();
 		
 		//Adds the pawn to the entityManager
@@ -76,14 +77,16 @@ public class Pawn implements IEnemies {
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);
 		
-		//creating a fixture that will serve as the players groundCheck-platter.
-		FixtureDef fixDef = new FixtureDef();
-		fixDef.isSensor = true;
-		//the shape should be lower than the players width and height
-		shape.setAsBox(width * 0.95f, height / 3.5f, new Vector2(0f, height), 0);
-		fixDef.shape = shape;
+		//adding a weakpoint
+		addNewBoxSensor(myBody, width * 0.95f, height / 3.5f, new Vector2(0f, height), "weakpoint");
 		
-		myBody.createFixture(fixDef).setUserData("weakpoint");
+		//adding a rightJumpSensor and leftJumpSensor to detect when the pawn needs to jump
+		addNewBoxSensor(myBody, this.jumpSensorwidth, 0.05f, new Vector2(1f, -this.height/2), "rightJumpSensor");
+		addNewBoxSensor(myBody, this.jumpSensorwidth, 0.05f, new Vector2(-1f, -this.height/2), "leftJumpSensor");
+		addNewBoxSensor(myBody, this.jumpSensorwidth/20, 0.05f, new Vector2(1f, -this.height/2), "rightJumpSensor");
+		addNewBoxSensor(myBody, this.jumpSensorwidth/20, 0.05f, new Vector2(-1f, -this.height/2), "leftJumpSensor");
+		
+		
 		
 	}
 	
@@ -165,6 +168,7 @@ public class Pawn implements IEnemies {
 			sprite.setColor(Color.WHITE);
 			attack = 1;
 		}
+		
 	}
 
 	@Override
@@ -219,5 +223,32 @@ public class Pawn implements IEnemies {
 	@Override
 	public IState getCurrentState() {
 		return currentState;
+	}
+	
+	/**
+	 * Method to give an existing body a new box-sensor
+	 * @param thisBody - the body to add the sensor to
+	 * @param length - the length of the sensor
+	 * @param height - the height of the sensor
+	 * @param centerPosition - the position of the box, relative to the body
+	 * @param userData - the user-data to add to the added shape
+	 */
+	void addNewBoxSensor(Body thisBody, float length, float height, Vector2 centerPosition, String userData) {
+		PolygonShape shape = new PolygonShape();
+		//creating a fixture that will serve as a sensor for the pawn
+		FixtureDef fixDef = new FixtureDef();
+		fixDef.isSensor = true;
+		shape.setAsBox(length, height, centerPosition, 0);
+		fixDef.shape = shape;
+		
+		myBody.createFixture(fixDef).setUserData(userData);
+		
+		
+	}
+
+	@Override
+	public void jump() {
+		myBody.setLinearVelocity(new Vector2(myBody.getLinearVelocity().x, 20f));
+		
 	}
 }

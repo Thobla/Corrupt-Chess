@@ -70,5 +70,9 @@ public class EnemyTest {
 		
 		pawn.changeState(pawn.chaseState);
 		assertEquals(pawn.chaseState, pawn.getCurrentState());
+		pawn.changeState(pawn.moveState);
+		assertEquals(pawn.moveState, pawn.getCurrentState());
+		pawn.changeState(pawn.homeState);
+		assertEquals(pawn.homeState, pawn.getCurrentState());
 	}
 }
