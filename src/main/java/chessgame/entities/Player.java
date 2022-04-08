@@ -51,6 +51,7 @@ public class Player implements IEntities{
 		createBody();
 		
 		//Load rating from saveFile
+		ratingScore = (int) SaveFile.readScore()[0];
 		
     	//PlayerController
 		int[] controls = SaveFile.readSettings();

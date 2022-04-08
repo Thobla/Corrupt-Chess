@@ -104,10 +104,9 @@ public class Game implements Screen {
     	stage = new Stage(new ScreenViewport());
      
         //The camera viewpoint
-        cam = new OrthographicCamera(Gdx.graphics.getWidth() / PPM, Gdx.graphics.getHeight() / PPM);
-        cam.setToOrtho(false, Gdx.graphics.getWidth() / PPM, Gdx.graphics.getHeight() / PPM);
+        cam = new OrthographicCamera(Gdx.graphics.getWidth() / (PPM*1.5f), Gdx.graphics.getHeight() / (PPM*1.5f));
+        cam.setToOrtho(false, Gdx.graphics.getWidth() / (PPM*1.5f), Gdx.graphics.getHeight() / (PPM*1.5f));
         cam.update();
-        
 		
         //Batch
         batch = new SpriteBatch();
@@ -213,8 +212,7 @@ public class Game implements Screen {
 	    	//Updates all entities
 	    	batch.begin();
 	    	entityManager.updateEntities(batch);
-	    	if (!dead)
-	    		player.renderPlayer(batch);
+	    	entityManager.updatePlayers(batch);
 	    	batch.end();
 	    	
 	    	entityManager.updateLists();
