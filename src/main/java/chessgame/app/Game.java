@@ -17,7 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import chessgame.entities.IEntities;
 import chessgame.entities.Player;
 import chessgame.utils.CameraStyles;
 import chessgame.utils.Constants;
