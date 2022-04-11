@@ -107,5 +107,8 @@ public class Portal implements IEntities {
 			sprite.draw(batch);	
 		}
 	}
+	@Override
+	public void takeDamage(int Damage) {
+	}
 	
 }

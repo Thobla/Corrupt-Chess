@@ -3,6 +3,8 @@ package chessgame.world;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.text.html.parser.Entity;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -15,6 +17,7 @@ import chessgame.app.PlayerController;
 import chessgame.entities.IEnemies;
 import chessgame.entities.IEntities;
 import chessgame.entities.IObjects;
+import chessgame.entities.Knight;
 import chessgame.entities.Player;
 import chessgame.entities.Portal;
 import chessgame.utils.EntityManager;
@@ -145,16 +148,36 @@ public class ListenerClass implements ContactListener{
 		else if((fixtureB.getUserData() == "rightJumpSensor" || fixtureB.getUserData() == "leftJumpSensor") && (fixtureA.getBody().getUserData() == "ground")) {
 			if (fixtureB.getUserData() == "rightJumpSensor" && fixtureB.getBody().getLinearVelocity().x > 0) {
 				IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
-				System.out.println("sensor");
 				enemy.jump();
 			}
 			else if(fixtureB.getUserData() == "leftJumpSensor" && fixtureB.getBody().getLinearVelocity().x < 0) {
 				IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
-				System.out.println("sensor");
 				enemy.jump();
 			}
 			
 		}
+		
+		//Checks if the Knight enemy has landed
+		if (fixtureA.getUserData() == "hoof" && checkJumpable(fixtureB.getUserData())) {
+			Knight knight = (Knight) fixtureA.getBody().getUserData();
+			knight.grounded();
+		} else if (fixtureB.getUserData() == "hoof" && checkJumpable(fixtureA.getUserData())) {
+			Knight knight = (Knight) fixtureB.getBody().getUserData();
+			knight.grounded();
+		}
+		//Checks if the Knight landed on the player or an other enemy
+		if (fixtureA.getUserData() == "hoof" && fixtureB.getUserData() == "Player" || fixtureA.getUserData() == "hoof" && fixtureB.getUserData() == "weakpoint") {
+			Knight knight = (Knight) fixtureA.getBody().getUserData();
+			knight.jump();
+			IEntities entity = (IEntities) fixtureB.getBody().getUserData();
+			entity.takeDamage(knight.getAttack());
+		} else if (fixtureB.getUserData() == "hoof" && fixtureA.getUserData() == "Player" || fixtureB.getUserData() == "hoof" && fixtureA.getUserData() == "weakpoint") {
+			Knight knight = (Knight) fixtureB.getBody().getUserData();
+			knight.jump();
+			IEntities entity = (IEntities) fixtureA.getBody().getUserData();
+			entity.takeDamage(knight.getAttack());
+		}
+		
 		//end
 		
 	}

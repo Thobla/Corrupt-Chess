@@ -133,4 +133,8 @@ public class Door implements IEntities {
 	public boolean isOpen() {
 		return open;
 	}
+
+	@Override
+	public void takeDamage(int Damage) {
+	}
 }
