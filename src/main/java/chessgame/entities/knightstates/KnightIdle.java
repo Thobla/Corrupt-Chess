@@ -1,7 +1,5 @@
 package chessgame.entities.knightstates;
 
-import com.badlogic.gdx.math.Vector2;
-
 import chessgame.entities.Knight;
 
 public class KnightIdle extends KnightState {
@@ -15,7 +13,6 @@ public class KnightIdle extends KnightState {
 	
 	@Override
 	public void Enter() {
-		knight.getBody().setLinearVelocity(Vector2.Zero);
 		counter = initialTime;
 	}
 	
@@ -25,10 +22,7 @@ public class KnightIdle extends KnightState {
 			knight.changeState(knight.chaseState);
 		}
 		if(counter <= 0) {
-			counter = initialTime;
-			//knight.changeState(knight.homeState);
-
-				
+			knight.changeState(knight.homeState);				
 		}
 		
 		counter -= 1;

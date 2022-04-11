@@ -4,7 +4,7 @@ import chessgame.entities.IState;
 
 public abstract class KnightState implements IState {
 
-	static KnightState KnightIdle, KnightChase;
+	static KnightState KnightIdle, KnightChase, KnightHome;
 	
 	public void Enter() {}
 

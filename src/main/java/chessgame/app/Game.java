@@ -23,6 +23,7 @@ import chessgame.utils.Constants;
 import chessgame.world.PhysicsWorld;
 import chessgame.world.TiledGameMap;
 import chessgame.utils.EntityManager;
+import chessgame.utils.Rumble;
 import chessgame.utils.SaveFile;
 import chessgame.utils.ScreenType;
 import chessgame.utils.UI;
@@ -95,7 +96,7 @@ public class Game implements Screen {
     	
     	//World initialisation
     	gameWorld = new PhysicsWorld();
-    	//debugRenderer = new Box2DDebugRenderer();
+    	debugRenderer = new Box2DDebugRenderer();
     	
     	entityManager = gameWorld.entityManager;
     	
@@ -159,9 +160,9 @@ public class Game implements Screen {
 	        gameMap.render(cam);
 	    	
 	        /**Debug-render to be off when not debugging.
-	    	debugRenderer.render(gameWorld.world, cam.combined);
+	    	
 	    	*/
-	        
+	        debugRenderer.render(gameWorld.world, cam.combined);
 	    	batch.setProjectionMatrix(cam.combined);
 	    	
 	    	
@@ -188,6 +189,11 @@ public class Game implements Screen {
 		    	timerText.setText(time);
 	    	}
 	        cameraBounds();
+	        //ScreenShake
+            if (Rumble.getRumbleTimeLeft() > 0) {
+                Rumble.tick(Gdx.graphics.getDeltaTime());
+                cam.translate(Rumble.getPos());
+            }
 	        cam.update();
 	        
 	        stage.act();
@@ -199,6 +205,8 @@ public class Game implements Screen {
 	        	gameOverScreen();
 	        	entityManager.removePlayer(player);
 	        }
+	        
+	        
         }
         else {
         	gameMap.render(cam);

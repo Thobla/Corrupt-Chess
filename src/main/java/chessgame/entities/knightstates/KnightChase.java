@@ -12,12 +12,14 @@ public class KnightChase extends KnightState{
 	
 	@Override
 	public void Enter() {
-		System.out.println("Entered chaseState");
+		knight.setSprite("assets/enemies/BigKnight.png");
+		if (knight.lookingRight)
+			knight.getSprite().flip(true, false);
 	}
 	
 	@Override
 	public void Update() {
-		Player target = knight.getClosestPlayer(knight.aggroRange + 2f);
+		Player target = knight.getClosestPlayer(knight.aggroRange+1f);
 		
 		//checks whether to stay in state or change state
 		if(target == null) {
