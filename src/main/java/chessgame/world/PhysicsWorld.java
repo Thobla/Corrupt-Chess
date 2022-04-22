@@ -19,6 +19,7 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import chessgame.entities.Button;
 import chessgame.entities.Door;
 import chessgame.entities.Knight;
+import chessgame.entities.KnightBoss;
 import chessgame.entities.Pawn;
 import chessgame.entities.Portal;
 import chessgame.entities.RatingPoint;
@@ -138,6 +139,10 @@ public class PhysicsWorld {
 			if(entity.getName().toLowerCase().equals("knight")) {
 				Knight knight = new Knight(pos, world, manager);
 				knight.initialize();
+			}
+			if(entity.getName().toLowerCase().equals("bossknight")) {
+				KnightBoss knightBoss = new KnightBoss(pos, world, manager);
+				knightBoss.initialize();
 			}
 			
 		}

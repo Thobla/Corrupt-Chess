@@ -14,12 +14,14 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import chessgame.entities.knightbossstates.KnightBossIdle;
+import chessgame.entities.knightbossstates.KnightBossState;
 import chessgame.entities.knightstates.*;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 import chessgame.utils.Rumble;
 
-public class Knight implements IEnemies {
+public class KnightBoss implements IEnemies {
 	int health;
 	int attack;
 	public float aggroRange = 5f;
@@ -38,31 +40,27 @@ public class Knight implements IEnemies {
 	boolean grounded;
 	public boolean lookingRight;
 	float preXVal;
-	Vector2 jumpSpot;
 	long jumpTime;
 	long airborneTime;
 	boolean correctionJump;
 	
 	//State	
-	public KnightState idleState = new KnightIdle(this);
-	public KnightState chaseState = new KnightChase(this);
-	public KnightState homeState = new KnightHome(this);
-	KnightState currentState = homeState;
+	public KnightBossState homeState = new KnightBossIdle(this);
+	KnightBossState currentState = homeState;
 	
 	//Entity size
-	float width = 0.8f;
-	float height = 1.5f;
+	float width = 0.8f*2.7f;
+	float height = 1.5f*2.7f;
 
-	public Knight (Vector2 position, World world, EntityManager entityManager) {
+	public KnightBoss (Vector2 position, World world, EntityManager entityManager) {
 		homePosition = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.position = homePosition;
 		this.world = world;
 		this.entityManager = entityManager;
-		health = 3;
+		health = 20;
 		attack = 1;
 		lookingRight = false;
 		grounded = true;
-		jumpSpot = Vector2.Zero;
 		correctionJump = false;
 	}	
 		
@@ -83,8 +81,8 @@ public class Knight implements IEnemies {
 		myBody.setUserData(this);
 		
 		//adding a weakpoint
-		addNewBoxSensor(myBody, width * 0.95f, height / 3.5f, new Vector2(0f, height), "weakpoint");
-		addNewBoxSensor(myBody, width * 0.95f, height /16f, new Vector2(0f, -height), "hoof");
+		addNewBoxSensor(myBody, width * 0.95f, height / 6f, new Vector2(0f, height), "weakpoint");
+		//addNewBoxSensor(myBody, width * 0.95f, height /16f, new Vector2(0f, -height), "hoof");
 	}
 	
 	
@@ -127,7 +125,7 @@ public class Knight implements IEnemies {
 		position = myBody.getPosition();
 		if(batch != null) {
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
-			sprite.setSize(1.6f, 3.2f);
+			sprite.setSize(1.6f*2.7f, 3.2f*2.7f);
 			sprite.draw(batch);	
 		}
 		if(health <= 0)
@@ -152,7 +150,7 @@ public class Knight implements IEnemies {
 
 	@Override
 	public void initialize() {
-		setSprite("assets/enemies/BigKnightSleeping.png");
+		setSprite("assets/enemies/KnightBoss.png");
 		createBody();
 		
 		//Adds the knight to the entityManager
@@ -168,19 +166,7 @@ public class Knight implements IEnemies {
 		if (canJump) {
 			float xVal = position.x - target.x;
 			float yVal = position.y - target.y;
-			
-			//The second jump after getting stuck
-			if (correctionJump) {
-				xVal = Math.copySign(3f, xVal);
-				correctionJump = false;
-			}
-			//If the knight gets stuck at a wall, it will jump back a step.
-			if (getPosition().x == jumpSpot.x && (xVal < 0 && preXVal < 0 || xVal > 0 && preXVal > 0)) {
-				xVal = -Math.copySign(1.3f,xVal);
-				correctionJump = true;
-			}
-			
-			jumpSpot = new Vector2(getPosition());
+
 			if(xVal > 0) {
 				if (lookingRight) {
 					sprite.flip(true, false);
@@ -206,8 +192,7 @@ public class Knight implements IEnemies {
 		if (!grounded) {
 			myBody.setLinearVelocity(Vector2.Zero);
 			grounded = true;
-			if (getClosestPlayer(100f) != null)
-				Rumble.rumble(Math.min(1/(getClosestPlayer(100f).getPosition().x-getPosition().x),0.6f), 0.1f);
+			Rumble.rumble(1f, 0.4f);
 			jumpTime = System.currentTimeMillis();
 		}
 		
@@ -231,6 +216,11 @@ public class Knight implements IEnemies {
 		invisFrame = true;
 		hitTime = System.currentTimeMillis();
 
+		List<Player> players = entityManager.playerList;
+		for (Player player : players) {
+			float targetDir = player.getPosition().x-getPosition().x;
+			player.myBody.setLinearVelocity(new Vector2(Math.copySign(40f , targetDir), 20f));
+		}
 	}
 
 	@Override
@@ -279,7 +269,7 @@ public class Knight implements IEnemies {
 	/**
 	 * Changes between the states in the stateMachine
 	 */
-	public void changeState(KnightState state) {
+	public void changeState(KnightBossState state) {
 		currentState = state;
 		currentState.Enter();
 	}
