@@ -171,7 +171,7 @@ public class ListenerClass implements ContactListener{
 			knight.jump();
 			IEntities entity = (IEntities) fixtureB.getBody().getUserData();
 			entity.takeDamage(knight.getAttack());
-		} else if (fixtureB.getUserData() == "hoof" && fixtureA.getUserData() == "Player" || fixtureB.getUserData() == "hoof" && fixtureA.getUserData() == "weakpoint") {
+		} else if (fixtureB.getUserData() == "hoof" && fixtureA.getUserData() == "Player" || fixtureB.getUserData() == "hoof" && fixtureA.getUserData() == "weakpoint" && fixtureB.getUserData() == "hoof" && fixtureA.getUserData() == "sky") {
 			Knight knight = (Knight) fixtureB.getBody().getUserData();
 			knight.jump();
 			IEntities entity = (IEntities) fixtureA.getBody().getUserData();

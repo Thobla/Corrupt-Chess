@@ -41,6 +41,7 @@ public class Knight implements IEnemies {
 	Vector2 jumpSpot;
 	long jumpTime;
 	long airborneTime;
+	boolean correctionJump;
 	
 	//State	
 	public KnightState idleState = new KnightIdle(this);
@@ -62,6 +63,7 @@ public class Knight implements IEnemies {
 		lookingRight = false;
 		grounded = true;
 		jumpSpot = Vector2.Zero;
+		correctionJump = false;
 	}	
 		
 	
@@ -167,11 +169,17 @@ public class Knight implements IEnemies {
 			float xVal = position.x - target.x;
 			float yVal = position.y - target.y;
 			
+			//The second jump after getting stuck
+			if (correctionJump) {
+				xVal = Math.copySign(3f, xVal);
+				correctionJump = false;
+			}
 			//If the knight gets stuck at a wall, it will jump back a step.
 			if (getPosition().x == jumpSpot.x && (xVal < 0 && preXVal < 0 || xVal > 0 && preXVal > 0)) {
 				xVal = -Math.copySign(1.3f,xVal);
+				correctionJump = true;
 			}
-			
+
 			jumpSpot = new Vector2(getPosition());
 			if(xVal > 0) {
 				if (lookingRight) {
