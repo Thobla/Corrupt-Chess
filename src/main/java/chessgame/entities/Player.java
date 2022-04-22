@@ -36,8 +36,8 @@ public class Player implements IEntities{
 	public int ratingScore = 0;
 	
 	//Player size
-	float width = 0.5f;
-	float height = 0.5f;
+	float width = .5f;
+	float height = 1f;
 	
 	public Player (Vector2 position, World world) {
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
@@ -87,7 +87,7 @@ public class Player implements IEntities{
 		
 		if(movement.x > 0) {
 			if (playerVelocity.x < 0) {
-				myBody.applyForce(new Vector2(moveForce-playerVelocity.x*50, 0), this.position, true);
+				myBody.applyForce(new Vector2(moveForce-playerVelocity.x*100, 0), this.position, true);
 			}
 			else if(playerVelocity.x < maxSpeed) {
 				myBody.applyForce(new Vector2(moveForce, 0), this.position, true);
@@ -97,7 +97,7 @@ public class Player implements IEntities{
 		}
 		else if(movement.x < 0) {
 			if (playerVelocity.x > 0) {
-				myBody.applyForce(new Vector2(-moveForce-playerVelocity.x*50, 0), this.position, true);
+				myBody.applyForce(new Vector2(-moveForce-playerVelocity.x*100, 0), this.position, true);
 			}
 			else if(-playerVelocity.x < maxSpeed) {
 				myBody.applyForce(new Vector2(-moveForce, 0), this.position, true);
@@ -133,6 +133,10 @@ public class Player implements IEntities{
 	@Override
 	public void createBody() {
 		BodyDef bodyDef = new BodyDef();
+		
+		//creating a fixture that will serve as the players groundCheck-platter.
+		FixtureDef fixDef = new FixtureDef();
+		
 		bodyDef.type = BodyDef.BodyType.DynamicBody;
 		bodyDef.position.set(new Vector2(position.x, position.y));
 		
@@ -140,16 +144,16 @@ public class Player implements IEntities{
 		
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);
+		fixDef.shape = shape;
+		fixDef.density = 10f;
 		
-		myBody.createFixture(shape, 10f).setUserData("Player");
+		myBody.createFixture(fixDef).setUserData("Player");
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);
 		
-		//creating a fixture that will serve as the players groundCheck-platter.
-		FixtureDef fixDef = new FixtureDef();
 		fixDef.isSensor = true;
 		//the shape should be lower than the players width and height
-		shape.setAsBox(width * 0.95f, height / 8, new Vector2(0f, -height), 0);
+		shape.setAsBox(width * 0.95f, height / 16, new Vector2(0f, -height), 0);
 		fixDef.shape = shape;
 		
 		myBody.createFixture(fixDef).setUserData("foot");
@@ -158,7 +162,7 @@ public class Player implements IEntities{
 		fixDef = new FixtureDef();
 		fixDef.isSensor = true;
 		//the shape should be lower than the players width and height
-		shape.setAsBox(width * 0.95f, height * 0.2f, new Vector2(0f, +height), 0);
+		shape.setAsBox(width * 0.95f, height * 0.1f, new Vector2(0f, +height), 0);
 		fixDef.shape = shape;
 		myBody.createFixture(fixDef).setUserData("sky");
 		
@@ -232,7 +236,7 @@ public class Player implements IEntities{
 			keepWithinBounds();
 	    	
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
-			sprite.setSize(1, 1);
+			sprite.setSize(2, 2);
 			sprite.draw(batch);
 			
 			if(health == 0)
@@ -254,7 +258,7 @@ public class Player implements IEntities{
 		keepWithinBounds();
     	
 		sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
-		sprite.setSize(1, 1);
+		sprite.setSize(2, 2);
 		sprite.draw(batch);
 	}
 

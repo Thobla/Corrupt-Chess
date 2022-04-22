@@ -9,10 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import com.badlogic.gdx.math.Vector2;
 
-import chessgame.entities.Button;
-import chessgame.entities.Door;
-import chessgame.entities.Player;
-import chessgame.entities.RatingPoint;
 import chessgame.utils.EntityManager;
 import chessgame.world.PhysicsWorld;
 

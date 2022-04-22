@@ -30,7 +30,7 @@ public class EntityManager {
     
     public EntityManager(PhysicsWorld gameWorld) {
     	this.pworld = gameWorld;
-    }
+    } 
     
     /**
      * Adds the entity to the removeList.

@@ -202,6 +202,7 @@ public class ListenerClass implements ContactListener{
 		unjumpable.add("Portal");
 		unjumpable.add("rightJumpSensor");
 		unjumpable.add("leftJumpSensor");
+		unjumpable.add("Door");
 	}
 	
 	private <T> boolean checkJumpable(T name) {
