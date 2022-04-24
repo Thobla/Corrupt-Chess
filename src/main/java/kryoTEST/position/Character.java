@@ -1,5 +1,5 @@
 
-package kryoTEST;
+package kryoTEST.position;
 
 public class Character {
 	public String name;

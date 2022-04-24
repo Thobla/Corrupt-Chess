@@ -56,6 +56,23 @@
 			<classifier>natives-desktop</classifier>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.esotericsoftware/kryo -->
+		<dependency>
+			<groupId>com.esotericsoftware</groupId>
+			<artifactId>kryo</artifactId>
+			<version>5.0.0-RC1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.esotericsoftware.kryo</groupId>
+			<artifactId>kryo</artifactId>
+			<version>2.24.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.esotericsoftware</groupId>
+			<artifactId>kryonet</artifactId>
+			<version>2.22.0-RC1</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>

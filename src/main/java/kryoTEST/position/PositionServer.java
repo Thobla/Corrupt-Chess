@@ -1,5 +1,5 @@
 
-package kryoTEST;
+package kryoTEST.position;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -9,17 +9,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashSet;
 
-import com.esotericsoftware.kryonet.Server
+
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
-import com.esotericsoftware.kryonet.examples.position.Network.AddCharacter;
-import com.esotericsoftware.kryonet.examples.position.Network.Login;
-import com.esotericsoftware.kryonet.examples.position.Network.MoveCharacter;
-import com.esotericsoftware.kryonet.examples.position.Network.Register;
-import com.esotericsoftware.kryonet.examples.position.Network.RegistrationRequired;
-import com.esotericsoftware.kryonet.examples.position.Network.RemoveCharacter;
-import com.esotericsoftware.kryonet.examples.position.Network.UpdateCharacter;
+import kryoTEST.position.Network.AddCharacter;
+import kryoTEST.position.Network.Login;
+import kryoTEST.position.Network.MoveCharacter;
+import kryoTEST.position.Network.Register;
+import kryoTEST.position.Network.RegistrationRequired;
+import kryoTEST.position.Network.RemoveCharacter;
+import kryoTEST.position.Network.UpdateCharacter;
 import com.esotericsoftware.minlog.Log;
 
 public class PositionServer {

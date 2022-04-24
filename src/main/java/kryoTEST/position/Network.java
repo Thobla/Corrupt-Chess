@@ -1,5 +1,5 @@
 
-package kryoTEST;
+package kryoTEST.position;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
