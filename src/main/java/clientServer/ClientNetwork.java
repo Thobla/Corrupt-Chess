@@ -1,18 +1,20 @@
 package clientServer;
 
-import chessgame.app.Game;
-import chessgame.app.Main;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.FrameworkMessage;
 import com.esotericsoftware.kryonet.Listener;
+
+import java.io.IOException;
+import java.util.Scanner;
 
 public class ClientNetwork extends Listener {
 
     //Our client object.
     static Client client;
     //IP to connect to.
-    static String ip = "10.111.13.76";
+    static String ip = "LocalHost"; // change localhoast to userchoice
     //Ports to connect on.
     static int tcpPort = 27960, udpPort = 27960;
 
@@ -21,25 +23,22 @@ public class ClientNetwork extends Listener {
 
 
     public static void main(String[] args) throws Exception {
-        Kryo kryo = client.getKryo();
-        //Disse klassene må nok endres både her og på local
-        kryo.register(Game.class);
-        kryo.register(Main.class);
-
-
-        System.out.println("Connecting to the server...");
         //Create the client.
         client = new Client();
 
+        Kryo kryo = client.getKryo();
         //Register the packet object.
-        client.getKryo().register(PacketMessage.class);
+        kryo.register(PacketMessage.class);
+
+        System.out.println("Connecting to the server...");
 
         //Start the client
-        client.start();
         //The client MUST be started before connecting can take place.
+        new Thread(client).start();
 
         //Connect to the server - wait 5000ms before failing.
-        client.connect(5000, ip, tcpPort, udpPort);
+        // increase if needed.
+        client.connect(50000, ip, tcpPort, udpPort);
 
         //Add a listener
         client.addListener(new ClientNetwork());
@@ -47,27 +46,72 @@ public class ClientNetwork extends Listener {
         System.out.println("Connected! The client program is now waiting for a packet...\n");
 
         //This is here to stop the program from closing before we receive a message.
+        while(client.isConnected()){
+//            Thread.sleep(50000000);
+            client.setKeepAliveTCP(999999999);
+            System.out.println("hva skjer 1234");
+            Scanner msg = new Scanner(System.in);
+            PacketMessage packetMessage = new PacketMessage();
+            String message = msg.nextLine();
+            //client.update(999999999);
 
-
-
-        while(!messageReceived){
-            Thread.sleep(1000);
         }
-
+        // when player dies, client will exit.
         System.out.println("Client will now exit.");
-        System.exit(0);
+        //System.exit(0);
+
+    }
+    //This is run when a connection is received!
+    public void connected(Connection c){
+        System.out.println("Received a connection from "+c.getRemoteAddressTCP().getHostString());
+        while(!messageReceived){
+            //Reads message
+            Scanner msg = new Scanner(System.in);
+            System.out.println("venter");
+
+            String message = msg.nextLine();
+            //Create a message packet.
+            PacketMessage packetMessage = new PacketMessage();
+            //Assign the message text.
+            packetMessage.message = "This is a message from ClientServer: "+ message;
+
+            //Send the message
+            c.sendTCP(packetMessage);
+
+
+        }
     }
 
+
     //I'm only going to implement this method from Listener.class because I only need to use this one.
-    public void received(Connection c, Object p){
+    public void received(Connection connection, Object object){
         //Is the received packet the same class as PacketMessage.class?
-        if(p instanceof PacketMessage){
+        if(object instanceof PacketMessage){
+
+
             //Cast it, so we can access the message within.
-            PacketMessage packet = (PacketMessage) p;
-            System.out.println("received a message from the host: "+packet.message);
+            PacketMessage fromHost = (PacketMessage) object;
+            System.out.println("received a message from the host: "+fromHost.message);
 
             //We have now received the message!
             messageReceived = true;
         }
+//        else{
+//            while(!(object instanceof PacketMessage)){
+//                //Reads message
+//                Scanner msg = new Scanner(System.in);
+//
+//                String message = msg.nextLine();
+//                //Create a message packet.
+//                PacketMessage packetMessage = new PacketMessage();
+//                //Assign the message text.
+//                packetMessage.message = "This is a message from Localserver: "+ message;
+//
+//                //Send the message
+//                client.sendTCP(packetMessage);
+//
+//            }
+//
+//        }
     }
 }
