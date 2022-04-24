@@ -1,6 +1,6 @@
 package chessgame.utils;
 
-import chessgame.menues.MultiPlayerScreen;
+import chessgame.menues.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
@@ -26,9 +26,6 @@ import com.badlogic.gdx.utils.Null;
 
 import chessgame.app.ChessGame;
 import chessgame.app.Game;
-import chessgame.menues.LevelSelectScreen;
-import chessgame.menues.MenuScreen;
-import chessgame.menues.OptionScreen;
 
 public class UI {
 	
@@ -93,6 +90,12 @@ public class UI {
 				case MultiPlayerScreen:
             		game.setScreen(new MultiPlayerScreen(game));
             		break;
+					case HostScreen:
+						game.setScreen(new HostScreen(game));
+					break;
+					case ClientScreen:
+						game.setScreen(new ClientScreen(game));
+					break;
             	case OptionScreen:
             		game.setScreen(new OptionScreen(game));
             		break;

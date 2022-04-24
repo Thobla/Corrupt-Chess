@@ -17,6 +17,8 @@ import chessgame.utils.SaveFile;
 import chessgame.utils.Constants;
 
 public class Player implements IEntities{
+	// TODO: 24.04.2022  
+	public String playerName;
 	Vector2 position;
 	public World world;
 	Sprite sprite;
@@ -38,10 +40,12 @@ public class Player implements IEntities{
 	//Player size
 	float width = .5f;
 	float height = 1f;
-	
+//	todo:
+//	legg til player
 	public Player (Vector2 position, World world) {
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
+		//this.playerName = playerName;
 		isPrompt = false;
 	}
 	

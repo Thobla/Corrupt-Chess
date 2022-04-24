@@ -33,6 +33,7 @@ public class ChatServer {
 		// registered by the same method for both the client and server.
 		Network.register(server);
 
+
 		server.addListener(new Listener() {
 			public void received (Connection c, Object object) {
 				// We know all connections for this server are actually ChatConnections.
@@ -113,6 +114,7 @@ public class ChatServer {
 		// Send the names to everyone.
 		UpdateNames updateNames = new UpdateNames();
 		updateNames.names = (String[])names.toArray(new String[names.size()]);
+		// oppdatere alt som visuelt skal vises på begge, samt
 		server.sendToAllTCP(updateNames);
 	}
 

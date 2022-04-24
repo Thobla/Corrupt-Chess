@@ -48,6 +48,7 @@ public class ChatClient {
 		// registered by the same method for both the client and server.
 		Network.register(client);
 
+
 		client.addListener(new Listener() {
 			public void connected (Connection connection) {
 				RegisterName registerName = new RegisterName();
