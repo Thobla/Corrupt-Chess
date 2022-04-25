@@ -121,5 +121,7 @@ public class EntityManager {
     public void removePlayer(Player player) {
     	playerList.remove(player);
     }
+
+
     
 }
