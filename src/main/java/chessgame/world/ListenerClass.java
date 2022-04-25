@@ -18,6 +18,7 @@ import chessgame.entities.IEnemies;
 import chessgame.entities.IEntities;
 import chessgame.entities.IObjects;
 import chessgame.entities.Knight;
+import chessgame.entities.KnightBoss;
 import chessgame.entities.Player;
 import chessgame.entities.Portal;
 import chessgame.utils.EntityManager;
@@ -159,23 +160,51 @@ public class ListenerClass implements ContactListener{
 		
 		//Checks if the Knight enemy has landed
 		if (fixtureA.getUserData() == "hoof" && checkJumpable(fixtureB.getUserData())) {
-			Knight knight = (Knight) fixtureA.getBody().getUserData();
-			knight.grounded();
+			if (fixtureA.getBody().getUserData().getClass().equals(Knight.class)) {
+				Knight knight = (Knight) fixtureA.getBody().getUserData();
+				knight.grounded();
+			}
+			if (fixtureA.getBody().getUserData().getClass().equals(KnightBoss.class)) {
+				KnightBoss knight = (KnightBoss) fixtureA.getBody().getUserData();
+				knight.grounded();
+			}
+			
 		} else if (fixtureB.getUserData() == "hoof" && checkJumpable(fixtureA.getUserData())) {
-			Knight knight = (Knight) fixtureB.getBody().getUserData();
-			knight.grounded();
+			if (fixtureB.getBody().getUserData().getClass().equals(Knight.class)) {
+				Knight knight = (Knight) fixtureB.getBody().getUserData();
+				knight.grounded();
+			} 
+			if (fixtureB.getBody().getUserData().getClass().equals(KnightBoss.class)) {
+				KnightBoss knight = (KnightBoss) fixtureB.getBody().getUserData();
+				knight.grounded();
+			}
 		}
 		//Checks if the Knight landed on the player or an other enemy
 		if (fixtureA.getUserData() == "hoof" && fixtureB.getUserData() == "Player" || fixtureA.getUserData() == "hoof" && fixtureB.getUserData() == "weakpoint") {
-			Knight knight = (Knight) fixtureA.getBody().getUserData();
-			knight.jump();
-			IEntities entity = (IEntities) fixtureB.getBody().getUserData();
-			entity.takeDamage(knight.getAttack());
+			if (fixtureA.getBody().getUserData().getClass().equals(Knight.class)) {
+				Knight knight = (Knight) fixtureA.getBody().getUserData();
+				knight.jump();
+				IEntities entity = (IEntities) fixtureB.getBody().getUserData();
+				entity.takeDamage(knight.getAttack());
+			} else {
+				KnightBoss knight = (KnightBoss) fixtureA.getBody().getUserData();
+				knight.jump();
+				IEntities entity = (IEntities) fixtureB.getBody().getUserData();
+				entity.takeDamage(knight.getAttack());
+			}
 		} else if (fixtureB.getUserData() == "hoof" && fixtureA.getUserData() == "Player" || fixtureB.getUserData() == "hoof" && fixtureA.getUserData() == "weakpoint" && fixtureB.getUserData() == "hoof" && fixtureA.getUserData() == "sky") {
-			Knight knight = (Knight) fixtureB.getBody().getUserData();
-			knight.jump();
-			IEntities entity = (IEntities) fixtureA.getBody().getUserData();
-			entity.takeDamage(knight.getAttack());
+			if (fixtureB.getBody().getUserData().getClass().equals(Knight.class)) {
+				Knight knight = (Knight) fixtureB.getBody().getUserData();
+				knight.jump();
+				IEntities entity = (IEntities) fixtureA.getBody().getUserData();
+				entity.takeDamage(knight.getAttack());
+			} else {
+				KnightBoss knight = (KnightBoss) fixtureB.getBody().getUserData();
+				knight.jump();
+				IEntities entity = (IEntities) fixtureA.getBody().getUserData();
+				entity.takeDamage(knight.getAttack());
+			}
+			
 		}
 		
 		//end

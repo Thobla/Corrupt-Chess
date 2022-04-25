@@ -14,8 +14,11 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import chessgame.entities.knightbossstates.KnightBossChase;
+import chessgame.entities.knightbossstates.KnightBossHighJump;
 import chessgame.entities.knightbossstates.KnightBossIdle;
 import chessgame.entities.knightbossstates.KnightBossState;
+import chessgame.entities.knightbossstates.KnightBossStunned;
 import chessgame.entities.knightstates.*;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
@@ -37,20 +40,24 @@ public class KnightBoss implements IEnemies {
 	long hitTime;
 	
 	boolean canJump;
+	long jumpTime;
 	boolean grounded;
 	public boolean lookingRight;
 	float preXVal;
-	long jumpTime;
-	long airborneTime;
-	boolean correctionJump;
+	public boolean hit;
+	public int allJumps;
 	
 	//State	
-	public KnightBossState homeState = new KnightBossIdle(this);
-	KnightBossState currentState = homeState;
+	public KnightBossState highJump = new KnightBossHighJump(this);
+	public KnightBossState idleState = new KnightBossIdle(this);
+	public KnightBossState stunnedState = new KnightBossStunned(this);
+	public KnightBossState chaseState = new KnightBossChase(this);
+	KnightBossState currentState = idleState;
+	public KnightBossState prevState = idleState;
 	
 	//Entity size
-	float width = 0.8f*2.7f;
-	float height = 1.5f*2.7f;
+	float width = 0.8f*2.6f;
+	float height = 1.5f*2.6f;
 
 	public KnightBoss (Vector2 position, World world, EntityManager entityManager) {
 		homePosition = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
@@ -61,7 +68,7 @@ public class KnightBoss implements IEnemies {
 		attack = 1;
 		lookingRight = false;
 		grounded = true;
-		correctionJump = false;
+		allJumps = 0;
 	}	
 		
 	
@@ -82,7 +89,7 @@ public class KnightBoss implements IEnemies {
 		
 		//adding a weakpoint
 		addNewBoxSensor(myBody, width * 0.95f, height / 6f, new Vector2(0f, height), "weakpoint");
-		//addNewBoxSensor(myBody, width * 0.95f, height /16f, new Vector2(0f, -height), "hoof");
+		addNewBoxSensor(myBody, width * 0.95f, height /16f, new Vector2(0f, -height), "hoof");
 	}
 	
 	
@@ -125,7 +132,7 @@ public class KnightBoss implements IEnemies {
 		position = myBody.getPosition();
 		if(batch != null) {
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
-			sprite.setSize(1.6f*2.7f, 3.2f*2.7f);
+			sprite.setSize(1.6f*2.6f, 3.2f*2.6f);
 			sprite.draw(batch);	
 		}
 		if(health <= 0)
@@ -137,14 +144,11 @@ public class KnightBoss implements IEnemies {
 		} else {
 			sprite.setColor(Color.WHITE);
 			attack = 1;
+			hit = false;
 		}
 		
-		if(System.currentTimeMillis() > jumpTime + 500 && grounded) {
+		if(System.currentTimeMillis() > jumpTime + 650 && grounded) {
 			canJump = true;
-		}
-		
-		if(System.currentTimeMillis() > airborneTime + 2500 && !grounded) {
-			grounded();
 		}
 	}
 
@@ -172,19 +176,19 @@ public class KnightBoss implements IEnemies {
 					sprite.flip(true, false);
 					lookingRight = false;
 				}
-				myBody.setLinearVelocity(-1-xVal, 20);
+				myBody.setLinearVelocity(-xVal, 35);
 			} else {
 				if (!lookingRight) {
 					sprite.flip(true, false);
 					lookingRight = true;
 				}
-				myBody.setLinearVelocity(+1-xVal, 20);
+				myBody.setLinearVelocity(-xVal, 35);
 			}
 			
 			preXVal = xVal;
 			canJump = false;
 			grounded = false;
-			airborneTime = System.currentTimeMillis();
+			allJumps += 1;
 		}	
 	}
 	
@@ -195,9 +199,11 @@ public class KnightBoss implements IEnemies {
 			Rumble.rumble(1f, 0.4f);
 			jumpTime = System.currentTimeMillis();
 		}
-		
 	}
-
+	public boolean isGrounded() {
+		return grounded;
+	}
+	
 	@Override
 	public int getHealth() {
 		return health;
@@ -215,11 +221,12 @@ public class KnightBoss implements IEnemies {
 		
 		invisFrame = true;
 		hitTime = System.currentTimeMillis();
+		hit = true;
 
 		List<Player> players = entityManager.playerList;
 		for (Player player : players) {
 			float targetDir = player.getPosition().x-getPosition().x;
-			player.myBody.setLinearVelocity(new Vector2(Math.copySign(40f , targetDir), 20f));
+			player.myBody.setLinearVelocity(new Vector2(Math.copySign(100f , targetDir), 20f));
 		}
 	}
 
@@ -278,7 +285,8 @@ public class KnightBoss implements IEnemies {
 	public void jump() {
 		canJump = false;
 		grounded = false;
-		myBody.setLinearVelocity(myBody.getLinearVelocity().x, 18f);
+		myBody.setLinearVelocity(0f, 50f);
+		allJumps += 1;
 	}
 	
 	/**
