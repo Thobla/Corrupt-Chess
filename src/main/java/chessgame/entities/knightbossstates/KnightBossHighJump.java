@@ -11,8 +11,7 @@ KnightBoss knight;
 	
 	@Override
 	public void Enter() {
-		knight.superJump();
-		System.out.println("Enetered jump");
+		knight.superJump(50f,true);
 	}
 	
 	@Override

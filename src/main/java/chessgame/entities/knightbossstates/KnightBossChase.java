@@ -1,13 +1,10 @@
 package chessgame.entities.knightbossstates;
 
-import com.badlogic.gdx.math.Vector2;
-
 import chessgame.entities.KnightBoss;
 import chessgame.entities.Player;
 
 public class KnightBossChase extends KnightBossState{
 	KnightBoss knight;
-	int totalJumps = 5;
 	int jumps;
 	
 	public KnightBossChase(KnightBoss knight) {
@@ -16,8 +13,7 @@ public class KnightBossChase extends KnightBossState{
 	
 	@Override
 	public void Enter() {
-		System.out.println("Entered chase");
-		jumps = totalJumps + knight.allJumps;
+		jumps = (int) Math.random()*2+3 + knight.allJumps;;
 	}
 	
 	@Override

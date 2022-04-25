@@ -16,8 +16,11 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.entities.knightbossstates.KnightBossChase;
+import chessgame.entities.knightbossstates.KnightBossDormant;
 import chessgame.entities.knightbossstates.KnightBossHighJump;
 import chessgame.entities.knightbossstates.KnightBossIdle;
+import chessgame.entities.knightbossstates.KnightBossOmega;
+import chessgame.entities.knightbossstates.KnightBossRandom;
 import chessgame.entities.knightbossstates.KnightBossState;
 import chessgame.entities.knightbossstates.KnightBossStunned;
 import chessgame.entities.knightstates.*;
@@ -28,8 +31,9 @@ import chessgame.utils.Rumble;
 public class KnightBoss implements IEnemies {
 	int health;
 	int attack;
-	public float aggroRange = 5f;
+	public float aggroRange = 35f;
 	
+	public boolean activated;
 	Vector2 position;
 	public Vector2 homePosition;
 	public World world;
@@ -42,6 +46,7 @@ public class KnightBoss implements IEnemies {
 	
 	boolean canJump;
 	long jumpTime;
+	long thinkingTime;
 	boolean grounded;
 	public boolean lookingRight;
 	float preXVal;
@@ -51,11 +56,14 @@ public class KnightBoss implements IEnemies {
 	public ArrayList<IEntities> minions = new ArrayList<IEntities>();
 	
 	//State	
-	public KnightBossState highJump = new KnightBossHighJump(this);
+	public KnightBossState superJumpState = new KnightBossHighJump(this);
 	public KnightBossState idleState = new KnightBossIdle(this);
 	public KnightBossState stunnedState = new KnightBossStunned(this);
 	public KnightBossState chaseState = new KnightBossChase(this);
-	KnightBossState currentState = idleState;
+	public KnightBossState randState = new KnightBossRandom(this);
+	public KnightBossState dormantState = new KnightBossDormant(this);
+	public KnightBossState omegaState = new KnightBossOmega(this);
+	KnightBossState currentState = dormantState;
 	public KnightBossState prevState = stunnedState;
 	
 	//Entity size
@@ -67,11 +75,13 @@ public class KnightBoss implements IEnemies {
 		this.position = homePosition;
 		this.world = world;
 		this.entityManager = entityManager;
-		health = 10;
+		health = 2;
 		attack = 1;
 		lookingRight = false;
-		grounded = true;
+		grounded = false;
 		allJumps = 0;
+		activated = false;
+		thinkingTime = 700;
 	}	
 		
 	
@@ -93,6 +103,8 @@ public class KnightBoss implements IEnemies {
 		//adding a weakpoint
 		addNewBoxSensor(myBody, width * 0.95f, height / 6f, new Vector2(0f, height), "weakpoint");
 		addNewBoxSensor(myBody, width * 0.95f, height /16f, new Vector2(0f, -height), "hoof");
+		addNewBoxSensor(myBody, width / 16f, height * 0.9f, new Vector2(-width, 0), "bumper");
+		addNewBoxSensor(myBody, width / 16f, height * 0.9f, new Vector2(width, 0), "bumper");
 	}
 	
 	
@@ -150,7 +162,7 @@ public class KnightBoss implements IEnemies {
 			hit = false;
 		}
 		
-		if(System.currentTimeMillis() > jumpTime + 650 && grounded) {
+		if(System.currentTimeMillis() > jumpTime + thinkingTime && grounded) {
 			canJump = true;
 		}
 	}
@@ -172,20 +184,25 @@ public class KnightBoss implements IEnemies {
 	public void moveTo(Vector2 target) {
 		if (canJump) {
 			float xVal = position.x - target.x;
-			float yVal = position.y - target.y;
-
+			float yVal = target.y - position.y;
+			float jumpPower = 32f;
+			if (health == 1)
+				jumpPower = 28f;
+			if (yVal < -10f)
+				jumpPower = 22f;
+			
 			if(xVal > 0) {
 				if (lookingRight) {
 					sprite.flip(true, false);
 					lookingRight = false;
 				}
-				myBody.setLinearVelocity(-xVal, 35);
+				myBody.setLinearVelocity(-xVal, jumpPower);
 			} else {
 				if (!lookingRight) {
 					sprite.flip(true, false);
 					lookingRight = true;
 				}
-				myBody.setLinearVelocity(-xVal*1.5f, 35);
+				myBody.setLinearVelocity(-xVal*1.5f, jumpPower);
 			}
 			
 			preXVal = xVal;
@@ -207,6 +224,16 @@ public class KnightBoss implements IEnemies {
 		return grounded;
 	}
 	
+	public void bump() {
+		sprite.flip(true, false);
+		if (lookingRight)
+			lookingRight = false;
+		else
+			lookingRight = true;
+		
+		myBody.setLinearVelocity(new Vector2(-myBody.getLinearVelocity().x, myBody.getLinearVelocity().y));
+	}
+	
 	@Override
 	public int getHealth() {
 		return health;
@@ -222,14 +249,24 @@ public class KnightBoss implements IEnemies {
 			return;
 		}
 		
+		if(health ==1)
+			thinkingTime = 0;
+		else
+			thinkingTime -= 120;
+		
 		invisFrame = true;
 		hitTime = System.currentTimeMillis();
 		hit = true;
+		float xVal;
 
 		List<Player> players = entityManager.playerList;
 		for (Player player : players) {
 			float targetDir = player.getPosition().x-getPosition().x;
-			player.myBody.setLinearVelocity(new Vector2(Math.copySign(100f , targetDir), 20f));
+			if (targetDir < 0)
+				xVal = -80f;
+			else
+				xVal = 80f;
+			player.myBody.setLinearVelocity(new Vector2(xVal, 15f));
 		}
 	}
 
@@ -293,10 +330,13 @@ public class KnightBoss implements IEnemies {
 		allJumps += 1;
 	}
 	
-	public void superJump() {
-		canJump = false;
-		grounded = false;
-		myBody.setLinearVelocity(0f, 50f);
+	public void superJump(Float power, boolean shockWave) {
+		if (canJump) {
+			canJump = false;
+			grounded = false;
+			myBody.setLinearVelocity(0f, power);
+			allJumps += 1;
+		}
 	}
 	
 	/**

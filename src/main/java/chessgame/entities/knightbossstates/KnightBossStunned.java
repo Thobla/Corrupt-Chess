@@ -12,7 +12,7 @@ import chessgame.world.PhysicsWorld;
 public class KnightBossStunned extends KnightBossState {
 	KnightBoss knight;
 	int counter;
-	int initialTime = 2000;
+	int initialTime = 2500;
 	
 	public KnightBossStunned(KnightBoss knight) {
 		this.knight = knight;
@@ -20,7 +20,6 @@ public class KnightBossStunned extends KnightBossState {
 	
 	@Override
 	public void Enter() {
-		System.out.println("Enetered stunned");
 		counter = initialTime;
 		
 		knight.minions.add(PhysicsWorld.spawnEntity("knight", new Vector2(knight.getPosition().x-7f,knight.getPosition().y+20f), knight.world, knight.entityManager));

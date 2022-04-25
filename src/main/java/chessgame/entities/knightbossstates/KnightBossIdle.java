@@ -6,31 +6,45 @@ public class KnightBossIdle extends KnightBossState {
 	KnightBoss knight;
 	int idleTime = 800;
 	int counter;
+	int riggedRandom;
+	int dec;
 	
 	public KnightBossIdle(KnightBoss knight) {
 		this.knight = knight;
+		dec = 10;
 	}
 	
 	@Override
 	public void Enter() {
 		System.out.println("Entered idle");
 		counter = idleTime;
+		riggedRandom = (int) (Math.random()*dec);
+		if (knight.getHealth() == 1) {
+			counter = counter/4;
+			dec = 8;
+		} else
+			dec -= 2;
 	}
 	
 	@Override
 	public void Update() {
-		if (counter <= 0) {
-				int r = (int) (Math.random()*2);
-			if (r == 0 && !knight.prevState.equals(knight.stunnedState)) {
-				knight.changeState(knight.highJump);
-			} 
-			if (r >= 1) {
-				knight.changeState(knight.chaseState);
-			}
-		} else {
-			counter -= 1;
+		if (counter <= 0) {	
+			if (riggedRandom == 0 && !knight.prevState.equals(knight.stunnedState)) {
+				if (knight.getHealth() > 1) {
+				knight.changeState(knight.superJumpState);
+				dec = 10;
+				} else
+					knight.changeState(knight.omegaState);
+			} else {
+				int r = (int) (Math.random()*3);
+				if (r == 0) {
+					knight.changeState(knight.chaseState);
+				}
+				if (r > 1) {
+					knight.changeState(knight.randState);
+				}
+			}	
 		}
-		
+		counter -= 1;
 	}
-	
 }
