@@ -21,6 +21,7 @@ import chessgame.entities.Door;
 import chessgame.entities.Knight;
 import chessgame.entities.Pawn;
 import chessgame.entities.Portal;
+import chessgame.entities.RBlock;
 import chessgame.entities.RatingPoint;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
@@ -140,7 +141,12 @@ public class PhysicsWorld {
 				knight.initialize();
 			}
 			
+			if(entity.getName().toLowerCase().equals("rblock")) {
+				int rbcode =(int) entity.getProperties().get("rbcode");
+				RBlock rblock = new RBlock(pos, world, manager, rbcode);
+				rblock.initialize();
+			
 		}
 	}
-	
+ }
 }

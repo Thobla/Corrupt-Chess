@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import chessgame.entities.Door;
 import chessgame.entities.IEntities;
 import chessgame.entities.Player;
+import chessgame.entities.RBlock;
 import chessgame.world.PhysicsWorld;
 
 
@@ -25,6 +26,7 @@ public class EntityManager {
     public List<Player> playerList = new ArrayList<Player>();
     public List<Vector2> playerSpawns = new ArrayList<Vector2>();
     public HashMap<Integer, Door> doorMap = new HashMap<Integer, Door>();
+    public HashMap<Integer, RBlock> rBlockMap = new HashMap<Integer, RBlock>();
     
     private PhysicsWorld pworld;
     
