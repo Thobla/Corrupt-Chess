@@ -112,18 +112,18 @@ public class PhysicsWorld {
 			}
 			//Spawns a coin	
 			if(entity.getName().toLowerCase().equals("ratingpoint")) {
-				RatingPoint point = new RatingPoint(pos, world, manager);
+				RatingPoint point = new RatingPoint(pos, world, manager, nextId());
 				point.initialize();
 			}
 			//Spawns a door
 			if(entity.getName().toLowerCase().equals("door")) {
 				int code =(int) entity.getProperties().get("code");
-				Door door = new Door(pos, world, manager, code);
+				Door door = new Door(pos, world, manager, code, nextId());
 				door.initialize();
 			}
 			if(entity.getName().toLowerCase().equals("button")) {
 				int code =(int) entity.getProperties().get("code");
-				Button button = new Button(pos, world, manager, code);
+				Button button = new Button(pos, world, manager, code, nextId());
 				button.initialize();
 			}
 			if(entity.getName().toLowerCase().equals("portal")) {

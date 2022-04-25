@@ -288,4 +288,8 @@ public class Player implements IEntities{
 	public void setRatingScore(int ratingScore) {
 		this.ratingScore = ratingScore;
 	}
+	
+	public String getId() {
+		return this.playerId;
+	}
 }

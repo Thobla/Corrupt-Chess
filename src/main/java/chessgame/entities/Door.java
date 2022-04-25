@@ -28,15 +28,17 @@ public class Door implements IEntities {
 	Boolean open;
 	int activationCode;
 	
+	int myId;
 	float width = 0.5f;
 	float height = 1.5f;
 	
 	
-	public Door(Vector2 position, World world, EntityManager entityManager, int code){
+	public Door(Vector2 position, World world, EntityManager entityManager, int code, int myId){
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		this.entityManager = entityManager;
 		this.activationCode = code;
+		this.myId = myId;
 		open = false;
 	}
 	
@@ -133,6 +135,10 @@ public class Door implements IEntities {
 	 */
 	public boolean isOpen() {
 		return open;
+	}
+	
+	public int getId() {
+		return this.myId;
 	}
 
 }
