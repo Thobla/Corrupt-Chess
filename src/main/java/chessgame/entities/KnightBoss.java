@@ -1,5 +1,6 @@
 package chessgame.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
@@ -31,7 +32,7 @@ public class KnightBoss implements IEnemies {
 	
 	Vector2 position;
 	public Vector2 homePosition;
-	World world;
+	public World world;
 	Body myBody;
 	public EntityManager entityManager;
 	public Sprite sprite;
@@ -47,13 +48,15 @@ public class KnightBoss implements IEnemies {
 	public boolean hit;
 	public int allJumps;
 	
+	public ArrayList<IEntities> minions = new ArrayList<IEntities>();
+	
 	//State	
 	public KnightBossState highJump = new KnightBossHighJump(this);
 	public KnightBossState idleState = new KnightBossIdle(this);
 	public KnightBossState stunnedState = new KnightBossStunned(this);
 	public KnightBossState chaseState = new KnightBossChase(this);
 	KnightBossState currentState = idleState;
-	public KnightBossState prevState = idleState;
+	public KnightBossState prevState = stunnedState;
 	
 	//Entity size
 	float width = 0.8f*2.6f;
@@ -64,7 +67,7 @@ public class KnightBoss implements IEnemies {
 		this.position = homePosition;
 		this.world = world;
 		this.entityManager = entityManager;
-		health = 20;
+		health = 10;
 		attack = 1;
 		lookingRight = false;
 		grounded = true;
@@ -182,7 +185,7 @@ public class KnightBoss implements IEnemies {
 					sprite.flip(true, false);
 					lookingRight = true;
 				}
-				myBody.setLinearVelocity(-xVal, 35);
+				myBody.setLinearVelocity(-xVal*1.5f, 35);
 			}
 			
 			preXVal = xVal;
@@ -277,6 +280,7 @@ public class KnightBoss implements IEnemies {
 	 * Changes between the states in the stateMachine
 	 */
 	public void changeState(KnightBossState state) {
+		prevState = currentState;
 		currentState = state;
 		currentState.Enter();
 	}
@@ -285,8 +289,14 @@ public class KnightBoss implements IEnemies {
 	public void jump() {
 		canJump = false;
 		grounded = false;
-		myBody.setLinearVelocity(0f, 50f);
+		myBody.setLinearVelocity(0f, 28f);
 		allJumps += 1;
+	}
+	
+	public void superJump() {
+		canJump = false;
+		grounded = false;
+		myBody.setLinearVelocity(0f, 50f);
 	}
 	
 	/**

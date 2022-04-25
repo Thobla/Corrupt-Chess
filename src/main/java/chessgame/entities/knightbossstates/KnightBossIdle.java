@@ -4,7 +4,7 @@ import chessgame.entities.KnightBoss;
 
 public class KnightBossIdle extends KnightBossState {
 	KnightBoss knight;
-	int idleTime = 600;
+	int idleTime = 800;
 	int counter;
 	
 	public KnightBossIdle(KnightBoss knight) {
@@ -21,10 +21,10 @@ public class KnightBossIdle extends KnightBossState {
 	public void Update() {
 		if (counter <= 0) {
 				int r = (int) (Math.random()*2);
-			if (r == 1 && !knight.prevState.equals(knight.highJump)) {
+			if (r == 0 && !knight.prevState.equals(knight.stunnedState)) {
 				knight.changeState(knight.highJump);
 			} 
-			if (r == 0) {
+			if (r >= 1) {
 				knight.changeState(knight.chaseState);
 			}
 		} else {
@@ -32,4 +32,5 @@ public class KnightBossIdle extends KnightBossState {
 		}
 		
 	}
+	
 }

@@ -18,6 +18,7 @@ import com.badlogic.gdx.physics.box2d.Shape;
 
 import chessgame.entities.Button;
 import chessgame.entities.Door;
+import chessgame.entities.IEntities;
 import chessgame.entities.Knight;
 import chessgame.entities.KnightBoss;
 import chessgame.entities.Pawn;
@@ -148,4 +149,12 @@ public class PhysicsWorld {
 		}
 	}
 	
+	public static IEntities spawnEntity(String name, Vector2 pos, World world, EntityManager manager) {
+		if (name == "knight") {
+			Knight knight = new Knight(new Vector2(pos.x*Constants.PixelPerMeter,pos.y*Constants.PixelPerMeter), world, manager);
+			knight.initialize();
+			return knight;
+		}
+		return null;
+	}
 }

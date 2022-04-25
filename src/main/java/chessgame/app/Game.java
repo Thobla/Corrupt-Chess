@@ -86,6 +86,8 @@ public class Game implements Screen {
     static boolean paused;
     static boolean dead;
     
+    public static boolean gameStart = false;
+    
     
     public Game(ChessGame game, int level) {
     	this.game = game;
@@ -150,6 +152,8 @@ public class Game implements Screen {
 
     @Override
     public void render(float delta) {
+    	if (!gameStart)
+    		gameStart = true;
     	if(currentLevelIndex >= levels.length) {
     		game.setScreen(new MenuScreen(game));
     		return;

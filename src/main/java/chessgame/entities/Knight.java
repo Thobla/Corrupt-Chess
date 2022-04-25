@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import chessgame.app.Game;
 import chessgame.entities.knightstates.*;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
@@ -36,6 +37,7 @@ public class Knight implements IEnemies {
 	
 	boolean canJump;
 	boolean grounded;
+	boolean firstLanded;
 	public boolean lookingRight;
 	float preXVal;
 	Vector2 jumpSpot;
@@ -61,7 +63,9 @@ public class Knight implements IEnemies {
 		health = 3;
 		attack = 1;
 		lookingRight = false;
-		grounded = true;
+		grounded = false;
+		canJump = false;
+		firstLanded = false;
 		jumpSpot = Vector2.Zero;
 		correctionJump = false;
 	}	
@@ -145,7 +149,7 @@ public class Knight implements IEnemies {
 			canJump = true;
 		}
 		
-		if(System.currentTimeMillis() > airborneTime + 2500 && !grounded) {
+		if(System.currentTimeMillis() > airborneTime + 2500 && !grounded && firstLanded) {
 			grounded();
 		}
 	}
@@ -156,7 +160,10 @@ public class Knight implements IEnemies {
 		createBody();
 		
 		//Adds the knight to the entityManager
-    	entityManager.addEntity(this);
+		if (!Game.gameStart)
+			entityManager.addEntity(this);
+		else
+			entityManager.addRuntimeEntity(this);
 	}
 	
 	public void setSprite(String path) {
@@ -204,6 +211,8 @@ public class Knight implements IEnemies {
 	
 	public void grounded() {
 		if (!grounded) {
+			if (!firstLanded)
+				firstLanded = true;
 			myBody.setLinearVelocity(Vector2.Zero);
 			grounded = true;
 			if (getClosestPlayer(100f) != null)

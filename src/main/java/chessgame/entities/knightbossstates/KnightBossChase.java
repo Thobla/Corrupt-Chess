@@ -24,8 +24,12 @@ public class KnightBossChase extends KnightBossState{
 	public void Update() {
 		if (jumps >= knight.allJumps) {
 			Player target = knight.getClosestPlayer(10000f);
-			if (target != null)
+			if (target != null) {
 				knight.moveTo(target.getPosition());
+				if(target.getPosition().x-0.1f < knight.getPosition().x && knight.getPosition().x < target.getPosition().x+0.1f) {
+					knight.getBody().setLinearVelocity(0, knight.getBody().getLinearVelocity().y);
+				}
+			}
 		} else {
 			knight.changeState(knight.idleState);
 		}

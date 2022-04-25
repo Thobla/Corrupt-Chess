@@ -25,6 +25,7 @@ public class EntityManager {
     public List<Player> playerList = new ArrayList<Player>();
     public List<Vector2> playerSpawns = new ArrayList<Vector2>();
     public HashMap<Integer, Door> doorMap = new HashMap<Integer, Door>();
+    public List<IEntities> entityWaitingList = new ArrayList<IEntities>();
     
     private PhysicsWorld pworld;
     
@@ -70,10 +71,21 @@ public class EntityManager {
      * @param batch
      */
     public void updateEntities(Batch batch) {
+    	if (!entityWaitingList.isEmpty()) {
+    		for (IEntities entity : entityWaitingList) {
+    			addEntity(entity);
+    		}
+    		entityWaitingList.clear();
+    	}
     	for(IEntities entity : entityList) {
     		entity.updateState(batch);
     	}
     }
+    
+    public void addRuntimeEntity(IEntities entity) {
+    	entityWaitingList.add(entity);
+    }
+    
     /**
      * Adds a spawn location to the spawnLocation list
      * @param pos
