@@ -27,8 +27,8 @@ public class RBlock implements IEntities {
 	Boolean isOn;
 	int activationCodeRB;
 	
-	float width = 32f;
-	float height = 32f;
+	float width = 0.49f;
+	float height = 0.49f;
 	
 	
 	public RBlock(Vector2 position, World world, EntityManager entityManager, int rbcode){
