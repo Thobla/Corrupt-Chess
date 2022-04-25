@@ -29,7 +29,7 @@ public class EntityTest {
 	 */
 	@Test
 	void entityDamage() {
-		Pawn pawn = new Pawn(Vector2.Zero, pworld.world, manager);
+		Pawn pawn = new Pawn(Vector2.Zero, pworld.world, manager, 0);
 		int Health = pawn.getHealth();
 		pawn.takeDamage(1);
 		assertEquals(Health-1, pawn.getHealth());
@@ -40,7 +40,7 @@ public class EntityTest {
 	 */
 	@Test
 	void entityDeath() {
-		Pawn pawn = new Pawn(Vector2.Zero, pworld.world, manager);
+		Pawn pawn = new Pawn(Vector2.Zero, pworld.world, manager, 1);
 		manager.addEntity(pawn);
 		pawn.createBody();
 		pawn.sprite = new Sprite();

@@ -134,4 +134,5 @@ public class Door implements IEntities {
 	public boolean isOpen() {
 		return open;
 	}
+
 }

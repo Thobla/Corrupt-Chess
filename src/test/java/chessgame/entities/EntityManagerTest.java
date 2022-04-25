@@ -27,9 +27,9 @@ class EntityManagerTest {
 	void setup() {
 		pWorld = new PhysicsWorld();
 		entityManager = new EntityManager(pWorld);
-		pawn1 = new Pawn(new Vector2(0,0), pWorld.world, entityManager);
+		pawn1 = new Pawn(new Vector2(0,0), pWorld.world, entityManager, 0);
 		pawn1.createBody();
-		pawn2 = new Pawn(new Vector2(0,0), pWorld.world, entityManager);
+		pawn2 = new Pawn(new Vector2(0,0), pWorld.world, entityManager, 1);
 		pawn2.createBody();
 	}
 	

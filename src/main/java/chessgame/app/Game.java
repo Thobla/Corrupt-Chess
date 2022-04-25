@@ -49,7 +49,7 @@ public class Game implements Screen {
     Box2DDebugRenderer debugRenderer;
     
     //Entities
-    EntityManager entityManager;
+    public EntityManager entityManager;
     
     final ChessGame game;
     String map;

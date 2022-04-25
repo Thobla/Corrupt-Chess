@@ -26,6 +26,7 @@ public class PhysicsWorld {
 	static float gravity = Constants.Gravity;
 	public World world;
 	public EntityManager entityManager;
+	private int currentId;
 	
 	/**
 	 * A class to keep track of the Entity world, and ContactListener.
@@ -35,6 +36,7 @@ public class PhysicsWorld {
 		world = new World(new Vector2(0, -gravity), true);
 		world.setContactListener(new ListenerClass(this));
 		entityManager = new EntityManager(this);
+		currentId = 0;
 	}
 	
 	/**
@@ -105,7 +107,7 @@ public class PhysicsWorld {
 			}
 			//Spawns a pawn
 			if(entity.getName().toLowerCase().equals("pawn")) {;
-				Pawn pawn = new Pawn(pos, world, manager);
+				Pawn pawn = new Pawn(pos, world, manager, nextId());
 				pawn.initialize();
 			}
 			//Spawns a coin	
@@ -134,6 +136,11 @@ public class PhysicsWorld {
 			
 			
 		}
+	}
+	
+	int nextId() {
+		currentId ++;
+		return currentId - 1;
 	}
 	
 }

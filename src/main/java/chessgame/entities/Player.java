@@ -24,6 +24,7 @@ public class Player implements IEntities{
 	Sprite sprite;
 	public Body myBody;
 	public PlayerController controller;
+	String playerId;
 	//PlayerStats
 	int health = 3;
 	int attack = 1;
@@ -42,9 +43,10 @@ public class Player implements IEntities{
 	float height = 1f;
 //	todo:
 //	legg til player
-	public Player (Vector2 position, World world) {
+	public Player (Vector2 position, World world, String id) {
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
+		playerId = id;
 		//this.playerName = playerName;
 		isPrompt = false;
 	}

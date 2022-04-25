@@ -2,6 +2,7 @@ package chessgame.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -28,8 +29,13 @@ public class EntityManager {
     
     private PhysicsWorld pworld;
     
+    private LinkedList<String> playerIdList = new LinkedList<String>();
+    
     public EntityManager(PhysicsWorld gameWorld) {
     	this.pworld = gameWorld;
+    	//adding names for 2 players
+    	playerIdList.add("player1");
+    	playerIdList.add("player2");
     } 
     
     /**
@@ -75,7 +81,7 @@ public class EntityManager {
     	}
     }
     /**
-     * Adds a spawn location to the spawnLocation list
+     * Adds a spawn location toS the spawnLocation list
      * @param pos
      */
     public void addPlayerSpawn(Vector2 pos) {
@@ -92,15 +98,21 @@ public class EntityManager {
     	 * (200, 200)
     	 */
     	if(playerSpawns.size() > 0)
-    		player = new Player(playerSpawns.remove(0), pworld.world);
+    		player = new Player(playerSpawns.remove(0), pworld.world, nextPlayer());
     	else
-    		player = new Player(new Vector2(200,200), pworld.world);
+    		player = new Player(new Vector2(200,200), pworld.world, nextPlayer());
     	
         player.initialize();
         playerList.add(player);
         return player;
     }
-    /**
+    private String nextPlayer() {
+		String currentPlayer = this.playerIdList.peek();
+		this.playerIdList.remove();
+		return currentPlayer;
+	}
+
+	/**
      * Updates the sprites and renders of the current acting players in the world.
      * @param batch
      */
@@ -121,7 +133,4 @@ public class EntityManager {
     public void removePlayer(Player player) {
     	playerList.remove(player);
     }
-
-
-    
 }
