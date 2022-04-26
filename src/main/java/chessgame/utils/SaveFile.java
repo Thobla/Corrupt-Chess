@@ -149,12 +149,15 @@ public class SaveFile {
 	
 	public static void writeScore(int data) {
 		FileHandle file = Gdx.files.local("savefiles/score.txt");
-		file.writeBytes(new byte[] {(byte) data}, false);
+		int firstByte = data % 128;
+		int secByte = Math.floorDiv(data, 128);
+		file.writeBytes(new byte[] {(byte) firstByte, (byte) secByte}, false);
 	}
 	
-	public static byte[] readScore() {
+	public static int readScore() {
 		FileHandle file = Gdx.files.local("savefiles/score.txt");
-		return file.readBytes();
+		byte[] data = file.readBytes();
+		return data[0]+data[1]*128;
 	}
 	
 	/**
@@ -166,7 +169,7 @@ public class SaveFile {
 		FileHandle progress = Gdx.files.local("savefiles/progress.txt");
 		progress.writeBytes(new byte[] {0}, false);
 		FileHandle score = Gdx.files.local("savefiles/score.txt");
-		score.writeBytes(new byte[] {0}, false);
+		score.writeBytes(new byte[] {0, 0}, false);
 	}
 
 	
