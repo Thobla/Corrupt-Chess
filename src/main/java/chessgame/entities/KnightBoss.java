@@ -25,8 +25,11 @@ import chessgame.entities.knightbossstates.KnightBossState;
 import chessgame.entities.knightbossstates.KnightBossStunned;
 import chessgame.entities.knightstates.*;
 import chessgame.utils.Constants;
+import chessgame.utils.Direction;
 import chessgame.utils.EntityManager;
+import chessgame.utils.EntityType;
 import chessgame.utils.Rumble;
+import chessgame.world.PhysicsWorld;
 
 public class KnightBoss implements IEnemies {
 	int health;
@@ -52,6 +55,7 @@ public class KnightBoss implements IEnemies {
 	float preXVal;
 	public boolean hit;
 	public int allJumps;
+	public boolean spawnBullet;
 	
 	public ArrayList<IEntities> minions = new ArrayList<IEntities>();
 	
@@ -67,21 +71,22 @@ public class KnightBoss implements IEnemies {
 	public KnightBossState prevState = stunnedState;
 	
 	//Entity size
-	float width = 0.8f*2.6f;
-	float height = 1.5f*2.6f;
+	public float width = 0.8f*2.6f;
+	public float height = 1.5f*2.6f;
 
 	public KnightBoss (Vector2 position, World world, EntityManager entityManager) {
 		homePosition = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.position = homePosition;
 		this.world = world;
 		this.entityManager = entityManager;
-		health = 5;
+		health = 2;
 		attack = 1;
 		lookingRight = false;
 		grounded = false;
 		allJumps = 0;
 		activated = false;
 		thinkingTime = 700;
+		spawnBullet = false;
 	}	
 		
 	
@@ -332,6 +337,7 @@ public class KnightBoss implements IEnemies {
 			grounded = false;
 			myBody.setLinearVelocity(0f, power);
 			allJumps += 1;
+			spawnBullet = true;
 		}
 	}
 	

@@ -106,8 +106,5 @@ public class Portal implements IEntities {
 			animation.render(batch);	
 		}
 	}
-	@Override
-	public void takeDamage(int Damage) {
-	}
 	
 }

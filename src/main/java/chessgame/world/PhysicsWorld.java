@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import chessgame.entities.Bullet;
 import chessgame.entities.Button;
 import chessgame.entities.Door;
 import chessgame.entities.IEntities;
@@ -22,8 +23,9 @@ import chessgame.entities.Pawn;
 import chessgame.entities.Portal;
 import chessgame.entities.RatingPoint;
 import chessgame.utils.Constants;
-import chessgame.utils.EnemyType;
+import chessgame.utils.Direction;
 import chessgame.utils.EntityManager;
+import chessgame.utils.EntityType;
 
 public class PhysicsWorld {
 	static int PPM = Constants.PixelPerMeter;
@@ -147,11 +149,15 @@ public class PhysicsWorld {
 		}
 	}
 	
-	public static IEntities spawnEntity(EnemyType type, Vector2 pos, World world, EntityManager manager) {
-		if (type == EnemyType.Knight) {
+	public static IEntities spawnEntity(EntityType type, Vector2 pos, World world, EntityManager manager) {
+		if (type == EntityType.Knight) {
 			Knight knight = new Knight(new Vector2(pos.x*Constants.PixelPerMeter,pos.y*Constants.PixelPerMeter), world, manager);
 			knight.initialize();
 			return knight;
+		}
+		if (type == EntityType.Bullet) {
+			Bullet bullet = new Bullet(new Vector2(pos.x*Constants.PixelPerMeter,pos.y*Constants.PixelPerMeter), world, manager, Direction.RIGHT);
+			return bullet;
 		}
 		return null;
 	}

@@ -11,7 +11,7 @@ public class KnightBossIdle extends KnightBossState {
 	
 	public KnightBossIdle(KnightBoss knight) {
 		this.knight = knight;
-		dec = 10;
+		dec = 1;
 	}
 	
 	@Override
@@ -20,7 +20,7 @@ public class KnightBossIdle extends KnightBossState {
 		riggedRandom = (int) (Math.random()*dec);
 		if (knight.getHealth() == 1) {
 			counter = counter/4;
-			dec = 8;
+			dec = 4;
 		} else
 			dec -= 2;
 	}

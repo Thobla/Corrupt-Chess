@@ -136,8 +136,4 @@ public class Button implements IObjects{
 			door.doorState();
 		}
 	}
-
-	@Override
-	public void takeDamage(int Damage) {	
-	}
 }

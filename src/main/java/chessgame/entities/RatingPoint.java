@@ -107,8 +107,5 @@ public class RatingPoint implements IObjects{
 		kill();
 	}
 
-	@Override
-	public void takeDamage(int Damage) {
-	}
 
 }
