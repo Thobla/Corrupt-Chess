@@ -3,7 +3,6 @@ package chessgame.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -13,8 +12,15 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.app.PlayerController;
+import chessgame.entities.playerstates.PlayerBishopState;
+import chessgame.entities.playerstates.PlayerKnightState;
+import chessgame.entities.playerstates.PlayerPawnState;
+import chessgame.entities.playerstates.PlayerState;
+import chessgame.entities.playerstates.PlayerTowerState;
 import chessgame.utils.SaveFile;
 import chessgame.utils.Constants;
+import chessgame.utils.EntityAnimation;
+import chessgame.utils.EntityManager;
 
 public class Player implements IEntities{
 	Vector2 position;
@@ -27,26 +33,45 @@ public class Player implements IEntities{
 	int attack = 1;
 	
 	//Player prompt
-	Sprite prompt;
-	public boolean isPrompt;
-	BitmapFont font;
+	EntityAnimation dustAnim;
+	EntityAnimation leftRunDust;
+	EntityAnimation rightRunDust;
+	
+	public EntityManager manager;
+	
+	boolean jumpDust = true;
+	public boolean facing = true;
 	
 	public boolean sprint = false;
 	public boolean dead = false;
 	public int ratingScore = 0;
 	
-	//Player size
-	float width = 0.5f;
-	float height = 0.5f;
+	//PlayerStates
+	PlayerPawnState playerPawnState = new PlayerPawnState(this);
+	PlayerTowerState playerTowerState = new PlayerTowerState(this);
+	PlayerKnightState playerKnightState = new PlayerKnightState(this);
+	PlayerBishopState playerBishopState = new PlayerBishopState(this);
+	public PlayerState currentState;
 	
-	public Player (Vector2 position, World world) {
+	//Player size
+	float width = .5f;
+	float height = 1f;
+	
+	public Player (Vector2 position, World world, EntityManager manager) {
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
-		isPrompt = false;
+		currentState = playerPawnState;
+		this.manager = manager;
 	}
 	
 	public void initialize() {
 		sprite = new Sprite(new Texture (Gdx.files.internal("assets/player/player.png").file().getAbsolutePath()));
+		Texture dust = new Texture (Gdx.files.internal("assets/player/landingDust.png").file().getAbsolutePath());
+		dustAnim =  new EntityAnimation(dust, 4, 16f, this, new Vector2(64,32), true);
+		Texture lRunDust = new Texture (Gdx.files.internal("assets/player/runDust.png").file().getAbsolutePath());
+		leftRunDust =  new EntityAnimation(lRunDust, 4, 8f, this, new Vector2(64,32), true);
+		Texture rRunDust = new Texture (Gdx.files.internal("assets/player/runDustR.png").file().getAbsolutePath());
+		rightRunDust =  new EntityAnimation(rRunDust, 4, 8f, this, new Vector2(64,32), true);
 		//prompt = new Sprite(new Texture (Gdx.files.internal("assets/prompt.png").file().getAbsolutePath()));
 		createBody();
 		
@@ -56,8 +81,6 @@ public class Player implements IEntities{
     	//PlayerController
 		int[] controls = SaveFile.readSettings();
     	controller = new PlayerController(controls);
-    	
-    	font = new BitmapFont();
 	}
 
 	@Override
@@ -87,7 +110,7 @@ public class Player implements IEntities{
 		
 		if(movement.x > 0) {
 			if (playerVelocity.x < 0) {
-				myBody.applyForce(new Vector2(moveForce-playerVelocity.x*50, 0), this.position, true);
+				myBody.applyForce(new Vector2(moveForce-playerVelocity.x*100, 0), this.position, true);
 			}
 			else if(playerVelocity.x < maxSpeed) {
 				myBody.applyForce(new Vector2(moveForce, 0), this.position, true);
@@ -97,7 +120,7 @@ public class Player implements IEntities{
 		}
 		else if(movement.x < 0) {
 			if (playerVelocity.x > 0) {
-				myBody.applyForce(new Vector2(-moveForce-playerVelocity.x*50, 0), this.position, true);
+				myBody.applyForce(new Vector2(-moveForce-playerVelocity.x*100, 0), this.position, true);
 			}
 			else if(-playerVelocity.x < maxSpeed) {
 				myBody.applyForce(new Vector2(-moveForce, 0), this.position, true);
@@ -133,6 +156,10 @@ public class Player implements IEntities{
 	@Override
 	public void createBody() {
 		BodyDef bodyDef = new BodyDef();
+		
+		//creating a fixture that will serve as the players groundCheck-platter.
+		FixtureDef fixDef = new FixtureDef();
+		
 		bodyDef.type = BodyDef.BodyType.DynamicBody;
 		bodyDef.position.set(new Vector2(position.x, position.y));
 		
@@ -140,16 +167,16 @@ public class Player implements IEntities{
 		
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);
+		fixDef.shape = shape;
+		fixDef.density = 10f;
 		
-		myBody.createFixture(shape, 10f).setUserData("Player");
+		myBody.createFixture(fixDef).setUserData("Player");
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);
 		
-		//creating a fixture that will serve as the players groundCheck-platter.
-		FixtureDef fixDef = new FixtureDef();
 		fixDef.isSensor = true;
 		//the shape should be lower than the players width and height
-		shape.setAsBox(width * 0.95f, height / 8, new Vector2(0f, -height), 0);
+		shape.setAsBox(width * 0.95f, height / 16, new Vector2(0f, -height), 0);
 		fixDef.shape = shape;
 		
 		myBody.createFixture(fixDef).setUserData("foot");
@@ -158,7 +185,7 @@ public class Player implements IEntities{
 		fixDef = new FixtureDef();
 		fixDef.isSensor = true;
 		//the shape should be lower than the players width and height
-		shape.setAsBox(width * 0.95f, height * 0.2f, new Vector2(0f, +height), 0);
+		shape.setAsBox(width * 0.95f, height * 0.1f, new Vector2(0f, +height), 0);
 		fixDef.shape = shape;
 		myBody.createFixture(fixDef).setUserData("sky");
 		
@@ -193,8 +220,23 @@ public class Player implements IEntities{
 
 	@Override
 	public void removeBody() {
-		// TODO Auto-generated method stub
 		
+	}
+	
+	public void changeState(PlayerState state) {
+		currentState = state;
+		currentState.Enter();
+	}
+	
+	public void nextState() {
+		if(currentState == playerPawnState)
+			changeState(playerKnightState);
+		else if(currentState == playerKnightState)
+			changeState(playerTowerState);
+		else if(currentState == playerTowerState)
+			changeState(playerBishopState);
+		else if(currentState == playerBishopState)
+			changeState(playerPawnState);
 	}
 	
 	public void updatePosition() {
@@ -227,48 +269,41 @@ public class Player implements IEntities{
 				myBody.setLinearVelocity(new Vector2(myBody.getLinearVelocity().x, 20));
 			//Updates position vector2
 			updatePosition();
+			currentState.Update();
 			
 	    	controller.myController(this);
 			keepWithinBounds();
 	    	
+			sprite.setFlip(!facing, false);
+			
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
-			sprite.setSize(1, 1);
+			sprite.setSize(2, 2);
 			sprite.draw(batch);
+			
+			if(jumpDust) {
+				jumpDust = dustAnim.playOnce(batch, (position.x - 2*width), position.y-height);
+			}
+			if(Math.abs(myBody.getLinearVelocity().y) < 0.01f && !jumpDust) {
+				if(myBody.getLinearVelocity().x > 2f) {
+					leftRunDust.render(batch, (position.x - 3*width), position.y-height);
+				} 
+				if(myBody.getLinearVelocity().x < -2f) {
+					rightRunDust.render(batch, (position.x - width), position.y-height);
+				}
+			}
 			
 			if(health == 0)
 				kill();
-			
-			if(isPrompt) {
-				//prompt.setPosition(position.x - sprite.getWidth()/2, position.y + sprite.getHeight()*1.5f);
-				//prompt.setSize(1, 1);
-				//prompt.draw(batch);
-				
-				//font.getData().setScale(0.1f);
-				//font.draw(batch, "E", position.x - sprite.getWidth()/2, position.y + sprite.getHeight()*3f);
-			}
-	
 	}
 	
-	public void renderPlayer(Batch batch) {
-		controller.myController(this);
-		keepWithinBounds();
-    	
-		sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
-		sprite.setSize(1, 1);
-		sprite.draw(batch);
-	}
+
 
 	@Override
 	public Body getBody() {
 		return myBody;
 	}
-	
-	public void setPrompt(Sprite sprite) {
-		//prompt = sprite;
-		isPrompt = true;
-	}
-	public void endPrompt() {
-		isPrompt = false;
+	public void playDust() {
+		jumpDust = true;
 	}
 
 	public int getRatingScore() {

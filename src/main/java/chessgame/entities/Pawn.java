@@ -42,7 +42,7 @@ public class Pawn implements IEnemies {
 	
 	//Entity size
 	float width = 0.5f;
-	float height = 0.5f;
+	float height = 1f;
 	float jumpSensorwidth = 0.5f;
 	
 	public Pawn (Vector2 position, World world, EntityManager entityManager) {
@@ -55,7 +55,7 @@ public class Pawn implements IEnemies {
 	}
 	
 	public void initialize() {
-		sprite = new Sprite(new Texture (Gdx.files.internal("assets/pawn/badguy.png").file().getAbsolutePath()));
+		sprite = new Sprite(new Texture (Gdx.files.internal("assets/pawn/darkPawn.png").file().getAbsolutePath()));
 		createBody();
 		
 		//Adds the pawn to the entityManager
@@ -155,7 +155,7 @@ public class Pawn implements IEnemies {
 		position = myBody.getPosition();
 		if(batch != null) {
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
-			sprite.setSize(1, 1);
+			sprite.setSize(2, 2);
 			sprite.draw(batch);	
 		}
 		if(health <= 0)

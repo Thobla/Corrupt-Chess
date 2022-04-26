@@ -31,7 +31,7 @@ public class EntityManager {
     
     public EntityManager(PhysicsWorld gameWorld) {
     	this.pworld = gameWorld;
-    }
+    } 
     
     /**
      * Adds the entity to the removeList.
@@ -104,9 +104,9 @@ public class EntityManager {
     	 * (200, 200)
     	 */
     	if(playerSpawns.size() > 0)
-    		player = new Player(playerSpawns.remove(0), pworld.world);
+    		player = new Player(playerSpawns.remove(0), pworld.world, this);
     	else
-    		player = new Player(new Vector2(200,200), pworld.world);
+    		player = new Player(new Vector2(200,200), pworld.world, this);
     	
         player.initialize();
         playerList.add(player);

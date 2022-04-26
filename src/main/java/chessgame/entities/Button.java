@@ -53,6 +53,7 @@ public class Button implements IObjects{
 	@Override
 	public void createBody() {
 		BodyDef bodyDef = new BodyDef();
+		FixtureDef fixDef = new FixtureDef();
 		bodyDef.type = BodyDef.BodyType.StaticBody;
 		bodyDef.position.set(new Vector2(position.x, position.y-0.344f));
 		
@@ -60,13 +61,14 @@ public class Button implements IObjects{
 		
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height*0.18f);
+		fixDef.shape = shape;
+		fixDef.friction = 0f;
 		
-		myBody.createFixture(shape, 1000f).setUserData("ground");;
+		myBody.createFixture(fixDef).setUserData("ground");;
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);
 		
 		//creating a fixture that will serve as the players groundCheck-platter.
-		FixtureDef fixDef = new FixtureDef();
 		fixDef.isSensor = true;
 		//the shape should be lower than the players width and height
 		shape.setAsBox(width * 0.95f, height / 10, new Vector2(0f, height*0.344f), 0);

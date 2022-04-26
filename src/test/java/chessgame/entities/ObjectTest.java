@@ -9,10 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import com.badlogic.gdx.math.Vector2;
 
-import chessgame.entities.Button;
-import chessgame.entities.Door;
-import chessgame.entities.Player;
-import chessgame.entities.RatingPoint;
 import chessgame.utils.EntityManager;
 import chessgame.world.PhysicsWorld;
 
@@ -45,7 +41,9 @@ public class ObjectTest {
 	
 	@Test
 	void playerIncreaseRatingTest() {
-		Player player = new Player(new Vector2(0,0), pworld.world);
+		EntityManager manager = new EntityManager(pworld);
+		
+		Player player = new Player(new Vector2(0,0), pworld.world, manager);
 		EntityManager mockManager = mock(EntityManager.class);
 		RatingPoint rating = new RatingPoint(new Vector2(0,0), pworld.world, mockManager);
 		
