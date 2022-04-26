@@ -1,7 +1,7 @@
 package chessgame.app;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -155,12 +155,10 @@ public class Game implements Screen {
     		return;
     	}
         if (!paused) {
-	        //Logic step
 	    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
 	        gameMap.render(cam);
-	    	
 	        //Debug-render to be off when not debugging.
-	    	//debugRenderer.render(gameWorld.world, cam.combined);
+	    	debugRenderer.render(gameWorld.world, cam.combined);
 	    	
 	        
 	    	batch.setProjectionMatrix(cam.combined);

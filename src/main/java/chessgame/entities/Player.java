@@ -13,8 +13,15 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.app.PlayerController;
+import chessgame.entities.pawnstates.PawnState;
+import chessgame.entities.playerstates.PlayerBishopState;
+import chessgame.entities.playerstates.PlayerKnightState;
+import chessgame.entities.playerstates.PlayerPawnState;
+import chessgame.entities.playerstates.PlayerState;
+import chessgame.entities.playerstates.PlayerTowerState;
 import chessgame.utils.SaveFile;
 import chessgame.utils.Constants;
+import chessgame.utils.EntityAnimation;
 
 public class Player implements IEntities{
 	Vector2 position;
@@ -27,13 +34,23 @@ public class Player implements IEntities{
 	int attack = 1;
 	
 	//Player prompt
-	Sprite prompt;
-	public boolean isPrompt;
-	BitmapFont font;
+	EntityAnimation dustAnim;
+	EntityAnimation leftRunDust;
+	EntityAnimation rightRunDust;
+	
+	boolean jumpDust = true;
+	public boolean facing = true;
 	
 	public boolean sprint = false;
 	public boolean dead = false;
 	public int ratingScore = 0;
+	
+	//PlayerStates
+	PlayerPawnState playerPawnState = new PlayerPawnState(this);
+	PlayerTowerState playerTowerState = new PlayerTowerState(this);
+	PlayerKnightState playerKnightState = new PlayerKnightState(this);
+	PlayerBishopState playerBishopState = new PlayerBishopState(this);
+	public PlayerState currentState;
 	
 	//Player size
 	float width = .5f;
@@ -42,11 +59,17 @@ public class Player implements IEntities{
 	public Player (Vector2 position, World world) {
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
-		isPrompt = false;
+		currentState = playerPawnState;
 	}
 	
 	public void initialize() {
 		sprite = new Sprite(new Texture (Gdx.files.internal("assets/player/player.png").file().getAbsolutePath()));
+		Texture dust = new Texture (Gdx.files.internal("assets/player/landingDust.png").file().getAbsolutePath());
+		dustAnim =  new EntityAnimation(dust, 4, 16f, this, new Vector2(64,32), true);
+		Texture lRunDust = new Texture (Gdx.files.internal("assets/player/runDust.png").file().getAbsolutePath());
+		leftRunDust =  new EntityAnimation(lRunDust, 4, 8f, this, new Vector2(64,32), true);
+		Texture rRunDust = new Texture (Gdx.files.internal("assets/player/runDustR.png").file().getAbsolutePath());
+		rightRunDust =  new EntityAnimation(rRunDust, 4, 8f, this, new Vector2(64,32), true);
 		//prompt = new Sprite(new Texture (Gdx.files.internal("assets/prompt.png").file().getAbsolutePath()));
 		createBody();
 		
@@ -56,8 +79,6 @@ public class Player implements IEntities{
     	//PlayerController
 		int[] controls = SaveFile.readSettings();
     	controller = new PlayerController(controls);
-    	
-    	font = new BitmapFont();
 	}
 
 	@Override
@@ -201,6 +222,22 @@ public class Player implements IEntities{
 		
 	}
 	
+	public void changeState(PlayerState state) {
+		currentState = state;
+		currentState.Enter();
+	}
+	
+	public void nextState() {
+		if(currentState == playerPawnState)
+			changeState(playerKnightState);
+		else if(currentState == playerKnightState)
+			changeState(playerTowerState);
+		else if(currentState == playerTowerState)
+			changeState(playerBishopState);
+		else if(currentState == playerBishopState)
+			changeState(playerPawnState);
+	}
+	
 	public void updatePosition() {
 		position = myBody.getPosition();
 	}
@@ -231,6 +268,7 @@ public class Player implements IEntities{
 				myBody.setLinearVelocity(new Vector2(myBody.getLinearVelocity().x, 20));
 			//Updates position vector2
 			updatePosition();
+			currentState.Update();
 			
 	    	controller.myController(this);
 			keepWithinBounds();
@@ -239,40 +277,30 @@ public class Player implements IEntities{
 			sprite.setSize(2, 2);
 			sprite.draw(batch);
 			
+			if(jumpDust) {
+				jumpDust = dustAnim.playOnce(batch, (position.x - 2*width), position.y-height);
+			}
+			if(Math.abs(myBody.getLinearVelocity().y) < 0.01f && !jumpDust) {
+				if(myBody.getLinearVelocity().x > 2f) {
+					leftRunDust.render(batch, (position.x - 3*width), position.y-height);
+				} 
+				if(myBody.getLinearVelocity().x < -2f) {
+					rightRunDust.render(batch, (position.x - width), position.y-height);
+				}
+			}
+			
 			if(health == 0)
 				kill();
-			
-			if(isPrompt) {
-				//prompt.setPosition(position.x - sprite.getWidth()/2, position.y + sprite.getHeight()*1.5f);
-				//prompt.setSize(1, 1);
-				//prompt.draw(batch);
-				
-				//font.getData().setScale(0.1f);
-				//font.draw(batch, "E", position.x - sprite.getWidth()/2, position.y + sprite.getHeight()*3f);
-			}
-	
 	}
 	
-	public void renderPlayer(Batch batch) {
-		controller.myController(this);
-		keepWithinBounds();
-    	
-		sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
-		sprite.setSize(2, 2);
-		sprite.draw(batch);
-	}
+
 
 	@Override
 	public Body getBody() {
 		return myBody;
 	}
-	
-	public void setPrompt(Sprite sprite) {
-		//prompt = sprite;
-		isPrompt = true;
-	}
-	public void endPrompt() {
-		isPrompt = false;
+	public void playDust() {
+		jumpDust = true;
 	}
 
 	public int getRatingScore() {

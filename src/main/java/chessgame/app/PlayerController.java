@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.InputMultiplexer;
 
 import chessgame.entities.Player;
+import chessgame.entities.playerstates.PlayerTowerState;
 
 public class PlayerController extends InputMultiplexer {
 	
@@ -13,6 +14,7 @@ public class PlayerController extends InputMultiplexer {
 	private float jumpForce = 500f;
 	public boolean isGrounded = false;
 	public boolean clearJump = true;
+	public boolean lock = false;
 	
 	private int up;
 	private int left;
@@ -35,21 +37,24 @@ public class PlayerController extends InputMultiplexer {
 	
 	public void myController(Player player) {
 		if (!Game.paused) {
-			//checks if the player is on the ground
-			
+
 			if(Gdx.input.isKeyPressed(sprint))
 				player.sprint = true;
 			else 
-				player.sprint = false;
+			player.sprint = false;
 			
+			if(!lock) {
 			//Movement inputs
-			if(Gdx.input.isKeyPressed(right) && Gdx.input.isKeyPressed(left))
+			if(Gdx.input.isKeyPressed(right) && Gdx.input.isKeyPressed(left)) {
 				player.move(Vector2.Zero);
+			}
 	    	if(Gdx.input.isKeyPressed(right)) {
-		    	player.move(new Vector2(playerspeed, player.getVelocity().y));	
+		    	player.move(new Vector2(playerspeed, player.getVelocity().y));
+		    	player.facing = true;
 	    	}
 	    	else if(Gdx.input.isKeyPressed(left)) {
 	    		player.move(new Vector2(-playerspeed, player.getVelocity().y));
+	    		player.facing = false;
 	    	}
 	    	else 
 	    		player.move(new Vector2(0, player.getVelocity().y));
@@ -61,6 +66,11 @@ public class PlayerController extends InputMultiplexer {
 		    		isGrounded = false;
 	    		}
 	    	}
+	    	if(Gdx.input.isKeyJustPressed(Keys.V))
+	    		player.nextState();
+	    	if(Gdx.input.isKeyJustPressed(Keys.C))
+	    		player.currentState.stateAbility();
+			}
 		}
     	if(Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
     		Game.pauseGame();

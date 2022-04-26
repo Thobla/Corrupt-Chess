@@ -42,10 +42,14 @@ public class ListenerClass implements ContactListener{
 		if(fixtureA.getUserData() == "foot" && checkJumpable(fixtureB.getUserData())) {
 		 	player = (Player) fixtureA.getBody().getUserData();
 		 	player.controller.isGrounded = true;
+		 	if(!(fixtureB.getBody().getUserData() instanceof IEnemies))
+		 		player.playDust();
 		}
 		else if(fixtureB.getUserData() == "foot" && checkJumpable(fixtureA.getUserData())) {
 			player = (Player) fixtureB.getBody().getUserData();
 		 	player.controller.isGrounded = true;
+		 	if(!(fixtureA.getBody().getUserData() instanceof IEnemies))
+		 		player.playDust();
 		}
 		//checks if the fixture is a enemy weakpoint
 		if(fixtureA.getUserData() == "weakpoint" && fixtureB.getUserData() == "foot") {
@@ -131,12 +135,10 @@ public class ListenerClass implements ContactListener{
 		if((fixtureA.getUserData() == "rightJumpSensor" || fixtureA.getUserData() == "leftJumpSensor") && (fixtureB.getBody().getUserData() == "ground")) {
 			if (fixtureA.getUserData() == "rightJumpSensor" || fixtureA.getUserData() == "rightJumpSensor2" && fixtureA.getBody().getLinearVelocity().x > 0) {
 				IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
-				System.out.println("sensor");
 				enemy.jump();
 			}
 			else if(fixtureA.getUserData() == "leftJumpSensor" && fixtureA.getBody().getLinearVelocity().x < 0) {
 				IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
-				System.out.println("sensor");
 				enemy.jump();
 			}
 			
