@@ -7,7 +7,7 @@ public class ButtonData {
 		this.active = active;
 	}
 	
-	Boolean getActive() {
+	public Boolean getActive() {
 		return this.active;
 	}
 }

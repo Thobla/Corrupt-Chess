@@ -15,11 +15,11 @@ public class PlayerData {
 		this.position = position;
 	}
 	
-	int getHealth() {
+	public int getHealth() {
 		return this.health;
 	}
 	
-	Vector2 getPosition() {
+	public Vector2 getPosition() {
 		return this.position;
 	}
 }

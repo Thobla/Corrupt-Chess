@@ -7,7 +7,7 @@ public class DoorData {
 		this.open = open;
 	}
 	
-	Boolean getOpen() {
+	public Boolean getOpen() {
 		return this.open;
 	}
 }

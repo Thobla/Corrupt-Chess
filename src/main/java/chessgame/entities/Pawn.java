@@ -103,6 +103,7 @@ public class Pawn implements IEnemies {
 
 	@Override
 	public void move(Vector2 newPos) {
+		this.position = newPos;
 	}
 
 	@Override
@@ -113,6 +114,10 @@ public class Pawn implements IEnemies {
 	@Override
 	public int getHealth() {
 		return health;
+	}
+	
+	public void setHealth(int health) {
+		this.health = health;
 	}
 
 	@Override

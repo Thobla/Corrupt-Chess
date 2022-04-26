@@ -2,6 +2,10 @@ package chessgame.app;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -18,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import chessgame.entities.IEntities;
+import chessgame.entities.Pawn;
 import chessgame.entities.Player;
 import chessgame.utils.CameraStyles;
 import chessgame.utils.Constants;
@@ -28,6 +33,12 @@ import chessgame.utils.SaveFile;
 import chessgame.utils.ScreenType;
 import chessgame.utils.UI;
 import chessgame.menues.MenuScreen;
+import chessgame.server.GameClient;
+import chessgame.server.GameHost;
+import chessgame.server.GameServer;
+import chessgame.server.IClient;
+import chessgame.server.Packet;
+import chessgame.server.DataTypes.*;
 
 
 public class Game implements Screen {
@@ -47,6 +58,25 @@ public class Game implements Screen {
     //World generation
     PhysicsWorld gameWorld;
     Box2DDebugRenderer debugRenderer;
+    //
+    //
+    //
+    //
+    //
+    
+    //Multiplayer
+    GameServer server;
+    IClient client;
+    String IpAddress;
+    Boolean isHost;
+    Boolean isMultiplayer;
+    
+    //
+    //
+    //
+    //
+    //
+    
     
     //Entities
     public EntityManager entityManager;
@@ -87,7 +117,38 @@ public class Game implements Screen {
     static boolean dead;
     
     
-    public Game(ChessGame game, int level) {
+    public Game(ChessGame game, int level, Boolean isMultiplayer, Boolean isHost, String IpAddress) throws IOException {
+    	
+    	//Multiplayer
+    	//
+    	//
+    	//
+    	//
+    	//
+    	if (isMultiplayer == true) {
+    		this.IpAddress = IpAddress;
+    		this.isMultiplayer = isMultiplayer;
+    		this.isHost = isHost;
+    		
+    		if (isHost == true) {
+    			this.server = new GameServer();
+    			this.client = new GameHost(IpAddress);
+    		}
+    		else {
+    			this.client = new GameClient(IpAddress);
+    		}
+    		
+    	}
+    	else {
+    		this.isMultiplayer = false;
+    		this.isHost = false;
+    	}
+    	//
+    	//
+    	//
+    	//
+    	//
+    	
     	this.game = game;
     	currentLevelIndex = level;
     	if(currentLevelIndex >= levels.length) 
@@ -226,6 +287,35 @@ public class Game implements Screen {
 	        stage.act();
 	        stage.draw();
         }
+        //
+        //
+        //
+        //
+        //
+        //
+        //multiplayer
+        
+        if (isMultiplayer) {
+        	if(isHost) {
+        		this.client.getClient().sendTCP(new Packet(entityManager));
+        	}
+        	//legg til hva som blir sendt viss det ikkje er host
+        	else {
+        		
+        	}
+        }
+        
+        
+        
+        //
+        //
+        //
+        //
+        //
+        
+        
+        
+        
     }
     public void gameOverScreen() {  
     	paused = true;
@@ -345,6 +435,25 @@ public class Game implements Screen {
 	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void handlePacket(Packet packet) {
+		HashMap<Integer, PawnData> pawnList = packet.pawnList;
+		HashMap<Integer, DoorData> doorList = packet.doorList;
+		HashMap<Integer, ButtonData> buttonList = packet.buttonList;
+		HashMap<String, PlayerData> playerList = packet.playerList;
+		
+		while(!pawnList.isEmpty()) {
+			List<IEntities> entityList = entityManager.entityList;
+			for(IEntities entity : entityList) {
+				if (entity instanceof Pawn) {
+					entity.move(pawnList.get(((Pawn) entity).getId()).getPosition());
+					((Pawn) entity).setHealth(pawnList.get(((Pawn) entity).getId()).getHealth());
+				}
+				
+			}
+		}
 		
 	}
 }

@@ -1,6 +1,9 @@
 package chessgame.utils;
 
 import chessgame.menues.*;
+
+import java.io.IOException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
@@ -100,7 +103,11 @@ public class UI {
             		game.setScreen(new OptionScreen(game));
             		break;
 				case Game:
-					game.setScreen(new Game(game, Variable));
+					try {
+						game.setScreen(new Game(game, Variable, false, false, null));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 					break;
 				default:
 					break;
@@ -179,7 +186,11 @@ public class UI {
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
             	//If the player hasnt completed the first level yet, they will skip the levelSelectScreen and begin at lvl 1
             	if (SaveFile.readProgress()[0] == 0) {
-            		game.setScreen(new Game(game, 0));
+            		try {
+						game.setScreen(new Game(game, 0, false, false, null));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
             	}	
             	else {
             		game.setScreen(new LevelSelectScreen(game));
