@@ -75,7 +75,7 @@ public class KnightBoss implements IEnemies {
 		this.position = homePosition;
 		this.world = world;
 		this.entityManager = entityManager;
-		health = 2;
+		health = 5;
 		attack = 1;
 		lookingRight = false;
 		grounded = false;
@@ -169,15 +169,11 @@ public class KnightBoss implements IEnemies {
 
 	@Override
 	public void initialize() {
-		setSprite("assets/enemies/KnightBoss.png");
+		sprite = new Sprite(new Texture (Gdx.files.internal("assets/enemies/KnightBoss.png").file().getAbsolutePath()));
 		createBody();
 		
 		//Adds the knight to the entityManager
     	entityManager.addEntity(this);
-	}
-	
-	public void setSprite(String path) {
-		sprite = new Sprite(new Texture (Gdx.files.internal(path).file().getAbsolutePath()));
 	}
 
 	@Override

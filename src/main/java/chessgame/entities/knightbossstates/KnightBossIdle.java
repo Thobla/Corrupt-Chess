@@ -16,7 +16,6 @@ public class KnightBossIdle extends KnightBossState {
 	
 	@Override
 	public void Enter() {
-		System.out.println("Entered idle");
 		counter = idleTime;
 		riggedRandom = (int) (Math.random()*dec);
 		if (knight.getHealth() == 1) {
