@@ -5,78 +5,18 @@ import java.util.List;
 
 import com.badlogic.gdx.math.Vector2;
 
+import chessgame.server.DataTypes.*;
 import chessgame.app.Game;
 import chessgame.entities.*;
 import chessgame.utils.EntityManager;
 
-/**
- * This class decides what data ,considering each pawn entity, should be sent.
- * @author thorg
- *
- */
-class PawnData {
-	int health;
-	Vector2 position;
-	
-	PawnData(int health, Vector2 position){
-		this.health = health;
-		this.position = position;
-	}
-	
-	int getHealth() {
-		return this.health;
-	}
-	
-	Vector2 getPosition() {
-		return this.position;
-	}
-}
 
-/**
- * This class decides what data ,considering each player, should be sent.
- * @author thorg
- */
-class PlayerData {
-	int health;
-	Vector2 position;
-	
-	PlayerData(int health, Vector2 position){
-		this.health = health;
-		this.position = position;
-	}
-	
-	int getHealth() {
-		return this.health;
-	}
-	
-	Vector2 getPosition() {
-		return this.position;
-	}
-}
 
-class DoorData {
-	Boolean open;
-	
-	DoorData(Boolean open){
-		this.open = open;
-	}
-	
-	Boolean getOpen() {
-		return this.open;
-	}
-}
 
-class ButtonData {
-	Boolean active;
-	
-	ButtonData(Boolean active) {
-		this.active = active;
-	}
-	
-	Boolean getActive() {
-		return this.active;
-	}
-}
+
+
+
+
 
 /**
  * this is the packet class, which keeps controll of the data that should be sent
@@ -86,12 +26,12 @@ class ButtonData {
 public class Packet {
 	private EntityManager entityManager;
 	
-	HashMap<Integer, PawnData> pawnList;
-	HashMap<Integer, DoorData> doorList;
-	HashMap<Integer, ButtonData> buttonList;
-	HashMap<String, PlayerData> playerList;
+	public HashMap<Integer, PawnData> pawnList;
+	public HashMap<Integer, DoorData> doorList;
+	public HashMap<Integer, ButtonData> buttonList;
+	public HashMap<String, PlayerData> playerList;
 	
-	List<IEntities> removeList = entityManager.entityRemoveList;
+	public List<IEntities> removeList = entityManager.entityRemoveList;
 	
 	public Packet(EntityManager entityManager){
 		this.entityManager = entityManager;

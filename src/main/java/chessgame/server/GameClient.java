@@ -6,11 +6,13 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
-import chessgame.utils.EntityManager;
+import chessgame.app.Game;
 
 public class GameClient implements IClient{
 	Client client;
 	String IpAddress;
+	Game game;
+	
 	public GameClient(String IpAddress) throws IOException{
 		this.IpAddress = IpAddress;
 		this.client = new Client();
@@ -22,11 +24,13 @@ public class GameClient implements IClient{
 		
 		client.addListener(new Listener() {
 		       public void received (Connection connection, Object object) {
-		          if (object instanceof EntityManager) {
-		             EntityManager manager = (EntityManager)object;
+		          if (object instanceof Packet) {
+		             Packet packet = (Packet)object;
 		             
 		             //client og host bruker send to tcp
 		             //what to do with the data
+		             
+		             game.handlePacket(packet);
 		             
 		          }
 		       }
