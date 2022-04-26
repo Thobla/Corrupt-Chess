@@ -70,6 +70,10 @@ public class Player implements IEntities{
 	public Vector2 getPosition() {
 		return position;
 	}
+	
+	public void setPosition(Vector2 position) {
+		myBody.setTransform(position, 0f);
+	}
 	/**
 	 * Moves the entity based on input vector2
 	 * @param Vector2 - movement on the axises
