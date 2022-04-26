@@ -109,6 +109,18 @@ public class UI {
 						e.printStackTrace();
 					}
 					break;
+				case Host:
+					try {
+						game.setScreen(new Game(game, Variable, true, true, null));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				case Client:
+					try {
+						game.setScreen(new Game(game, Variable, true, true, null));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				default:
 					break;
             	}	
