@@ -10,17 +10,15 @@ import chessgame.utils.EntityManager;
 
 public class GameHost implements IClient{
 	Client client;
-	String IpAddress;
 	
-	public GameHost(String IpAddress) throws IOException{
-		this.IpAddress = IpAddress;
+	public GameHost() throws IOException{
 		this.client = new Client();
 		this.client.start();
 		
 		Network.register(client);
 		
 		//needs to get the IP address
-		this.client.connect(5000, this.IpAddress, 54555);
+		this.client.connect(5000, "localhost", 54555);
 		
 		client.addListener(new Listener() {
 		       public void received (Connection connection, Object object) {

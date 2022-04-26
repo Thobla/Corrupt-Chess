@@ -132,7 +132,7 @@ public class Game implements Screen {
     		
     		if (isHost == true) {
     			this.server = new GameServer();
-    			this.client = new GameHost(IpAddress);
+    			this.client = new GameHost();
     		}
     		else {
     			this.client = new GameClient(IpAddress);
@@ -185,7 +185,20 @@ public class Game implements Screen {
     	gameWorld.tileMapToEntities(tiledMap, entityManager);
     	
     	//Creates the player
-     	player = entityManager.addPlayer();
+    	if(!isMultiplayer) {
+    		player = entityManager.addPlayer();
+    	}
+    	else {
+    		if(isHost) {
+    			player = entityManager.addPlayer();
+    			entityManager.addPlayer();
+    		}
+    		else {
+    			entityManager.addPlayer();
+    			player = entityManager.addPlayer();
+    		}
+    	}
+    		
      	
     	//Updates the map
     	entityManager.updateLists();
@@ -450,6 +463,14 @@ public class Game implements Screen {
 				if (entity instanceof Pawn) {
 					entity.move(pawnList.get(((Pawn) entity).getId()).getPosition());
 					((Pawn) entity).setHealth(pawnList.get(((Pawn) entity).getId()).getHealth());
+				}
+				if (entity instanceof Player) {
+					if(((Player) entity).getId().equals("Player2")) {
+						((Player) entity).setPosition(playerList.get("Player2").getPosition());
+					}
+					//TODO: finish this method
+					
+					
 				}
 				
 			}

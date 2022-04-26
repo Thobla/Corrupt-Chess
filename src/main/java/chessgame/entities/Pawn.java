@@ -103,7 +103,7 @@ public class Pawn implements IEnemies {
 
 	@Override
 	public void move(Vector2 newPos) {
-		this.position = newPos;
+		myBody.setTransform(newPos, 0f);
 	}
 
 	@Override
