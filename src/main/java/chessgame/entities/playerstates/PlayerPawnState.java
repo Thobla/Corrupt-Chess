@@ -1,5 +1,8 @@
 package chessgame.entities.playerstates;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+
 import chessgame.entities.Player;
 
 public class PlayerPawnState extends PlayerState {
@@ -12,7 +15,9 @@ public class PlayerPawnState extends PlayerState {
 	
 	@Override
 	public void Enter() {
-		//System.out.println("Entered PawnState");
+		Texture pawnSprite = new Texture (Gdx.files.internal("assets/player/player.png").file().getAbsolutePath());
+		player.getSprite().setTexture(pawnSprite);
+		player.controller.holdAbility = false;
 	}
 
 	@Override

@@ -26,6 +26,8 @@ public class Bullet implements IEntities{
 	float height = .5f;
 	float bulletSpeed;
 	
+	double spawnTime;
+	
 	//direction of the bullet (left / right)
 	Direction direction;
 	
@@ -41,6 +43,7 @@ public class Bullet implements IEntities{
 		sprite = new Sprite(new Texture (Gdx.files.internal("assets/bullet.png").file().getAbsolutePath()));
 		entityManager.addEntity(this);
 		createBody();
+		spawnTime = System.currentTimeMillis();
 	}
 	
 	@Override
@@ -117,6 +120,8 @@ public class Bullet implements IEntities{
 
 	@Override
 	public void updateState(Batch batch) {
+		if(System.currentTimeMillis() > spawnTime + 1000)
+			kill();
 		//Updates the position
 		position = myBody.getPosition();
 		bulletMove(direction);

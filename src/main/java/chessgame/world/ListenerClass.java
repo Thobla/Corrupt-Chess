@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
 import chessgame.app.PlayerController;
+import chessgame.entities.Bullet;
 import chessgame.entities.IEnemies;
 import chessgame.entities.IEntities;
 import chessgame.entities.IObjects;
@@ -131,7 +132,6 @@ public class ListenerClass implements ContactListener{
 		
 		//checks if an entities jump-sensor is hitting any non-entity objects, making sure
 		//it differenciates leftJumpSensor from rightJunpSensor depending on linearvelocity.
-		//start
 		if((fixtureA.getUserData() == "rightJumpSensor" || fixtureA.getUserData() == "leftJumpSensor") && (fixtureB.getBody().getUserData() == "ground")) {
 			if (fixtureA.getUserData() == "rightJumpSensor" || fixtureA.getUserData() == "rightJumpSensor2" && fixtureA.getBody().getLinearVelocity().x > 0) {
 				IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
@@ -147,7 +147,6 @@ public class ListenerClass implements ContactListener{
 		else if((fixtureB.getUserData() == "rightJumpSensor" || fixtureB.getUserData() == "leftJumpSensor") && (fixtureA.getBody().getUserData() == "ground")) {
 			if (fixtureB.getUserData() == "rightJumpSensor" && fixtureB.getBody().getLinearVelocity().x > 0) {
 				IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
-				System.out.println("sensor");
 				enemy.jump();
 			}
 			else if(fixtureB.getUserData() == "leftJumpSensor" && fixtureB.getBody().getLinearVelocity().x < 0) {
@@ -155,10 +154,22 @@ public class ListenerClass implements ContactListener{
 				System.out.println("sensor");
 				enemy.jump();
 			}
-			
 		}
-		//end
-		
+		if((fixtureB.getUserData() == "Bullet")) {
+			Bullet bullet = ((Bullet) fixtureB.getBody().getUserData());
+			if(fixtureA.getBody().getUserData() instanceof Player) {
+			}
+			else if(fixtureA.getBody().getUserData() instanceof IEnemies) {
+				IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
+				enemy.takeDamage(1);
+				bullet.kill();
+			}
+			else {
+				bullet.kill();
+			}
+		}
+		else if((fixtureB.getUserData() == "Bullet")) {
+		}
 	}
 
 	@Override

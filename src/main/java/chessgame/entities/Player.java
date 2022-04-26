@@ -220,7 +220,6 @@ public class Player implements IEntities{
 
 	@Override
 	public void removeBody() {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -275,6 +274,8 @@ public class Player implements IEntities{
 	    	controller.myController(this);
 			keepWithinBounds();
 	    	
+			sprite.setFlip(!facing, false);
+			
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
 			sprite.setSize(2, 2);
 			sprite.draw(batch);

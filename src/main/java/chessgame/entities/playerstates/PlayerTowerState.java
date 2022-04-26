@@ -1,5 +1,7 @@
 package chessgame.entities.playerstates;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 import chessgame.entities.Player;
@@ -15,7 +17,9 @@ public class PlayerTowerState extends PlayerState {
 	
 	@Override
 	public void Enter() {
-		System.out.println("Entered TowerState");
+		Texture towerSprite = new Texture (Gdx.files.internal("assets/player/Rook.png").file().getAbsolutePath());
+		player.getSprite().setTexture(towerSprite);
+		player.controller.holdAbility = false;
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package chessgame.entities.playerstates;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 import chessgame.entities.Bullet;
@@ -16,7 +18,9 @@ public class PlayerBishopState extends PlayerState {
 	
 	@Override
 	public void Enter() {
-		System.out.println("Entered BishopState");
+		Texture bishopSprite = new Texture (Gdx.files.internal("assets/player/Bishop.png").file().getAbsolutePath());
+		player.getSprite().setTexture(bishopSprite);
+		player.controller.holdAbility = false;
 	}
 
 	@Override
