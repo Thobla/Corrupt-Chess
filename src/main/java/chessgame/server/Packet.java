@@ -93,7 +93,7 @@ public class Packet {
 	
 	List<IEntities> removeList = entityManager.entityRemoveList;
 	
-	Packet(EntityManager entityManager){
+	public Packet(EntityManager entityManager){
 		this.entityManager = entityManager;
 		addAllEntities();
 	}
