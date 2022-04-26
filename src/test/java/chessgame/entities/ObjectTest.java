@@ -26,15 +26,15 @@ public class ObjectTest {
 		EntityManager manager = new EntityManager(pworld);
 		
 		int code = 1;
-		Button button = new Button(Vector2.Zero, pworld.world, manager, code);
-		Door door = new Door(Vector2.Zero, pworld.world, manager, code);
+		Button button = new Button(Vector2.Zero, pworld.world, manager, code, 0);
+		Door door = new Door(Vector2.Zero, pworld.world, manager, code, 1);
 		manager.doorMap.put(code, door);
 		
 		assertEquals(false, door.isOpen());
 		button.itemFunction(null);
 		assertEquals(true, door.isOpen());
 		
-		Button falseButton = new Button(Vector2.Zero, pworld.world, manager, 2);
+		Button falseButton = new Button(Vector2.Zero, pworld.world, manager, 2, 2);
 		falseButton.itemFunction(null);
 		assertEquals(true, door.isOpen());
 	}

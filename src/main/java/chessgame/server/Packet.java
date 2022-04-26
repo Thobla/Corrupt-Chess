@@ -1,13 +1,12 @@
 package chessgame.server;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.badlogic.gdx.math.Vector2;
 
 import chessgame.app.Game;
-import chessgame.entities.IEntities;
-import chessgame.entities.Pawn;
-import chessgame.entities.Player;
+import chessgame.entities.*;
 import chessgame.utils.EntityManager;
 
 /**
@@ -55,20 +54,48 @@ class PlayerData {
 	}
 }
 
+class DoorData {
+	Boolean open;
+	
+	DoorData(Boolean open){
+		this.open = open;
+	}
+	
+	Boolean getOpen() {
+		return this.open;
+	}
+}
+
+class ButtonData {
+	Boolean active;
+	
+	ButtonData(Boolean active) {
+		this.active = active;
+	}
+	
+	Boolean getActive() {
+		return this.active;
+	}
+}
+
 /**
  * this is the packet class, which keeps controll of the data that should be sent
  * @author thorg
  *
  */
 public class Packet {
-	private Game game;
-	private EntityManager entityManager = game.entityManager;
+	private EntityManager entityManager;
 	
 	HashMap<Integer, PawnData> pawnList;
+	HashMap<Integer, DoorData> doorList;
+	HashMap<Integer, ButtonData> buttonList;
 	HashMap<String, PlayerData> playerList;
 	
-	Packet(Game game){
-		this.game = game;
+	List<IEntities> removeList = entityManager.entityRemoveList;
+	
+	Packet(EntityManager entityManager){
+		this.entityManager = entityManager;
+		addAllEntities();
 	}
 	
 	void addAllEntities() {
@@ -79,12 +106,12 @@ public class Packet {
 			if (entity instanceof Player) {
 				playerList.put(((Player) entity).getId(), new PlayerData(((Player) entity).getHealth(), entity.getPosition()));
 			}
-			
-			//må vite hvilke entities som skal fjernes, må snedes før removelist blir tømt
-			for(IEntities removeEntity : entityManager.entityRemoveList) {
-				
+			if (entity instanceof Door) {
+				doorList.put(((Door) entity).getId(), new DoorData(((Door) entity).isOpen()));
 			}
-			
+			if (entity instanceof Button) {
+				buttonList.put(((Button) entity).getId(), new ButtonData(((Button) entity).isActive()));
+			}	
 		}
 	}
 	

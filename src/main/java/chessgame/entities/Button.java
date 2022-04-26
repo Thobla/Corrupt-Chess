@@ -142,4 +142,7 @@ public class Button implements IObjects{
 	public int getId() {
 		return this.myId;
 	}
+	public Boolean isActive() {
+		return active;
+	}
 }

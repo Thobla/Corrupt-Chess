@@ -112,7 +112,7 @@ public class PhysicsWorld {
 			}
 			//Spawns a coin	
 			if(entity.getName().toLowerCase().equals("ratingpoint")) {
-				RatingPoint point = new RatingPoint(pos, world, manager, nextId());
+				RatingPoint point = new RatingPoint(pos, world, manager);
 				point.initialize();
 			}
 			//Spawns a door
