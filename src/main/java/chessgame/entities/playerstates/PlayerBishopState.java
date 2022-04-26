@@ -1,5 +1,9 @@
 package chessgame.entities.playerstates;
 
+import com.badlogic.gdx.math.Vector2;
+
+import chessgame.entities.Bullet;
+import chessgame.utils.Direction;
 import chessgame.entities.Player;
 
 public class PlayerBishopState extends PlayerState {
@@ -17,14 +21,24 @@ public class PlayerBishopState extends PlayerState {
 
 	@Override
 	public void Update() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void stateAbility() {
-		// TODO Auto-generated method stub
+		Vector2 spawnPosition;
+		Direction dir;
+		if(player.facing) {
+			spawnPosition = new Vector2(player.getPosition().x + 1, player.getPosition().y);
+			dir = Direction.RIGHT;
+		}else {
+			spawnPosition = new Vector2(player.getPosition().x - 1, player.getPosition().y);
+			dir = Direction.LEFT;
+		}
 		
+		Bullet b = new Bullet(spawnPosition, player.world, player.manager, dir);
+		b.initialize();
+		b.setBulletSpeed(20f);
 	}
 
 }

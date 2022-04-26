@@ -3,7 +3,6 @@ package chessgame.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -13,7 +12,6 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.app.PlayerController;
-import chessgame.entities.pawnstates.PawnState;
 import chessgame.entities.playerstates.PlayerBishopState;
 import chessgame.entities.playerstates.PlayerKnightState;
 import chessgame.entities.playerstates.PlayerPawnState;
@@ -22,6 +20,7 @@ import chessgame.entities.playerstates.PlayerTowerState;
 import chessgame.utils.SaveFile;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityAnimation;
+import chessgame.utils.EntityManager;
 
 public class Player implements IEntities{
 	Vector2 position;
@@ -37,6 +36,8 @@ public class Player implements IEntities{
 	EntityAnimation dustAnim;
 	EntityAnimation leftRunDust;
 	EntityAnimation rightRunDust;
+	
+	public EntityManager manager;
 	
 	boolean jumpDust = true;
 	public boolean facing = true;
@@ -56,10 +57,11 @@ public class Player implements IEntities{
 	float width = .5f;
 	float height = 1f;
 	
-	public Player (Vector2 position, World world) {
+	public Player (Vector2 position, World world, EntityManager manager) {
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		currentState = playerPawnState;
+		this.manager = manager;
 	}
 	
 	public void initialize() {
