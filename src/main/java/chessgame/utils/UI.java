@@ -117,7 +117,7 @@ public class UI {
 					}
 				case Client:
 					try {
-						game.setScreen(new Game(game, Variable, true, true, null));
+						game.setScreen(new Game(game, Variable, true, false, null));
 					} catch (IOException e) {
 						e.printStackTrace();
 					}

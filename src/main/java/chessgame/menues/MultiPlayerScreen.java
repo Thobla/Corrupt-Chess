@@ -44,10 +44,10 @@ public class MultiPlayerScreen implements Screen{
         Button backButton = UI.newScreenButton(new Vector2(3,1.5f), new Vector2(10.5f,1), "Back", ScreenType.MenuScreen, game, 0);
         stage.addActor(backButton);
 
-        Button hostButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(8, 4), "Start", ScreenType.Host, game, 0);
+        Button hostButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(8, 4), "Host", ScreenType.HostScreen, game, 0);
         stage.addActor(hostButton);
 
-        Button clientButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(17.7f, 4), "Join", ScreenType.ClientScreen, game, 0);
+        Button clientButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(17.7f, 4), "Join", ScreenType.Client, game, 0);
         stage.addActor(clientButton);
     }
 
