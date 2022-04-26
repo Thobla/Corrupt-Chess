@@ -80,7 +80,7 @@ public class Bullet implements IEntities{
 	}
 
 	public void bulletMove(Direction dir) {
-		Vector2 movement = Vector2.Zero;
+		Vector2 movement = new Vector2(0, 0);
 		if(dir == Direction.LEFT || dir == Direction.DOWNLEFT || dir == Direction.UPLEFT)
 			movement.x = -bulletSpeed;
 		else if(dir == Direction.RIGHT || dir == Direction.DOWNRIGHT || dir == Direction.UPRIGHT)
