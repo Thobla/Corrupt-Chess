@@ -25,6 +25,7 @@ import chessgame.entities.Pawn;
 import chessgame.entities.Portal;
 import chessgame.entities.RatingPoint;
 import chessgame.utils.Constants;
+import chessgame.utils.EnemyType;
 import chessgame.utils.EntityManager;
 
 public class PhysicsWorld {
@@ -149,8 +150,8 @@ public class PhysicsWorld {
 		}
 	}
 	
-	public static IEntities spawnEntity(String name, Vector2 pos, World world, EntityManager manager) {
-		if (name == "knight") {
+	public static IEntities spawnEntity(EnemyType type, Vector2 pos, World world, EntityManager manager) {
+		if (type == EnemyType.Knight) {
 			Knight knight = new Knight(new Vector2(pos.x*Constants.PixelPerMeter,pos.y*Constants.PixelPerMeter), world, manager);
 			knight.initialize();
 			return knight;

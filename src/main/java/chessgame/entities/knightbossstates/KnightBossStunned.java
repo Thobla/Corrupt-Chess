@@ -6,6 +6,7 @@ import chessgame.app.Game;
 import chessgame.entities.IEntities;
 import chessgame.entities.Knight;
 import chessgame.entities.KnightBoss;
+import chessgame.utils.EnemyType;
 import chessgame.utils.EntityManager;
 import chessgame.world.PhysicsWorld;
 
@@ -22,8 +23,8 @@ public class KnightBossStunned extends KnightBossState {
 	public void Enter() {
 		counter = initialTime;
 		
-		knight.minions.add(PhysicsWorld.spawnEntity("knight", new Vector2(knight.getPosition().x-7f,knight.getPosition().y+20f), knight.world, knight.entityManager));
-		knight.minions.add(PhysicsWorld.spawnEntity("knight", new Vector2(knight.getPosition().x+5f,knight.getPosition().y+20f), knight.world, knight.entityManager));
+		knight.minions.add(PhysicsWorld.spawnEntity(EnemyType.Knight, new Vector2(knight.getPosition().x-7f,knight.getPosition().y+20f), knight.world, knight.entityManager));
+		knight.minions.add(PhysicsWorld.spawnEntity(EnemyType.Knight, new Vector2(knight.getPosition().x+5f,knight.getPosition().y+20f), knight.world, knight.entityManager));
 	}
 	
 	@Override
