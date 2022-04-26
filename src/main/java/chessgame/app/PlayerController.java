@@ -75,8 +75,10 @@ public class PlayerController extends InputMultiplexer {
 			    		player.currentState.stateAbility();
 		    	}
 			}
-	    	if(Gdx.input.isKeyPressed(Keys.C)) {
+	    	if(Gdx.input.isKeyPressed(Keys.C) && holdAbility && isGrounded) {
 	    		player.currentState.stateAbility();
+	    	} else if(holdAbility) {
+	    		lock = false;
 	    	}
 		}
     	if(Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {

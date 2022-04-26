@@ -10,7 +10,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-
 import chessgame.utils.Direction;
 import chessgame.utils.EntityManager;
 
@@ -28,7 +27,7 @@ public class Bullet implements IEntities{
 	
 	double spawnTime;
 	
-	//direction of the bullet (left / right)
+	//direction of the bullet
 	Direction direction;
 	
 	public Bullet (Vector2 position, World world, EntityManager entityManager, Direction direction) {

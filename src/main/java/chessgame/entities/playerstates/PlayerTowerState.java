@@ -24,7 +24,7 @@ public class PlayerTowerState extends PlayerState {
 
 	@Override
 	public void Update() {
-		if(System.currentTimeMillis() > time + 250f) {
+		if(System.currentTimeMillis() > time + 250) {
 			player.controller.lock = false;
 			if(hasDash) {
 				player.move(new Vector2(.0001f * player.myBody.getLinearVelocity().x, 0f));
