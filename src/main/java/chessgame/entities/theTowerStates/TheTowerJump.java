@@ -18,8 +18,7 @@ public class TheTowerJump extends TheTowerState{
 	@Override
 	public void Update() {
 		Player player = tower.getClosestPlayer(100f);
-		float playerAbs = Math.abs(player.getPosition().x - tower.getPosition().x);
-		
+
 		if(!tower.jump && !tower.shockWave) {
 			tower.jump();
 		}

@@ -172,6 +172,8 @@ public class TheTower implements IEnemies {
 		shape.setAsBox(1.5f, 1.5f);
 		leftHand.createFixture(shape, 100000f).setUserData("TLHand");
 		rightHand.createFixture(shape, 100000f).setUserData("TLHand");
+		leftHand.getFixtureList().get(0).setFriction(0f);
+		rightHand.getFixtureList().get(0).setFriction(0f);
 		
 		leftHand.setUserData(this);
 		rightHand.setUserData(this);
@@ -226,7 +228,21 @@ public class TheTower implements IEnemies {
 
 	@Override
 	public void takeDamage(int damage) {
-		if(!jump) {
+			
+			float xVal;
+			//Knocks players away
+			Player player;
+	        player = getClosestPlayer(2f);
+	        
+	        if(player != null) {
+		        float targetDir = player.getPosition().x-getPosition().x;
+		        if (targetDir < 0)
+		        	xVal = -80f;
+		        else
+		        	xVal = 80f;
+		        player.myBody.setLinearVelocity(new Vector2(xVal, 15f));
+	        }
+	        
 			attack = 0;
 			if(damage <= health)
 				health -= damage;
@@ -234,10 +250,6 @@ public class TheTower implements IEnemies {
 				kill();
 				return;
 			}
-			
-			invisFrame = true;
-			hitTime = System.currentTimeMillis();
-		}
 	}
 
 	@Override
