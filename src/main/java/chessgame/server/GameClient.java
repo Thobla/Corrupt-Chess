@@ -20,8 +20,9 @@ public class GameClient implements IClient{
 		
 		Network.register(client);
 		
-		this.client.connect(5000, "10.111.46.73", 54555);
 		
+		this.client.connect(5000, "10.111.46.73", 54555);
+
 		client.addListener(new Listener() {
 		       public void received (Connection connection, Object object) {
 		          if (object instanceof HashMap) {
