@@ -68,15 +68,18 @@ public class EntityAnimation {
 		Vector2 position = entity.getPosition();
 		
 		if(batch != null) {
-			batch.draw(currentFrame, position.x, position.y, width/32, height/32);
+			batch.draw(currentFrame, position.x, position.y, width/16, height/16);
 		}
 	}
-	public void render(Batch batch, float xPos, float yPos) {
+	public void render(Batch batch, float xPos, float yPos, boolean fix) {
 		elapsedTime += Gdx.graphics.getDeltaTime();
 		TextureRegion currentFrame = (TextureRegion) animation.getKeyFrame(elapsedTime, looping);
 		
 		if(batch != null) {
-			batch.draw(currentFrame, xPos, yPos, width/32, height/32);
+			if(fix)
+				batch.draw(currentFrame, xPos, yPos, width/16, height/16);
+			else
+				batch.draw(currentFrame, xPos, yPos, width/32, height/32);
 		}
 	}
 	public boolean playOnce(Batch batch) {
@@ -106,5 +109,11 @@ public class EntityAnimation {
 			return false;
 		}
 		return true;
+	}
+	
+	public void changeSheet(Texture spriteSheet) {
+		this.spriteSheet = spriteSheet;
+		buildAnimation();
+		animation = new Animation(this.framesPerSecond, animationFrames);
 	}
 }

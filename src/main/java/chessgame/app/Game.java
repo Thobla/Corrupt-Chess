@@ -160,9 +160,7 @@ public class Game implements Screen {
 	        //Debug-render to be off when not debugging.
 	    	debugRenderer.render(gameWorld.world, cam.combined);
 	    	
-	        
 	    	batch.setProjectionMatrix(cam.combined);
-	    	
 	    	
 	    	//Updates all entities
 	    	batch.begin();

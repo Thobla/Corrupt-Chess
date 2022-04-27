@@ -212,8 +212,7 @@
 </data>
  </layer>
  <objectgroup id="7" name="Entities">
-  <object id="19" name="Tower" x="1600" y="3008" width="32" height="64"/>
-  <object id="23" name="Spike" x="736" y="3072" width="224" height="32"/>
+  <object id="19" name="TheTower" x="1568" y="2944" width="32" height="64"/>
  </objectgroup>
  <objectgroup id="8" name="Ground">
   <object id="14" x="0" y="3104" width="3200" height="96"/>

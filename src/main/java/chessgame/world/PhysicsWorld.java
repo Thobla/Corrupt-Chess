@@ -18,6 +18,7 @@ import chessgame.entities.Door;
 import chessgame.entities.Pawn;
 import chessgame.entities.Portal;
 import chessgame.entities.RatingPoint;
+import chessgame.entities.TheTower;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 
@@ -124,6 +125,10 @@ public class PhysicsWorld {
 				Button button = new Button(pos, world, manager, code);
 				button.initialize();
 			}
+			if(entity.getName().toLowerCase().equals("thetower")) {
+				TheTower tower = new TheTower(pos, world, manager);
+				tower.initialize();
+			}
 			if(entity.getName().toLowerCase().equals("portal")) {
 				Portal portal = new Portal(pos, world, manager);
 				portal.initialize();
@@ -131,7 +136,6 @@ public class PhysicsWorld {
 			if(entity.getName().toLowerCase().equals("player")) {
 				manager.addPlayerSpawn(pos);
 			}
-			
 			
 		}
 	}

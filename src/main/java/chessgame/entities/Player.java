@@ -89,7 +89,7 @@ public class Player implements IEntities{
 		changeForm =  new EntityAnimation(changeFormTexture, 7, 16f, this, new Vector2(128,128), true);
 		
 		createBody();
-		
+
 		//Load rating from saveFile
 		ratingScore = (int) SaveFile.readScore()[0];
 		
@@ -210,9 +210,9 @@ public class Player implements IEntities{
 	public int getHealth() {
 		return health;
 	}
-
+	
 	public void takeDamage(int damage) {
-		if(dmgTime < 0.5f) {
+		if(dmgTime > 0.5f) {
 			dmgTime = 0;
 			hasTakenDamage = true;
 			if(damage < health)
@@ -284,6 +284,7 @@ public class Player implements IEntities{
 	@Override
 	public void updateState(Batch batch) {
 	//Sets the maximum speed upward of the player.
+			dmgTime += Gdx.graphics.getDeltaTime();
 			if(myBody.getLinearVelocity().y > 30)
 				myBody.setLinearVelocity(new Vector2(myBody.getLinearVelocity().x, 20));
 			//Updates position vector2
@@ -315,7 +316,6 @@ public class Player implements IEntities{
 			hasTakenDamage = false;
 		} else if(hasTakenDamage) {
 			sprite.setColor(color);
-			dmgTime += Gdx.graphics.getDeltaTime();
 		}
 	}
 	public void spriteAnimations(Batch batch) {
@@ -324,10 +324,10 @@ public class Player implements IEntities{
 		}
 		if(Math.abs(myBody.getLinearVelocity().y) < 0.01f && !jumpDust) {
 			if(myBody.getLinearVelocity().x > 2f) {
-				leftRunDust.render(batch, (position.x - 3*width), position.y-height);
+				leftRunDust.render(batch, (position.x - 3*width), position.y-height, false);
 			} 
 			if(myBody.getLinearVelocity().x < -2f) {
-				rightRunDust.render(batch, (position.x - width), position.y-height);
+				rightRunDust.render(batch, (position.x - width), position.y-height, false);
 			}
 		}
 		if(changingForm)
@@ -335,9 +335,9 @@ public class Player implements IEntities{
 		
 		if(dash) {
 			if(facing)
-				towerDash.render(batch, position.x - 4*width, position.y - 2*height);
+				towerDash.render(batch, position.x - 4*width, position.y - 2*height, false);
 			else
-				lTowerDash.render(batch, position.x - 4*width, position.y - 2*height);
+				lTowerDash.render(batch, position.x - 4*width, position.y - 2*height, false);
 		}
 	}
 
