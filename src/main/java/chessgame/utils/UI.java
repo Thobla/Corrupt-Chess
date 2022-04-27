@@ -137,13 +137,14 @@ public class UI {
 		return button;
 	}
 
-	public static TextButton quitButton(Vector2 size, Vector2 position, String text, ChessGame game, GameServer server){
+	public static TextButton quitButton(Vector2 size, Vector2 position, String text, ChessGame game, GameServer server, Boolean isHost){
 		TextButton button = button(size, position, text);
 		button.addListener(new InputListener() {
 			@Override
 			public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
 				game.setScreen(new MenuScreen(game));
-				server.stopServer();
+				if (isHost)
+					server.stopServer();
 			}
 			@Override
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {

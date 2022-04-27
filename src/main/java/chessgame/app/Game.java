@@ -474,9 +474,9 @@ public class Game implements Screen {
     	
         retryButton = UI.newScreenButton(buttonSize, new Vector2(13,8), "Retry?", ScreenType.Game, game, currentLevelIndex);
     	
-    	quitButtonGO = UI.quitButton(buttonSize, new Vector2(8,8), "Quit", game, server);
+    	quitButtonGO = UI.quitButton(buttonSize, new Vector2(8,8), "Quit", game, server, isHost);
     	
-    	quitButtonP = UI.quitButton(buttonSize, new Vector2(10.5f,8), "Quit", game, server);
+    	quitButtonP = UI.quitButton(buttonSize, new Vector2(10.5f,8), "Quit", game, server, isHost);
 
     	continueButton = UI.newScreenButton(buttonSize, new Vector2(10.5f,10), "Continue", ScreenType.Game, game, currentLevelIndex+1);
     	
