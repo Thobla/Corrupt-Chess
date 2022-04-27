@@ -26,6 +26,7 @@ import chessgame.entities.knightbossstates.KnightBossStunned;
 import chessgame.entities.knightstates.*;
 import chessgame.utils.Constants;
 import chessgame.utils.Direction;
+import chessgame.utils.EntityAnimation;
 import chessgame.utils.EntityManager;
 import chessgame.utils.EntityType;
 import chessgame.utils.Rumble;
@@ -56,6 +57,7 @@ public class KnightBoss implements IEnemies {
 	public boolean hit;
 	public int allJumps;
 	public boolean spawnBullet;
+	public boolean telegrafChase = false;
 	
 	public ArrayList<IEntities> minions = new ArrayList<IEntities>();
 	
@@ -73,13 +75,18 @@ public class KnightBoss implements IEnemies {
 	//Entity size
 	public float width = 0.8f*2.6f;
 	public float height = 1.5f*2.6f;
+	
+	EntityAnimation eyeFlare;
+	EntityAnimation chasingLeft;
+	EntityAnimation chasingRight;
+	
 
 	public KnightBoss (Vector2 position, World world, EntityManager entityManager) {
 		homePosition = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.position = homePosition;
 		this.world = world;
 		this.entityManager = entityManager;
-		health = 2;
+		health = 5;
 		attack = 1;
 		lookingRight = false;
 		grounded = false;
@@ -87,6 +94,7 @@ public class KnightBoss implements IEnemies {
 		activated = false;
 		thinkingTime = 700;
 		spawnBullet = false;
+		
 	}	
 		
 	
@@ -158,6 +166,16 @@ public class KnightBoss implements IEnemies {
 		if(health <= 0)
 			kill();
 		
+		if(telegrafChase) {
+			telegrafChase = eyeFlare.playOnce(batch, (position.x - (sprite.getWidth()/2.1f)) , (position.y - ((sprite.getHeight()/2f)*(3f/2.65f))));
+		}
+		
+		if(currentState == chaseState) {
+			if (lookingRight)
+				chasingRight.render(batch, (position.x - (sprite.getWidth()/2.1f)) , (position.y - ((sprite.getHeight()/2f)*(3f/2.65f)))+0.05f);
+			else
+				chasingLeft.render(batch, (position.x - (sprite.getWidth()/2.1f)) , (position.y - ((sprite.getHeight()/2f)*(3f/2.65f)))+0.05f);
+		}
 		if(System.currentTimeMillis() < hitTime + 100) {
 			sprite.setColor(Color.RED);
 			attack = 0;
@@ -177,6 +195,12 @@ public class KnightBoss implements IEnemies {
 		sprite = new Sprite(new Texture (Gdx.files.internal("assets/enemies/KnightBoss.png").file().getAbsolutePath()));
 		createBody();
 		
+		Texture flareSheet = new Texture (Gdx.files.internal("assets/enemies/KnightBossEyeFlare-Sheet.png").file().getAbsolutePath());
+		eyeFlare = new EntityAnimation(flareSheet, 10, 20f, this, new Vector2(144, 288));
+		Texture chasingLeftSheet = new Texture (Gdx.files.internal("assets/enemies/KnightBossChasing-Sheet-export.png").file().getAbsolutePath());
+		chasingLeft = new EntityAnimation(chasingLeftSheet, 2, 6f, this, new Vector2(144, 288), true);
+		Texture chasingRightSheet = new Texture (Gdx.files.internal("assets/enemies/KnightBossChasingRight-Sheet-export.png").file().getAbsolutePath());
+		chasingRight = new EntityAnimation(chasingRightSheet, 2, 6f, this, new Vector2(144, 288), true);
 		//Adds the knight to the entityManager
     	entityManager.addEntity(this);
 	}

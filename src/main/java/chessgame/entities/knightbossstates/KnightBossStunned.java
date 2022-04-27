@@ -1,5 +1,6 @@
 package chessgame.entities.knightbossstates;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 
 import chessgame.app.Game;

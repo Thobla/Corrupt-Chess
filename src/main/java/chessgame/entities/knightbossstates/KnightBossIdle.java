@@ -4,25 +4,38 @@ import chessgame.entities.KnightBoss;
 
 public class KnightBossIdle extends KnightBossState {
 	KnightBoss knight;
-	int idleTime = 800;
+	int idleTime = 300;
 	int counter;
 	int riggedRandom;
 	int dec;
+	boolean lastStand;
 	
 	public KnightBossIdle(KnightBoss knight) {
 		this.knight = knight;
-		dec = 1;
+		dec = 10;
 	}
 	
 	@Override
 	public void Enter() {
-		counter = idleTime;
-		riggedRandom = (int) (Math.random()*dec);
 		if (knight.getHealth() == 1) {
-			counter = counter/4;
-			dec = 4;
-		} else
+			if (!lastStand) {
+				dec = 5;
+				lastStand = true;
+				counter = idleTime *2;
+			} else {
+				dec -= 1;
+				counter = idleTime/2;
+			}
+			if (dec <= 0) {
+				riggedRandom = 0;
+			} else {
+				riggedRandom = 1;
+			}
+		} else {
+			riggedRandom = (int) (Math.random()*dec);
 			dec -= 2;
+			counter = idleTime;
+		}
 	}
 	
 	@Override
@@ -43,7 +56,7 @@ public class KnightBossIdle extends KnightBossState {
 					knight.changeState(knight.randState);
 				}
 			}	
-		}
-		counter -= 1;
+		} else if (knight.isGrounded())
+				counter -= 1;
 	}
 }
