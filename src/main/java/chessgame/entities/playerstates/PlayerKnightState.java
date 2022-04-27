@@ -39,6 +39,7 @@ public class PlayerKnightState extends PlayerState {
 			jumpTime += Gdx.graphics.getDeltaTime();
 			player.jump(500f);
 			player.controller.isGrounded = false;
+			player.getSprite().setColor(Color.WHITE);
 		}
 		if(jumpTime > 0.05f * charge) {
 			hasCharged = false;
@@ -50,7 +51,6 @@ public class PlayerKnightState extends PlayerState {
 	@Override
 	public void stateAbility() {
 		if(charge < 3) {
-			System.out.println(charge*10 % 2 );
 			if(charge*5 % 2 > 1f) {
 				player.getSprite().setColor(Color.YELLOW);
 			} else {

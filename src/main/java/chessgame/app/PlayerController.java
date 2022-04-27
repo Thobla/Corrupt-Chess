@@ -19,7 +19,7 @@ public class PlayerController extends InputMultiplexer {
 	public boolean lock = false;
 	public boolean holdAbility = false;
 	public float coolDown = 5;
-	public float maxCoolDown;
+	public float maxCoolDown = 2;
 	//KeyBinds
 	private int up;
 	private int left;

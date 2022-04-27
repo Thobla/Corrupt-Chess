@@ -151,6 +151,7 @@ public class Player implements IEntities{
 	 * @author Mikal, Thorgal
 	 */
 	public void jump(float jumpForce) {	
+		myBody.setLinearVelocity(new Vector2(myBody.getLinearVelocity().x,0f));
 		myBody.applyLinearImpulse(new Vector2(0, jumpForce),this.position ,true);
 
 	}
@@ -186,7 +187,7 @@ public class Player implements IEntities{
 		
 		fixDef.isSensor = true;
 		//the shape should be lower than the players width and height
-		shape.setAsBox(width * 0.95f, height / 16, new Vector2(0f, -height), 0);
+		shape.setAsBox(width * 0.95f, height / 4, new Vector2(0f, -height), 0);
 		fixDef.shape = shape;
 		
 		myBody.createFixture(fixDef).setUserData("foot");
