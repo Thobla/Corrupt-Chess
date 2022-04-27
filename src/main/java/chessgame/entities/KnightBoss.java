@@ -172,9 +172,9 @@ public class KnightBoss implements IEnemies {
 		
 		if(currentState == chaseState) {
 			if (lookingRight)
-				chasingRight.render(batch, (position.x - (sprite.getWidth()/2.1f)) , (position.y - ((sprite.getHeight()/2f)*(3f/2.65f)))+0.05f);
+				chasingRight.render(batch, (position.x - (sprite.getWidth()/2.1f)) , (position.y - ((sprite.getHeight()/2f)*(3f/2.65f)))+0.05f, false);
 			else
-				chasingLeft.render(batch, (position.x - (sprite.getWidth()/2.1f)) , (position.y - ((sprite.getHeight()/2f)*(3f/2.65f)))+0.05f);
+				chasingLeft.render(batch, (position.x - (sprite.getWidth()/2.1f)) , (position.y - ((sprite.getHeight()/2f)*(3f/2.65f)))+0.05f, false);
 		}
 		if(System.currentTimeMillis() < hitTime + 100) {
 			sprite.setColor(Color.RED);

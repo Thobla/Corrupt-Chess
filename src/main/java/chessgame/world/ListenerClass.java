@@ -20,7 +20,9 @@ import chessgame.entities.Knight;
 import chessgame.entities.KnightBoss;
 import chessgame.entities.Player;
 import chessgame.entities.Portal;
+import chessgame.entities.TheTower;
 import chessgame.utils.EntityManager;
+import chessgame.utils.Rumble;
 
 public class ListenerClass implements ContactListener{
 	
@@ -325,4 +327,88 @@ public class ListenerClass implements ContactListener{
 		return !unjumpable.contains(name);
 	}
 
+	private void TheTowerSensors(Fixture fixtureA, Fixture fixtureB) {
+		//Checks for TheTowerBoss
+		if(fixtureA.getUserData() == "TLHand") {
+			TheTower tower = (TheTower) fixtureA.getBody().getUserData();
+			
+			if(!(fixtureB.getBody().getUserData() instanceof Player))
+				tower.freezeHands(true);
+			if(!(fixtureB.getBody().getUserData() instanceof Player)) {
+				tower.returnHand = true;
+				tower.smash = false;
+				tower.freezeHands(true);
+				Rumble.rumble(0.2f, 0.2f);
+			} else if (!tower.frozen) {
+				if(fixtureB.getBody().getUserData() instanceof Player) {
+					player = (Player) fixtureB.getBody().getUserData();
+					if(!tower.returnHand)
+						player.takeDamage(tower.getAttack());
+				}
+				tower.returnHand = true;
+				tower.smash = false;
+				tower.quickReturn = true;
+				Rumble.rumble(0.2f, 0.2f);
+			}
+		}
+		else if(fixtureB.getUserData() == "TLHand") {
+			TheTower tower = (TheTower) fixtureB.getBody().getUserData();
+			
+			if(!(fixtureB.getBody().getUserData() instanceof Player))
+				tower.freezeHands(true);
+			if(!(fixtureB.getBody().getUserData() instanceof Player)) {
+				tower.returnHand = true;
+				tower.smash = false;
+				tower.freezeHands(true);
+				Rumble.rumble(0.2f, 0.2f);
+			} else if (!tower.frozen) {
+				if(fixtureA.getBody().getUserData() instanceof Player) {
+					player = (Player) fixtureA.getBody().getUserData();
+					if(!tower.returnHand)
+						player.takeDamage(tower.getAttack());
+				}
+				tower.returnHand = true;
+				tower.smash = false;
+				tower.quickReturn = true;
+				Rumble.rumble(0.2f, 0.2f);
+			}
+		}
+		
+		if(fixtureA.getUserData() == "Tfoot") {
+			TheTower tower = (TheTower) fixtureA.getBody().getUserData();
+			if(tower.getCurrentState() == tower.jumpState) {
+				Rumble.rumble(.4f, .4f);
+				tower.shockWave();
+				if(tower.jumpCounter == 0) {
+					tower.changeState(tower.idleState);
+				}
+				if(fixtureB.getBody().getUserData() instanceof Player)
+					player.takeDamage(tower.getAttack());
+				tower.jump = false;
+			}
+		}
+		else if(fixtureB.getUserData() == "Tfoot") {
+			TheTower tower = (TheTower) fixtureB.getBody().getUserData();
+			if(tower.getCurrentState() == tower.jumpState) {
+				Rumble.rumble(.4f, .4f);
+				tower.shockWave();
+				tower.changeState(tower.idleState);
+				if(fixtureA.getBody().getUserData() instanceof Player)
+					player.takeDamage(tower.getAttack());
+				tower.jump = false;
+			}
+		}
+		if(fixtureA.getUserData() == "Wave" && fixtureB.getBody().getUserData() instanceof Player) {
+			TheTower tower = (TheTower) fixtureA.getBody().getUserData();
+			player = (Player) fixtureB.getBody().getUserData();
+			player.takeDamage(tower.getAttack());
+			tower.shockWave = false;
+		}
+		if(fixtureB.getUserData() == "Wave" && fixtureA.getBody().getUserData() instanceof Player) {
+			TheTower tower = (TheTower) fixtureB.getBody().getUserData();
+			player = (Player) fixtureA.getBody().getUserData();
+			tower.shockWave = false;
+			player.takeDamage(tower.getAttack());
+		}
+	}
 }
