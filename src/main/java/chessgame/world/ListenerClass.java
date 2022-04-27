@@ -41,11 +41,13 @@ public class ListenerClass implements ContactListener{
 		//checks if the fixture is the "groundCheck-platter" for the player, if it is, we change the players controller isGrounded to true
 		if(fixtureA.getUserData() == "foot" && checkJumpable(fixtureB.getUserData())) {
 		 	player = (Player) fixtureA.getBody().getUserData();
-		 	player.controller.isGrounded = true;
+		 	if(player.controller != null)
+		 		player.controller.isGrounded = true;
 		}
 		else if(fixtureB.getUserData() == "foot" && checkJumpable(fixtureA.getUserData())) {
 			player = (Player) fixtureB.getBody().getUserData();
-		 	player.controller.isGrounded = true;
+			if(player.controller != null)
+				player.controller.isGrounded = true;
 		}
 		//checks if the fixture is a enemy weakpoint
 		if(fixtureA.getUserData() == "weakpoint" && fixtureB.getUserData() == "foot") {
@@ -54,7 +56,8 @@ public class ListenerClass implements ContactListener{
 		 	enemy.takeDamage(player.getAttack());
 			player.myBody.setLinearVelocity(player.myBody.getLinearVelocity().x, 0);
 			player.jump(10000f);
-			player.controller.isGrounded = false;
+			if(player.controller != null)
+				player.controller.isGrounded = false;
 		}
 		else if(fixtureB.getUserData() == "weakpoint" && fixtureA.getUserData() == "foot") {
 			player = (Player) fixtureA.getBody().getUserData();
@@ -62,16 +65,19 @@ public class ListenerClass implements ContactListener{
 			enemy.takeDamage(player.getAttack());
 			player.myBody.setLinearVelocity(player.myBody.getLinearVelocity().x, 0);
 			player.jump(10000f);
-			player.controller.isGrounded = false;
+			if(player.controller != null)
+				player.controller.isGrounded = false;
 		}
 		//Checks if there is an object above the player
 		if(fixtureA.getUserData() != "air" && fixtureB.getUserData() == "sky") {
 			player = (Player) fixtureB.getBody().getUserData();
-			player.controller.clearJump = false;
+			if(player.controller != null)
+				player.controller.clearJump = false;
 		}
 		else if(fixtureB.getUserData() != "air" && fixtureA.getUserData() == "sky") {
 			player = (Player) fixtureA.getBody().getUserData();
-			player.controller.clearJump = false;
+			if(player.controller != null)
+				player.controller.clearJump = false;
 		}
 		//Checks if the player is colliding with an object
 		if(fixtureA.getUserData() == "Object" && fixtureB.getUserData() == "Player") {
@@ -175,11 +181,13 @@ public class ListenerClass implements ContactListener{
 		}
 		if(fixtureA.getUserData() == "sky") {
 			player = (Player) fixtureA.getBody().getUserData();
-			player.controller.clearJump = true;
+			if(player.controller != null)
+				player.controller.clearJump = true;
 		}
 		if(fixtureB.getUserData() == "sky") {
 			player = (Player) fixtureB.getBody().getUserData();
-			player.controller.clearJump = true;
+			if(player.controller != null)
+				player.controller.clearJump = true;
 		}
 		
 	}

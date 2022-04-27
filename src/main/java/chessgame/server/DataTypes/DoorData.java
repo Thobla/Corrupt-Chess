@@ -1,6 +1,6 @@
 package chessgame.server.DataTypes;
 
-public class DoorData {
+public class DoorData{
 	Boolean open;
 	public DoorData() {
 	}

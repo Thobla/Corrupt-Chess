@@ -41,6 +41,7 @@ public class Player implements IEntities{
 	//Player size
 	float width = .5f;
 	float height = 1f;
+	int entityId;
 //	todo:
 //	legg til player
 	public Player (Vector2 position, World world, String id) {
@@ -59,9 +60,8 @@ public class Player implements IEntities{
 		//Load rating from saveFile
 		ratingScore = (int) SaveFile.readScore()[0];
 		
-    	//PlayerController
-		int[] controls = SaveFile.readSettings();
-    	controller = new PlayerController(controls);
+    	
+		
     	
     	font = new BitmapFont();
 	}
@@ -73,6 +73,7 @@ public class Player implements IEntities{
 	
 	public void setPosition(Vector2 position) {
 		myBody.setTransform(position, 0f);
+		System.out.println("entered setPosition");
 	}
 	/**
 	 * Moves the entity based on input vector2
@@ -241,8 +242,8 @@ public class Player implements IEntities{
 				myBody.setLinearVelocity(new Vector2(myBody.getLinearVelocity().x, 20));
 			//Updates position vector2
 			updatePosition();
-			
-	    	controller.myController(this);
+			if (controller != null)
+				controller.myController(this);
 			keepWithinBounds();
 	    	
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
@@ -293,7 +294,19 @@ public class Player implements IEntities{
 		this.ratingScore = ratingScore;
 	}
 	
-	public String getId() {
+	public int getId() {
+		return this.entityId;
+	}
+	
+	public String getPlayerId() {
 		return this.playerId;
 	}
+	
+	public void setController() {
+		//PlayerController
+		int[] controls = SaveFile.readSettings();
+    	controller = new PlayerController(controls);
+	}
+	
+	
 }

@@ -1,6 +1,6 @@
 package chessgame.server.DataTypes;
 
-public class ButtonData {
+public class ButtonData{
 	Boolean active;
 	public ButtonData() {
 	}

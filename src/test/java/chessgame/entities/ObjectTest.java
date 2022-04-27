@@ -43,7 +43,7 @@ public class ObjectTest {
 	void playerIncreaseRatingTest() {
 		Player player = new Player(new Vector2(0,0), pworld.world, "player1");
 		EntityManager mockManager = mock(EntityManager.class);
-		RatingPoint rating = new RatingPoint(new Vector2(0,0), pworld.world, mockManager);
+		RatingPoint rating = new RatingPoint(new Vector2(0,0), pworld.world, mockManager, 0);
 		
 		assertEquals(player.getScore(), 0);
 		rating.itemFunction(player);

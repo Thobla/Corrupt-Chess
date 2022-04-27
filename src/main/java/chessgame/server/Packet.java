@@ -45,15 +45,17 @@ public class Packet {
 			if (entity instanceof Pawn) {
 				pawnList.put(((Pawn) entity).getId(), new PawnData(((Pawn) entity).getHealth(), entity.getPosition()));
 			}
-			if (entity instanceof Player) {
-				playerList.put(((Player) entity).getId(), new PlayerData(((Player) entity).getHealth(), entity.getPosition()));
-			}
 			if (entity instanceof Door) {
 				doorList.put(((Door) entity).getId(), new DoorData(((Door) entity).isOpen()));
 			}
 			if (entity instanceof Button) {
 				buttonList.put(((Button) entity).getId(), new ButtonData(((Button) entity).isActive()));
 			}	
+		}
+		for(IEntities entity : entityManager.playerList) {
+			if (entity instanceof Player) {
+				playerList.put(((Player) entity).getPlayerId(), new PlayerData(((Player) entity).getHealth(), entity.getPosition()));
+			}
 		}
 	}
 	

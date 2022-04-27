@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import chessgame.entities.Door;
 import chessgame.entities.IEntities;
+import chessgame.entities.Pawn;
 import chessgame.entities.Player;
 import chessgame.world.PhysicsWorld;
 
@@ -133,4 +134,7 @@ public class EntityManager {
     public void removePlayer(Player player) {
     	playerList.remove(player);
     }
+    
+    
+    
 }

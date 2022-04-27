@@ -23,10 +23,13 @@ public class RatingPoint implements IObjects{
 	EntityAnimation animation;
 	Texture sprite;
 	
-	public RatingPoint(Vector2 position, World world, EntityManager entityManager){
+	int id;
+	
+	public RatingPoint(Vector2 position, World world, EntityManager entityManager, int id){
 		this.position = new Vector2(position.x/Constants.PixelPerMeter, position.y/Constants.PixelPerMeter);
 		this.world = world;
 		this.entityManager = entityManager;
+		this.id = id;
 	}
 	
 	public void initialize() {
@@ -104,6 +107,10 @@ public class RatingPoint implements IObjects{
 	public void itemFunction(Player player) {
 		player.ratingScore += 7;
 		kill();
+	}
+	
+	public int getId() {
+		return id;
 	}
 
 }

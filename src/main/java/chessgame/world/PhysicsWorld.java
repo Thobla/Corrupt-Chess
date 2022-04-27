@@ -1,5 +1,7 @@
 package chessgame.world;
 
+import java.util.HashMap;
+
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -15,9 +17,12 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.entities.Button;
 import chessgame.entities.Door;
+import chessgame.entities.IEntities;
 import chessgame.entities.Pawn;
 import chessgame.entities.Portal;
 import chessgame.entities.RatingPoint;
+import chessgame.server.DataTypes.ButtonData;
+import chessgame.server.DataTypes.PawnData;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 
@@ -112,7 +117,7 @@ public class PhysicsWorld {
 			}
 			//Spawns a coin	
 			if(entity.getName().toLowerCase().equals("ratingpoint")) {
-				RatingPoint point = new RatingPoint(pos, world, manager);
+				RatingPoint point = new RatingPoint(pos, world, manager, nextId());
 				point.initialize();
 			}
 			//Spawns a door
@@ -127,7 +132,7 @@ public class PhysicsWorld {
 				button.initialize();
 			}
 			if(entity.getName().toLowerCase().equals("portal")) {
-				Portal portal = new Portal(pos, world, manager);
+				Portal portal = new Portal(pos, world, manager, nextId());
 				portal.initialize();
 			}
 			if(entity.getName().toLowerCase().equals("player")) {
@@ -142,5 +147,7 @@ public class PhysicsWorld {
 		currentId ++;
 		return currentId - 1;
 	}
+	
+	
 	
 }

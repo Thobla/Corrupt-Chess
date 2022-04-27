@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
  * @author thorg
  *
  */
-public class PawnData {
+public class PawnData{
 	int health;
 	Vector2 position;
 	

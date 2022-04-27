@@ -74,6 +74,11 @@ public class Game implements Screen {
     Boolean isHost;
     Boolean isMultiplayer;
     
+    int clock = 10;
+    Vector2 playerPosition;
+    
+    Player player2;
+    
     //
     //
     //
@@ -128,6 +133,7 @@ public class Game implements Screen {
     	//
     	//
     	//
+    	
     	if (isMultiplayer && isHost) {
     		this.IpAddress = IpAddress;
     		this.isMultiplayer = isMultiplayer;
@@ -148,6 +154,9 @@ public class Game implements Screen {
     		this.isMultiplayer = false;
     		this.isHost = false;
     	}
+    	
+	
+	
     	//
     	//
     	//
@@ -196,13 +205,14 @@ public class Game implements Screen {
     	else {
     		if(isHost) {
     			player = entityManager.addPlayer();
-    			entityManager.addPlayer();
+    			player2 = entityManager.addPlayer();
     		}
     		else {
-    			entityManager.addPlayer();
+    			player2 = entityManager.addPlayer();
     			player = entityManager.addPlayer();
     		}
     	}
+    	player.setController();
     		
      	
     	//Updates the map
@@ -230,7 +240,13 @@ public class Game implements Screen {
     @Override
     public void render(float delta) {
     	
-
+    	if(isMultiplayer) {
+    		System.out.println("entered isMultiplayer render");
+    		if(!(playerPosition == null)) {
+    			System.out.println("playerPosition is not null");
+    			player2.setPosition(playerPosition);
+    		}
+    	}
     	
     	if(currentLevelIndex >= levels.length) {
     		game.setScreen(new MenuScreen(game));
@@ -316,27 +332,30 @@ public class Game implements Screen {
         //
         //
         //multiplayer
-        
-        if (isMultiplayer) {
-        	if(isHost) {
-        		Packet packet = new Packet(entityManager);
-        		HashMap<Integer, PawnData> pawnList = packet.pawnList;
-        		//HashMap<Integer, DoorData> doorList = packet.doorList;
-        		HashMap<Integer, ButtonData> buttonList = packet.buttonList;
-        		//HashMap<String, PlayerData> playerList = packet.playerList;
-        		this.client.getClient().sendTCP(pawnList);
-        		//this.client.getClient().sendTCP(doorList);
-        		this.client.getClient().sendTCP(buttonList);
-        		//this.client.getClient().sendTCP(playerList);
-        	}
-        	//legg til hva som blir sendt viss det ikkje er host
-        	else {
-        		
-        	}
+       
+	        if (isMultiplayer) {
+	        	if(isHost) {
+	        		System.out.println("Host surposed to send");
+	        		Packet packet = new Packet(entityManager);
+	        		HashMap<Integer, PawnData> pawnList = packet.pawnList;
+	        		//HashMap<Integer, DoorData> doorList = packet.doorList;
+	        		HashMap<Integer, ButtonData> buttonList = packet.buttonList;
+	        		HashMap<String, PlayerData> playerList = packet.playerList;
+	        		//this.client.getClient().sendTCP(pawnList);
+	        		//this.client.getClient().sendTCP(doorList);
+	        		this.client.getClient().sendTCP(buttonList);
+	        		this.client.getClient().sendTCP(playerList);
+	        	}
+	        	//legg til hva som blir sendt viss det ikkje er host
+	        	else {
+	        		
+	        	}
+        }
         }
         
         
         
+        
         //
         //
         //
@@ -347,7 +366,7 @@ public class Game implements Screen {
         
         
         
-    }
+    
     public void gameOverScreen() {  
     	paused = true;
     	dead = true;
@@ -486,7 +505,7 @@ public class Game implements Screen {
 				if (entity instanceof Pawn) {
 					int pawnId = ((Pawn) entity).getId();
 					if(((HashMap) object).containsKey(pawnId)) {
-						entity.move(((PawnData) ((HashMap) object).get(pawnId)).getPosition());
+						((Pawn) entity).move(((PawnData) ((HashMap) object).get(pawnId)).getPosition());
 						((Pawn)entity).setHealth(((PawnData) ((HashMap) object).get(pawnId)).getHealth());
 					}
 				}
@@ -501,6 +520,24 @@ public class Game implements Screen {
 					}
 				}
 				
+				
+			}
+			for(IEntities entity : entityManager.playerList) {
+				if (entity instanceof Player) {
+					System.out.println("isPlayer");
+					String playerId = ((Player) entity).getPlayerId();
+					if(((HashMap) object).containsKey(playerId)) {
+						System.out.println("containsKey");
+						if (((Player) entity).getPlayerId().equals("player2") && isHost)
+						{
+							this.playerPosition = ((PlayerData) ((HashMap) object).get(playerId)).getPosition();
+						}
+						else if (((Player) entity).getPlayerId().equals("player1") && !isHost) {
+							this.playerPosition = ((PlayerData) ((HashMap) object).get(playerId)).getPosition();
+						}
+							
+					}
+				}
 			}
 				
 				

@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 * @author thorg
 */
 
-public class PlayerData {
+public class PlayerData{
 	int health;
 	Vector2 position;
 	
