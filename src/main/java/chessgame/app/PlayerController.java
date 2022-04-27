@@ -10,13 +10,17 @@ import chessgame.entities.playerstates.PlayerTowerState;
 
 public class PlayerController extends InputMultiplexer {
 	
+	//Movement
 	private int playerspeed = 1;
 	private float jumpForce = 500f;
 	public boolean isGrounded = false;
 	public boolean clearJump = true;
+	//Ability
 	public boolean lock = false;
 	public boolean holdAbility = false;
-	
+	public float coolDown = 5;
+	public float maxCoolDown;
+	//KeyBinds
 	private int up;
 	private int left;
 	private int right;
@@ -67,9 +71,10 @@ public class PlayerController extends InputMultiplexer {
 			    		isGrounded = false;
 		    		}
 		    	}
-		    	if(Gdx.input.isKeyJustPressed(Keys.V))
-		    		player.nextState();
-		    	
+		    	if(coolDown >= maxCoolDown) {
+			    	if(Gdx.input.isKeyJustPressed(Keys.V))
+			    		player.nextState();
+		    	}
 		    	if(!holdAbility) {
 			    	if(Gdx.input.isKeyJustPressed(Keys.C))
 			    		player.currentState.stateAbility();

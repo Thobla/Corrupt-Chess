@@ -1,6 +1,7 @@
 package chessgame.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -25,17 +26,19 @@ import chessgame.utils.EntityManager;
 public class Player implements IEntities{
 	Vector2 position;
 	public World world;
-	Sprite sprite;
 	public Body myBody;
 	public PlayerController controller;
 	//PlayerStats
 	int health = 3;
 	int attack = 1;
 	
-	//Player prompt
+	//PlayerVisuals
+	Sprite sprite;
 	EntityAnimation dustAnim;
 	EntityAnimation leftRunDust;
 	EntityAnimation rightRunDust;
+	boolean hasTakenDamage = false;
+	float dmgTime = 0;
 	
 	public EntityManager manager;
 	
@@ -196,6 +199,9 @@ public class Player implements IEntities{
 	}
 
 	public void takeDamage(int damage) {
+		dmgTime = 0;
+		hasTakenDamage = true;
+
 		if(damage < health)
 			health -= damage;
 		else {
@@ -275,7 +281,7 @@ public class Player implements IEntities{
 			keepWithinBounds();
 	    	
 			sprite.setFlip(!facing, false);
-			
+			dmgColorTime(Color.RED, 0.15f);
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
 			sprite.setSize(2, 2);
 			sprite.draw(batch);
@@ -295,8 +301,20 @@ public class Player implements IEntities{
 			if(health == 0)
 				kill();
 	}
-	
-
+	/**
+	 * Changes the color of the player when he takes damage
+	 * @param color
+	 * @param time
+	 */
+	public void dmgColorTime(Color color, float time) {
+		if(dmgTime > time && hasTakenDamage) {
+			sprite.setColor(Color.WHITE);
+			hasTakenDamage = false;
+		} else if(hasTakenDamage) {
+			sprite.setColor(color);
+			dmgTime += Gdx.graphics.getDeltaTime();
+		}
+	}
 
 	@Override
 	public Body getBody() {
