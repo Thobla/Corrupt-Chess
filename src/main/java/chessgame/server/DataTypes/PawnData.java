@@ -11,6 +11,9 @@ public class PawnData {
 	int health;
 	Vector2 position;
 	
+	public PawnData() {
+	}
+	
 	public PawnData(int health, Vector2 position){
 		this.health = health;
 		this.position = position;

@@ -139,6 +139,10 @@ public class Button implements IObjects{
 		}
 	}
 	
+	public void itemFunction() {
+		itemFunction(null);
+	}
+	
 	public int getId() {
 		return this.myId;
 	}

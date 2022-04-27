@@ -41,11 +41,9 @@ public class ClientScreen implements Screen{
         Button backButton = UI.newScreenButton(new Vector2(3,1.5f), new Vector2(10.5f,1), "Back", ScreenType.MultiPlayerScreen, game, 0);
         stage.addActor(backButton);
 
-        Button hostButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(8, 4), "test", ScreenType.HostScreen, game, 0);
+        Button hostButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(8, 4), "test", ScreenType.Client, game, 0);
         stage.addActor(hostButton);
 
-        Button clientButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(17.7f, 4), "test", ScreenType.ClientScreen, game, 0);
-        stage.addActor(clientButton);
     }
 
     @Override

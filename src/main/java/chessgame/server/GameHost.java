@@ -11,6 +11,7 @@ import chessgame.utils.EntityManager;
 public class GameHost implements IClient{
 	Client client;
 	
+	
 	public GameHost() throws IOException{
 		this.client = new Client();
 		this.client.start();

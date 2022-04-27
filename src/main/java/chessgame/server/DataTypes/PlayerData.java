@@ -10,6 +10,9 @@ public class PlayerData {
 	int health;
 	Vector2 position;
 	
+	public PlayerData() {
+	}
+	
 	public PlayerData(int health, Vector2 position){
 		this.health = health;
 		this.position = position;

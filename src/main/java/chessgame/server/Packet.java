@@ -1,5 +1,6 @@
 package chessgame.server;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,15 +27,16 @@ import chessgame.utils.EntityManager;
 public class Packet {
 	private EntityManager entityManager;
 	
-	public HashMap<Integer, PawnData> pawnList;
-	public HashMap<Integer, DoorData> doorList;
-	public HashMap<Integer, ButtonData> buttonList;
-	public HashMap<String, PlayerData> playerList;
+	public HashMap<Integer, PawnData> pawnList = new HashMap<>();
+	public HashMap<Integer, DoorData> doorList= new HashMap<>();
+	public HashMap<Integer, ButtonData> buttonList= new HashMap<>();
+	public HashMap<String, PlayerData> playerList= new HashMap<>();
 	
-	public List<IEntities> removeList = entityManager.entityRemoveList;
+	public List<IEntities> removeList = new ArrayList<>();
 	
 	public Packet(EntityManager entityManager){
 		this.entityManager = entityManager;
+		removeList = entityManager.entityRemoveList;
 		addAllEntities();
 	}
 	

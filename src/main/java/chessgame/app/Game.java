@@ -21,6 +21,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import chessgame.entities.Button;
+import chessgame.entities.Door;
 import chessgame.entities.IEntities;
 import chessgame.entities.Pawn;
 import chessgame.entities.Player;
@@ -38,6 +40,7 @@ import chessgame.server.GameHost;
 import chessgame.server.GameServer;
 import chessgame.server.IClient;
 import chessgame.server.Packet;
+import chessgame.server.PlayerAction;
 import chessgame.server.DataTypes.*;
 
 
@@ -118,26 +121,28 @@ public class Game implements Screen {
     
     
     public Game(ChessGame game, int level, Boolean isMultiplayer, Boolean isHost, String IpAddress) throws IOException {
-    	
+    	System.out.println("new Game");
     	//Multiplayer
     	//
     	//
     	//
     	//
     	//
-    	if (isMultiplayer == true) {
+    	if (isMultiplayer && isHost) {
     		this.IpAddress = IpAddress;
     		this.isMultiplayer = isMultiplayer;
     		this.isHost = isHost;
+    		System.out.println(isHost);
+			this.server = new GameServer();
+			this.client = new GameHost();
     		
-    		if (isHost == true) {
-    			this.server = new GameServer();
-    			this.client = new GameHost();
-    		}
-    		else {
-    			this.client = new GameClient(IpAddress);
-    		}
-    		
+    	}
+    	else if(isMultiplayer && !isHost) {
+    		this.IpAddress = IpAddress;
+    		this.isMultiplayer = isMultiplayer;
+    		this.isHost = isHost;
+    		System.out.println(isHost);
+      		this.client = new GameClient(this, IpAddress);
     	}
     	else {
     		this.isMultiplayer = false;
@@ -224,6 +229,9 @@ public class Game implements Screen {
 
     @Override
     public void render(float delta) {
+    	
+
+    	
     	if(currentLevelIndex >= levels.length) {
     		game.setScreen(new MenuScreen(game));
     		return;
@@ -300,6 +308,7 @@ public class Game implements Screen {
 	        stage.act();
 	        stage.draw();
         }
+        
         //
         //
         //
@@ -310,7 +319,15 @@ public class Game implements Screen {
         
         if (isMultiplayer) {
         	if(isHost) {
-        		this.client.getClient().sendTCP(new Packet(entityManager));
+        		Packet packet = new Packet(entityManager);
+        		HashMap<Integer, PawnData> pawnList = packet.pawnList;
+        		//HashMap<Integer, DoorData> doorList = packet.doorList;
+        		HashMap<Integer, ButtonData> buttonList = packet.buttonList;
+        		//HashMap<String, PlayerData> playerList = packet.playerList;
+        		this.client.getClient().sendTCP(pawnList);
+        		//this.client.getClient().sendTCP(doorList);
+        		this.client.getClient().sendTCP(buttonList);
+        		//this.client.getClient().sendTCP(playerList);
         	}
         	//legg til hva som blir sendt viss det ikkje er host
         	else {
@@ -325,6 +342,7 @@ public class Game implements Screen {
         //
         //
         //
+        
         
         
         
@@ -451,30 +469,41 @@ public class Game implements Screen {
 		
 	}
 
-	public void handlePacket(Packet packet) {
-		HashMap<Integer, PawnData> pawnList = packet.pawnList;
-		HashMap<Integer, DoorData> doorList = packet.doorList;
-		HashMap<Integer, ButtonData> buttonList = packet.buttonList;
-		HashMap<String, PlayerData> playerList = packet.playerList;
-		
-		while(!pawnList.isEmpty()) {
-			List<IEntities> entityList = entityManager.entityList;
-			for(IEntities entity : entityList) {
+	public void handlePacket(Object object) {
+		if(object instanceof HashMap) {
+			if (!(entityManager == null)) {
+			for(IEntities entity: entityManager.entityList) {
 				if (entity instanceof Pawn) {
-					entity.move(pawnList.get(((Pawn) entity).getId()).getPosition());
-					((Pawn) entity).setHealth(pawnList.get(((Pawn) entity).getId()).getHealth());
-				}
-				if (entity instanceof Player) {
-					if(((Player) entity).getId().equals("Player2")) {
-						((Player) entity).setPosition(playerList.get("Player2").getPosition());
+					int pawnId = ((Pawn) entity).getId();
+					if(((HashMap) object).containsKey(pawnId)) {
+						entity.move(((PawnData) ((HashMap) object).get(pawnId)).getPosition());
+						((Pawn)entity).setHealth(((PawnData) ((HashMap) object).get(pawnId)).getHealth());
 					}
-					//TODO: finish this method
-					
-					
+				}
+				
+				if (entity instanceof Button) {
+					int buttonId = ((Button) entity).getId();
+					if(((HashMap) object).containsKey(buttonId)) {
+						
+						if(((Button) entity).isActive() != ((ButtonData) ((HashMap) object).get(buttonId)).getActive()) {
+							((Button) entity).itemFunction();
+						}
+					}
 				}
 				
 			}
+				
+				
+			}
+			
+			
+			
+			
 		}
+		
+		
+		
+		
 		
 	}
 }
