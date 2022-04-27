@@ -6,9 +6,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 import chessgame.entities.Player;
+import chessgame.utils.playerForm;
 
 public class PlayerKnightState extends PlayerState {
-
+	
 	Player player;
 	boolean hasJumped = false;
 	boolean hasCharged = false;
@@ -20,6 +21,7 @@ public class PlayerKnightState extends PlayerState {
 	
 	public PlayerKnightState(Player player){
 		this.player = player;
+		form = playerForm.KNIGHT;
 	}
 	
 	@Override

@@ -22,6 +22,7 @@ import chessgame.utils.SaveFile;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityAnimation;
 import chessgame.utils.EntityManager;
+import chessgame.utils.HUD;
 
 public class Player implements IEntities{
 	Vector2 position;
@@ -222,6 +223,8 @@ public class Player implements IEntities{
 				kill();
 			}
 		}
+		if(controller != null)
+			HUD.setHP(health);
 	}
 
 	public int getAttack() {

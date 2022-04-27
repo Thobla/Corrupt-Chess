@@ -6,14 +6,15 @@ import com.badlogic.gdx.math.Vector2;
 
 import chessgame.entities.Bullet;
 import chessgame.utils.Direction;
+import chessgame.utils.playerForm;
 import chessgame.entities.Player;
 
 public class PlayerBishopState extends PlayerState {
-	
 	Player player;
 	
 	public PlayerBishopState(Player player) {
 		this.player = player;
+		form = playerForm.BISHOP;
 	}
 	
 	@Override

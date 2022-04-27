@@ -7,6 +7,8 @@ import com.badlogic.gdx.InputMultiplexer;
 
 import chessgame.entities.Player;
 import chessgame.entities.playerstates.PlayerTowerState;
+import chessgame.utils.HUD;
+import chessgame.utils.playerForm;
 
 public class PlayerController extends InputMultiplexer {
 	
@@ -78,9 +80,13 @@ public class PlayerController extends InputMultiplexer {
 		    		}
 		    	}
 		    	if(coolDown >= maxCoolDown) {
+		    		HUD.setCharge(true);
 			    	if(Gdx.input.isKeyJustPressed(changeform)) {
 			    		player.nextState();
 			    		player.changingForm = true;
+			    		HUD.setAbility(player.currentState.form);
+			    		System.out.println(player.currentState.form);
+			    		HUD.setCharge(false);
 			    	}
 		    	}
 		    	if(!holdAbility) {
