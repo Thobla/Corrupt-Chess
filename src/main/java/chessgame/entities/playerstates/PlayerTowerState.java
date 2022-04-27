@@ -26,6 +26,8 @@ public class PlayerTowerState extends PlayerState {
 	@Override
 	public void Update() {
 		
+		player.dash = hasDash;
+		
 		if(player.controller.coolDown < player.controller.maxCoolDown) {
 			player.controller.coolDown += Gdx.graphics.getDeltaTime();
 		}

@@ -37,6 +37,9 @@ public class Player implements IEntities{
 	EntityAnimation dustAnim;
 	EntityAnimation leftRunDust;
 	EntityAnimation rightRunDust;
+	EntityAnimation towerDash;
+	EntityAnimation lTowerDash;
+	
 	boolean hasTakenDamage = false;
 	float dmgTime = 0;
 	
@@ -45,6 +48,7 @@ public class Player implements IEntities{
 	boolean jumpDust = true;
 	public boolean facing = true;
 	
+	public boolean dash;
 	public boolean sprint = false;
 	public boolean dead = false;
 	public int ratingScore = 0;
@@ -75,7 +79,10 @@ public class Player implements IEntities{
 		leftRunDust =  new EntityAnimation(lRunDust, 4, 8f, this, new Vector2(64,32), true);
 		Texture rRunDust = new Texture (Gdx.files.internal("assets/player/runDustR.png").file().getAbsolutePath());
 		rightRunDust =  new EntityAnimation(rRunDust, 4, 8f, this, new Vector2(64,32), true);
-		//prompt = new Sprite(new Texture (Gdx.files.internal("assets/prompt.png").file().getAbsolutePath()));
+		Texture towerDashTexture = new Texture (Gdx.files.internal("assets/player/rookDash.png").file().getAbsolutePath());
+		towerDash =  new EntityAnimation(towerDashTexture, 3, 8f, this, new Vector2(128,128), true);
+		Texture lTowerDashTexture = new Texture (Gdx.files.internal("assets/player/lRookDash.png").file().getAbsolutePath());
+		lTowerDash =  new EntityAnimation(lTowerDashTexture, 3, 8f, this, new Vector2(128,128), true);
 		createBody();
 		
 		//Load rating from saveFile
@@ -199,16 +206,16 @@ public class Player implements IEntities{
 	}
 
 	public void takeDamage(int damage) {
-		dmgTime = 0;
-		hasTakenDamage = true;
-
-		if(damage < health)
-			health -= damage;
-		else {
-			health = 0;
-			kill();
+		if(dmgTime < 0.5f) {
+			dmgTime = 0;
+			hasTakenDamage = true;
+			if(damage < health)
+				health -= damage;
+			else {
+				health = 0;
+				kill();
+			}
 		}
-			
 	}
 
 	public int getAttack() {
@@ -286,17 +293,7 @@ public class Player implements IEntities{
 			sprite.setSize(2, 2);
 			sprite.draw(batch);
 			
-			if(jumpDust) {
-				jumpDust = dustAnim.playOnce(batch, (position.x - 2*width), position.y-height);
-			}
-			if(Math.abs(myBody.getLinearVelocity().y) < 0.01f && !jumpDust) {
-				if(myBody.getLinearVelocity().x > 2f) {
-					leftRunDust.render(batch, (position.x - 3*width), position.y-height);
-				} 
-				if(myBody.getLinearVelocity().x < -2f) {
-					rightRunDust.render(batch, (position.x - width), position.y-height);
-				}
-			}
+			spriteAnimations(batch);
 			
 			if(health == 0)
 				kill();
@@ -313,6 +310,27 @@ public class Player implements IEntities{
 		} else if(hasTakenDamage) {
 			sprite.setColor(color);
 			dmgTime += Gdx.graphics.getDeltaTime();
+		}
+	}
+	
+	public void spriteAnimations(Batch batch) {
+		if(jumpDust) {
+			jumpDust = dustAnim.playOnce(batch, (position.x - 2*width), position.y-height);
+		}
+		if(Math.abs(myBody.getLinearVelocity().y) < 0.01f && !jumpDust) {
+			if(myBody.getLinearVelocity().x > 2f) {
+				leftRunDust.render(batch, (position.x - 3*width), position.y-height);
+			} 
+			if(myBody.getLinearVelocity().x < -2f) {
+				rightRunDust.render(batch, (position.x - width), position.y-height);
+			}
+		}
+		
+		if(dash) {
+			if(facing)
+				towerDash.render(batch, position.x - 4*width, position.y - 2*height);
+			else
+				lTowerDash.render(batch, position.x - 4*width, position.y - 2*height);
 		}
 	}
 

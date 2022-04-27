@@ -151,7 +151,6 @@ public class ListenerClass implements ContactListener{
 			}
 			else if(fixtureB.getUserData() == "leftJumpSensor" && fixtureB.getBody().getLinearVelocity().x < 0) {
 				IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
-				System.out.println("sensor");
 				enemy.jump();
 			}
 		}
@@ -168,7 +167,18 @@ public class ListenerClass implements ContactListener{
 				bullet.kill();
 			}
 		}
-		else if((fixtureB.getUserData() == "Bullet")) {
+		if((fixtureA.getUserData() == "Bullet")) {
+			Bullet bullet = ((Bullet) fixtureA.getBody().getUserData());
+			if(fixtureB.getBody().getUserData() instanceof Player) {
+			}
+			else if(fixtureB.getBody().getUserData() instanceof IEnemies) {
+				IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
+				enemy.takeDamage(1);
+				bullet.kill();
+			}
+			else {
+				bullet.kill();
+			}
 		}
 	}
 
