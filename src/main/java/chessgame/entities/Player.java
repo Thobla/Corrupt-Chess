@@ -39,12 +39,14 @@ public class Player implements IEntities{
 	EntityAnimation rightRunDust;
 	EntityAnimation towerDash;
 	EntityAnimation lTowerDash;
+	EntityAnimation changeForm;
 	
 	boolean hasTakenDamage = false;
 	float dmgTime = 0;
 	
 	public EntityManager manager;
 	
+	public boolean changingForm;
 	boolean jumpDust = true;
 	public boolean facing = true;
 	
@@ -83,6 +85,9 @@ public class Player implements IEntities{
 		towerDash =  new EntityAnimation(towerDashTexture, 3, 8f, this, new Vector2(128,128), true);
 		Texture lTowerDashTexture = new Texture (Gdx.files.internal("assets/player/lRookDash.png").file().getAbsolutePath());
 		lTowerDash =  new EntityAnimation(lTowerDashTexture, 3, 8f, this, new Vector2(128,128), true);
+		Texture changeFormTexture = new Texture (Gdx.files.internal("assets/player/transformCloud.png").file().getAbsolutePath());
+		changeForm =  new EntityAnimation(changeFormTexture, 7, 16f, this, new Vector2(128,128), true);
+		
 		createBody();
 		
 		//Load rating from saveFile
@@ -313,7 +318,6 @@ public class Player implements IEntities{
 			dmgTime += Gdx.graphics.getDeltaTime();
 		}
 	}
-	
 	public void spriteAnimations(Batch batch) {
 		if(jumpDust) {
 			jumpDust = dustAnim.playOnce(batch, (position.x - 2*width), position.y-height);
@@ -326,6 +330,8 @@ public class Player implements IEntities{
 				rightRunDust.render(batch, (position.x - width), position.y-height);
 			}
 		}
+		if(changingForm)
+			changingForm = changeForm.playOnce(batch, position.x - 4*width, position.y - 2*height);
 		
 		if(dash) {
 			if(facing)

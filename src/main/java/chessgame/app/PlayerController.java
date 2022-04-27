@@ -72,8 +72,10 @@ public class PlayerController extends InputMultiplexer {
 		    		}
 		    	}
 		    	if(coolDown >= maxCoolDown) {
-			    	if(Gdx.input.isKeyJustPressed(Keys.V))
+			    	if(Gdx.input.isKeyJustPressed(Keys.V)) {
 			    		player.nextState();
+			    		player.changingForm = true;
+			    	}
 		    	}
 		    	if(!holdAbility) {
 			    	if(Gdx.input.isKeyJustPressed(Keys.C))
