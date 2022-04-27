@@ -36,6 +36,8 @@ public class OptionScreen implements Screen {
     private int sprint;
     private float audiolvl;
     private int resolutionIndex;
+    private int use;
+    private int change;
 	
     //Scalable units for size and placements of UI
     int rowHeight = Gdx.graphics.getHeight() / 16;
@@ -61,6 +63,8 @@ public class OptionScreen implements Screen {
         sprint = controls[3];
         audiolvl = controls[4];  
         resolutionIndex = controls[5];
+        use = controls[7];
+        change = controls[8];
         
         //Background image
         Table backgroundTable = new Table();
@@ -97,22 +101,29 @@ public class OptionScreen implements Screen {
         TextButton rightButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,10), Keys.toString(right), "right", 2, stage, controls);
         stage.addActor(rightButton);
         
+        //Text for use key
+        Label useText = UI.label(new Vector2(2,1), new Vector2(10-2,9), "Key use", "default");
+        stage.addActor(useText);
+        //Button for use key
+        TextButton useButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,9), Keys.toString(use), "use", 7, stage, controls);
+        stage.addActor(useButton);
+        
         //Text for sprint key
-        Label sprintText = UI.label(new Vector2(2,1), new Vector2(10-2,9), "Key sprint", "default");
-        stage.addActor(sprintText);
+        Label changeAbiltyText = UI.label(new Vector2(2,1), new Vector2(10-2,8), "Key change abilty", "default");
+        stage.addActor(changeAbiltyText);
         //Button for sprint key
-        TextButton sprintButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,9), Keys.toString(sprint), "sprint", 3, stage, controls);
-        stage.addActor(sprintButton);
+        TextButton changeAbiltyButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,8), Keys.toString(change), "change abilty", 8, stage, controls);
+        stage.addActor(changeAbiltyButton);
         
         //Button for default controls reset
         TextButton defaultControls = UI.defaultControlsButton(new Vector2(6,1.8f), new Vector2(9,3), game);
         stage.addActor(defaultControls);
         
         //Text for audioSlider
-        Label audio = UI.label(new Vector2(3,2), new Vector2(10.5f,6.8f), "Sound level", "default");
+        Label audio = UI.label(new Vector2(3,2), new Vector2(10.5f,6.3f), "Sound level", "default");
         stage.addActor(audio);
         //Slider for controlling audio
-        Slider audioSlider = UI.audioSlider(new Vector2(6,1.5f) ,new Vector2(9,6), audiolvl, controls);
+        Slider audioSlider = UI.audioSlider(new Vector2(6,1.5f) ,new Vector2(9,5.5f), audiolvl, controls);
         stage.addActor(audioSlider);  
         
         String[] resItems = Constants.resolutionsString;
@@ -124,6 +135,9 @@ public class OptionScreen implements Screen {
         
         CheckBox fullScreenButton = UI.fullScreenBox(new Vector2(2.2f,1), new Vector2(15,9), controls, game);
         stage.addActor(fullScreenButton);
+        
+        
+        
 	}
 	
 	public static void defaultControls() {

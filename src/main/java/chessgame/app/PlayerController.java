@@ -19,18 +19,22 @@ public class PlayerController extends InputMultiplexer {
 	public boolean lock = false;
 	public boolean holdAbility = false;
 	public float coolDown = 5;
-	public float maxCoolDown = 2;
+	public float maxCoolDown = 0.5f;
 	//KeyBinds
 	private int up;
 	private int left;
 	private int right;
 	private int sprint;
+	private int useAbilty;
+	private int changeform;
 	
 	public PlayerController(int[] controls, ChessGame game){
 		up = controls[0];
 		left = controls[1];
 		right = controls[2];
 		sprint = controls[3];
+		useAbilty = controls[7];
+		changeform = controls[8];
 	}
 	
 	public PlayerController(int[] controls){
@@ -38,6 +42,8 @@ public class PlayerController extends InputMultiplexer {
 		left = controls[1];
 		right = controls[2];
 		sprint = controls[3];
+		useAbilty = controls[7];
+		changeform = controls[8];
 	}
 	
 	public void myController(Player player) {
@@ -72,17 +78,17 @@ public class PlayerController extends InputMultiplexer {
 		    		}
 		    	}
 		    	if(coolDown >= maxCoolDown) {
-			    	if(Gdx.input.isKeyJustPressed(Keys.V)) {
+			    	if(Gdx.input.isKeyJustPressed(changeform)) {
 			    		player.nextState();
 			    		player.changingForm = true;
 			    	}
 		    	}
 		    	if(!holdAbility) {
-			    	if(Gdx.input.isKeyJustPressed(Keys.C))
+			    	if(Gdx.input.isKeyJustPressed(useAbilty))
 			    		player.currentState.stateAbility();
 		    	}
 			}
-	    	if(Gdx.input.isKeyPressed(Keys.C) && holdAbility && isGrounded) {
+	    	if(Gdx.input.isKeyPressed(useAbilty) && holdAbility && isGrounded) {
 	    		player.currentState.stateAbility();
 	    	} else if(holdAbility) {
 	    		lock = false;

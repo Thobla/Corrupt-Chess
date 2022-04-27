@@ -59,6 +59,7 @@ public class Game implements Screen {
     public static String[] levels = new String[] {
     	"1-1",
     	"1-2",
+    	"1-3",
     	"Knight"
     };
     

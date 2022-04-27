@@ -272,6 +272,7 @@ public class ListenerClass implements ContactListener{
 					bullet.kill();
 			}
 		}
+		TheTowerSensors(fixtureA, fixtureB);
 	}
 
 	@Override

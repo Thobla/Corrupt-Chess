@@ -16,7 +16,7 @@ public class SaveFile {
 		int res = currentSettings[5];
 		int fullScreen = currentSettings[6];
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
-		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, (byte) audio, (byte) res, (byte) fullScreen}, false);
+		file.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, (byte) audio, (byte) res, (byte) fullScreen, Keys.C, Keys.V}, false);
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public class SaveFile {
 	public static int[] readSettings() {
 		FileHandle file = Gdx.files.local("savefiles/settings.txt");
 		byte[] input = file.readBytes();
-		int[] output = {0,1,2,3,4,5,6};
+		int[] output = {0,1,2,3,4,5,6,7,8};
 		int i = 0;
 		//Some key values are larger than the byte limit of 2^7-1 and needs to be converted back to their original int.
 		for (byte value : input) {
@@ -87,11 +87,13 @@ public class SaveFile {
 	 * [4]=audiolvl
 	 * [5]=resolution
 	 * [6]=fullscreen
+	 * [7]=useAbilty input.
+	 * [8]=changeAbilty input.
 	 * 
 	 * @author Åsmund
 	 */
 	public static void writeSettings(int[] data) {
-		byte[] output = {0,1,2,3,4,5,6};
+		byte[] output = {0,1,2,3,4,5,6,7,8};
 		for (int i = 0; i<output.length; i++) {
 			output[i] = (byte) data[i];
 		}
@@ -165,12 +167,10 @@ public class SaveFile {
 	 */
 	public static void totalReset() {
 		FileHandle setting = Gdx.files.local("savefiles/settings.txt");
-		setting.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, 50, 1, 0}, false);
+		setting.writeBytes(new byte[] {Keys.W, Keys.A, Keys.D, Keys.SHIFT_LEFT, 50, 1, 0, Keys.C, Keys.V}, false);
 		FileHandle progress = Gdx.files.local("savefiles/progress.txt");
 		progress.writeBytes(new byte[] {0}, false);
 		FileHandle score = Gdx.files.local("savefiles/score.txt");
 		score.writeBytes(new byte[] {0, 0}, false);
 	}
-
-	
 }
