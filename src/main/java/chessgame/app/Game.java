@@ -281,13 +281,13 @@ public class Game implements Screen {
 	        if (player.dead) {
 	        	gameOverScreen();
 	        	entityManager.removePlayer(player);
+
 	        }
         }
         else {
         	gameMap.render(cam);
         	
         	/**Debug-render to be off when not debugging.
-	    	
 	    	*/
         	//debugRenderer.render(gameWorld.world, cam.combined);
         	
@@ -351,28 +351,38 @@ public class Game implements Screen {
     public void gameOverScreen() {  
     	paused = true;
     	dead = true;
+		//todo:
+		// muligens legge til server wait her.
     	stage.addActor(gameOverText);
     	stage.addActor(retryButton);
     	stage.addActor(quitButtonGO);
+    	if(quitButtonGO.isPressed()){
+			server.stopServer();
+		}
+
     }
     
     public static void pauseGame() {
     	if (paused) {
     		paused = false;
+
     		stage.addAction(Actions.removeActor(pauseText));
     		stage.addAction(Actions.removeActor(resumeButton));
     		stage.addAction(Actions.removeActor(quitButtonP));
     	}
     	else {
+			//todo:
+			// muligens legge til server wait her.
     		paused = true;	
         	stage.addActor(pauseText);
         	stage.addActor(resumeButton);
         	stage.addActor(quitButtonP);
     	}
     }
-    
-    
+
     public static void victoryScreen() {
+		//todo:
+		// muligens legge til server wait her.
     	paused = true;
     	dead = true;
     	stage.addActor(victoryText);

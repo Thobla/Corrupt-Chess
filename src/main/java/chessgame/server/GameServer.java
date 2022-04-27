@@ -42,5 +42,9 @@ public class GameServer {
 
     }
 
+// call this to stop the server.
+    public void stopServer() {
+        server.stop();
+    }
 
 }
