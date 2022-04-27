@@ -140,7 +140,7 @@ public class Game implements Screen {
     		this.isHost = isHost;
     		System.out.println(isHost);
 			this.server = new GameServer();
-			this.client = new GameHost();
+			this.client = new GameHost(this);
     		
     	}
     	else if(isMultiplayer && !isHost) {
@@ -241,9 +241,8 @@ public class Game implements Screen {
     public void render(float delta) {
     	
     	if(isMultiplayer) {
-    		System.out.println("entered isMultiplayer render");
+    		
     		if(!(playerPosition == null)) {
-    			System.out.println("playerPosition is not null");
     			player2.setPosition(playerPosition);
     		}
     	}
@@ -335,7 +334,6 @@ public class Game implements Screen {
        
 	        if (isMultiplayer) {
 	        	if(isHost) {
-	        		System.out.println("Host surposed to send");
 	        		Packet packet = new Packet(entityManager);
 	        		HashMap<Integer, PawnData> pawnList = packet.pawnList;
 	        		//HashMap<Integer, DoorData> doorList = packet.doorList;
@@ -346,9 +344,10 @@ public class Game implements Screen {
 	        		this.client.getClient().sendTCP(buttonList);
 	        		this.client.getClient().sendTCP(playerList);
 	        	}
-	        	//legg til hva som blir sendt viss det ikkje er host
 	        	else {
-	        		
+	        		PlayerAction playerAction = new PlayerAction(entityManager);
+	        		HashMap<String, PlayerData> playerList = playerAction.playerList;
+	        		this.client.getClient().sendTCP(playerList);
 	        	}
         }
         }
@@ -501,27 +500,27 @@ public class Game implements Screen {
 	public void handlePacket(Object object) {
 		if(object instanceof HashMap) {
 			if (!(entityManager == null)) {
-			for(IEntities entity: entityManager.entityList) {
-				if (entity instanceof Pawn) {
-					int pawnId = ((Pawn) entity).getId();
-					if(((HashMap) object).containsKey(pawnId)) {
-						((Pawn) entity).move(((PawnData) ((HashMap) object).get(pawnId)).getPosition());
-						((Pawn)entity).setHealth(((PawnData) ((HashMap) object).get(pawnId)).getHealth());
-					}
-				}
-				
-				if (entity instanceof Button) {
-					int buttonId = ((Button) entity).getId();
-					if(((HashMap) object).containsKey(buttonId)) {
-						
-						if(((Button) entity).isActive() != ((ButtonData) ((HashMap) object).get(buttonId)).getActive()) {
-							((Button) entity).itemFunction();
+				if(!isHost) {
+					for(IEntities entity: entityManager.entityList) {
+						if (entity instanceof Pawn) {
+							int pawnId = ((Pawn) entity).getId();
+							if(((HashMap) object).containsKey(pawnId)) {
+								((Pawn) entity).move(((PawnData) ((HashMap) object).get(pawnId)).getPosition());
+								((Pawn)entity).setHealth(((PawnData) ((HashMap) object).get(pawnId)).getHealth());
+							}
 						}
+						if (entity instanceof Button) {
+							int buttonId = ((Button) entity).getId();
+							if(((HashMap) object).containsKey(buttonId)) {
+								
+								if(((Button) entity).isActive() != ((ButtonData) ((HashMap) object).get(buttonId)).getActive()) {
+									((Button) entity).itemFunction();
+								}
+							}
+						}	
 					}
 				}
-				
-				
-			}
+			
 			for(IEntities entity : entityManager.playerList) {
 				if (entity instanceof Player) {
 					System.out.println("isPlayer");
@@ -540,17 +539,9 @@ public class Game implements Screen {
 				}
 			}
 				
-				
 			}
 			
-			
-			
-			
 		}
-		
-		
-		
-		
 		
 	}
 }

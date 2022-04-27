@@ -73,7 +73,6 @@ public class Player implements IEntities{
 	
 	public void setPosition(Vector2 position) {
 		myBody.setTransform(position, 0f);
-		System.out.println("entered setPosition");
 	}
 	/**
 	 * Moves the entity based on input vector2
