@@ -31,19 +31,22 @@ public class Packet {
 	public HashMap<Integer, ButtonData> buttonList;
 	public HashMap<String, PlayerData> playerList;
 	
-	public List<IEntities> removeList = entityManager.entityRemoveList;
+	public List<IEntities> removeList;
 	
 	public Packet(EntityManager entityManager){
 		this.entityManager = entityManager;
+		removeList = entityManager.entityRemoveList;
 		addAllEntities();
 	}
 	
 	void addAllEntities() {
 		for(IEntities entity : entityManager.entityList) {
 			if (entity instanceof Pawn) {
+				System.out.println("stage 1");
 				pawnList.put(((Pawn) entity).getId(), new PawnData(((Pawn) entity).getHealth(), entity.getPosition()));
 			}
 			if (entity instanceof Player) {
+				System.out.println("stage 2");
 				playerList.put(((Player) entity).getId(), new PlayerData(((Player) entity).getHealth(), entity.getPosition()));
 			}
 			if (entity instanceof Door) {
