@@ -1,6 +1,7 @@
 package chessgame.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -25,23 +26,31 @@ import chessgame.utils.EntityManager;
 public class Player implements IEntities{
 	Vector2 position;
 	public World world;
-	Sprite sprite;
 	public Body myBody;
 	public PlayerController controller;
 	//PlayerStats
 	int health = 3;
 	int attack = 1;
 	
-	//Player prompt
+	//PlayerVisuals
+	Sprite sprite;
 	EntityAnimation dustAnim;
 	EntityAnimation leftRunDust;
 	EntityAnimation rightRunDust;
+	EntityAnimation towerDash;
+	EntityAnimation lTowerDash;
+	EntityAnimation changeForm;
+	
+	boolean hasTakenDamage = false;
+	float dmgTime = 0;
 	
 	public EntityManager manager;
 	
+	public boolean changingForm;
 	boolean jumpDust = true;
 	public boolean facing = true;
 	
+	public boolean dash;
 	public boolean sprint = false;
 	public boolean dead = false;
 	public int ratingScore = 0;
@@ -72,7 +81,13 @@ public class Player implements IEntities{
 		leftRunDust =  new EntityAnimation(lRunDust, 4, 8f, this, new Vector2(64,32), true);
 		Texture rRunDust = new Texture (Gdx.files.internal("assets/player/runDustR.png").file().getAbsolutePath());
 		rightRunDust =  new EntityAnimation(rRunDust, 4, 8f, this, new Vector2(64,32), true);
-		//prompt = new Sprite(new Texture (Gdx.files.internal("assets/prompt.png").file().getAbsolutePath()));
+		Texture towerDashTexture = new Texture (Gdx.files.internal("assets/player/rookDash.png").file().getAbsolutePath());
+		towerDash =  new EntityAnimation(towerDashTexture, 3, 8f, this, new Vector2(128,128), true);
+		Texture lTowerDashTexture = new Texture (Gdx.files.internal("assets/player/lRookDash.png").file().getAbsolutePath());
+		lTowerDash =  new EntityAnimation(lTowerDashTexture, 3, 8f, this, new Vector2(128,128), true);
+		Texture changeFormTexture = new Texture (Gdx.files.internal("assets/player/transformCloud.png").file().getAbsolutePath());
+		changeForm =  new EntityAnimation(changeFormTexture, 7, 16f, this, new Vector2(128,128), true);
+		
 		createBody();
 		
 		//Load rating from saveFile
@@ -141,6 +156,7 @@ public class Player implements IEntities{
 	 * @author Mikal, Thorgal
 	 */
 	public void jump(float jumpForce) {	
+		myBody.setLinearVelocity(new Vector2(myBody.getLinearVelocity().x,0f));
 		myBody.applyLinearImpulse(new Vector2(0, jumpForce),this.position ,true);
 
 	}
@@ -176,7 +192,7 @@ public class Player implements IEntities{
 		
 		fixDef.isSensor = true;
 		//the shape should be lower than the players width and height
-		shape.setAsBox(width * 0.95f, height / 16, new Vector2(0f, -height), 0);
+		shape.setAsBox(width * 0.95f, height / 4, new Vector2(0f, -height), 0);
 		fixDef.shape = shape;
 		
 		myBody.createFixture(fixDef).setUserData("foot");
@@ -196,13 +212,16 @@ public class Player implements IEntities{
 	}
 
 	public void takeDamage(int damage) {
-		if(damage < health)
-			health -= damage;
-		else {
-			health = 0;
-			kill();
+		if(dmgTime < 0.5f) {
+			dmgTime = 0;
+			hasTakenDamage = true;
+			if(damage < health)
+				health -= damage;
+			else {
+				health = 0;
+				kill();
+			}
 		}
-			
 	}
 
 	public int getAttack() {
@@ -275,28 +294,52 @@ public class Player implements IEntities{
 			keepWithinBounds();
 	    	
 			sprite.setFlip(!facing, false);
-			
+			dmgColorTime(Color.RED, 0.15f);
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
 			sprite.setSize(2, 2);
 			sprite.draw(batch);
 			
-			if(jumpDust) {
-				jumpDust = dustAnim.playOnce(batch, (position.x - 2*width), position.y-height);
-			}
-			if(Math.abs(myBody.getLinearVelocity().y) < 0.01f && !jumpDust) {
-				if(myBody.getLinearVelocity().x > 2f) {
-					leftRunDust.render(batch, (position.x - 3*width), position.y-height);
-				} 
-				if(myBody.getLinearVelocity().x < -2f) {
-					rightRunDust.render(batch, (position.x - width), position.y-height);
-				}
-			}
+			spriteAnimations(batch);
 			
 			if(health == 0)
 				kill();
 	}
-	
-
+	/**
+	 * Changes the color of the player when he takes damage
+	 * @param color
+	 * @param time
+	 */
+	public void dmgColorTime(Color color, float time) {
+		if(dmgTime > time && hasTakenDamage) {
+			sprite.setColor(Color.WHITE);
+			hasTakenDamage = false;
+		} else if(hasTakenDamage) {
+			sprite.setColor(color);
+			dmgTime += Gdx.graphics.getDeltaTime();
+		}
+	}
+	public void spriteAnimations(Batch batch) {
+		if(jumpDust) {
+			jumpDust = dustAnim.playOnce(batch, (position.x - 2*width), position.y-height);
+		}
+		if(Math.abs(myBody.getLinearVelocity().y) < 0.01f && !jumpDust) {
+			if(myBody.getLinearVelocity().x > 2f) {
+				leftRunDust.render(batch, (position.x - 3*width), position.y-height);
+			} 
+			if(myBody.getLinearVelocity().x < -2f) {
+				rightRunDust.render(batch, (position.x - width), position.y-height);
+			}
+		}
+		if(changingForm)
+			changingForm = changeForm.playOnce(batch, position.x - 4*width, position.y - 2*height);
+		
+		if(dash) {
+			if(facing)
+				towerDash.render(batch, position.x - 4*width, position.y - 2*height);
+			else
+				lTowerDash.render(batch, position.x - 4*width, position.y - 2*height);
+		}
+	}
 
 	@Override
 	public Body getBody() {

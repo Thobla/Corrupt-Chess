@@ -29,7 +29,7 @@ public class Bullet implements IEntities{
 	
 	double spawnTime;
 	
-	//direction of the bullet (left / right)
+	//direction of the bullet
 	Direction direction;
 	
 	public Bullet (Vector2 position, World world, EntityManager entityManager, Direction direction) {

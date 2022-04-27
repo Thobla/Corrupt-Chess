@@ -18,6 +18,7 @@ public class PlayerBishopState extends PlayerState {
 	
 	@Override
 	public void Enter() {
+		player.controller.coolDown = 0;
 		Texture bishopSprite = new Texture (Gdx.files.internal("assets/player/Bishop.png").file().getAbsolutePath());
 		player.getSprite().setTexture(bishopSprite);
 		player.controller.holdAbility = false;
@@ -25,7 +26,9 @@ public class PlayerBishopState extends PlayerState {
 
 	@Override
 	public void Update() {
-		
+		if(player.controller.coolDown < player.controller.maxCoolDown) {
+			player.controller.coolDown += Gdx.graphics.getDeltaTime();
+		}
 	}
 
 	@Override

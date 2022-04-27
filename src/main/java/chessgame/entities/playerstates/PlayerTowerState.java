@@ -17,6 +17,7 @@ public class PlayerTowerState extends PlayerState {
 	
 	@Override
 	public void Enter() {
+		player.controller.coolDown = 0;
 		Texture towerSprite = new Texture (Gdx.files.internal("assets/player/Rook.png").file().getAbsolutePath());
 		player.getSprite().setTexture(towerSprite);
 		player.controller.holdAbility = false;
@@ -24,7 +25,14 @@ public class PlayerTowerState extends PlayerState {
 
 	@Override
 	public void Update() {
-		if(System.currentTimeMillis() > time + 250f) {
+		
+		player.dash = hasDash;
+		
+		if(player.controller.coolDown < player.controller.maxCoolDown) {
+			player.controller.coolDown += Gdx.graphics.getDeltaTime();
+		}
+		
+		if(System.currentTimeMillis() > time + 250) {
 			player.controller.lock = false;
 			if(hasDash) {
 				player.move(new Vector2(.0001f * player.myBody.getLinearVelocity().x, 0f));
