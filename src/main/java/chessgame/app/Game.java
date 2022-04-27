@@ -42,6 +42,7 @@ import chessgame.server.IClient;
 import chessgame.server.Packet;
 import chessgame.server.PlayerAction;
 import chessgame.server.DataTypes.*;
+import org.lwjgl.system.linux.XButtonEvent;
 
 
 public class Game implements Screen {
@@ -127,13 +128,13 @@ public class Game implements Screen {
     
     public Game(ChessGame game, int level, Boolean isMultiplayer, Boolean isHost, String IpAddress) throws IOException {
     	System.out.println("new Game");
+
     	//Multiplayer
     	//
     	//
     	//
     	//
     	//
-    	
     	if (isMultiplayer && isHost) {
     		this.IpAddress = IpAddress;
     		this.isMultiplayer = isMultiplayer;
@@ -154,9 +155,6 @@ public class Game implements Screen {
     		this.isMultiplayer = false;
     		this.isHost = false;
     	}
-    	
-	
-	
     	//
     	//
     	//
@@ -375,11 +373,9 @@ public class Game implements Screen {
     	stage.addActor(gameOverText);
     	stage.addActor(retryButton);
     	stage.addActor(quitButtonGO);
-    	if(quitButtonGO.isPressed()){
-			server.stopServer();
-		}
 
     }
+
     
     public static void pauseGame() {
     	if (paused) {
@@ -478,10 +474,10 @@ public class Game implements Screen {
     	
         retryButton = UI.newScreenButton(buttonSize, new Vector2(13,8), "Retry?", ScreenType.Game, game, currentLevelIndex);
     	
-    	quitButtonGO = UI.newScreenButton(buttonSize, new Vector2(8,8), "Quit", ScreenType.MenuScreen, game, 0);
+    	quitButtonGO = UI.quitButton(buttonSize, new Vector2(8,8), "Quit", game, server);
     	
-    	quitButtonP = UI.newScreenButton(buttonSize, new Vector2(10.5f,8), "Quit", ScreenType.MenuScreen, game, 0);
-    	
+    	quitButtonP = UI.quitButton(buttonSize, new Vector2(10.5f,8), "Quit", game, server);
+
     	continueButton = UI.newScreenButton(buttonSize, new Vector2(10.5f,10), "Continue", ScreenType.Game, game, currentLevelIndex+1);
     	
     	resumeButton = UI.resumeButton(buttonSize, new Vector2(10.5f,10));

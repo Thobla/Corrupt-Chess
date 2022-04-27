@@ -4,6 +4,7 @@ import chessgame.menues.*;
 
 import java.io.IOException;
 
+import chessgame.server.GameServer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
@@ -133,6 +134,24 @@ public class UI {
                 return true;
             }
         });
+		return button;
+	}
+
+	public static TextButton quitButton(Vector2 size, Vector2 position, String text, ChessGame game, GameServer server){
+		TextButton button = button(size, position, text);
+		button.addListener(new InputListener() {
+			@Override
+			public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+				game.setScreen(new MenuScreen(game));
+				server.stopServer();
+			}
+			@Override
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				click.play(volume);
+				return true;
+			}
+		});
+
 		return button;
 	}
     
