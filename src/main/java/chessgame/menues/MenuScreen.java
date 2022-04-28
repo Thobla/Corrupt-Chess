@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -50,8 +51,8 @@ public class MenuScreen implements Screen {
         stage.addActor(optionButton);
         
         //Currently unused button
-        Button creditsButton = UI.button(new Vector2(3, 1.5f), new Vector2(4, 7), "Credits");
-        stage.addActor(creditsButton);
+        Button howToPlayButton = UI.newScreenButton(new Vector2(3, 1.5f), new Vector2(4, 7), "How to play", ScreenType.HowToPlay, game, 0);
+        stage.addActor(howToPlayButton);
         
         //Button for exiting the game
         Button quitButton = UI.exitButton(new Vector2(3, 1.5f), new Vector2(4, 5.5f));

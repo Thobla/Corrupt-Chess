@@ -7,5 +7,5 @@ package chessgame.utils;
  *
  */
 public enum ScreenType {
-	MenuScreen, OptionScreen, Game
+	MenuScreen, OptionScreen, Game, HowToPlay;
 }

@@ -19,12 +19,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Null;
 
 import chessgame.app.ChessGame;
 import chessgame.app.Game;
+import chessgame.menues.HowToPlayScreen;
 import chessgame.menues.LevelSelectScreen;
 import chessgame.menues.MenuScreen;
 import chessgame.menues.OptionScreen;
@@ -94,6 +96,9 @@ public class UI {
             		break;
 				case Game:
 					game.setScreen(new Game(game, Variable));
+					break;
+				case HowToPlay:
+					game.setScreen(new HowToPlayScreen(game));
 					break;
 				default:
 					break;
