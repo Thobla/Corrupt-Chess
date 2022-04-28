@@ -216,7 +216,7 @@ public class Knight implements IEnemies {
 			myBody.setLinearVelocity(Vector2.Zero);
 			grounded = true;
 			if (getClosestPlayer(100f) != null)
-				Rumble.rumble(Math.min(Math.abs(1/(getClosestPlayer(20f).getPosition().x-getPosition().x)),0.6f), 0.1f);
+				Rumble.rumble(Math.min(Math.abs(1/(getClosestPlayer(100f).getPosition().x-getPosition().x)),0.6f), 0.1f);
 			jumpTime = System.currentTimeMillis();
 		}
 		

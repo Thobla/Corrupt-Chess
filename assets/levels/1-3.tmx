@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="46">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="46">
  <tileset firstgid="1" source="tiles.tsx"/>
  <tileset firstgid="11" source="tiles2.tsx"/>
  <tileset firstgid="21" source="NewTestTiles.tsx"/>
@@ -231,7 +231,7 @@
     <property name="code" type="int" value="1"/>
    </properties>
   </object>
-  <object id="44" name="Portal" x="2496" y="2944" width="128" height="128"/>
+  <object id="44" name="Portal" x="2496" y="2976" width="128" height="128"/>
   <object id="45" x="1868" y="3340"/>
  </objectgroup>
  <objectgroup id="8" name="Ground">
