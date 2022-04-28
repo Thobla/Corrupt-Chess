@@ -39,6 +39,7 @@ import chessgame.server.GameClient;
 import chessgame.server.GameHost;
 import chessgame.server.GameServer;
 import chessgame.server.IClient;
+import chessgame.server.NetworkHandler;
 import chessgame.server.Packet;
 import chessgame.server.PlayerAction;
 import chessgame.server.DataTypes.*;
@@ -75,10 +76,9 @@ public class Game implements Screen {
     Boolean isHost;
     Boolean isMultiplayer;
     
-    int clock = 10;
     Vector2 playerPosition;
-    
     Player player2;
+    public NetworkHandler netHandler;
     
     //
     //
@@ -135,6 +135,8 @@ public class Game implements Screen {
     	//
     	//
     	//
+    	netHandler = new NetworkHandler(this);
+    	
     	if (isMultiplayer && isHost) {
     		this.IpAddress = IpAddress;
     		this.isMultiplayer = isMultiplayer;
@@ -238,8 +240,9 @@ public class Game implements Screen {
     @Override
     public void render(float delta) {
     	
+    	
     	if(isMultiplayer) {
-    		
+    		//Directly changing an entities position has to happen before logicstep
     		if(!(playerPosition == null)) {
     			player2.setPosition(playerPosition);
     		}
@@ -539,5 +542,13 @@ public class Game implements Screen {
 			
 		}
 		
+	}
+	
+	public Boolean getIsHost() {
+		return this.isHost;
+	}
+	
+	public Vector2 getP2Position() {
+		return this.playerPosition;
 	}
 }

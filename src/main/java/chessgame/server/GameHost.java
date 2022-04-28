@@ -23,7 +23,7 @@ public class GameHost implements IClient{
 		       public void received (Connection connection, Object object) {
 		          if (object instanceof HashMap) {
 		             
-		             game.handlePacket(object);
+		             game.netHandler.handlePacket(object);
 		             
 		          }
 		       }
