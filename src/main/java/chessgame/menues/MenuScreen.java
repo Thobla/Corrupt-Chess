@@ -24,7 +24,7 @@ public class MenuScreen implements Screen {
 	OrthographicCamera cam;
     final ChessGame game;
     private Stage stage;
-    public static boolean killServer = false;
+//    public static boolean killServer = false;
 		
 	public MenuScreen(ChessGame game) {
 		
@@ -81,9 +81,9 @@ public class MenuScreen implements Screen {
         stage.act();
         stage.draw();
 
-        if (killServer){
-
-		}
+//        if (killServer){
+//
+//		}
 	}
 
 	@Override

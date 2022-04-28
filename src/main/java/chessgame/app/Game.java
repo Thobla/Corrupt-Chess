@@ -395,6 +395,7 @@ public class Game implements Screen {
     	dead = true;
 		//todo:
 		// muligens legge til server wait her.
+
     	stage.addActor(gameOverText);
     	stage.addActor(retryButton);
     	stage.addActor(quitButtonGO);
@@ -504,7 +505,7 @@ public class Game implements Screen {
     	victoryText = UI.label(titleSize, new Vector2(6,12), "VICTORY", "title-light");
     	
         retryButton = UI.newScreenButton(buttonSize, new Vector2(13,8), "Retry?", ScreenType.Game, game, currentLevelIndex);
-    	
+
     	quitButtonGO = UI.quitButton(buttonSize, new Vector2(8,8), "Quit", game, server, isHost);
     	
     	quitButtonP = UI.quitButton(buttonSize, new Vector2(10.5f,8), "Quit", game, server, isHost);

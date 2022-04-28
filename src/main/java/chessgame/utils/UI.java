@@ -4,6 +4,7 @@ import chessgame.menues.*;
 
 import java.io.IOException;
 
+import chessgame.server.GameHost;
 import chessgame.server.GameServer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
@@ -105,7 +106,17 @@ public class UI {
             		break;
 				case Game:
 					try {
-						game.setScreen(new Game(game, Variable, false, false, null));
+						if((Game.isMultiplayer != null) && (Game.isHost != null)) {
+							if (Game.isHost) {
+								game.setScreen(new Game(game, Variable, true, true, null));
+							}
+							if (!Game.isHost && Game.isMultiplayer){
+							}
+						}
+						else{
+							game.setScreen(new Game(game, Variable, false, false, null));
+						}
+
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -137,6 +148,7 @@ public class UI {
 		return button;
 	}
 
+// quit button that checks if the player is host or not. If host, the server should stop, else nothing will happen to the server.
 	public static TextButton quitButton(Vector2 size, Vector2 position, String text, ChessGame game, GameServer server, Boolean isHost){
 		TextButton button = button(size, position, text);
 		button.addListener(new InputListener() {
@@ -155,10 +167,7 @@ public class UI {
 
 		return button;
 	}
-    
-    
-	
-	
+
 	/**
 	 * Creates a new Label with the given size, position, text and style
 	 * 
