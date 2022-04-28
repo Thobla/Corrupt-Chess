@@ -2,6 +2,7 @@ package chessgame.server;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
@@ -21,12 +22,13 @@ public class GameClient implements IClient{
 		Network.register(client);
 		
 		
-		this.client.connect(5000, "10.111.15.229", 54555);
+		this.client.connect(5000, "192.168.253.246", 54555);
 
 		client.addListener(new Listener() {
 		       public void received (Connection connection, Object object) {
-		          if (object instanceof HashMap) {
-		        	  game.netHandler.handlePacket(object);
+		          if (object instanceof HashMap || object instanceof List || object instanceof PausePing) {
+		        	  if(game.netHandler != null)
+		        		  game.netHandler.handlePacket(object, game);
 		             
 		          }
 		       }

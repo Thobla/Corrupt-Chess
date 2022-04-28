@@ -8,6 +8,7 @@ import chessgame.server.DataTypes.PawnData;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 public class GameServer {
     Server server;
@@ -18,7 +19,7 @@ public class GameServer {
         Network.register(server);
         server.addListener(new Listener() {
             public void received (Connection connection, Object object) {
-               if (object instanceof HashMap) {
+               if (object instanceof HashMap || object instanceof List || object instanceof PausePing) {
             	   server.sendToAllTCP(object);
                }
             }
