@@ -112,6 +112,7 @@ public class UI {
 								game.setScreen(new Game(game, Variable, true, true, null));
 							}
 							if (!Game.isHost && Game.isMultiplayer){
+								game.setScreen(new Game(game, Variable, true, false, Game.ipAddress));
 							}
 						}
 						else{

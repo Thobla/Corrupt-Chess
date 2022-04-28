@@ -74,7 +74,7 @@ public class Game implements Screen {
     //Multiplayer
     static GameServer server;
     static IClient client;
-    static String IpAddress;
+    public static String ipAddress;
     public static Boolean isHost;
     public static Boolean isMultiplayer;
     public static boolean setPause;
@@ -134,7 +134,8 @@ public class Game implements Screen {
     	System.out.println("new Game");
     	Game.isMultiplayer = isMultiplayer;
 		Game.isHost = isHost;
-		Game.IpAddress = IpAddress;
+		Game.ipAddress = IpAddress;
+		Game.isWaiting = false;
     	
     	
     	this.game = game;
