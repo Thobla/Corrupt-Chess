@@ -249,8 +249,8 @@ public class Knight implements IEnemies {
 
 	@Override
 	public void keepWithinBounds() {
-		if(myBody.getPosition().x > 100-width) {
-			myBody.setTransform(new Vector2(100-width, myBody.getPosition().y), 0f);
+		if(myBody.getPosition().x > Game.mapSize.x-width) {
+			myBody.setTransform(new Vector2(Game.mapSize.x-width, myBody.getPosition().y), 0f);
 		}
 		else if(myBody.getPosition().x < (0+width)) {
 			myBody.setTransform(new Vector2(0+width, myBody.getPosition().y), 0f);
