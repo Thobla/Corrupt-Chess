@@ -41,6 +41,7 @@ public class Game implements Screen {
     //TiledMap
     TiledGameMap gameMap;
     TiledMap tiledMap;
+    public static Vector2 mapSize;
     
     //Player
     static Player player;

@@ -216,7 +216,7 @@ public class Knight implements IEnemies {
 			myBody.setLinearVelocity(Vector2.Zero);
 			grounded = true;
 			if (getClosestPlayer(100f) != null)
-				Rumble.rumble(Math.min(1/(getClosestPlayer(100f).getPosition().x-getPosition().x),0.6f), 0.1f);
+				Rumble.rumble(Math.min(Math.abs(1/(getClosestPlayer(20f).getPosition().x-getPosition().x)),0.6f), 0.1f);
 			jumpTime = System.currentTimeMillis();
 		}
 		
@@ -249,8 +249,8 @@ public class Knight implements IEnemies {
 
 	@Override
 	public void keepWithinBounds() {
-		if(myBody.getPosition().x > 100-width) {
-			myBody.setTransform(new Vector2(100-width, myBody.getPosition().y), 0f);
+		if(myBody.getPosition().x > Game.mapSize.x-width) {
+			myBody.setTransform(new Vector2(Game.mapSize.x-width, myBody.getPosition().y), 0f);
 		}
 		else if(myBody.getPosition().x < (0+width)) {
 			myBody.setTransform(new Vector2(0+width, myBody.getPosition().y), 0f);

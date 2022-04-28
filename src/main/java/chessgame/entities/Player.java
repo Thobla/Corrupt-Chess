@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import chessgame.app.Game;
 import chessgame.app.PlayerController;
 import chessgame.entities.playerstates.PlayerBishopState;
 import chessgame.entities.playerstates.PlayerKnightState;
@@ -275,8 +276,8 @@ public class Player implements IEntities{
 	}
 
 	public void keepWithinBounds() {
-		if(myBody.getPosition().x > 100-width) {
-			myBody.setTransform(new Vector2(100-width, myBody.getPosition().y), 0f);
+		if(myBody.getPosition().x > Game.mapSize.x-width) {
+			myBody.setTransform(new Vector2(Game.mapSize.x-width, myBody.getPosition().y), 0f);
 		}
 		else if(myBody.getPosition().x < (0+width)) {
 			myBody.setTransform(new Vector2(0+width, myBody.getPosition().y), 0f);

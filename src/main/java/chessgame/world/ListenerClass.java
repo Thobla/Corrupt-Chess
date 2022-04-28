@@ -156,7 +156,6 @@ public class ListenerClass implements ContactListener{
 			}
 			else if(fixtureB.getUserData() == "leftJumpSensor" && fixtureB.getBody().getLinearVelocity().x < 0) {
 				IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
-				System.out.println("sensor");
 				enemy.jump();
 			}
 		}
@@ -242,7 +241,8 @@ public class ListenerClass implements ContactListener{
 				if (fixtureA.getUserData() == "bumper" && checkJumpable(fixtureB.getUserData())) {
 					KnightBoss knight = (KnightBoss) fixtureA.getBody().getUserData();
 					knight.bump();
-				} else if (fixtureB.getUserData() == "bumper" && checkJumpable(fixtureA.getUserData())) {
+				}
+				if (fixtureB.getUserData() == "bumper" && checkJumpable(fixtureA.getUserData())) {
 					KnightBoss knight = (KnightBoss) fixtureB.getBody().getUserData();
 					knight.bump();
 				}
@@ -331,6 +331,7 @@ public class ListenerClass implements ContactListener{
 		unjumpable.add("Player");
 		unjumpable.add("Bullet");
 		unjumpable.add("sky");
+		unjumpable.add("ColorBlockOff");
 	}
 	
 	private <T> boolean checkJumpable(T name) {
