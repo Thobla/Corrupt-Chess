@@ -7,6 +7,7 @@ import com.badlogic.gdx.InputMultiplexer;
 
 import chessgame.entities.Player;
 import chessgame.entities.playerstates.PlayerBishopState;
+import chessgame.entities.playerstates.PlayerPawnState;
 import chessgame.entities.playerstates.PlayerTowerState;
 import chessgame.utils.HUD;
 import chessgame.utils.SaveFile;
@@ -105,12 +106,14 @@ public class PlayerController extends InputMultiplexer {
 			    	}
 		    	}
 		    	if(coolDown >= maxCoolDown) {
-		    		HUD.setCharge(true);
-			    	if(!holdAbility) {
-				    	if(Gdx.input.isKeyJustPressed(useAbilty)) {
-				    		player.currentState.stateAbility();
-				    		coolDown = 0;
-				    		HUD.setCharge(false);
+		    		if(!(player.currentState instanceof PlayerPawnState)) {
+			    		HUD.setCharge(true);
+				    	if(!holdAbility) {
+					    	if(Gdx.input.isKeyJustPressed(useAbilty)) {
+					    		player.currentState.stateAbility();
+					    		coolDown = 0;
+					    		HUD.setCharge(false);
+					    	}
 				    	}
 			    	}
 		    	}
