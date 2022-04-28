@@ -29,6 +29,7 @@ import chessgame.utils.Direction;
 import chessgame.utils.EntityAnimation;
 import chessgame.utils.EntityManager;
 import chessgame.utils.EntityType;
+import chessgame.utils.HUD;
 import chessgame.utils.Rumble;
 import chessgame.world.PhysicsWorld;
 
@@ -155,6 +156,9 @@ public class KnightBoss implements IEnemies {
 	public void updateState(Batch batch) {
 		
 		currentState.Update();
+		
+		if(!HUD.bossBar && activated)
+			HUD.enableBossHP("Don  Quixote  the  Knight");
 		
 		keepWithinBounds();
 		position = myBody.getPosition();
@@ -293,6 +297,8 @@ public class KnightBoss implements IEnemies {
 				xVal = 80f;
 			player.myBody.setLinearVelocity(new Vector2(xVal, 15f));
 		}
+		
+		HUD.BossHp(5, damage);
 	}
 
 	@Override

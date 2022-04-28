@@ -484,7 +484,7 @@ public class TheTower implements IEnemies {
 	public void updateState(Batch batch) {
 		currentState.Update();
 		if(!HUD.bossBar)
-			HUD.enableBossHP();
+			HUD.enableBossHP("Sauron  the  Tower");
 		
 		leftDesired = new Vector2(position.x - (1.7f+width), position.y + 3);
 		rightDesired = new Vector2(position.x + (1.7f+width), position.y + 3);

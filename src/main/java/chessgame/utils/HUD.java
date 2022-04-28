@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Scaling;
 
 import chessgame.entities.IEnemies;
@@ -125,14 +126,16 @@ public class HUD {
 		else
 			stage.addAction(Actions.targeting(abilityCrystal, Actions.alpha(0)));
 	}
-	public static void enableBossHP() {
+	public static void enableBossHP(String name) {
 		bossBar = true;
-		hpBar = UI.image(new Vector2(320/29f,1), new Vector2(9.5f, 14.23f), "assets/hud/HpBar.png");
-		hpBarBorder = UI.image(new Vector2(384/29f,64/29f), new Vector2(8f, 13.63f), "assets/hud/HpBarBorder.png");
-		bossSkull = UI.image(new Vector2(384/29f,64/29f), new Vector2(8f, 13.63f), "assets/hud/HpBarSkull.png");
+		Label bossName = UI.label(new Vector2(10,10), new Vector2(8.8f, 10.5f), name, "default");
+		hpBar = UI.image(new Vector2(320/35f,1/1.3f), new Vector2(9.1f, 14.35f), "assets/hud/HpBar.png");
+		hpBarBorder = UI.image(new Vector2(384/35f,64/35f), new Vector2(8f, 13.8f), "assets/hud/HpBarBorder.png");
+		bossSkull = UI.image(new Vector2(384/35f,64/35f), new Vector2(8f, 13.8f), "assets/hud/HpBarSkull.png");
 		stage.addActor(hpBarBorder);
 		stage.addActor(hpBar);
 		stage.addActor(bossSkull);
+		stage.addActor(bossName);
 	}
 	
 	public static void BossHp(float maxHp, float hpTaken) {
