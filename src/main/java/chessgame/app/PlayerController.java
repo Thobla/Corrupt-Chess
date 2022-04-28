@@ -85,7 +85,6 @@ public class PlayerController extends InputMultiplexer {
 			    		player.nextState();
 			    		player.changingForm = true;
 			    		HUD.setAbility(player.currentState.form);
-			    		System.out.println(player.currentState.form);
 			    		HUD.setCharge(false);
 			    	}
 		    	}

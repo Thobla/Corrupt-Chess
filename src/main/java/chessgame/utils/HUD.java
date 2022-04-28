@@ -47,11 +47,11 @@ public class HUD {
 	public HUD(Stage stage) {
 		bossBar = false;
 		HUD.stage = stage;
-		Image bg = UI.image(new Vector2(6.93f,2.1f), new Vector2(.5f, 13.8f), "assets/hud/hudbg.png");
-		pawnIcon = UI.image(new Vector2(1.8f,1.8f), new Vector2(.7f, 14f), "assets/hud/cureHorse.png"); 
-		rookIcon = UI.image(new Vector2(1.8f,1.8f), new Vector2(.7f, 14f), "assets/hud/cureHorse.png"); 
-		knightIcon = UI.image(new Vector2(1.8f,1.8f), new Vector2(.7f, 14f), "assets/hud/horseIcon.png");
-		bishopIcon = UI.image(new Vector2(1.8f,1.8f), new Vector2(.7f, 14f), "assets/hud/cureHorse.png");
+		Image bg = UI.image(new Vector2(6.93f,2.1f), new Vector2(.5f, 13.8f), "assets/hud/hudBG.png");
+		pawnIcon = UI.image(new Vector2(1.775f,1.8f), new Vector2(.7f, 13.95f), "assets/hud/PawnIcon.png"); 
+		rookIcon = UI.image(new Vector2(1.775f,1.8f), new Vector2(.7f, 14f), "assets/hud/TowerIcon.png"); 
+		knightIcon = UI.image(new Vector2(1.775f,1.8f), new Vector2(.7f, 14f), "assets/hud/horseIcon.png");
+		bishopIcon = UI.image(new Vector2(1.775f,1.8f), new Vector2(.7f, 14f), "assets/hud/BishopIcon.png");
 		currentIcon = pawnIcon;
 		
 		emptyheartIcon1 = UI.image(new Vector2(1.3f,1.3f), new Vector2(2.8f, 14.23f), "assets/hud/emptyPawnHeart.png");
