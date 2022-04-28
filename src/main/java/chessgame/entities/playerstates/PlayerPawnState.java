@@ -27,6 +27,9 @@ public class PlayerPawnState extends PlayerState {
 		if(player.controller.coolDown < player.controller.maxCoolDown) {
 			player.controller.coolDown += Gdx.graphics.getDeltaTime();
 		}
+		if(player.controller.formCoolDown < 0.15f) {
+			player.controller.formCoolDown += Gdx.graphics.getDeltaTime();
+		}
 	}
 
 	@Override

@@ -6,8 +6,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.InputMultiplexer;
 
 import chessgame.entities.Player;
+import chessgame.entities.playerstates.PlayerBishopState;
 import chessgame.entities.playerstates.PlayerTowerState;
 import chessgame.utils.HUD;
+import chessgame.utils.SaveFile;
 import chessgame.utils.playerForm;
 
 public class PlayerController extends InputMultiplexer {
@@ -21,7 +23,8 @@ public class PlayerController extends InputMultiplexer {
 	public boolean lock = false;
 	public boolean holdAbility = false;
 	public float coolDown = 5;
-	public float maxCoolDown = 0.5f;
+	public float formCoolDown = 5;
+	public float maxCoolDown = 2f;
 	//KeyBinds
 	private int up;
 	private int left;
@@ -29,6 +32,7 @@ public class PlayerController extends InputMultiplexer {
 	private int sprint;
 	private int useAbilty;
 	private int changeform;
+	private int progress;
 	
 	public PlayerController(int[] controls, ChessGame game){
 		up = controls[0];
@@ -37,6 +41,7 @@ public class PlayerController extends InputMultiplexer {
 		sprint = controls[3];
 		useAbilty = controls[7];
 		changeform = controls[8];
+		progress =(int) SaveFile.readProgress()[0];
 	}
 	
 	public PlayerController(int[] controls){
@@ -46,11 +51,20 @@ public class PlayerController extends InputMultiplexer {
 		sprint = controls[3];
 		useAbilty = controls[7];
 		changeform = controls[8];
+		
+		progress =(int) SaveFile.readProgress()[0];
 	}
 	
 	public void myController(Player player) {
 		if (!Game.paused) {
-
+			
+			if(player.currentState instanceof PlayerBishopState) {
+				maxCoolDown = 5f;
+			}
+			if(player.currentState instanceof PlayerTowerState) {
+				maxCoolDown = 1f;
+			}
+			
 			if(Gdx.input.isKeyPressed(sprint))
 				player.sprint = true;
 			else 
@@ -79,18 +93,26 @@ public class PlayerController extends InputMultiplexer {
 			    		isGrounded = false;
 		    		}
 		    	}
-		    	if(coolDown >= maxCoolDown) {
-		    		HUD.setCharge(true);
+		    	if(formCoolDown >= .15f) {
 			    	if(Gdx.input.isKeyJustPressed(changeform)) {
-			    		player.nextState();
-			    		player.changingForm = true;
-			    		HUD.setAbility(player.currentState.form);
-			    		HUD.setCharge(false);
+			    		if(progress >= 3) {
+				    		player.nextState();
+				    		player.changingForm = true;
+				    		HUD.setAbility(player.currentState.form);
+				    		formCoolDown = 0;
+				    		coolDown = 5;
+			    		}
 			    	}
 		    	}
-		    	if(!holdAbility) {
-			    	if(Gdx.input.isKeyJustPressed(useAbilty))
-			    		player.currentState.stateAbility();
+		    	if(coolDown >= maxCoolDown) {
+		    		HUD.setCharge(true);
+			    	if(!holdAbility) {
+				    	if(Gdx.input.isKeyJustPressed(useAbilty)) {
+				    		player.currentState.stateAbility();
+				    		coolDown = 0;
+				    		HUD.setCharge(false);
+				    	}
+			    	}
 		    	}
 			}
 	    	if(Gdx.input.isKeyPressed(useAbilty) && holdAbility && isGrounded) {

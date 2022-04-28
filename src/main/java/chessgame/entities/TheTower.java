@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.app.Game;
+import chessgame.entities.theTowerStates.TheTowerDormant;
 import chessgame.entities.theTowerStates.TheTowerIdle;
 import chessgame.entities.theTowerStates.TheTowerJump;
 import chessgame.entities.theTowerStates.TheTowerSmash;
@@ -41,15 +42,17 @@ public class TheTower implements IEnemies {
 	Body rightWave;
 	
 	//Sprites
-	Texture sprite;
+	public Texture sprite;
 	Texture sprite2;
 	Texture sprite3;
+	public Texture dormantSprite;
 	EntityAnimation bodyAnimation;
 	public Sprite leftHandsprite;
 	public Sprite rightHandsprite;
 	Texture waveSprite;
 	EntityAnimation waveAnimation;
 	EntityAnimation waveAnimation2;
+	public boolean dormant = true;
 	
 	//Time
 	boolean invisFrame;
@@ -77,7 +80,8 @@ public class TheTower implements IEnemies {
 	public TheTowerState idleState = new TheTowerIdle(this);
 	public TheTowerState smashState = new TheTowerSmash(this);
 	public TheTowerState jumpState = new TheTowerJump(this);
-	TheTowerState currentState = idleState;
+	public TheTowerDormant dormantState = new TheTowerDormant(this);
+	TheTowerState currentState = dormantState;
 	
 	//Entity size
 	float width = 2f;
@@ -98,13 +102,14 @@ public class TheTower implements IEnemies {
 	
 	public void initialize() {
 		
+		dormantSprite = sprite = new Texture (Gdx.files.internal("assets/Enemies/TheTower/TheTowerDormantSheet.png").file().getAbsolutePath());
 		sprite = new Texture (Gdx.files.internal("assets/Enemies/TheTower/TheTowerSpriteSheet.png").file().getAbsolutePath());
 		sprite2 = new Texture (Gdx.files.internal("assets/Enemies/TheTower/TheTowerSpriteSheet2.png").file().getAbsolutePath());
 		sprite3 = new Texture (Gdx.files.internal("assets/Enemies/TheTower/TheTowerSpriteSheet3.png").file().getAbsolutePath());
-		bodyAnimation = new EntityAnimation(sprite, 4, 7f, this, new Vector2(64f, 96f));
+		bodyAnimation = new EntityAnimation(dormantSprite, 4, 7f, this, new Vector2(64f, 96f));
 		
-		leftWaveStart =new Vector2(position.x - width, position.y - (6.85f));
-		rightWaveStart =new Vector2(position.x + width, position.y - (6.85f));
+		leftWaveStart =new Vector2(position.x - width, position.y+0.8f - (height));
+		rightWaveStart =new Vector2(position.x + width, position.y+0.8f - (height));
 		
 		rightHandsprite = new Sprite(new Texture (Gdx.files.internal("assets/Enemies/TheTower/RightHand.png").file().getAbsolutePath()));
 		leftHandsprite = new Sprite(new Texture (Gdx.files.internal("assets/Enemies/TheTower/LeftHand.png").file().getAbsolutePath()));
@@ -484,7 +489,7 @@ public class TheTower implements IEnemies {
 	@Override
 	public void updateState(Batch batch) {
 		currentState.Update();
-		if(!HUD.bossBar)
+		if(!HUD.bossBar && !dormant)
 			HUD.enableBossHP("Sauron  the  Tower");
 		
 		leftDesired = new Vector2(position.x - (1.7f+width), position.y + 3);
@@ -493,7 +498,9 @@ public class TheTower implements IEnemies {
 		//Makes it so that the hands dont spin
 		leftHand.setAngularVelocity(0);
 		rightHand.setAngularVelocity(0);
-		
+		if(!dormant) {
+			bodyAnimation.changeSheet(sprite);
+		}
 		if(health == 2) {
 			bodyAnimation.changeSheet(sprite2);
 			waveSpeed = 25;
@@ -556,7 +563,14 @@ public class TheTower implements IEnemies {
 	public void kill() {
 		
 		//Make something that spawns a portal.
-		
+		if(entityManager.doorMap.containsKey(0)) {
+			Door door = entityManager.doorMap.get(0);
+			door.doorState();
+		}
+		if(entityManager.doorMap.containsKey(1)) {
+			Door door = entityManager.doorMap.get(1);
+			door.doorState();
+		}
 		entityManager.removeEntity(this);
 		leftHand.setActive(false);
 		rightHand.setActive(false);
