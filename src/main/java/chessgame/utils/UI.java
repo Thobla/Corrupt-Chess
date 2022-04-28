@@ -137,6 +137,7 @@ public class UI {
 		return button;
 	}
 
+// quit button that checks if the player is host or not. If host, the server should stop, else nothing will happen to the server.
 	public static TextButton quitButton(Vector2 size, Vector2 position, String text, ChessGame game, GameServer server, Boolean isHost){
 		TextButton button = button(size, position, text);
 		button.addListener(new InputListener() {
@@ -155,10 +156,29 @@ public class UI {
 
 		return button;
 	}
-    
-    
-	
-	
+
+	public static TextButton retryButton(Vector2 size, Vector2 position, String text, ChessGame game, GameServer server, Boolean isHost){
+		TextButton button = button(size, position, text);
+		button.addListener(new InputListener() {
+			@Override
+			public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+				game.setScreen(new MenuScreen(game));
+				if (isHost)
+					server.stopServer();
+			}
+			@Override
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				click.play(volume);
+				return true;
+			}
+		});
+
+		return button;
+	}
+
+
+
+
 	/**
 	 * Creates a new Label with the given size, position, text and style
 	 * 
