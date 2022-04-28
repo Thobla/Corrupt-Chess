@@ -13,7 +13,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 
-public class RBlock implements IEntities {
+public class BBlock implements IEntities {
 	
 	Vector2 position;
 	Sprite sprite;
@@ -31,23 +31,23 @@ public class RBlock implements IEntities {
 	float height = 0.49f;
 	
 	
-	public RBlock(Vector2 position, World world, EntityManager entityManager, int rbcode){
+	public BBlock(Vector2 position, World world, EntityManager entityManager, int rbcode){
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		this.entityManager = entityManager;
 		this.activationCodeRB = rbcode;
-		isOn = false;
+		isOn = true;
 	}
 	
 	public void initialize() {
-		spriteOff = new Sprite(new Texture (Gdx.files.internal("assets/objects/rBlockOff.png").file().getAbsolutePath()));
-		spriteOn = new Sprite(new Texture (Gdx.files.internal("assets/objects/rBlockOn.png").file().getAbsolutePath()));
+		spriteOff = new Sprite(new Texture (Gdx.files.internal("assets/objects/bBlockOff.png").file().getAbsolutePath()));
+		spriteOn = new Sprite(new Texture (Gdx.files.internal("assets/objects/bBlockOn.png").file().getAbsolutePath()));
 		sprite = spriteOn;
 		
 		createBody();
 		
 		entityManager.addEntity(this);
-		entityManager.rBlockMap.put(activationCodeRB, this);
+		entityManager.bBlockMap.put(activationCodeRB, this);
 	}
 	
 	@Override
@@ -61,7 +61,7 @@ public class RBlock implements IEntities {
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);
 		
-		myBody.createFixture(shape, 1000f).setUserData("RBlock");;
+		myBody.createFixture(shape, 1000f).setUserData("BBlock");;
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);
 	}
@@ -103,7 +103,7 @@ public class RBlock implements IEntities {
 			sprite = spriteOff;
 		} else {
 			myBody.getFixtureList().get(0).setSensor(false);
-			myBody.setUserData("RBlock");
+			myBody.setUserData("BBlock");
 			sprite = spriteOn;
 		}
 		
@@ -119,7 +119,7 @@ public class RBlock implements IEntities {
 	 * If this is called when door is open, it closes
 	 * If this is called when door is closed, it opens.
 	 */
-	public void rBlockState() {
+	public void bBlockState() {
 		if(!isOn) {
 			isOn = true;
 		} else {

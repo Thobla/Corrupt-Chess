@@ -16,11 +16,13 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 
+import chessgame.entities.BBlock;
 import chessgame.entities.Button;
 import chessgame.entities.Door;
 import chessgame.entities.Knight;
 import chessgame.entities.Pawn;
 import chessgame.entities.Portal;
+import chessgame.entities.RBButton;
 import chessgame.entities.RBlock;
 import chessgame.entities.RatingPoint;
 import chessgame.utils.Constants;
@@ -147,6 +149,23 @@ public class PhysicsWorld {
 				rblock.initialize();
 			
 		}
+			
+			
+			if(entity.getName().toLowerCase().equals("bblock")) {
+				int rbcode =(int) entity.getProperties().get("rbcode");
+				BBlock bblock = new BBlock(pos, world, manager, rbcode);
+				bblock.initialize();
+			
+		}
+			
+			
+			
+			
+			if(entity.getName().toLowerCase().equals("rbbutton")) {
+				int rbcode =(int) entity.getProperties().get("rbcode");
+				RBButton rbbutton = new RBButton(pos, world, manager, rbcode);
+				rbbutton.initialize();
+			}
 	}
  }
 }
