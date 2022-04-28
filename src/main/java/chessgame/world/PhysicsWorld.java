@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import chessgame.entities.BBlock;
 import chessgame.entities.Bullet;
 import chessgame.entities.Button;
 import chessgame.entities.Door;
@@ -21,6 +22,8 @@ import chessgame.entities.Knight;
 import chessgame.entities.KnightBoss;
 import chessgame.entities.Pawn;
 import chessgame.entities.Portal;
+import chessgame.entities.RBButton;
+import chessgame.entities.RBlock;
 import chessgame.entities.RatingPoint;
 import chessgame.entities.TheTower;
 import chessgame.entities.Tower;
@@ -156,6 +159,29 @@ public class PhysicsWorld {
 				knightBoss.initialize();
 			}
 			
+			if(entity.getName().toLowerCase().equals("rblock")) {
+				int rbcode =(int) entity.getProperties().get("rbcode");
+				RBlock rblock = new RBlock(pos, world, manager, rbcode);
+				rblock.initialize();
+			
+		}
+			
+			
+			if(entity.getName().toLowerCase().equals("bblock")) {
+				int rbcode =(int) entity.getProperties().get("rbcode");
+				BBlock bblock = new BBlock(pos, world, manager, rbcode);
+				bblock.initialize();
+			
+		}
+			
+			
+			
+			
+			if(entity.getName().toLowerCase().equals("rbbutton")) {
+				int rbcode =(int) entity.getProperties().get("rbcode");
+				RBButton rbbutton = new RBButton(pos, world, manager, rbcode);
+				rbbutton.initialize();
+			}
 		}
 	}
 	
