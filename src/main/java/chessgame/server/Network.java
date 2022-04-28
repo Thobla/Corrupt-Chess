@@ -30,6 +30,7 @@ public class Network {
         kryo.register(PawnData.class);
         kryo.register(DoorData.class);
         kryo.register(PlayerData.class);
+        kryo.register(PausePing.class);
         //kryo.register(EntityManager.class);
         kryo.register(Door.class);
         kryo.register(Pawn.class);

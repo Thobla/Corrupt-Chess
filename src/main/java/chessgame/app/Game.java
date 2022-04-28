@@ -39,7 +39,9 @@ import chessgame.server.GameClient;
 import chessgame.server.GameHost;
 import chessgame.server.GameServer;
 import chessgame.server.IClient;
+import chessgame.server.NetworkHandler;
 import chessgame.server.Packet;
+import chessgame.server.PausePing;
 import chessgame.server.PlayerAction;
 import chessgame.server.DataTypes.*;
 import org.lwjgl.system.linux.XButtonEvent;
@@ -69,17 +71,15 @@ public class Game implements Screen {
     //
     
     //Multiplayer
-    GameServer server;
-    IClient client;
+    static GameServer server;
+    static IClient client;
     String IpAddress;
     public static Boolean isHost;
     public static Boolean isMultiplayer;
-
+    public static boolean setPause;
     
-    int clock = 10;
-    Vector2 playerPosition;
-    
-    Player player2;
+    public Player player2;
+    public NetworkHandler netHandler;
     
     //
     //
@@ -123,45 +123,14 @@ public class Game implements Screen {
     static Label victoryText;
     static TextButton continueButton;
     
-    static boolean paused;
+    public static boolean paused;
     static boolean dead;
     
     
     public Game(ChessGame game, int level, Boolean isMultiplayer, Boolean isHost, String IpAddress) throws IOException {
     	System.out.println("new Game");
 
-
-    	//Multiplayer
-    	//
-    	//
-    	//
-    	//
-    	//
-    	if (isMultiplayer && isHost) {
-    		this.IpAddress = IpAddress;
-    		this.isMultiplayer = isMultiplayer;
-    		this.isHost = isHost;
-    		System.out.println(isHost);
-			this.server = new GameServer();
-			this.client = new GameHost(this);
-    		
-    	}
-    	else if(isMultiplayer && !isHost) {
-    		this.IpAddress = IpAddress;
-    		this.isMultiplayer = isMultiplayer;
-    		this.isHost = isHost;
-    		System.out.println(isHost);
-      		this.client = new GameClient(this, IpAddress);
-    	}
-    	else {
-    		this.isMultiplayer = false;
-    		this.isHost = false;
-    	}
-    	//
-    	//
-    	//
-    	//
-    	//
+    	
     	
     	this.game = game;
     	currentLevelIndex = level;
@@ -198,6 +167,57 @@ public class Game implements Screen {
     	gameWorld.tileMapToBody(tiledMap);
     	gameWorld.tileMapToEntities(tiledMap, entityManager);
     	
+    	
+    		
+     	
+    	//Updates the map
+    	entityManager.updateLists();
+    	
+
+    	initilizeUI();
+    	
+    	timer = 300;
+    	stage.addActor(timerText);
+    	stage.addActor(healthText);
+    	stage.addActor(scoreText);
+    	paused = false;
+    	
+    	//Multiplayer
+    	//
+    	//
+    	//
+    	//
+    	//
+    	
+    	
+    	if (isMultiplayer && isHost) {
+    		this.IpAddress = IpAddress;
+    		this.isMultiplayer = isMultiplayer;
+    		this.isHost = isHost;
+    		System.out.println(isHost);
+			this.server = new GameServer();
+			this.client = new GameHost(this);
+			netHandler = new NetworkHandler();
+    		
+    	}
+    	else if(isMultiplayer && !isHost) {
+    		this.IpAddress = IpAddress;
+    		this.isMultiplayer = isMultiplayer;
+    		this.isHost = isHost;
+    		System.out.println(isHost);
+      		this.client = new GameClient(this, IpAddress);
+      		netHandler = new NetworkHandler();
+    	}
+    	else {
+    		this.isMultiplayer = false;
+    		this.isHost = false;
+    	}
+    	//
+    	//
+    	//
+    	//
+    	//
+    	
     	//Creates the player
     	if(!isMultiplayer) {
     		player = entityManager.addPlayer();
@@ -213,19 +233,6 @@ public class Game implements Screen {
     		}
     	}
     	player.setController();
-    		
-     	
-    	//Updates the map
-    	entityManager.updateLists();
-    	
-
-    	initilizeUI();
-    	
-    	timer = 300;
-    	stage.addActor(timerText);
-    	stage.addActor(healthText);
-    	stage.addActor(scoreText);
-    	paused = false;
     	
 
     }
@@ -240,21 +247,29 @@ public class Game implements Screen {
     @Override
     public void render(float delta) {
     	
-    	if(isMultiplayer) {
-    		
-    		if(!(playerPosition == null)) {
-    			player2.setPosition(playerPosition);
-    		}
-    	}
-    	
     	if(currentLevelIndex >= levels.length) {
     		game.setScreen(new MenuScreen(game));
     		return;
     	}
+    	
+    	
+    	
+    	
+    	
         if (!paused) {
+        	if(isMultiplayer) {
+        		//Directly changing an entities position has to happen before logicstep
+        		netHandler.preStep(this);
+        		
+        	}
+        	if(isMultiplayer) {
+        		netHandler.postStep(this);
+        	}
 	        //Logic step
 	    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
 	        gameMap.render(cam);
+	        //what to do after logic step in multiplayer
+	        
 	    	
 	        //Debug-render to be off when not debugging.
 	    	//debugRenderer.render(gameWorld.world, cam.combined);
@@ -268,6 +283,9 @@ public class Game implements Screen {
 	    	entityManager.updateEntities(batch);
 	    	entityManager.updatePlayers(batch);
 	    	batch.end();
+	    	
+	    	//Pausing the game in multiplayer if 
+	    	
 	    	
 	    	entityManager.updateLists();
 	    	
@@ -331,23 +349,29 @@ public class Game implements Screen {
         //
         //
         //multiplayer
+        if (isMultiplayer && setPause) {
+    		pauseGame();
+    		setPause = false;
+    	}
        
 	        if (isMultiplayer) {
 	        	if(isHost) {
 	        		Packet packet = new Packet(entityManager);
 	        		HashMap<Integer, PawnData> pawnList = packet.pawnList;
-	        		//HashMap<Integer, DoorData> doorList = packet.doorList;
 	        		HashMap<Integer, ButtonData> buttonList = packet.buttonList;
 	        		HashMap<String, PlayerData> playerList = packet.playerList;
-	        		//this.client.getClient().sendTCP(pawnList);
-	        		//this.client.getClient().sendTCP(doorList);
+	        		List<IEntities> removeList = packet.removeList;
+	        		this.client.getClient().sendTCP(pawnList);
 	        		this.client.getClient().sendTCP(buttonList);
 	        		this.client.getClient().sendTCP(playerList);
+	        		this.client.getClient().sendTCP(removeList);
 	        	}
 	        	else {
 	        		PlayerAction playerAction = new PlayerAction(entityManager);
 	        		HashMap<String, PlayerData> playerList = playerAction.playerList;
+	        		List<IEntities> removeList = playerAction.removeList;
 	        		this.client.getClient().sendTCP(playerList);
+	        		this.client.getClient().sendTCP(removeList);
 	        	}
         }
         }
@@ -386,6 +410,9 @@ public class Game implements Screen {
     		stage.addAction(Actions.removeActor(pauseText));
     		stage.addAction(Actions.removeActor(resumeButton));
     		stage.addAction(Actions.removeActor(quitButtonP));
+    		//pause the other client's game
+    		if(isMultiplayer)
+    			client.getClient().sendTCP(new PausePing(false));
     	}
     	else {
 			//todo:
@@ -394,6 +421,9 @@ public class Game implements Screen {
         	stage.addActor(pauseText);
         	stage.addActor(resumeButton);
         	stage.addActor(quitButtonP);
+        	//unpause the other client's game
+        	if(isMultiplayer)
+        		client.getClient().sendTCP(new PausePing(true));
     	}
     }
 
@@ -496,51 +526,11 @@ public class Game implements Screen {
 		
 	}
 
-	public void handlePacket(Object object) {
-		if(object instanceof HashMap) {
-			if (!(entityManager == null)) {
-				if(!isHost) {
-					for(IEntities entity: entityManager.entityList) {
-						if (entity instanceof Pawn) {
-							int pawnId = ((Pawn) entity).getId();
-							if(((HashMap) object).containsKey(pawnId)) {
-								((Pawn) entity).move(((PawnData) ((HashMap) object).get(pawnId)).getPosition());
-								((Pawn)entity).setHealth(((PawnData) ((HashMap) object).get(pawnId)).getHealth());
-							}
-						}
-						if (entity instanceof Button) {
-							int buttonId = ((Button) entity).getId();
-							if(((HashMap) object).containsKey(buttonId)) {
-								
-								if(((Button) entity).isActive() != ((ButtonData) ((HashMap) object).get(buttonId)).getActive()) {
-									((Button) entity).itemFunction();
-								}
-							}
-						}	
-					}
-				}
-			
-			for(IEntities entity : entityManager.playerList) {
-				if (entity instanceof Player) {
-					System.out.println("isPlayer");
-					String playerId = ((Player) entity).getPlayerId();
-					if(((HashMap) object).containsKey(playerId)) {
-						System.out.println("containsKey");
-						if (((Player) entity).getPlayerId().equals("player2") && isHost)
-						{
-							this.playerPosition = ((PlayerData) ((HashMap) object).get(playerId)).getPosition();
-						}
-						else if (((Player) entity).getPlayerId().equals("player1") && !isHost) {
-							this.playerPosition = ((PlayerData) ((HashMap) object).get(playerId)).getPosition();
-						}
-							
-					}
-				}
-			}
-				
-			}
-			
-		}
-		
+	
+	
+	public Boolean getIsHost() {
+		return this.isHost;
 	}
+	
+	
 }

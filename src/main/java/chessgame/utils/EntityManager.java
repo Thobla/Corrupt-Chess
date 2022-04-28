@@ -63,13 +63,17 @@ public class EntityManager {
      * @author mikal, thorgal
      */
     public void updateLists() {
-    	for(IEntities entity : entityRemoveList) {
+    	updateLists(entityRemoveList);
+    }
+    
+    public void updateLists(List<IEntities> removeList) {
+    	for(IEntities entity : removeList) {
     		if(entityList.contains(entity)) {
     			entityList.remove(entity);
 	    		pworld.world.destroyBody(entity.getBody());
     		}
     	}
-    	entityRemoveList.clear();
+    	removeList.clear();
     }
     
     /**
