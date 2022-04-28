@@ -66,7 +66,7 @@ public class Player implements IEntities{
 	
 	//Player size
 	float width = .5f;
-	float height = 1f;
+	float height = .95f;
 	
 	public Player (Vector2 position, World world, EntityManager manager) {
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
