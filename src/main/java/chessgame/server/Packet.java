@@ -54,7 +54,8 @@ public class Packet {
 		}
 		for(IEntities entity : entityManager.playerList) {
 			if (entity instanceof Player) {
-				playerList.put(((Player) entity).getPlayerId(), new PlayerData(((Player) entity).getHealth(), entity.getPosition()));
+				if(((Player) entity).getPlayerId().equals("player1"))
+					playerList.put(((Player) entity).getPlayerId(), new PlayerData(((Player) entity).getHealth(), entity.getPosition()));
 			}
 		}
 	}

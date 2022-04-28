@@ -18,19 +18,8 @@ public class GameServer {
         Network.register(server);
         server.addListener(new Listener() {
             public void received (Connection connection, Object object) {
-            	System.out.println("server recieved something");
-               if (object instanceof Packet) {
-                  server.sendToAllTCP(object);
-                  //connection.sendTCP(object);
-                  
-               }
-               if (object instanceof PlayerAction) {
-            	   server.sendToAllTCP(object);
-            	   //connection.sendTCP(object);
-               }
                if (object instanceof HashMap) {
             	   server.sendToAllTCP(object);
-            	   System.out.println("sending packet from server");
                }
             }
          });
