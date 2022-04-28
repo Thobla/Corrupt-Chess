@@ -23,6 +23,7 @@ import chessgame.entities.Pawn;
 import chessgame.entities.Portal;
 import chessgame.entities.RatingPoint;
 import chessgame.entities.TheTower;
+import chessgame.entities.Tower;
 import chessgame.utils.Constants;
 import chessgame.utils.Direction;
 import chessgame.utils.EntityManager;
@@ -130,6 +131,10 @@ public class PhysicsWorld {
 				int code =(int) entity.getProperties().get("code");
 				Button button = new Button(pos, world, manager, code);
 				button.initialize();
+			}
+			if(entity.getName().toLowerCase().equals("tower")) {
+				Tower tower = new Tower(pos, world, manager);
+				tower.initialize();
 			}
 			if(entity.getName().toLowerCase().equals("thetower")) {
 				TheTower tower = new TheTower(pos, world, manager);

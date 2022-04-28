@@ -21,6 +21,7 @@ import chessgame.entities.KnightBoss;
 import chessgame.entities.Player;
 import chessgame.entities.Portal;
 import chessgame.entities.TheTower;
+import chessgame.entities.Tower;
 import chessgame.utils.EntityManager;
 import chessgame.utils.Rumble;
 
@@ -158,6 +159,14 @@ public class ListenerClass implements ContactListener{
 				System.out.println("sensor");
 				enemy.jump();
 			}
+		}
+		
+		if (fixtureA.getUserData() == "stopper") {
+			Tower tower = (Tower) fixtureA.getBody().getUserData();
+			tower.stopped();
+		} else if(fixtureB.getUserData() == "stopper"){
+			Tower tower = (Tower) fixtureB.getBody().getUserData();
+			tower.stopped();
 		}
 		
 		//Checks if the Knight enemy has landed

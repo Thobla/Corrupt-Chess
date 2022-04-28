@@ -14,16 +14,13 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
-import chessgame.app.Game;
-import chessgame.entities.knightstates.*;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 import chessgame.utils.Rumble;
 
-public class Knight implements IEnemies {
+public class Tower implements IEnemies {
 	int health;
 	int attack;
-	public float aggroRange = 5f;
 	
 	Vector2 position;
 	public Vector2 homePosition;
@@ -32,44 +29,29 @@ public class Knight implements IEnemies {
 	public EntityManager entityManager;
 	public Sprite sprite;
 	
-	boolean invisFrame;
-	long hitTime;
+	boolean hasTakenDamage = false;
+	float dmgTime = 0;
 	
-	boolean canJump;
-	boolean grounded;
-	boolean firstLanded;
-	public boolean lookingRight;
-	float preXVal;
-	Vector2 jumpSpot;
-	long jumpTime;
-	long airborneTime;
-	boolean correctionJump;
-	
-	//State	
-	public KnightState idleState = new KnightIdle(this);
-	public KnightState chaseState = new KnightChase(this);
-	public KnightState homeState = new KnightHome(this);
-	KnightState currentState = homeState;
+	boolean facingRight;
+	long thinkingTime = 400;
+	long stoppedTime;
+	boolean stopped;
 	
 	//Entity size
 	float width = 0.8f;
 	float height = 1.5f;
-
-	public Knight (Vector2 position, World world, EntityManager entityManager) {
+	
+	public Tower (Vector2 position, World world, EntityManager entityManager) {
 		homePosition = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.position = homePosition;
 		this.world = world;
 		this.entityManager = entityManager;
-		health = 3;
+		health = 5;
 		attack = 1;
-		lookingRight = false;
-		grounded = false;
-		canJump = false;
-		firstLanded = false;
-		jumpSpot = Vector2.Zero;
-		correctionJump = false;
-	}	
-		
+		facingRight = true;
+		stoppedTime = 0;
+		stopped = true;
+	}
 	
 	@Override
 	public void createBody() {
@@ -88,10 +70,13 @@ public class Knight implements IEnemies {
 		
 		//adding a weakpoint
 		addNewBoxSensor(myBody, width * 0.95f, height / 3.5f, new Vector2(0f, height), "weakpoint");
-		addNewBoxSensor(myBody, width * 0.95f, height /16f, new Vector2(0f, -height), "hoof");
+		
+		//adding side sensors
+		addNewBoxSensor(myBody, width * 0.1f, height * 0.95f, new Vector2(width, 0f), "stopper");
+		addNewBoxSensor(myBody, width * 0.1f, height * 0.95f, new Vector2(-width, 0f), "stopper");
+		
+
 	}
-	
-	
 
 	@Override
 	public Vector2 getPosition() {
@@ -125,101 +110,51 @@ public class Knight implements IEnemies {
 	@Override
 	public void updateState(Batch batch) {
 		
-		currentState.Update();
-		
 		keepWithinBounds();
 		position = myBody.getPosition();
 		if(batch != null) {
+			dmgColorTime(Color.RED, 0.25f);
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
 			sprite.setSize(1.6f, 3.2f);
 			sprite.draw(batch);	
 		}
 		if(health <= 0)
-			kill();
+			kill();	
 		
-		if(System.currentTimeMillis() < hitTime + 100) {
-			sprite.setColor(Color.RED);
-			attack = 0;
-		} else {
-			sprite.setColor(Color.WHITE);
-			attack = 1;
-		}
-		
-		if(System.currentTimeMillis() > jumpTime + 500 && grounded) {
-			canJump = true;
-		}
-		
-		if(System.currentTimeMillis() > airborneTime + 2500 && !grounded && firstLanded) {
-			grounded();
+		if(System.currentTimeMillis() > stoppedTime + thinkingTime && stopped) {
+			Vector2 direction;
+			if(facingRight)
+				direction = new Vector2(1,0);
+			else
+				direction = new Vector2(-1,0);
+			moveTo(direction);
 		}
 	}
 
 	@Override
 	public void initialize() {
-		setSprite("assets/enemies/BigKnightSleeping.png");
+		sprite = new Sprite(new Texture (Gdx.files.internal("assets/pawn/darkPawn.png").file().getAbsolutePath()));
 		createBody();
 		
-		//Adds the knight to the entityManager
-		if (!Game.gameStart)
-			entityManager.addEntity(this);
-		else
-			entityManager.addRuntimeEntity(this);
-	}
-	
-	public void setSprite(String path) {
-		sprite = new Sprite(new Texture (Gdx.files.internal(path).file().getAbsolutePath()));
+		//Adds the pawn to the entityManager
+    	entityManager.addEntity(this);
 	}
 
 	@Override
 	public void moveTo(Vector2 target) {
-		if (canJump) {
-			float xVal = position.x - target.x;
-			float yVal = position.y - target.y;
-			
-			//The second jump after getting stuck
-			if (correctionJump) {
-				xVal = Math.copySign(3f, xVal);
-				correctionJump = false;
-			}
-			//If the knight gets stuck at a wall, it will jump back a step.
-			if (getPosition().x == jumpSpot.x && (xVal < 0 && preXVal < 0 || xVal > 0 && preXVal > 0)) {
-				xVal = -Math.copySign(1.3f,xVal);
-				correctionJump = true;
-			}
-			
-			jumpSpot = new Vector2(getPosition());
-			if(xVal > 0) {
-				if (lookingRight) {
-					sprite.flip(true, false);
-					lookingRight = false;
-				}
-				myBody.setLinearVelocity(-1-xVal, 23);
-			} else {
-				if (!lookingRight) {
-					sprite.flip(true, false);
-					lookingRight = true;
-				}
-				myBody.setLinearVelocity(+1-xVal, 23);
-			}
-			
-			preXVal = xVal;
-			canJump = false;
-			grounded = false;
-			airborneTime = System.currentTimeMillis();
-		}	
+		myBody.setLinearVelocity(target.setLength(20f));
+		stopped = false;
 	}
 	
-	public void grounded() {
-		if (!grounded) {
-			if (!firstLanded)
-				firstLanded = true;
-			myBody.setLinearVelocity(Vector2.Zero);
-			grounded = true;
-			if (getClosestPlayer(100f) != null)
-				Rumble.rumble(Math.min(1/(getClosestPlayer(100f).getPosition().x-getPosition().x),0.6f), 0.1f);
-			jumpTime = System.currentTimeMillis();
-		}
-		
+	public void stopped() {
+		stopped = true;
+		stoppedTime = System.currentTimeMillis();
+		if (facingRight)
+			facingRight = false;
+		else
+			facingRight = true;
+		if (getClosestPlayer(20f) != null)
+			Rumble.rumble(Math.min(1/(getClosestPlayer(20f).getPosition().x-getPosition().x),0.5f), 0.2f);
 	}
 
 	@Override
@@ -229,17 +164,14 @@ public class Knight implements IEnemies {
 
 	@Override
 	public void takeDamage(int damage) {
-		attack = 0;
+		dmgTime = 0;
+		hasTakenDamage = true;
 		if(damage <= health)
 			health -= damage;
 		else {
 			kill();
 			return;
 		}
-		
-		invisFrame = true;
-		hitTime = System.currentTimeMillis();
-
 	}
 
 	@Override
@@ -282,22 +214,11 @@ public class Knight implements IEnemies {
 
 	@Override
 	public IState getCurrentState() {
-		return currentState;
-	}
-	
-	/**
-	 * Changes between the states in the stateMachine
-	 */
-	public void changeState(KnightState state) {
-		currentState = state;
-		currentState.Enter();
+		return null;
 	}
 
 	@Override
 	public void jump() {
-		canJump = false;
-		grounded = false;
-		myBody.setLinearVelocity(myBody.getLinearVelocity().x, 18f);
 	}
 	
 	/**
@@ -317,8 +238,16 @@ public class Knight implements IEnemies {
 		fixDef.shape = shape;
 		
 		myBody.createFixture(fixDef).setUserData(userData);
-		
-		
+	}
+	
+	public void dmgColorTime(Color color, float time) {
+		if(dmgTime > time && hasTakenDamage) {
+			sprite.setColor(Color.WHITE);
+			hasTakenDamage = false;
+		} else if(hasTakenDamage) {
+			sprite.setColor(color);
+			dmgTime += Gdx.graphics.getDeltaTime();
+		}
 	}
 
 }
