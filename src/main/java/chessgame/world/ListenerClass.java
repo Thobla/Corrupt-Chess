@@ -11,12 +11,15 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
+import chessgame.app.Game;
 import chessgame.app.PlayerController;
 import chessgame.entities.IEnemies;
 import chessgame.entities.IEntities;
 import chessgame.entities.IObjects;
 import chessgame.entities.Player;
 import chessgame.entities.Portal;
+import chessgame.server.pings.FinishedPing;
+import chessgame.server.pings.NextMapPing;
 import chessgame.utils.EntityManager;
 
 public class ListenerClass implements ContactListener{
@@ -123,12 +126,28 @@ public class ListenerClass implements ContactListener{
 		if(fixtureA.getUserData() == "Portal" && fixtureB.getUserData() == "Player") {
 			player = (Player) fixtureB.getBody().getUserData();
 			world.entityManager.removePlayer(player);
-			Portal.victory();
+			if(!Game.isMultiplayer)
+				Portal.victory();
+			else if((Game.isHost && player.getPlayerId() == "player1") || (!Game.isHost && player.getPlayerId() == "player2")) {
+				Game.isWaiting = true;
+				Game.getClient().getClient().sendTCP(new FinishedPing(true));
+			}
+			else if(((!Game.isHost && player.getPlayerId() == "player1") || (Game.isHost && player.getPlayerId() == "player2"))&& Game.isWaiting) {
+				Game.getClient().getClient().sendTCP(new NextMapPing());
+			}
 		}
 		else if(fixtureB.getUserData() == "Portal" && fixtureA.getUserData() == "Player") {
 			player = (Player) fixtureA.getBody().getUserData();
 			world.entityManager.removePlayer(player);
-			Portal.victory();
+			if(!Game.isMultiplayer)
+				Portal.victory();
+			else if((Game.isHost && player.getPlayerId() == "player1") || (!Game.isHost && player.getPlayerId() == "player2")) {
+				Game.isWaiting = true;
+				Game.getClient().getClient().sendTCP(new FinishedPing(true));
+			}
+			else if(((!Game.isHost && player.getPlayerId() == "player1") || (Game.isHost && player.getPlayerId() == "player2")) && Game.isWaiting) {
+				Game.getClient().getClient().sendTCP(new NextMapPing());
+			}
 		}
 		
 		//checks if an entities jump-sensor is hitting any non-entity objects, making sure

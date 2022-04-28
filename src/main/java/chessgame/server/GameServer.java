@@ -4,6 +4,9 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
+import chessgame.server.pings.NextMapPing;
+import chessgame.server.pings.PausePing;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +23,7 @@ public class GameServer {
             Network.register(server);
             server.addListener(new Listener() {
                 public void received(Connection connection, Object object) {
-                    if (object instanceof HashMap || object instanceof List || object instanceof PausePing) {
+                    if (object instanceof HashMap || object instanceof List || object instanceof PausePing || object instanceof NextMapPing) {
                         server.sendToAllTCP(object);
                     }
                 }

@@ -7,10 +7,8 @@ import chessgame.entities.Button;
 import chessgame.entities.Door;
 import chessgame.entities.Pawn;
 import chessgame.entities.Player;
-import chessgame.server.DataTypes.ButtonData;
-import chessgame.server.DataTypes.DoorData;
-import chessgame.server.DataTypes.PawnData;
-import chessgame.server.DataTypes.PlayerData;
+import chessgame.server.DataTypes.*;
+import chessgame.server.pings.*;
 import chessgame.utils.EntityManager;
 
 
@@ -31,7 +29,8 @@ public class Network {
         kryo.register(DoorData.class);
         kryo.register(PlayerData.class);
         kryo.register(PausePing.class);
-        //kryo.register(EntityManager.class);
+        kryo.register(FinishedPing.class);
+        kryo.register(NextMapPing.class);
         kryo.register(Door.class);
         kryo.register(Pawn.class);
         kryo.register(Button.class);

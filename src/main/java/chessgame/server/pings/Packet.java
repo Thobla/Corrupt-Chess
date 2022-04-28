@@ -1,4 +1,4 @@
-package chessgame.server;
+package chessgame.server.pings;
 
 import java.util.ArrayList;
 import java.util.HashMap;

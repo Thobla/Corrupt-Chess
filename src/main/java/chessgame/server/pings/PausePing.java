@@ -1,4 +1,4 @@
-package chessgame.server;
+package chessgame.server.pings;
 
 public class PausePing {
 	public boolean setToPaused;

@@ -13,6 +13,7 @@ import chessgame.entities.Player;
 import chessgame.server.DataTypes.ButtonData;
 import chessgame.server.DataTypes.PawnData;
 import chessgame.server.DataTypes.PlayerData;
+import chessgame.server.pings.*;
 import chessgame.utils.EntityManager;
 
 
@@ -25,6 +26,8 @@ public class NetworkHandler {
 	private Vector2 playerPosition;
 	private HashMap<Integer, PawnData> pawnMap = new HashMap<>();
 	private List<IEntities> removeList;
+	private boolean playerFinished = false;
+	private boolean bothFinished = false;
 	
 	public void alterP2Position(Game game) {
 		if(playerPosition != null)
@@ -48,14 +51,18 @@ public class NetworkHandler {
 			game.entityManager.updateLists(removeList);
 	}
 	
+	public void ifBothFinished(Game game) {
+		if(bothFinished)
+			Game.victoryScreen();
+	}
+	
 	//methods to be handled before step
 	public void preStep(Game game) {
 		alterP2Position(game);
-		alterPawnPositions(game);
-	}
-	//methods to handle before step
-	public void postStep(Game game) {
+		if(!playerFinished)
+			alterPawnPositions(game);
 		syncDeaths(game);
+		ifBothFinished(game);
 	}
 	
 	
@@ -128,6 +135,15 @@ public class NetworkHandler {
 			else {
 				Game.setPause = false;
 			}
+		}
+		if(object instanceof FinishedPing) {
+			if(!Game.isWaiting)
+				
+				playerFinished = true;
+			
+		}
+		if(object instanceof NextMapPing) {
+			bothFinished = true;
 		}
 		
 	}

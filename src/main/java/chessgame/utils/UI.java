@@ -25,6 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Null;
@@ -168,6 +169,26 @@ public class UI {
 		return button;
 	}
 
+	public static Button connectButton(Vector2 size, Vector2 position, String text, ChessGame game, int Level, TextField ipField) {
+		Button button = button(size, position, text);
+		button.addListener(new InputListener() {
+			@Override
+			public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+				try {
+					game.setScreen(new Game(game, Level, true, false, ipField.getText()));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			@Override
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				click.play(volume);
+				return true;
+			}
+		});
+		return button;
+	}
+	
 	/**
 	 * Creates a new Label with the given size, position, text and style
 	 * 
@@ -455,5 +476,12 @@ public class UI {
         });
 		return checkBox;
 	}
+	
+	public static TextField textField(String text, Vector2 size, Vector2 position ) {
+        TextField textField = new TextField(text, tempskin, "default");
+        textField.setSize(size.x*colWidth, size.y*rowHeight);
+        textField.setPosition(position.x*colWidth, position.y*rowHeight);
+        return textField;
+    }
 }
 

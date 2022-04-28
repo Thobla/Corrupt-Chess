@@ -9,6 +9,7 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
 import chessgame.app.Game;
+import chessgame.server.pings.*;
 
 public class GameHost implements IClient{
 	Client client;
@@ -22,7 +23,7 @@ public class GameHost implements IClient{
 		
 		client.addListener(new Listener() {
 		       public void received (Connection connection, Object object) {
-		          if (object instanceof HashMap || object instanceof List || object instanceof PausePing) {
+		          if (object instanceof HashMap || object instanceof List || object instanceof PausePing || object instanceof NextMapPing) {
 		             if (game.netHandler != null)
 		            	 game.netHandler.handlePacket(object, game);
 		             

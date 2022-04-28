@@ -40,10 +40,11 @@ import chessgame.server.GameHost;
 import chessgame.server.GameServer;
 import chessgame.server.IClient;
 import chessgame.server.NetworkHandler;
-import chessgame.server.Packet;
-import chessgame.server.PausePing;
-import chessgame.server.PlayerAction;
 import chessgame.server.DataTypes.*;
+import chessgame.server.pings.Packet;
+import chessgame.server.pings.PausePing;
+import chessgame.server.pings.PlayerAction;
+
 import org.lwjgl.system.linux.XButtonEvent;
 
 
@@ -73,13 +74,15 @@ public class Game implements Screen {
     //Multiplayer
     static GameServer server;
     static IClient client;
-    String IpAddress;
+    static String IpAddress;
     public static Boolean isHost;
     public static Boolean isMultiplayer;
     public static boolean setPause;
+    public static boolean isWaiting = false;
+    
     
     public Player player2;
-    public NetworkHandler netHandler;
+    static public NetworkHandler netHandler;
     
     //
     //
@@ -129,7 +132,9 @@ public class Game implements Screen {
     
     public Game(ChessGame game, int level, Boolean isMultiplayer, Boolean isHost, String IpAddress) throws IOException {
     	System.out.println("new Game");
-
+    	Game.isMultiplayer = isMultiplayer;
+		Game.isHost = isHost;
+		Game.IpAddress = IpAddress;
     	
     	
     	this.game = game;
@@ -174,48 +179,20 @@ public class Game implements Screen {
     	entityManager.updateLists();
     	
 
-    	initilizeUI();
-    	
-    	timer = 300;
-    	stage.addActor(timerText);
-    	stage.addActor(healthText);
-    	stage.addActor(scoreText);
-    	paused = false;
-    	
-    	//Multiplayer
-    	//
-    	//
-    	//
-    	//
-    	//
     	
     	
+    	//Multiplayer innitializing network-classes
     	if (isMultiplayer && isHost) {
-    		this.IpAddress = IpAddress;
-    		this.isMultiplayer = isMultiplayer;
-    		this.isHost = isHost;
-    		System.out.println(isHost);
-			this.server = new GameServer();
-			this.client = new GameHost(this);
+			Game.server = new GameServer();
+			Game.client = new GameHost(this);
 			netHandler = new NetworkHandler();
     		
     	}
     	else if(isMultiplayer && !isHost) {
-    		this.IpAddress = IpAddress;
-    		this.isMultiplayer = isMultiplayer;
-    		this.isHost = isHost;
-    		System.out.println(isHost);
-      		this.client = new GameClient(this, IpAddress);
+      		Game.client = new GameClient(this, IpAddress);
       		netHandler = new NetworkHandler();
     	}
-    	else {
-    		this.isMultiplayer = false;
-    		this.isHost = false;
-    	}
-    	//
-    	//
-    	//
-    	//
+    	
     	//
     	
     	//Creates the player
@@ -234,6 +211,14 @@ public class Game implements Screen {
     	}
     	player.setController();
     	
+    	
+    	initilizeUI();
+    	
+    	timer = 300;
+    	stage.addActor(timerText);
+    	stage.addActor(healthText);
+    	stage.addActor(scoreText);
+    	paused = false;
 
     }
 
@@ -261,9 +246,6 @@ public class Game implements Screen {
         		//Directly changing an entities position has to happen before logicstep
         		netHandler.preStep(this);
         		
-        	}
-        	if(isMultiplayer) {
-        		netHandler.postStep(this);
         	}
 	        //Logic step
 	    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
@@ -293,8 +275,15 @@ public class Game implements Screen {
 	    	healthText.setText("Health: " + player.getHealth());
 	    	scoreText.setText("Score: " + player.getScore());
 	           
-	        //Camera Updates
-	    	CameraStyles.lockOnTarget(cam, player.getPosition());
+	    	//Camera Updates
+	    	if (isWaiting) {
+	    		CameraStyles.lockOnTarget(cam, player2.getPosition());
+	    	}
+	    	else
+	    		CameraStyles.lockOnTarget(cam, player.getPosition());
+	        
+	    	
+	    	
 	    	if (timer <= 0) {
 	    		paused = true;
 	    		gameOverScreen();
@@ -342,11 +331,7 @@ public class Game implements Screen {
 	        stage.draw();
         }
         
-        //
-        //
-        //
-        //
-        //
+        
         //
         //multiplayer
         if (isMultiplayer && setPause) {
@@ -530,6 +515,14 @@ public class Game implements Screen {
 	
 	public Boolean getIsHost() {
 		return this.isHost;
+	}
+	
+	public static IClient getClient() {
+		return client;
+	}
+	
+	public Player getPlayer() {
+		return player;
 	}
 	
 	
