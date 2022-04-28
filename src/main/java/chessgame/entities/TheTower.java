@@ -20,6 +20,7 @@ import chessgame.entities.theTowerStates.TheTowerState;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityAnimation;
 import chessgame.utils.EntityManager;
+import chessgame.utils.HUD;
 
 public class TheTower implements IEnemies {
 	int health;
@@ -95,13 +96,14 @@ public class TheTower implements IEnemies {
 	}
 	
 	public void initialize() {
+		
 		sprite = new Texture (Gdx.files.internal("assets/Enemies/TheTower/TheTowerSpriteSheet.png").file().getAbsolutePath());
 		sprite2 = new Texture (Gdx.files.internal("assets/Enemies/TheTower/TheTowerSpriteSheet2.png").file().getAbsolutePath());
 		sprite3 = new Texture (Gdx.files.internal("assets/Enemies/TheTower/TheTowerSpriteSheet3.png").file().getAbsolutePath());
 		bodyAnimation = new EntityAnimation(sprite, 4, 7f, this, new Vector2(64f, 96f));
 		
-		leftWaveStart =new Vector2(position.x - width, position.y - (5f));
-		rightWaveStart =new Vector2(position.x + width, position.y - (5f));
+		leftWaveStart =new Vector2(position.x - width, position.y - (6.85f));
+		rightWaveStart =new Vector2(position.x + width, position.y - (6.85f));
 		
 		rightHandsprite = new Sprite(new Texture (Gdx.files.internal("assets/Enemies/TheTower/RightHand.png").file().getAbsolutePath()));
 		leftHandsprite = new Sprite(new Texture (Gdx.files.internal("assets/Enemies/TheTower/LeftHand.png").file().getAbsolutePath()));
@@ -193,7 +195,7 @@ public class TheTower implements IEnemies {
 		rightWave = world.createBody(bodyDef);
 		
 		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(1, 1f);
+		shape.setAsBox(1, 0.8f);
 		FixtureDef fixDef = new FixtureDef();
 		fixDef.shape = shape;
 		fixDef.isSensor = true;
@@ -228,7 +230,6 @@ public class TheTower implements IEnemies {
 
 	@Override
 	public void takeDamage(int damage) {
-			
 			float xVal;
 			//Knocks players away
 			Player player;
@@ -250,6 +251,9 @@ public class TheTower implements IEnemies {
 				kill();
 				return;
 			}
+			
+			
+			HUD.BossHp(3, damage);
 	}
 
 	@Override
@@ -479,6 +483,8 @@ public class TheTower implements IEnemies {
 	@Override
 	public void updateState(Batch batch) {
 		currentState.Update();
+		if(!HUD.bossBar)
+			HUD.enableBossHP();
 		
 		leftDesired = new Vector2(position.x - (1.7f+width), position.y + 3);
 		rightDesired = new Vector2(position.x + (1.7f+width), position.y + 3);

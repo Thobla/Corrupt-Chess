@@ -1,10 +1,20 @@
 package chessgame.utils;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.Scaling;
 
+import chessgame.entities.IEnemies;
+/**
+ * A visual representation of the players stats
+ * and other attributes of the game
+ * @author Åsmund, Mikal
+ *
+ */
 public class HUD {
 	static int health;
 	static boolean ability;
@@ -12,21 +22,30 @@ public class HUD {
 	int score;
 	static playerForm currentForm;
 	static Stage stage;
+	//Form icons
 	static Image currentIcon;
 	static Image pawnIcon;
 	static Image rookIcon;
 	static Image knightIcon;
 	static Image bishopIcon;
+	//PlayerHp
 	static Image emptyheartIcon1;
 	static Image emptyheartIcon2;
 	static Image emptyheartIcon3;
 	static Image heartIcon1;
 	static Image heartIcon2;
 	static Image heartIcon3;
+	//PlayerAbility
 	static Image abilityCrystal;
 	static Image emptyAbilityCrystal;
+	//Boss HP Bar
+	static Image hpBar;
+	static Image hpBarBorder;
+	static Image bossSkull;
+	public static boolean bossBar;
 	
 	public HUD(Stage stage) {
+		bossBar = false;
 		HUD.stage = stage;
 		Image bg = UI.image(new Vector2(6.93f,2.1f), new Vector2(.5f, 13.8f), "assets/hud/hudbg.png");
 		pawnIcon = UI.image(new Vector2(1.8f,1.8f), new Vector2(.7f, 14f), "assets/hud/cureHorse.png"); 
@@ -105,5 +124,18 @@ public class HUD {
 			stage.addAction(Actions.targeting(abilityCrystal, Actions.alpha(1)));
 		else
 			stage.addAction(Actions.targeting(abilityCrystal, Actions.alpha(0)));
+	}
+	public static void enableBossHP() {
+		bossBar = true;
+		hpBar = UI.image(new Vector2(320/29f,1), new Vector2(9.5f, 14.23f), "assets/hud/HpBar.png");
+		hpBarBorder = UI.image(new Vector2(384/29f,64/29f), new Vector2(8f, 13.63f), "assets/hud/HpBarBorder.png");
+		bossSkull = UI.image(new Vector2(384/29f,64/29f), new Vector2(8f, 13.63f), "assets/hud/HpBarSkull.png");
+		stage.addActor(hpBarBorder);
+		stage.addActor(hpBar);
+		stage.addActor(bossSkull);
+	}
+	
+	public static void BossHp(float maxHp, float hpTaken) {
+		hpBar.scaleBy(-(hpTaken/maxHp), 0);
 	}
 }
