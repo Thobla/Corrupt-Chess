@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 import chessgame.entities.Player;
+import chessgame.utils.playerForm;
 
 public class PlayerTowerState extends PlayerState {
 	double time = 0;
@@ -13,6 +14,7 @@ public class PlayerTowerState extends PlayerState {
 	
 	public PlayerTowerState(Player player) {
 		this.player = player;
+		form = playerForm.ROOK;
 	}
 	
 	@Override

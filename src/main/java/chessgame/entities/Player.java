@@ -22,6 +22,7 @@ import chessgame.utils.SaveFile;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityAnimation;
 import chessgame.utils.EntityManager;
+import chessgame.utils.HUD;
 
 public class Player implements IEntities{
 	Vector2 position;
@@ -40,6 +41,7 @@ public class Player implements IEntities{
 	EntityAnimation towerDash;
 	EntityAnimation lTowerDash;
 	EntityAnimation changeForm;
+	Color playerColor;
 	
 	boolean hasTakenDamage = false;
 	float dmgTime = 0;
@@ -96,6 +98,14 @@ public class Player implements IEntities{
     	//PlayerController
 		int[] controls = SaveFile.readSettings();
     	controller = new PlayerController(controls);
+    	
+    	if(controller == null) {
+    		playerColor = Color.valueOf("ffeba5");
+    	}
+    	else {
+    		playerColor = Color.WHITE;
+    	}
+    	sprite.setColor(playerColor);
 	}
 
 	@Override
@@ -222,6 +232,8 @@ public class Player implements IEntities{
 				kill();
 			}
 		}
+		if(controller != null)
+			HUD.setHP(health);
 	}
 
 	public int getAttack() {
@@ -312,7 +324,7 @@ public class Player implements IEntities{
 	 */
 	public void dmgColorTime(Color color, float time) {
 		if(dmgTime > time && hasTakenDamage) {
-			sprite.setColor(Color.WHITE);
+			sprite.setColor(getPlayerColor());
 			hasTakenDamage = false;
 		} else if(hasTakenDamage) {
 			sprite.setColor(color);
@@ -345,6 +357,9 @@ public class Player implements IEntities{
 	@Override
 	public Body getBody() {
 		return myBody;
+	}
+	public Color getPlayerColor() {
+		return playerColor;
 	}
 	public void playDust() {
 		jumpDust = true;

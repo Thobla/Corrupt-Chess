@@ -4,13 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 import chessgame.entities.Player;
+import chessgame.utils.playerForm;
 
 public class PlayerPawnState extends PlayerState {
-	
 	Player player;
 	
 	public PlayerPawnState(Player player){
 		this.player = player;
+		form = playerForm.PAWN;
 	}
 	
 	@Override
