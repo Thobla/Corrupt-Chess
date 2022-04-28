@@ -122,7 +122,7 @@ public class Tower implements IEnemies {
 		if(health <= 0)
 			kill();	
 		
-		if(System.currentTimeMillis() > stoppedTime + thinkingTime && stopped || System.currentTimeMillis() > stoppedTime + thinkingTime*3) {
+		if(System.currentTimeMillis() > stoppedTime + thinkingTime && stopped) {
 			Vector2 direction;
 			if(facingRight)
 				direction = new Vector2(1,0);
@@ -156,7 +156,7 @@ public class Tower implements IEnemies {
 		stopped = true;
 		stoppedTime = System.currentTimeMillis();
 		if (getClosestPlayer(10f) != null)
-			Rumble.rumble(Math.min(Math.abs(1/(getClosestPlayer(10f).getPosition().x-getPosition().x)),0.6f), 0.2f);
+			Rumble.rumble(Math.min(Math.abs(1/(getClosestPlayer(10f).getPosition().x-getPosition().x)),0.4f), 0.2f);
 	}
 
 	@Override

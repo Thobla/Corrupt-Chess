@@ -61,7 +61,7 @@ public class Door implements IEntities {
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);
 		
-		myBody.createFixture(shape, 1000f).setUserData("air");;
+		myBody.createFixture(shape, 1000f).setUserData("door");;
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);
 	}

@@ -75,11 +75,11 @@ public class ListenerClass implements ContactListener{
 			player.controller.isGrounded = false;
 		}
 		//Checks if there is an object above the player
-		if(fixtureA.getUserData() != "air" && fixtureB.getUserData() == "sky") {
+		if(fixtureA.getUserData() != "air" && fixtureA.getUserData() != "door" && fixtureA.getUserData() != "Object" && fixtureB.getUserData() == "sky") {
 			player = (Player) fixtureB.getBody().getUserData();
 			player.controller.clearJump = false;
 		}
-		else if(fixtureB.getUserData() != "air" && fixtureA.getUserData() == "sky") {
+		else if(fixtureB.getUserData() != "air" && fixtureB.getUserData() != "door" && fixtureB.getUserData() != "Object" && fixtureA.getUserData() == "sky") {
 			player = (Player) fixtureA.getBody().getUserData();
 			player.controller.clearJump = false;
 		}
@@ -290,11 +290,11 @@ public class ListenerClass implements ContactListener{
 		Fixture fixtureB = contact.getFixtureB();
 		
 		//checks if the fixture is the "groundCheck-platter" for the player, if it is, we change the players controller isGrounded to falsew
-		if(fixtureA.getUserData() == "foot" && checkJumpable(fixtureB.getUserData())) {
+		if(fixtureA.getUserData() == "foot" && checkJumpable(fixtureB.getUserData()) && fixtureB.getUserData() != "door") {
 		 	player = (Player) fixtureA.getBody().getUserData();
 		 	player.controller.isGrounded = false;
 		}
-		if(fixtureB.getUserData() == "foot" && checkJumpable(fixtureA.getUserData())) {
+		if(fixtureB.getUserData() == "foot" && checkJumpable(fixtureA.getUserData()) && fixtureA.getUserData() != "door") {
 			player = (Player) fixtureB.getBody().getUserData();
 		 	player.controller.isGrounded = false;
 		}
@@ -327,7 +327,6 @@ public class ListenerClass implements ContactListener{
 		unjumpable.add("Portal");
 		unjumpable.add("rightJumpSensor");
 		unjumpable.add("leftJumpSensor");
-		unjumpable.add("Door");
 		unjumpable.add("Player");
 		unjumpable.add("Bullet");
 		unjumpable.add("sky");
