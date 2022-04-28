@@ -155,8 +155,8 @@ public class Tower implements IEnemies {
 	public void stopped() {
 		stopped = true;
 		stoppedTime = System.currentTimeMillis();
-		if (getClosestPlayer(20f) != null)
-			Rumble.rumble(Math.min(Math.abs(1/(getClosestPlayer(20f).getPosition().x-getPosition().x)),0.6f), 0.2f);
+		if (getClosestPlayer(10f) != null)
+			Rumble.rumble(Math.min(Math.abs(1/(getClosestPlayer(10f).getPosition().x-getPosition().x)),0.6f), 0.2f);
 	}
 
 	@Override
