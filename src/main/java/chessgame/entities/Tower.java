@@ -39,7 +39,7 @@ public class Tower implements IEnemies {
 	
 	//Entity size
 	float width = 0.8f;
-	float height = 1.5f;
+	float height = 1.47f;
 	
 	public Tower (Vector2 position, World world, EntityManager entityManager) {
 		homePosition = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
@@ -72,8 +72,8 @@ public class Tower implements IEnemies {
 		addNewBoxSensor(myBody, width * 0.95f, height / 3.5f, new Vector2(0f, height), "weakpoint");
 		
 		//adding side sensors
-		addNewBoxSensor(myBody, width * 0.1f, height * 0.95f, new Vector2(width, 0f), "stopper");
-		addNewBoxSensor(myBody, width * 0.1f, height * 0.95f, new Vector2(-width, 0f), "stopper");
+		addNewBoxSensor(myBody, width * 0.1f, height * 0.5f, new Vector2(width+width * 0.1f, 0f), "stopper");
+		addNewBoxSensor(myBody, width * 0.1f, height * 0.5f, new Vector2(-width-width * 0.1f, 0f), "stopper");
 		
 
 	}
@@ -115,13 +115,13 @@ public class Tower implements IEnemies {
 		if(batch != null) {
 			dmgColorTime(Color.RED, 0.25f);
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
-			sprite.setSize(1.6f, 3.2f);
+			sprite.setSize(1.6f, 3.1f);
 			sprite.draw(batch);	
 		}
 		if(health <= 0)
 			kill();	
 		
-		if(System.currentTimeMillis() > stoppedTime + thinkingTime && stopped) {
+		if(System.currentTimeMillis() > stoppedTime + thinkingTime && stopped || System.currentTimeMillis() > stoppedTime + thinkingTime*3) {
 			Vector2 direction;
 			if(facingRight)
 				direction = new Vector2(1,0);
@@ -133,9 +133,10 @@ public class Tower implements IEnemies {
 
 	@Override
 	public void initialize() {
-		sprite = new Sprite(new Texture (Gdx.files.internal("assets/pawn/darkPawn.png").file().getAbsolutePath()));
+		sprite = new Sprite(new Texture (Gdx.files.internal("assets/enemies/Tower.png").file().getAbsolutePath()));
 		createBody();
 		
+		stoppedTime = System.currentTimeMillis();
 		//Adds the pawn to the entityManager
     	entityManager.addEntity(this);
 	}
@@ -144,17 +145,17 @@ public class Tower implements IEnemies {
 	public void moveTo(Vector2 target) {
 		myBody.setLinearVelocity(target.setLength(20f));
 		stopped = false;
+		if (facingRight)
+			facingRight = false;
+		else
+			facingRight = true;
 	}
 	
 	public void stopped() {
 		stopped = true;
 		stoppedTime = System.currentTimeMillis();
-		if (facingRight)
-			facingRight = false;
-		else
-			facingRight = true;
 		if (getClosestPlayer(20f) != null)
-			Rumble.rumble(Math.min(1/(getClosestPlayer(20f).getPosition().x-getPosition().x),0.5f), 0.2f);
+			Rumble.rumble(Math.min(Math.abs(1/(getClosestPlayer(20f).getPosition().x-getPosition().x)),0.6f), 0.2f);
 	}
 
 	@Override
