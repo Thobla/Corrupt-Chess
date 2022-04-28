@@ -115,7 +115,6 @@ public class Pawn implements IEnemies {
 
 	@Override
 	public void takeDamage(int damage) {
-		attack = 0;
 		dmgTime = 0;
 		hasTakenDamage = true;
 		if(damage <= health)

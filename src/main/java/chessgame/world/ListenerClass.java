@@ -241,7 +241,8 @@ public class ListenerClass implements ContactListener{
 				if (fixtureA.getUserData() == "bumper" && checkJumpable(fixtureB.getUserData())) {
 					KnightBoss knight = (KnightBoss) fixtureA.getBody().getUserData();
 					knight.bump();
-				} else if (fixtureB.getUserData() == "bumper" && checkJumpable(fixtureA.getUserData())) {
+				}
+				if (fixtureB.getUserData() == "bumper" && checkJumpable(fixtureA.getUserData())) {
 					KnightBoss knight = (KnightBoss) fixtureB.getBody().getUserData();
 					knight.bump();
 				}
