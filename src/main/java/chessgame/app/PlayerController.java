@@ -9,6 +9,7 @@ import chessgame.entities.Player;
 import chessgame.entities.playerstates.PlayerBishopState;
 import chessgame.entities.playerstates.PlayerTowerState;
 import chessgame.utils.HUD;
+import chessgame.utils.SaveFile;
 import chessgame.utils.playerForm;
 
 public class PlayerController extends InputMultiplexer {
@@ -31,6 +32,7 @@ public class PlayerController extends InputMultiplexer {
 	private int sprint;
 	private int useAbilty;
 	private int changeform;
+	private int progress;
 	
 	public PlayerController(int[] controls, ChessGame game){
 		up = controls[0];
@@ -39,6 +41,7 @@ public class PlayerController extends InputMultiplexer {
 		sprint = controls[3];
 		useAbilty = controls[7];
 		changeform = controls[8];
+		progress =(int) SaveFile.readProgress()[0];
 	}
 	
 	public PlayerController(int[] controls){
@@ -48,6 +51,8 @@ public class PlayerController extends InputMultiplexer {
 		sprint = controls[3];
 		useAbilty = controls[7];
 		changeform = controls[8];
+		
+		progress =(int) SaveFile.readProgress()[0];
 	}
 	
 	public void myController(Player player) {
@@ -90,11 +95,13 @@ public class PlayerController extends InputMultiplexer {
 		    	}
 		    	if(formCoolDown >= .15f) {
 			    	if(Gdx.input.isKeyJustPressed(changeform)) {
-			    		player.nextState();
-			    		player.changingForm = true;
-			    		HUD.setAbility(player.currentState.form);
-			    		formCoolDown = 0;
-			    		coolDown = 5;
+			    		if(progress >= 3) {
+				    		player.nextState();
+				    		player.changingForm = true;
+				    		HUD.setAbility(player.currentState.form);
+				    		formCoolDown = 0;
+				    		coolDown = 5;
+			    		}
 			    	}
 		    	}
 		    	if(coolDown >= maxCoolDown) {

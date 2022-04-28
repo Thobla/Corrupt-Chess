@@ -57,6 +57,8 @@ public class Player implements IEntities{
 	public boolean sprint = false;
 	public boolean dead = false;
 	public int ratingScore = 0;
+	private int progress;
+	
 	
 	//PlayerStates
 	PlayerPawnState playerPawnState = new PlayerPawnState(this);
@@ -74,6 +76,7 @@ public class Player implements IEntities{
 		this.world = world;
 		currentState = playerPawnState;
 		this.manager = manager;
+		progress =(int) SaveFile.readProgress()[0];
 	}
 	
 	public void initialize() {
@@ -261,12 +264,21 @@ public class Player implements IEntities{
 	}
 	
 	public void nextState() {
-		if(currentState == playerPawnState)
-			changeState(playerKnightState);
+		if(currentState == playerPawnState) {
+			if(progress >= 6) {
+				changeState(playerKnightState);
+			} 
+			if(progress >= 3) {
+				changeState(playerTowerState);
+			}
+		}
 		else if(currentState == playerKnightState)
 			changeState(playerTowerState);
 		else if(currentState == playerTowerState)
-			changeState(playerBishopState);
+			if(progress >= 9) {
+				changeState(playerBishopState);
+			} else 
+				changeState(playerPawnState);
 		else if(currentState == playerBishopState)
 			changeState(playerPawnState);
 	}
