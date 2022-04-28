@@ -37,6 +37,9 @@ public class PlayerKnightState extends PlayerState {
 		if(player.controller.coolDown < player.controller.maxCoolDown) {
 			player.controller.coolDown += Gdx.graphics.getDeltaTime();
 		}
+		if(player.controller.formCoolDown < 0.15f) {
+			player.controller.formCoolDown += Gdx.graphics.getDeltaTime();
+		}
 		if(!player.controller.lock && hasCharged) {
 			jumpTime += Gdx.graphics.getDeltaTime();
 			player.jump(500f);

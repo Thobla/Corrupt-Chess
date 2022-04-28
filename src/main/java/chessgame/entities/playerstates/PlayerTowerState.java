@@ -33,6 +33,9 @@ public class PlayerTowerState extends PlayerState {
 		if(player.controller.coolDown < player.controller.maxCoolDown) {
 			player.controller.coolDown += Gdx.graphics.getDeltaTime();
 		}
+		if(player.controller.formCoolDown < 0.15f) {
+			player.controller.formCoolDown += Gdx.graphics.getDeltaTime();
+		}
 		
 		if(System.currentTimeMillis() > time + 250) {
 			player.controller.lock = false;
