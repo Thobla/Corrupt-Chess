@@ -83,6 +83,7 @@ public class MenuScreen implements Screen {
 
 	@Override
 	public void pause() {
+		
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import chessgame.app.Game;
 import chessgame.entities.knightstates.*;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
@@ -36,11 +37,13 @@ public class Knight implements IEnemies {
 	
 	boolean canJump;
 	boolean grounded;
+	boolean firstLanded;
 	public boolean lookingRight;
 	float preXVal;
 	Vector2 jumpSpot;
 	long jumpTime;
 	long airborneTime;
+	boolean correctionJump;
 	
 	//State	
 	public KnightState idleState = new KnightIdle(this);
@@ -60,8 +63,11 @@ public class Knight implements IEnemies {
 		health = 3;
 		attack = 1;
 		lookingRight = false;
-		grounded = true;
+		grounded = false;
+		canJump = false;
+		firstLanded = false;
 		jumpSpot = Vector2.Zero;
+		correctionJump = false;
 	}	
 		
 	
@@ -143,7 +149,7 @@ public class Knight implements IEnemies {
 			canJump = true;
 		}
 		
-		if(System.currentTimeMillis() > airborneTime + 2500 && !grounded) {
+		if(System.currentTimeMillis() > airborneTime + 2500 && !grounded && firstLanded) {
 			grounded();
 		}
 	}
@@ -154,7 +160,10 @@ public class Knight implements IEnemies {
 		createBody();
 		
 		//Adds the knight to the entityManager
-    	entityManager.addEntity(this);
+		if (!Game.gameStart)
+			entityManager.addEntity(this);
+		else
+			entityManager.addRuntimeEntity(this);
 	}
 	
 	public void setSprite(String path) {
@@ -167,9 +176,15 @@ public class Knight implements IEnemies {
 			float xVal = position.x - target.x;
 			float yVal = position.y - target.y;
 			
+			//The second jump after getting stuck
+			if (correctionJump) {
+				xVal = Math.copySign(3f, xVal);
+				correctionJump = false;
+			}
 			//If the knight gets stuck at a wall, it will jump back a step.
 			if (getPosition().x == jumpSpot.x && (xVal < 0 && preXVal < 0 || xVal > 0 && preXVal > 0)) {
 				xVal = -Math.copySign(1.3f,xVal);
+				correctionJump = true;
 			}
 			
 			jumpSpot = new Vector2(getPosition());
@@ -178,13 +193,13 @@ public class Knight implements IEnemies {
 					sprite.flip(true, false);
 					lookingRight = false;
 				}
-				myBody.setLinearVelocity(-1-xVal, 20);
+				myBody.setLinearVelocity(-1-xVal, 23);
 			} else {
 				if (!lookingRight) {
 					sprite.flip(true, false);
 					lookingRight = true;
 				}
-				myBody.setLinearVelocity(+1-xVal, 20);
+				myBody.setLinearVelocity(+1-xVal, 23);
 			}
 			
 			preXVal = xVal;
@@ -196,10 +211,12 @@ public class Knight implements IEnemies {
 	
 	public void grounded() {
 		if (!grounded) {
+			if (!firstLanded)
+				firstLanded = true;
 			myBody.setLinearVelocity(Vector2.Zero);
 			grounded = true;
 			if (getClosestPlayer(100f) != null)
-				Rumble.rumble(Math.min(1/(getClosestPlayer(100f).getPosition().x-getPosition().x),0.6f), 0.1f);
+				Rumble.rumble(Math.min(Math.abs(1/(getClosestPlayer(20f).getPosition().x-getPosition().x)),0.6f), 0.1f);
 			jumpTime = System.currentTimeMillis();
 		}
 		

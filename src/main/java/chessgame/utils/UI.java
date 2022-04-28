@@ -138,6 +138,14 @@ public class UI {
 		return image;
 	}
 	
+	public static Image image(Vector2 size, Vector2 position, Texture texture){
+		Image image = new Image(texture);
+		image.setSize(colWidth*size.x, rowHeight*size.y);
+		image.setPosition(colWidth*position.x, rowHeight*position.y);
+		image.setAlign(Align.center);
+		return image;
+	}
+	
 	public static Slider audioSlider(Vector2 size, Vector2 position, float audiolvl, int[] controls) {
 		Slider audioSlider = new Slider(0, 100, 1, false, skin, "default-horizontal");
         audioSlider.setSize(colWidth*size.x,rowHeight*size.y);

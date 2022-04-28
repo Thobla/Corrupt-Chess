@@ -61,7 +61,7 @@ public class Door implements IEntities {
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);
 		
-		myBody.createFixture(shape, 1000f).setUserData("Door");;
+		myBody.createFixture(shape, 1000f).setUserData("air");;
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);
 	}
@@ -99,11 +99,9 @@ public class Door implements IEntities {
 		
 		if(open) {
 			myBody.getFixtureList().get(0).setSensor(true);
-			myBody.setUserData("air");
 			sprite = spriteOpen;
 		} else {
 			myBody.getFixtureList().get(0).setSensor(false);
-			myBody.setUserData("Door");
 			sprite = spriteClosed;
 		}
 		
@@ -132,9 +130,5 @@ public class Door implements IEntities {
 	 */
 	public boolean isOpen() {
 		return open;
-	}
-
-	@Override
-	public void takeDamage(int Damage) {
 	}
 }

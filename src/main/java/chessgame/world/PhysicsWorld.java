@@ -1,8 +1,5 @@
 package chessgame.world;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -12,21 +9,28 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
+import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.entities.BBlock;
+import chessgame.entities.Bullet;
 import chessgame.entities.Button;
 import chessgame.entities.Door;
+import chessgame.entities.IEntities;
 import chessgame.entities.Knight;
+import chessgame.entities.KnightBoss;
 import chessgame.entities.Pawn;
 import chessgame.entities.Portal;
 import chessgame.entities.RBButton;
 import chessgame.entities.RBlock;
 import chessgame.entities.RatingPoint;
+import chessgame.entities.TheTower;
+import chessgame.entities.Tower;
 import chessgame.utils.Constants;
+import chessgame.utils.Direction;
 import chessgame.utils.EntityManager;
+import chessgame.utils.EntityType;
 
 public class PhysicsWorld {
 	static int PPM = Constants.PixelPerMeter;
@@ -131,6 +135,14 @@ public class PhysicsWorld {
 				Button button = new Button(pos, world, manager, code);
 				button.initialize();
 			}
+			if(entity.getName().toLowerCase().equals("tower")) {
+				Tower tower = new Tower(pos, world, manager);
+				tower.initialize();
+			}
+			if(entity.getName().toLowerCase().equals("thetower")) {
+				TheTower tower = new TheTower(pos, world, manager);
+				tower.initialize();
+			}
 			if(entity.getName().toLowerCase().equals("portal")) {
 				Portal portal = new Portal(pos, world, manager);
 				portal.initialize();
@@ -141,6 +153,10 @@ public class PhysicsWorld {
 			if(entity.getName().toLowerCase().equals("knight")) {
 				Knight knight = new Knight(pos, world, manager);
 				knight.initialize();
+			}
+			if(entity.getName().toLowerCase().equals("bossknight")) {
+				KnightBoss knightBoss = new KnightBoss(pos, world, manager);
+				knightBoss.initialize();
 			}
 			
 			if(entity.getName().toLowerCase().equals("rblock")) {
@@ -166,6 +182,19 @@ public class PhysicsWorld {
 				RBButton rbbutton = new RBButton(pos, world, manager, rbcode);
 				rbbutton.initialize();
 			}
+		}
 	}
- }
+	
+	public static IEntities spawnEntity(EntityType type, Vector2 pos, World world, EntityManager manager) {
+		if (type == EntityType.Knight) {
+			Knight knight = new Knight(new Vector2(pos.x*Constants.PixelPerMeter,pos.y*Constants.PixelPerMeter), world, manager);
+			knight.initialize();
+			return knight;
+		}
+		if (type == EntityType.Bullet) {
+			Bullet bullet = new Bullet(new Vector2(pos.x*Constants.PixelPerMeter,pos.y*Constants.PixelPerMeter), world, manager, Direction.RIGHT);
+			return bullet;
+		}
+		return null;
+	}
 }

@@ -139,8 +139,4 @@ public class RBButton implements IObjects{
 			bblock.bBlockState();
 		}
 	}
-
-	@Override
-	public void takeDamage(int Damage) {	
-	}
 }

@@ -50,11 +50,6 @@ public interface IEntities {
 	 */
 	public abstract void kill();
 	
-	/**
-	 * Damages the entity. Not all entities needs to take damage
-	 * @param Damage
-	 */
-	public abstract void takeDamage(int Damage);
 	
 	/**
 	 * removes the Box2D body of the entity

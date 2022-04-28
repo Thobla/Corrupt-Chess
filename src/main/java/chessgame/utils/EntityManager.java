@@ -29,12 +29,13 @@ public class EntityManager {
     public HashMap<Integer, Door> doorMap = new HashMap<Integer, Door>();
     public HashMap<Integer, RBlock> rBlockMap = new HashMap<Integer, RBlock>();
     public HashMap<Integer, BBlock> bBlockMap = new HashMap<Integer, BBlock>();
+    public List<IEntities> entityWaitingList = new ArrayList<IEntities>();
     
     private PhysicsWorld pworld;
     
     public EntityManager(PhysicsWorld gameWorld) {
     	this.pworld = gameWorld;
-    }
+    } 
     
     /**
      * Adds the entity to the removeList.
@@ -74,10 +75,21 @@ public class EntityManager {
      * @param batch
      */
     public void updateEntities(Batch batch) {
+    	if (!entityWaitingList.isEmpty()) {
+    		for (IEntities entity : entityWaitingList) {
+    			addEntity(entity);
+    		}
+    		entityWaitingList.clear();
+    	}
     	for(IEntities entity : entityList) {
     		entity.updateState(batch);
     	}
     }
+    
+    public void addRuntimeEntity(IEntities entity) {
+    	entityWaitingList.add(entity);
+    }
+    
     /**
      * Adds a spawn location to the spawnLocation list
      * @param pos
@@ -96,9 +108,9 @@ public class EntityManager {
     	 * (200, 200)
     	 */
     	if(playerSpawns.size() > 0)
-    		player = new Player(playerSpawns.remove(0), pworld.world);
+    		player = new Player(playerSpawns.remove(0), pworld.world, this);
     	else
-    		player = new Player(new Vector2(200,200), pworld.world);
+    		player = new Player(new Vector2(200,200), pworld.world, this);
     	
         player.initialize();
         playerList.add(player);

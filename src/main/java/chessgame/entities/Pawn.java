@@ -30,8 +30,8 @@ public class Pawn implements IEnemies {
 	public EntityManager entityManager;
 	public Sprite sprite;
 	
-	boolean invisFrame;
-	long hitTime;
+	boolean hasTakenDamage = false;
+	float dmgTime = 0;
 	
 	//State	
 	public PawnState idleState = new PawnIdle(this);
@@ -42,7 +42,7 @@ public class Pawn implements IEnemies {
 	
 	//Entity size
 	float width = 0.5f;
-	float height = 0.5f;
+	float height = 1f;
 	float jumpSensorwidth = 0.5f;
 	
 	public Pawn (Vector2 position, World world, EntityManager entityManager) {
@@ -55,7 +55,7 @@ public class Pawn implements IEnemies {
 	}
 	
 	public void initialize() {
-		sprite = new Sprite(new Texture (Gdx.files.internal("assets/pawn/badguy.png").file().getAbsolutePath()));
+		sprite = new Sprite(new Texture (Gdx.files.internal("assets/pawn/darkPawn.png").file().getAbsolutePath()));
 		createBody();
 		
 		//Adds the pawn to the entityManager
@@ -115,18 +115,14 @@ public class Pawn implements IEnemies {
 
 	@Override
 	public void takeDamage(int damage) {
-		attack = 0;
+		dmgTime = 0;
+		hasTakenDamage = true;
 		if(damage <= health)
 			health -= damage;
 		else {
 			kill();
 			return;
 		}
-		
-		invisFrame = true;
-		hitTime = System.currentTimeMillis();
-			//sprite.setColor(Color.WHITE);
-		
 	}
 
 	@Override
@@ -154,21 +150,13 @@ public class Pawn implements IEnemies {
 		keepWithinBounds();
 		position = myBody.getPosition();
 		if(batch != null) {
+			dmgColorTime(Color.RED, 0.25f);
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
-			sprite.setSize(1, 1);
+			sprite.setSize(2, 2);
 			sprite.draw(batch);	
 		}
 		if(health <= 0)
-			kill();
-		
-		if(System.currentTimeMillis() < hitTime + 100) {
-			sprite.setColor(Color.RED);
-			attack = 0;
-		} else {
-			sprite.setColor(Color.WHITE);
-			attack = 1;
-		}
-		
+			kill();		
 	}
 
 	@Override
@@ -244,6 +232,16 @@ public class Pawn implements IEnemies {
 		myBody.createFixture(fixDef).setUserData(userData);
 		
 		
+	}
+	
+	public void dmgColorTime(Color color, float time) {
+		if(dmgTime > time && hasTakenDamage) {
+			sprite.setColor(Color.WHITE);
+			hasTakenDamage = false;
+		} else if(hasTakenDamage) {
+			sprite.setColor(color);
+			dmgTime += Gdx.graphics.getDeltaTime();
+		}
 	}
 
 	@Override

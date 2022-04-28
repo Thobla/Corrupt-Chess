@@ -133,8 +133,4 @@ public class BBlock implements IEntities {
 	public boolean isOn() {
 		return isOn;
 	}
-
-	@Override
-	public void takeDamage(int Damage) {
-	}
 }

@@ -3,8 +3,6 @@ package chessgame.world;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.text.html.parser.Entity;
-
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -14,13 +12,18 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
 import chessgame.app.PlayerController;
+import chessgame.entities.Bullet;
 import chessgame.entities.IEnemies;
 import chessgame.entities.IEntities;
 import chessgame.entities.IObjects;
 import chessgame.entities.Knight;
+import chessgame.entities.KnightBoss;
 import chessgame.entities.Player;
 import chessgame.entities.Portal;
+import chessgame.entities.TheTower;
+import chessgame.entities.Tower;
 import chessgame.utils.EntityManager;
+import chessgame.utils.Rumble;
 
 public class ListenerClass implements ContactListener{
 	
@@ -45,10 +48,14 @@ public class ListenerClass implements ContactListener{
 		if(fixtureA.getUserData() == "foot" && checkJumpable(fixtureB.getUserData())) {
 		 	player = (Player) fixtureA.getBody().getUserData();
 		 	player.controller.isGrounded = true;
+		 	if(!(fixtureB.getBody().getUserData() instanceof IEnemies))
+		 		player.playDust();
 		}
 		else if(fixtureB.getUserData() == "foot" && checkJumpable(fixtureA.getUserData())) {
 			player = (Player) fixtureB.getBody().getUserData();
 		 	player.controller.isGrounded = true;
+		 	if(!(fixtureA.getBody().getUserData() instanceof IEnemies))
+		 		player.playDust();
 		}
 		//checks if the fixture is a enemy weakpoint
 		if(fixtureA.getUserData() == "weakpoint" && fixtureB.getUserData() == "foot") {
@@ -130,16 +137,13 @@ public class ListenerClass implements ContactListener{
 		
 		//checks if an entities jump-sensor is hitting any non-entity objects, making sure
 		//it differenciates leftJumpSensor from rightJunpSensor depending on linearvelocity.
-		//start
 		if((fixtureA.getUserData() == "rightJumpSensor" || fixtureA.getUserData() == "leftJumpSensor") && (fixtureB.getBody().getUserData() == "ground")) {
 			if (fixtureA.getUserData() == "rightJumpSensor" || fixtureA.getUserData() == "rightJumpSensor2" && fixtureA.getBody().getLinearVelocity().x > 0) {
 				IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
-				System.out.println("sensor");
 				enemy.jump();
 			}
 			else if(fixtureA.getUserData() == "leftJumpSensor" && fixtureA.getBody().getLinearVelocity().x < 0) {
 				IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
-				System.out.println("sensor");
 				enemy.jump();
 			}
 			
@@ -154,32 +158,130 @@ public class ListenerClass implements ContactListener{
 				IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
 				enemy.jump();
 			}
-			
+		}
+		
+		if (fixtureA.getUserData() == "stopper") {
+			Tower tower = (Tower) fixtureA.getBody().getUserData();
+			tower.stopped();
+		} else if(fixtureB.getUserData() == "stopper"){
+			Tower tower = (Tower) fixtureB.getBody().getUserData();
+			tower.stopped();
 		}
 		
 		//Checks if the Knight enemy has landed
-		if (fixtureA.getUserData() == "hoof" && checkJumpable(fixtureB.getUserData())) {
-			Knight knight = (Knight) fixtureA.getBody().getUserData();
-			knight.grounded();
-		} else if (fixtureB.getUserData() == "hoof" && checkJumpable(fixtureA.getUserData())) {
-			Knight knight = (Knight) fixtureB.getBody().getUserData();
-			knight.grounded();
-		}
-		//Checks if the Knight landed on the player or an other enemy
-		if (fixtureA.getUserData() == "hoof" && fixtureB.getUserData() == "Player" || fixtureA.getUserData() == "hoof" && fixtureB.getUserData() == "weakpoint") {
-			Knight knight = (Knight) fixtureA.getBody().getUserData();
-			knight.jump();
-			IEntities entity = (IEntities) fixtureB.getBody().getUserData();
-			entity.takeDamage(knight.getAttack());
-		} else if (fixtureB.getUserData() == "hoof" && fixtureA.getUserData() == "Player" || fixtureB.getUserData() == "hoof" && fixtureA.getUserData() == "weakpoint") {
-			Knight knight = (Knight) fixtureB.getBody().getUserData();
-			knight.jump();
-			IEntities entity = (IEntities) fixtureA.getBody().getUserData();
-			entity.takeDamage(knight.getAttack());
-		}
+				if (fixtureA.getUserData() == "hoof" && checkJumpable(fixtureB.getUserData())) {
+					if (fixtureA.getBody().getUserData().getClass().equals(Knight.class)) {
+						Knight knight = (Knight) fixtureA.getBody().getUserData();
+						knight.grounded();
+					}
+					if (fixtureA.getBody().getUserData().getClass().equals(KnightBoss.class)) {
+						KnightBoss knight = (KnightBoss) fixtureA.getBody().getUserData();
+						knight.grounded();
+					}
+					
+				} else if (fixtureB.getUserData() == "hoof" && checkJumpable(fixtureA.getUserData())) {
+					if (fixtureB.getBody().getUserData().getClass().equals(Knight.class)) {
+						Knight knight = (Knight) fixtureB.getBody().getUserData();
+						knight.grounded();
+					} 
+					if (fixtureB.getBody().getUserData().getClass().equals(KnightBoss.class)) {
+						KnightBoss knight = (KnightBoss) fixtureB.getBody().getUserData();
+						knight.grounded();
+					}
+				}
+				//Checks if the Knight landed on the player or an other enemy
+				if (fixtureA.getUserData() == "hoof" && fixtureB.getUserData() == "Player" || fixtureA.getUserData() == "hoof" && fixtureB.getUserData() == "weakpoint") {
+					if (fixtureA.getBody().getUserData().getClass().equals(Knight.class)) {
+						Knight knight = (Knight) fixtureA.getBody().getUserData();
+						knight.jump();
+						if (fixtureB.getBody().getUserData().getClass().equals(Player.class)) {
+							Player player = (Player) fixtureB.getBody().getUserData();
+							player.takeDamage(knight.getAttack());
+						} else {
+							IEnemies entity = (IEnemies) fixtureB.getBody().getUserData();
+							entity.takeDamage(knight.getAttack());
+						}
+					} else {
+						KnightBoss knight = (KnightBoss) fixtureA.getBody().getUserData();
+						knight.jump();
+						if (fixtureB.getBody().getUserData().getClass().equals(Player.class)) {
+							Player player = (Player) fixtureB.getBody().getUserData();
+							player.takeDamage(knight.getAttack());
+						} else {
+							IEnemies entity = (IEnemies) fixtureB.getBody().getUserData();
+							entity.takeDamage(knight.getAttack());
+						}
+					}
+				} else if (fixtureB.getUserData() == "hoof" && fixtureA.getUserData() == "Player" || fixtureB.getUserData() == "hoof" && fixtureA.getUserData() == "weakpoint" && fixtureB.getUserData() == "hoof" && fixtureA.getUserData() == "sky") {
+					if (fixtureB.getBody().getUserData().getClass().equals(Knight.class)) {
+						Knight knight = (Knight) fixtureB.getBody().getUserData();
+						knight.jump();
+						if (fixtureA.getBody().getUserData().getClass().equals(Player.class)) {
+							Player player = (Player) fixtureA.getBody().getUserData();
+							player.takeDamage(knight.getAttack());
+						} else {
+							IEnemies entity = (IEnemies) fixtureA.getBody().getUserData();
+							entity.takeDamage(knight.getAttack());
+						}
+					} else {
+						KnightBoss knight = (KnightBoss) fixtureB.getBody().getUserData();
+						knight.jump();
+						if (fixtureA.getBody().getUserData().getClass().equals(Player.class)) {
+							Player player = (Player) fixtureA.getBody().getUserData();
+							player.takeDamage(knight.getAttack());
+						} else {
+							IEnemies entity = (IEnemies) fixtureA.getBody().getUserData();
+							entity.takeDamage(knight.getAttack());
+						}
+					}
+					
+				}
+				
+				//Checks if the knightBoss bumps a wall
+				if (fixtureA.getUserData() == "bumper" && checkJumpable(fixtureB.getUserData())) {
+					KnightBoss knight = (KnightBoss) fixtureA.getBody().getUserData();
+					knight.bump();
+				}
+				if (fixtureB.getUserData() == "bumper" && checkJumpable(fixtureA.getUserData())) {
+					KnightBoss knight = (KnightBoss) fixtureB.getBody().getUserData();
+					knight.bump();
+				}
 		
-		//end
-		
+		if((fixtureB.getUserData() == "Bullet")) {
+			Bullet bullet = ((Bullet) fixtureB.getBody().getUserData());
+			if(fixtureA.getBody().getUserData() instanceof KnightBoss) {
+			}
+			else if(fixtureA.getBody().getUserData() instanceof IEnemies) {
+				IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
+				enemy.takeDamage(1);
+				bullet.kill();
+			} else if (fixtureA.getBody().getUserData() instanceof Player){
+				Player player = (Player) fixtureA.getBody().getUserData();
+				player.takeDamage(1);
+				bullet.kill();
+			}
+			else {
+					bullet.kill();
+			}
+		}
+		else if((fixtureA.getUserData() == "Bullet")) {
+			Bullet bullet = ((Bullet) fixtureA.getBody().getUserData());
+			if(fixtureB.getBody().getUserData() instanceof KnightBoss) {
+			}
+			else if(fixtureA.getBody().getUserData() instanceof IEnemies) {
+				IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
+				enemy.takeDamage(1);
+				bullet.kill();
+			} else if (fixtureB.getBody().getUserData() instanceof Player){
+				Player player = (Player) fixtureB.getBody().getUserData();
+				player.takeDamage(1);
+				bullet.kill();
+			}
+			else {
+					bullet.kill();
+			}
+		}
+		TheTowerSensors(fixtureA, fixtureB);
 	}
 
 	@Override
@@ -225,12 +327,99 @@ public class ListenerClass implements ContactListener{
 		unjumpable.add("Portal");
 		unjumpable.add("rightJumpSensor");
 		unjumpable.add("leftJumpSensor");
+		unjumpable.add("Door");
+		unjumpable.add("Player");
+		unjumpable.add("Bullet");
+		unjumpable.add("sky");
 		unjumpable.add("ColorBlockOff");
-		
 	}
 	
 	private <T> boolean checkJumpable(T name) {
 		return !unjumpable.contains(name);
 	}
 
+	private void TheTowerSensors(Fixture fixtureA, Fixture fixtureB) {
+		//Checks for TheTowerBoss
+		if(fixtureA.getUserData() == "TLHand") {
+			TheTower tower = (TheTower) fixtureA.getBody().getUserData();
+			
+			if(!(fixtureB.getBody().getUserData() instanceof Player))
+				tower.freezeHands(true);
+			if(!(fixtureB.getBody().getUserData() instanceof Player)) {
+				tower.returnHand = true;
+				tower.smash = false;
+				tower.freezeHands(true);
+				Rumble.rumble(0.2f, 0.2f);
+			} else if (!tower.frozen) {
+				if(fixtureB.getBody().getUserData() instanceof Player) {
+					player = (Player) fixtureB.getBody().getUserData();
+					if(!tower.returnHand)
+						player.takeDamage(tower.getAttack());
+				}
+				tower.returnHand = true;
+				tower.smash = false;
+				tower.quickReturn = true;
+				Rumble.rumble(0.2f, 0.2f);
+			}
+		}
+		else if(fixtureB.getUserData() == "TLHand") {
+			TheTower tower = (TheTower) fixtureB.getBody().getUserData();
+			
+			if(!(fixtureB.getBody().getUserData() instanceof Player))
+				tower.freezeHands(true);
+			if(!(fixtureB.getBody().getUserData() instanceof Player)) {
+				tower.returnHand = true;
+				tower.smash = false;
+				tower.freezeHands(true);
+				Rumble.rumble(0.2f, 0.2f);
+			} else if (!tower.frozen) {
+				if(fixtureA.getBody().getUserData() instanceof Player) {
+					player = (Player) fixtureA.getBody().getUserData();
+					if(!tower.returnHand)
+						player.takeDamage(tower.getAttack());
+				}
+				tower.returnHand = true;
+				tower.smash = false;
+				tower.quickReturn = true;
+				Rumble.rumble(0.2f, 0.2f);
+			}
+		}
+		
+		if(fixtureA.getUserData() == "Tfoot") {
+			TheTower tower = (TheTower) fixtureA.getBody().getUserData();
+			if(tower.getCurrentState() == tower.jumpState) {
+				Rumble.rumble(.4f, .4f);
+				tower.shockWave();
+				if(tower.jumpCounter == 0) {
+					tower.changeState(tower.idleState);
+				}
+				if(fixtureB.getBody().getUserData() instanceof Player)
+					player.takeDamage(tower.getAttack());
+				tower.jump = false;
+			}
+		}
+		else if(fixtureB.getUserData() == "Tfoot") {
+			TheTower tower = (TheTower) fixtureB.getBody().getUserData();
+			if(tower.getCurrentState() == tower.jumpState) {
+				Rumble.rumble(.4f, .4f);
+				tower.shockWave();
+				tower.changeState(tower.idleState);
+				if(fixtureA.getBody().getUserData() instanceof Player)
+					player.takeDamage(tower.getAttack());
+				tower.jump = false;
+			}
+		}
+		if(fixtureA.getUserData() == "Wave" && fixtureB.getBody().getUserData() instanceof Player) {
+			TheTower tower = (TheTower) fixtureA.getBody().getUserData();
+			player = (Player) fixtureB.getBody().getUserData();
+			player.takeDamage(tower.getAttack());
+			tower.shockWave = false;
+		}
+		if(fixtureB.getUserData() == "Wave" && fixtureA.getBody().getUserData() instanceof Player) {
+			TheTower tower = (TheTower) fixtureB.getBody().getUserData();
+			player = (Player) fixtureA.getBody().getUserData();
+			tower.shockWave = false;
+			player.takeDamage(tower.getAttack());
+		}
+	}
 }

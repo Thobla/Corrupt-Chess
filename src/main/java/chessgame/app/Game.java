@@ -1,7 +1,8 @@
 package chessgame.app;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -23,6 +24,7 @@ import chessgame.utils.Constants;
 import chessgame.world.PhysicsWorld;
 import chessgame.world.TiledGameMap;
 import chessgame.utils.EntityManager;
+import chessgame.utils.HUD;
 import chessgame.utils.Rumble;
 import chessgame.utils.SaveFile;
 import chessgame.utils.ScreenType;
@@ -59,6 +61,7 @@ public class Game implements Screen {
     public static String[] levels = new String[] {
     	"1-1",
     	"1-2",
+    	"1-3",
     	"Knight"
     };
     
@@ -76,7 +79,6 @@ public class Game implements Screen {
     static TextButton retryButton;
     static TextButton quitButtonGO;
     static TextButton quitButtonP;
-    static Label healthText;
     static Label scoreText;
     static Label timerText;
     static float timer;
@@ -85,6 +87,8 @@ public class Game implements Screen {
     
     static boolean paused;
     static boolean dead;
+    
+    public static boolean gameStart = false;
     
     
     public Game(ChessGame game, int level) {
@@ -96,7 +100,7 @@ public class Game implements Screen {
     	
     	//World initialisation
     	gameWorld = new PhysicsWorld();
-    	//debugRenderer = new Box2DDebugRenderer();
+    	debugRenderer = new Box2DDebugRenderer();
     	
     	entityManager = gameWorld.entityManager;
     	
@@ -131,10 +135,10 @@ public class Game implements Screen {
     	
 
     	initilizeUI();
+    	HUD hud = new HUD(stage);
     	
     	timer = 300;
     	stage.addActor(timerText);
-    	stage.addActor(healthText);
     	stage.addActor(scoreText);
     	paused = false;
     	
@@ -150,18 +154,18 @@ public class Game implements Screen {
 
     @Override
     public void render(float delta) {
+    	if (!gameStart)
+    		gameStart = true;
     	if(currentLevelIndex >= levels.length) {
     		game.setScreen(new MenuScreen(game));
     		return;
     	}
         if (!paused) {
-	        //Logic step
 	    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
 	        gameMap.render(cam);
-	    	
-	        /**Debug-render to be off when not debugging.
+	        //Debug-render to be off when not debugging.
 	    	debugRenderer.render(gameWorld.world, cam.combined);
-	    	*/
+	    	
 	        
 	    	batch.setProjectionMatrix(cam.combined);
 	    	
@@ -175,8 +179,7 @@ public class Game implements Screen {
 	    	entityManager.updateLists();
 	    	
 	    	//UI updates
-	    	healthText.setText("Health: " + player.getHealth());
-	    	scoreText.setText("Score: " + player.getScore());
+	    	scoreText.setText(player.getScore());
 	           
 	        //Camera Updates
 	    	CameraStyles.lockOnTarget(cam, player.getPosition());
@@ -211,9 +214,7 @@ public class Game implements Screen {
         else {
         	gameMap.render(cam);
         	
-        	/**Debug-render to be off when not debugging.
-	    	
-	    	*/
+        	//Debug-render to be off when not debugging.
         	//debugRenderer.render(gameWorld.world, cam.combined);
         	
 	    	batch.setProjectionMatrix(cam.combined);
@@ -325,12 +326,10 @@ public class Game implements Screen {
     	
         pauseText = UI.label(titleSize, new Vector2(6,12), "PAUSED", "title-light");
         
-        timerText = UI.label(smallUISize, new Vector2(0,14), "000", "default");
+        timerText = UI.label(smallUISize, new Vector2(12,14), "000", "default");
         
-    	healthText = UI.label(smallUISize, new Vector2(3,14), "Health: ", "default");
-
-    	scoreText = UI.label(smallUISize, new Vector2(6,14), "Score: ", "default");
-
+    	scoreText = UI.label(smallUISize, new Vector2(22,14), "Score: ", "default");
+    	
     	victoryText = UI.label(titleSize, new Vector2(6,12), "VICTORY", "title-light");
     	
         retryButton = UI.newScreenButton(buttonSize, new Vector2(13,8), "Retry?", ScreenType.Game, game, currentLevelIndex);

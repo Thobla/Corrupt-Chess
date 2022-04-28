@@ -23,7 +23,7 @@ public class PlayerTest {
 		/**
 		 * Player position at Vector2.zero, is (0.5f, 0.5f)
 		 */
-		player = new Player(Vector2.Zero, pworld.world);
+		player = new Player(Vector2.Zero, pworld.world, manager);
 		player.createBody();
 	}
 	
@@ -51,7 +51,7 @@ public class PlayerTest {
 	void playerJumpTest() {
 		pworld.world.setGravity(Vector2.Zero);
 		
-		assertEquals(0.5f ,player.position.y);
+		assertEquals(1f ,player.position.y);
 		
 		player.jump(100000f);
 		pworld.logicStep(10);

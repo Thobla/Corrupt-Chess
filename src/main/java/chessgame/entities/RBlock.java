@@ -133,8 +133,4 @@ public class RBlock implements IEntities {
 	public boolean isOn() {
 		return isOn;
 	}
-
-	@Override
-	public void takeDamage(int Damage) {
-	}
 }
