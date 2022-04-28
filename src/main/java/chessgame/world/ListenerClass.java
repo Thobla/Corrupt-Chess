@@ -156,7 +156,6 @@ public class ListenerClass implements ContactListener{
 			}
 			else if(fixtureB.getUserData() == "leftJumpSensor" && fixtureB.getBody().getLinearVelocity().x < 0) {
 				IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
-				System.out.println("sensor");
 				enemy.jump();
 			}
 		}
