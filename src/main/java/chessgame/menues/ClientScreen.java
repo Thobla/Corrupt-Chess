@@ -42,10 +42,10 @@ public class ClientScreen implements Screen{
         Button backButton = UI.newScreenButton(new Vector2(3,1.5f), new Vector2(10.5f,1), "Back", ScreenType.MultiPlayerScreen, game, 0);
         stage.addActor(backButton);
 
-        TextField textField = UI.textField("", new Vector2(5,3), new Vector2(4, 5));
+        TextField textField = UI.textField("", new Vector2(5,5), new Vector2(9.5f , 7));
         stage.addActor(textField);
         
-        Button hostButton = UI.connectButton(new Vector2(4, 1.5f), new Vector2(8, 4), "test", game, 0, textField);
+        Button hostButton = UI.connectButton(new Vector2(4, 1.5f), new Vector2(10, 4), "Connect", game, 0, textField);
         stage.addActor(hostButton);
 
     }

@@ -41,7 +41,7 @@ public class HostScreen implements Screen{
         Button backButton = UI.newScreenButton(new Vector2(3,1.5f), new Vector2(10.5f,1), "Back", ScreenType.MultiPlayerScreen, game, 0);
         stage.addActor(backButton);
 
-        Button hostButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(8, 4), "Start", ScreenType.Host, game, 0);
+        Button hostButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(10f, 7), "Start", ScreenType.Host, game, 0);
         stage.addActor(hostButton);
 
     }

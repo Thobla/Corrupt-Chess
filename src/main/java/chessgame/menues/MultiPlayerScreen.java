@@ -1,8 +1,6 @@
 package chessgame.menues;
 
 import chessgame.app.ChessGame;
-import chessgame.app.Game;
-import chessgame.utils.SaveFile;
 import chessgame.utils.ScreenType;
 import chessgame.utils.UI;
 import com.badlogic.gdx.Gdx;
@@ -16,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -44,10 +41,10 @@ public class MultiPlayerScreen implements Screen{
         Button backButton = UI.newScreenButton(new Vector2(3,1.5f), new Vector2(10.5f,1), "Back", ScreenType.MenuScreen, game, 0);
         stage.addActor(backButton);
 
-        Button hostButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(8, 4), "Host", ScreenType.HostScreen, game, 0);
+        Button hostButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(6.2f, 7), "Host", ScreenType.HostScreen, game, 0);
         stage.addActor(hostButton);
 
-        Button clientButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(17.7f, 4), "Join", ScreenType.ClientScreen, game, 0);
+        Button clientButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(14.2f, 7), "Join", ScreenType.ClientScreen, game, 0);
         stage.addActor(clientButton);
     }
 
