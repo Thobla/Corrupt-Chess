@@ -24,11 +24,13 @@ public class PlayerPawnState extends PlayerState {
 
 	@Override
 	public void Update() {
-		if(player.controller.coolDown < player.controller.maxCoolDown) {
-			player.controller.coolDown += Gdx.graphics.getDeltaTime();
-		}
-		if(player.controller.formCoolDown < 0.15f) {
-			player.controller.formCoolDown += Gdx.graphics.getDeltaTime();
+		if(player.controller != null) {
+			if(player.controller.coolDown < player.controller.maxCoolDown) {
+				player.controller.coolDown += Gdx.graphics.getDeltaTime();
+			}
+			if(player.controller.formCoolDown < 0.15f) {
+				player.controller.formCoolDown += Gdx.graphics.getDeltaTime();
+			}
 		}
 	}
 
