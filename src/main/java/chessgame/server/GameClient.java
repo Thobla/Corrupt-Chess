@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import chessgame.server.pings.FinishedPing;
+import chessgame.server.pings.P2WaitingPing;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -29,7 +30,7 @@ public class GameClient implements IClient{
 
 		client.addListener(new Listener() {
 		       public void received (Connection connection, Object object) {
-		          if (object instanceof HashMap || object instanceof List || object instanceof PausePing || object instanceof NextMapPing || object instanceof FinishedPing) {
+		          if (object instanceof HashMap || object instanceof List || object instanceof PausePing || object instanceof NextMapPing || object instanceof FinishedPing || object instanceof P2WaitingPing) {
 		        	  if(game.netHandler != null)
 		        		  game.netHandler.handlePacket(object, game);
 		             

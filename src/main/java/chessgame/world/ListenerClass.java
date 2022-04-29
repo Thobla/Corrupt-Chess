@@ -3,6 +3,7 @@ package chessgame.world;
 import java.util.ArrayList;
 import java.util.List;
 
+import chessgame.server.pings.P2WaitingPing;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -130,6 +131,8 @@ public class ListenerClass implements ContactListener{
 				Portal.victory();
 			else if((Game.isHost && player.getPlayerId() == "player1") || (!Game.isHost && player.getPlayerId() == "player2")) {
 				Game.isWaiting = true;
+				Game.getClient().getClient().sendTCP(new P2WaitingPing(player.getPlayerId()));
+
 
 			}
 			else if(((!Game.isHost && player.getPlayerId() == "player1") || (Game.isHost && player.getPlayerId() == "player2"))&& Game.isWaiting) {
@@ -143,6 +146,8 @@ public class ListenerClass implements ContactListener{
 				Portal.victory();
 			else if((Game.isHost && player.getPlayerId() == "player1") || (!Game.isHost && player.getPlayerId() == "player2")) {
 				Game.isWaiting = true;
+				Game.getClient().getClient().sendTCP(new P2WaitingPing(player.getPlayerId()));
+
 			}
 			else if(((!Game.isHost && player.getPlayerId() == "player1") || (Game.isHost && player.getPlayerId() == "player2")) && Game.isWaiting) {
 				Game.getClient().getClient().sendTCP(new NextMapPing());

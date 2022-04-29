@@ -28,6 +28,7 @@ public class NetworkHandler {
 	private HashMap<Integer, PawnData> pawnMap = new HashMap<>();
 	private List<Integer> removeList = new ArrayList<>();
 	private boolean playerFinished = false;
+	private boolean p2Finished = false;
 	private boolean bothFinished = false;
 	
 	public void alterP2Position(Game game) {
@@ -51,7 +52,11 @@ public class NetworkHandler {
 		if(removeList != null && !removeList.isEmpty())
 			game.entityManager.updateRemoveList(removeList);
 	}
-	
+	public void sendNextMapPing(){
+		if(Game.isWaiting && p2Finished)
+			Game.getClient().getClient().sendTCP(new NextMapPing());
+	}
+
 	public void ifBothFinished(Game game) {
 		if(bothFinished)
 			Game.victoryScreen();
@@ -62,7 +67,9 @@ public class NetworkHandler {
 		alterP2Position(game);
 		if(!playerFinished)
 			alterPawnPositions(game);
+		sendNextMapPing();
 		ifBothFinished(game);
+
 	}
 	
 	public void postStep(Game game) {
@@ -77,6 +84,11 @@ public class NetworkHandler {
 			if(!(game.entityManager == null)) {
 				removeList = (List<Integer>) object;
 				
+			}
+		}
+		if (object instanceof P2WaitingPing){
+			if(((P2WaitingPing) object).playerID != game.getPlayer().getPlayerId()){
+				p2Finished = true;
 			}
 		}
 		if(object instanceof FinishedPing){

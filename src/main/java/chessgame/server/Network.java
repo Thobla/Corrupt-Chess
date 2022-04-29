@@ -19,7 +19,7 @@ public class Network {
     static public void register (EndPoint endPoint) {
         //Kryo kryo = endPoint.getKryo();
         //kryo.register(chessgame.server.Packet.class);
-        
+
         Kryo kryo = endPoint.getKryo();
         kryo.register(java.util.HashMap.class);
         kryo.register(ButtonData.class);
@@ -35,5 +35,6 @@ public class Network {
         kryo.register(Player.class);
         kryo.register(java.util.ArrayList.class);
         kryo.register(com.badlogic.gdx.math.Vector2.class);
+        kryo.register(P2WaitingPing.class);
     }
 }

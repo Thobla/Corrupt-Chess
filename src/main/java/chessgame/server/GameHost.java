@@ -23,7 +23,7 @@ public class GameHost implements IClient{
 		
 		client.addListener(new Listener() {
 		       public void received (Connection connection, Object object) {
-		          if (object instanceof HashMap || object instanceof List || object instanceof PausePing || object instanceof NextMapPing || object instanceof FinishedPing) {
+		          if (object instanceof HashMap || object instanceof List || object instanceof PausePing || object instanceof NextMapPing || object instanceof FinishedPing || object instanceof P2WaitingPing) {
 		             if (game.netHandler != null)
 		            	 game.netHandler.handlePacket(object, game);
 		             
