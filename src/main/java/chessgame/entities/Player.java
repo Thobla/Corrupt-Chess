@@ -23,6 +23,7 @@ import chessgame.utils.SaveFile;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityAnimation;
 import chessgame.utils.EntityManager;
+import chessgame.utils.GameSound;
 import chessgame.utils.HUD;
 
 public class Player implements IEntities{
@@ -172,6 +173,7 @@ public class Player implements IEntities{
 	public void jump(float jumpForce) {	
 		myBody.setLinearVelocity(new Vector2(myBody.getLinearVelocity().x,0f));
 		myBody.applyLinearImpulse(new Vector2(0, jumpForce),this.position ,true);
+		GameSound.playSoundEffect(5, 2);
 
 	}
 	public Vector2 getVelocity() {

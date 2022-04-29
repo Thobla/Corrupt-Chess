@@ -63,8 +63,10 @@ public class Game implements Screen {
     public static String[] levels = new String[] {
     	"1-1",
     	"1-2",
-    	"Knight",
-    	"1-3"
+    	"1-3",
+    	"2-1",
+    	"2-2",
+    	"2-3"
     	
     };
     
@@ -88,7 +90,7 @@ public class Game implements Screen {
     static Label victoryText;
     static TextButton continueButton;
     
-    static boolean paused;
+    public static boolean paused;
     static boolean dead;
     
     public static boolean gameStart = false;
@@ -355,7 +357,6 @@ public class Game implements Screen {
 
 	@Override
 	public void hide() {
-		GameSound.stopMusic();
-		
+	
 	}
 }

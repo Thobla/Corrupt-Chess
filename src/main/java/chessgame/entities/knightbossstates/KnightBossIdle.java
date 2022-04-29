@@ -1,22 +1,25 @@
 package chessgame.entities.knightbossstates;
 
 import chessgame.entities.KnightBoss;
+import chessgame.utils.GameSound;
+import chessgame.utils.HUD;
 
 public class KnightBossIdle extends KnightBossState {
 	KnightBoss knight;
 	int idleTime = 300;
 	int counter;
-	int riggedRandom;
 	int dec;
 	boolean lastStand;
 	
 	public KnightBossIdle(KnightBoss knight) {
 		this.knight = knight;
-		dec = 10;
+		dec = 4;
 	}
 	
 	@Override
 	public void Enter() {
+		if(!HUD.bossBar && knight.activated)
+			HUD.enableBossHP("Don  Quixote  the  Knight");
 		if (knight.getHealth() == 1) {
 			if (!lastStand) {
 				dec = 5;
@@ -26,14 +29,8 @@ public class KnightBossIdle extends KnightBossState {
 				dec -= 1;
 				counter = idleTime/2;
 			}
-			if (dec <= 0) {
-				riggedRandom = 0;
-			} else {
-				riggedRandom = 1;
-			}
 		} else {
-			riggedRandom = (int) (Math.random()*dec);
-			dec -= 2;
+			dec -= 1;
 			counter = idleTime;
 		}
 	}
@@ -41,10 +38,10 @@ public class KnightBossIdle extends KnightBossState {
 	@Override
 	public void Update() {
 		if (counter <= 0) {	
-			if (riggedRandom == 0 && !knight.prevState.equals(knight.stunnedState)) {
+			if (dec == 0 && !knight.prevState.equals(knight.stunnedState)) {
 				if (knight.getHealth() > 1) {
 				knight.changeState(knight.superJumpState);
-				dec = 10;
+				dec = 4;
 				} else
 					knight.changeState(knight.omegaState);
 			} else {

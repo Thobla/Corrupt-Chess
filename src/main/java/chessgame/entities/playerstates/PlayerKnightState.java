@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 import chessgame.entities.Player;
+import chessgame.utils.GameSound;
 import chessgame.utils.playerForm;
 
 public class PlayerKnightState extends PlayerState {
@@ -45,6 +46,7 @@ public class PlayerKnightState extends PlayerState {
 			player.jump(500f);
 			player.controller.isGrounded = false;
 			player.getSprite().setColor(player.getPlayerColor());
+			GameSound.playSoundEffect(4, 1);
 		}
 		if(jumpTime > 0.05f * charge) {
 			hasCharged = false;

@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityAnimation;
 import chessgame.utils.EntityManager;
+import chessgame.utils.GameSound;
 
 public class RatingPoint implements IObjects{
 	Vector2 position;
@@ -103,6 +104,7 @@ public class RatingPoint implements IObjects{
 
 	@Override
 	public void itemFunction(Player player) {
+		GameSound.playSoundEffect(3, 1);
 		player.ratingScore += 7;
 		kill();
 	}

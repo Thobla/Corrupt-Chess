@@ -3,6 +3,7 @@ package chessgame.entities.knightbossstates;
 import com.badlogic.gdx.math.Vector2;
 
 import chessgame.entities.KnightBoss;
+import chessgame.utils.GameSound;
 
 public class KnightBossRandom extends KnightBossState {
 	KnightBoss knight;

@@ -22,6 +22,7 @@ import chessgame.entities.theTowerStates.TheTowerState;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityAnimation;
 import chessgame.utils.EntityManager;
+import chessgame.utils.GameSound;
 import chessgame.utils.HUD;
 
 public class TheTower implements IEnemies {
@@ -464,6 +465,8 @@ public class TheTower implements IEnemies {
 
 		leftWave.setLinearVelocity(new Vector2(-waveSpeed, 0));
 		rightWave.setLinearVelocity(new Vector2(waveSpeed, 0));
+		
+		GameSound.playSoundEffect(1, 1);
 	}
 	public void checkShockWave() {
 		if(leftWave.getTransform().getPosition().x < (leftWaveStart.x - waveLength)) {
@@ -574,6 +577,9 @@ public class TheTower implements IEnemies {
 		entityManager.removeEntity(this);
 		leftHand.setActive(false);
 		rightHand.setActive(false);
+		
+		GameSound.stopMusic();
+		GameSound.playMusic(5);
 	}
 
 	@Override

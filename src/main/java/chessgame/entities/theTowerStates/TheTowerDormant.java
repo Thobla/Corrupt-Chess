@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import chessgame.entities.Door;
 import chessgame.entities.TheTower;
 import chessgame.utils.EntityManager;
+import chessgame.utils.GameSound;
 
 public class TheTowerDormant extends TheTowerState{
 	TheTower tower;
@@ -39,6 +40,7 @@ public class TheTowerDormant extends TheTowerState{
 				door.doorState();
 			}
 			tower.dormant = false;
+			GameSound.playMusic(1);
 			tower.changeState(tower.idleState);
 		}
 	}

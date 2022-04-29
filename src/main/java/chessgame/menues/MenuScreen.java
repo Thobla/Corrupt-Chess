@@ -33,6 +33,8 @@ public class MenuScreen implements Screen {
 		stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
        
+		GameSound.stopMusic();
+        
         GameSound.buttonSound();
         
         //Background image

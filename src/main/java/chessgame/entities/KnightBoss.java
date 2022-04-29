@@ -146,6 +146,12 @@ public class KnightBoss implements IEnemies {
 
 	@Override
 	public void kill() {
+		if(entityManager.doorMap.containsKey(1)) {
+			Door door = entityManager.doorMap.get(1);
+			door.doorState();
+		}
+		GameSound.stopMusic();
+		GameSound.playMusic(5);
 		entityManager.removeEntity(this);
 	}
 
@@ -159,8 +165,7 @@ public class KnightBoss implements IEnemies {
 		
 		currentState.Update();
 		
-		if(!HUD.bossBar && activated)
-			HUD.enableBossHP("Don  Quixote  the  Knight");
+		
 		
 		keepWithinBounds();
 		position = myBody.getPosition();
@@ -209,6 +214,7 @@ public class KnightBoss implements IEnemies {
 		chasingRight = new EntityAnimation(chasingRightSheet, 2, 6f, this, new Vector2(144, 288), true);
 		//Adds the knight to the entityManager
     	entityManager.addEntity(this);
+    	currentState.Enter();
 	}
 
 	@Override

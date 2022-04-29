@@ -23,6 +23,7 @@ import chessgame.entities.Portal;
 import chessgame.entities.TheTower;
 import chessgame.entities.Tower;
 import chessgame.utils.EntityManager;
+import chessgame.utils.GameSound;
 import chessgame.utils.Rumble;
 
 public class ListenerClass implements ContactListener{
@@ -349,6 +350,7 @@ public class ListenerClass implements ContactListener{
 				tower.smash = false;
 				tower.freezeHands(true);
 				Rumble.rumble(0.2f, 0.2f);
+				GameSound.playSoundEffect(2, 1);
 			} else if (!tower.frozen) {
 				if(fixtureB.getBody().getUserData() instanceof Player) {
 					player = (Player) fixtureB.getBody().getUserData();
@@ -359,6 +361,7 @@ public class ListenerClass implements ContactListener{
 				tower.smash = false;
 				tower.quickReturn = true;
 				Rumble.rumble(0.2f, 0.2f);
+				GameSound.playSoundEffect(2, 1);
 			}
 		}
 		else if(fixtureB.getUserData() == "TLHand") {
@@ -371,6 +374,7 @@ public class ListenerClass implements ContactListener{
 				tower.smash = false;
 				tower.freezeHands(true);
 				Rumble.rumble(0.2f, 0.2f);
+				GameSound.playSoundEffect(2, 1);
 			} else if (!tower.frozen) {
 				if(fixtureA.getBody().getUserData() instanceof Player) {
 					player = (Player) fixtureA.getBody().getUserData();
@@ -381,6 +385,7 @@ public class ListenerClass implements ContactListener{
 				tower.smash = false;
 				tower.quickReturn = true;
 				Rumble.rumble(0.2f, 0.2f);
+				GameSound.playSoundEffect(2, 1);
 			}
 		}
 		

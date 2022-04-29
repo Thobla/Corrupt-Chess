@@ -89,7 +89,7 @@ public class Knight implements IEnemies {
 		
 		//adding a weakpoint
 		addNewBoxSensor(myBody, width * 0.95f, height / 3.5f, new Vector2(0f, height), "weakpoint");
-		addNewBoxSensor(myBody, width * 0.95f, height /16f, new Vector2(0f, -height), "hoof");
+		addNewBoxSensor(myBody, width * 1f, height /16f, new Vector2(0f, -height), "hoof");
 	}
 	
 	
@@ -146,12 +146,14 @@ public class Knight implements IEnemies {
 			attack = 1;
 		}
 		
-		if(System.currentTimeMillis() > jumpTime + 500 && grounded) {
-			canJump = true;
-		}
-		
-		if(System.currentTimeMillis() > airborneTime + 2500 && !grounded && firstLanded) {
-			grounded();
+		if(!Game.paused) {
+			if(System.currentTimeMillis() > jumpTime + 500 && grounded) {
+				canJump = true;
+			}
+			
+			if(System.currentTimeMillis() > airborneTime + 2500 && !grounded && firstLanded) {
+				grounded();
+			}
 		}
 	}
 
@@ -216,8 +218,8 @@ public class Knight implements IEnemies {
 				firstLanded = true;
 			myBody.setLinearVelocity(Vector2.Zero);
 			grounded = true;
-			if (getClosestPlayer(100f) != null) {
-				float dist = Math.abs(getClosestPlayer(100f).getPosition().x-getPosition().x);
+			if (getClosestPlayer(15f) != null) {
+				float dist = Math.abs(getClosestPlayer(15f).getPosition().x-getPosition().x);
 				Rumble.rumble(Math.min((1/dist),0.6f), 0.1f);
 				GameSound.playSoundEffect(2, (Math.min((5/dist),1f)));
 			}
