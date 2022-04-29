@@ -127,6 +127,7 @@ public class UI {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
+
 					break;
 				case Host:
 					try {
@@ -162,8 +163,12 @@ public class UI {
 			@Override
 			public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
 				game.setScreen(new MenuScreen(game));
-				if (isHost)
-					server.stopServer();
+				if(Game.isMultiplayer) {
+					if (isHost)
+						server.stopServer();
+
+					Game.isMultiplayer = false;
+				}
 			}
 			@Override
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
