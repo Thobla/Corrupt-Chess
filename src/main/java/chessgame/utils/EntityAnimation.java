@@ -97,6 +97,21 @@ public class EntityAnimation {
 		}
 		return true;
 	}
+	public boolean playOnce(Batch batch, float xPos, float yPos, Boolean state) {
+		elapsedTime += Gdx.graphics.getDeltaTime();
+		TextureRegion currentFrame = (TextureRegion) animation.getKeyFrame(elapsedTime, looping);
+		
+		Vector2 position = entity.getPosition();
+		
+		if(batch != null) {
+			batch.draw(currentFrame, xPos, yPos, width/16, height/16);
+		}
+		if(animation.getKeyFrameIndex(elapsedTime) == frames-1) {
+			elapsedTime = 0;
+			return false;
+		}
+		return true;
+	}
 	public boolean playOnce(Batch batch, float xPos, float yPos) {
 		elapsedTime += Gdx.graphics.getDeltaTime();
 		TextureRegion currentFrame = (TextureRegion) animation.getKeyFrame(elapsedTime, looping);

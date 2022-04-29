@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
 import chessgame.app.PlayerController;
+import chessgame.entities.Bishop;
 import chessgame.entities.Bullet;
 import chessgame.entities.IEnemies;
 import chessgame.entities.IEntities;
@@ -20,6 +21,7 @@ import chessgame.entities.Knight;
 import chessgame.entities.KnightBoss;
 import chessgame.entities.Player;
 import chessgame.entities.Portal;
+import chessgame.entities.ThePope;
 import chessgame.entities.TheTower;
 import chessgame.entities.Tower;
 import chessgame.utils.EntityManager;
@@ -45,7 +47,7 @@ public class ListenerClass implements ContactListener{
 		Fixture fixtureA = contact.getFixtureA();
 		Fixture fixtureB = contact.getFixtureB();
 		
-		//checks if the fixture is the "groundCheck-platter" for the player, if it is, we change the players controller isGrounded to true
+		//checks if the fixture is the "groundCheck-platter" for the player, if it is, we change the players controller isGrounded to true		
 		if(fixtureA.getUserData() == "foot" && checkJumpable(fixtureB.getUserData())) {
 		 	player = (Player) fixtureA.getBody().getUserData();
 		 	player.controller.isGrounded = true;
@@ -169,6 +171,20 @@ public class ListenerClass implements ContactListener{
 			tower.stopped();
 		}
 		
+		if (fixtureA.getUserData() == "circle") {
+			ThePope pope = (ThePope) fixtureA.getBody().getUserData();
+			if(fixtureB.getBody().getUserData() instanceof Player) {
+				((Player)fixtureB.getBody().getUserData()).takeDamage(pope.getAttack());
+				player.jump(200f);
+			}
+		} else if(fixtureB.getUserData() == "circle"){
+			ThePope pope = (ThePope) fixtureB.getBody().getUserData();
+			if(fixtureA.getBody().getUserData() instanceof Player) {
+				((Player)fixtureA.getBody().getUserData()).takeDamage(pope.getAttack());
+				player.jump(200f);
+			}
+		}
+		
 		//Checks if the Knight enemy has landed
 				if (fixtureA.getUserData() == "hoof" && checkJumpable(fixtureB.getUserData())) {
 					if (fixtureA.getBody().getUserData().getClass().equals(Knight.class)) {
@@ -248,40 +264,46 @@ public class ListenerClass implements ContactListener{
 					knight.bump();
 				}
 		
-		if((fixtureB.getUserData() == "Bullet")) {
-			Bullet bullet = ((Bullet) fixtureB.getBody().getUserData());
-			if(fixtureA.getBody().getUserData() instanceof KnightBoss) {
+				
+			if((fixtureB.getUserData() == "Bullet")) {
+				Bullet bullet = ((Bullet) fixtureB.getBody().getUserData());
+				if (fixtureA.getBody().getUserData() instanceof Player){
+					Player player = (Player) fixtureA.getBody().getUserData();
+					player.takeDamage(1);
+					bullet.kill();
+				} 
 			}
-			else if(fixtureA.getBody().getUserData() instanceof IEnemies) {
-				IEnemies enemy = (IEnemies) fixtureA.getBody().getUserData();
-				enemy.takeDamage(1);
-				bullet.kill();
-			} else if (fixtureA.getBody().getUserData() instanceof Player){
+			else if((fixtureA.getUserData() == "Bullet")) {
+				Bullet bullet = ((Bullet) fixtureA.getBody().getUserData());
+				if (fixtureB.getBody().getUserData() instanceof IEnemies){
+					IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
+					enemy.takeDamage(1);
+					bullet.kill();
+				} else if(fixtureB.getBody().getUserData() instanceof Player) {
+					
+				}
+				else {
+					bullet.kill();
+				}
+			}		
+		
+		if((fixtureB.getUserData() == "EnemyBullet")) {
+			Bullet bullet = ((Bullet) fixtureB.getBody().getUserData());
+			if (fixtureA.getBody().getUserData() instanceof Player){
 				Player player = (Player) fixtureA.getBody().getUserData();
 				player.takeDamage(1);
 				bullet.kill();
-			}
-			else {
-					bullet.kill();
-			}
+			} 
 		}
-		else if((fixtureA.getUserData() == "Bullet")) {
+		else if((fixtureA.getUserData() == "EnemyBullet")) {
 			Bullet bullet = ((Bullet) fixtureA.getBody().getUserData());
-			if(fixtureB.getBody().getUserData() instanceof KnightBoss) {
-			}
-			else if(fixtureA.getBody().getUserData() instanceof IEnemies) {
-				IEnemies enemy = (IEnemies) fixtureB.getBody().getUserData();
-				enemy.takeDamage(1);
-				bullet.kill();
-			} else if (fixtureB.getBody().getUserData() instanceof Player){
+			if (fixtureB.getBody().getUserData() instanceof Player){
 				Player player = (Player) fixtureB.getBody().getUserData();
 				player.takeDamage(1);
 				bullet.kill();
-			}
-			else {
-					bullet.kill();
-			}
+			} 
 		}
+		
 		TheTowerSensors(fixtureA, fixtureB);
 	}
 
@@ -332,6 +354,7 @@ public class ListenerClass implements ContactListener{
 		unjumpable.add("Bullet");
 		unjumpable.add("sky");
 		unjumpable.add("ColorBlockOff");
+		unjumpable.add("Wave");
 	}
 	
 	private <T> boolean checkJumpable(T name) {

@@ -47,7 +47,7 @@ public class PlayerBishopState extends PlayerState {
 			dir = Direction.LEFT;
 		}
 		
-		Bullet b = new Bullet(spawnPosition, player.world, player.manager, dir);
+		Bullet b = new Bullet(spawnPosition, player.world, player.manager, dir, true);
 		b.initialize();
 		b.setBulletSpeed(20f);
 	}
