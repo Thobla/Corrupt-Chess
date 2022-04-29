@@ -72,13 +72,16 @@ public class Player implements IEntities{
 	
 	//Player size
 	float width = .5f;
+
 	float height = .95f;
 	int entityId;
 	
-	public Player (Vector2 position, World world, EntityManager manager, String id) {
+	public Player (Vector2 position, World world, String id) {
+
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		playerId = id;
+
 		currentState = playerPawnState;
 		this.manager = manager;
 		progress =(int) SaveFile.readProgress()[0];
@@ -103,7 +106,6 @@ public class Player implements IEntities{
 
 		//Load rating from saveFile
 		ratingScore = SaveFile.readScore();
-		
     	
     	if(controller == null) {
     		playerColor = Color.valueOf("ffeba5");
@@ -118,6 +120,7 @@ public class Player implements IEntities{
 	public Vector2 getPosition() {
 		return position;
 	}
+
 	public void setPosition(Vector2 position) {
         myBody.setTransform(position, 0f);
     }
@@ -320,10 +323,12 @@ public class Player implements IEntities{
 				myBody.setLinearVelocity(new Vector2(myBody.getLinearVelocity().x, 20));
 			//Updates position vector2
 			updatePosition();
+
 			currentState.Update();
 			
 	    	if (controller != null)
 	    		controller.myController(this);
+
 			keepWithinBounds();
 	    	
 			sprite.setFlip(!facing, false);
@@ -392,6 +397,7 @@ public class Player implements IEntities{
 	public void setRatingScore(int ratingScore) {
 		this.ratingScore = ratingScore;
 	}
+
 	public int getId() {
         return this.entityId;
     }

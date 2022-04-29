@@ -20,7 +20,6 @@ public interface IEntities {
 	
 	abstract void createBody();
 	
-	
 	/**
 	 * Gets the position of the entity according to the gameMap.
 	 * @return the position.

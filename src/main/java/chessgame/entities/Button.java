@@ -139,6 +139,7 @@ public class Button implements IObjects{
 			door.doorState();
 		}
 	}
+
 	public void itemFunction() {
         itemFunction(null);
     }

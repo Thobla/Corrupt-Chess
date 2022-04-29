@@ -23,7 +23,7 @@ public class PlayerTest {
 		/**
 		 * Player position at Vector2.zero, is (0.5f, 0.5f)
 		 */
-		player = new Player(Vector2.Zero, pworld.world, manager);
+		player = new Player(Vector2.Zero, pworld.world, "player1");
 		player.createBody();
 	}
 	

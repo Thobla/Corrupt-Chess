@@ -26,6 +26,7 @@ public class MenuScreen implements Screen {
 	OrthographicCamera cam;
     final ChessGame game;
     private Stage stage;
+//    public static boolean killServer = false;
 		
 	public MenuScreen(ChessGame game) {
 		
@@ -46,11 +47,15 @@ public class MenuScreen implements Screen {
         stage.addActor(logo);      
         
         //Play button for starting the game.
-        Button playButton = UI.playButton(new Vector2(3, 1.5f), new Vector2(4, 10), game);
+        Button playButton = UI.playButton(new Vector2(4, 1.5f), new Vector2(4, 10), game);
         stage.addActor(playButton);
+
+		//multiplayer button for starting the game.
+		Button multiPlayerButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(4, 4), "Multiplayer", ScreenType.MultiPlayerScreen, game, 0);
+		stage.addActor(multiPlayerButton);
         
         //Button for going to the option screen.
-        Button optionButton = UI.newScreenButton(new Vector2(3, 1.5f), new Vector2(4, 8.5f), "Options", ScreenType.OptionScreen, game, 0);
+        Button optionButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(4, 8.5f), "Options", ScreenType.OptionScreen, game, 0);
         stage.addActor(optionButton);
         
         //Currently unused button
@@ -58,7 +63,7 @@ public class MenuScreen implements Screen {
         stage.addActor(howToPlayButton);
         
         //Button for exiting the game
-        Button quitButton = UI.exitButton(new Vector2(3, 1.5f), new Vector2(4, 5.5f));
+        Button quitButton = UI.exitButton(new Vector2(4, 1.5f), new Vector2(4, 5.5f));
         stage.addActor(quitButton);
         
         
@@ -79,6 +84,10 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
+
+//        if (killServer){
+//
+//		}
 	}
 
 	@Override

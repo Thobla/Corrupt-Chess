@@ -113,6 +113,7 @@ public class Pawn implements IEnemies {
 	public int getHealth() {
 		return health;
 	}
+	
 	public void setHealth(int health) {
         this.health = health;
     }
@@ -133,6 +134,7 @@ public class Pawn implements IEnemies {
 	public int getAttack() {
 		return attack;
 	}
+
 	public int getId() {
         return myId;
     }

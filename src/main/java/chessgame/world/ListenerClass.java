@@ -3,6 +3,7 @@ package chessgame.world;
 import java.util.ArrayList;
 import java.util.List;
 
+import chessgame.server.pings.P2WaitingPing;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
+import chessgame.app.Game;
 import chessgame.app.PlayerController;
 import chessgame.entities.Bishop;
 import chessgame.entities.Bullet;
@@ -21,9 +23,14 @@ import chessgame.entities.Knight;
 import chessgame.entities.KnightBoss;
 import chessgame.entities.Player;
 import chessgame.entities.Portal;
+<<<<<<< HEAD
 import chessgame.entities.ThePope;
 import chessgame.entities.TheTower;
 import chessgame.entities.Tower;
+=======
+import chessgame.server.pings.FinishedPing;
+import chessgame.server.pings.NextMapPing;
+>>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
 import chessgame.utils.EntityManager;
 import chessgame.utils.GameSound;
 import chessgame.utils.Rumble;
@@ -50,15 +57,19 @@ public class ListenerClass implements ContactListener{
 		//checks if the fixture is the "groundCheck-platter" for the player, if it is, we change the players controller isGrounded to true		
 		if(fixtureA.getUserData() == "foot" && checkJumpable(fixtureB.getUserData())) {
 		 	player = (Player) fixtureA.getBody().getUserData();
-		 	player.controller.isGrounded = true;
+
 		 	if(!(fixtureB.getBody().getUserData() instanceof IEnemies))
 		 		player.playDust();
+		 	if(player.controller != null)
+		 		player.controller.isGrounded = true;
 		}
 		else if(fixtureB.getUserData() == "foot" && checkJumpable(fixtureA.getUserData())) {
 			player = (Player) fixtureB.getBody().getUserData();
-		 	player.controller.isGrounded = true;
+
 		 	if(!(fixtureA.getBody().getUserData() instanceof IEnemies))
 		 		player.playDust();
+			if(player.controller != null)
+				player.controller.isGrounded = true;
 		}
 		//checks if the fixture is a enemy weakpoint
 		if(fixtureA.getUserData() == "weakpoint" && fixtureB.getUserData() == "foot") {
@@ -67,7 +78,8 @@ public class ListenerClass implements ContactListener{
 		 	enemy.takeDamage(player.getAttack());
 			player.myBody.setLinearVelocity(player.myBody.getLinearVelocity().x, 0);
 			player.jump(10000f);
-			player.controller.isGrounded = false;
+			if(player.controller != null)
+				player.controller.isGrounded = false;
 		}
 		else if(fixtureB.getUserData() == "weakpoint" && fixtureA.getUserData() == "foot") {
 			player = (Player) fixtureA.getBody().getUserData();
@@ -75,16 +87,19 @@ public class ListenerClass implements ContactListener{
 			enemy.takeDamage(player.getAttack());
 			player.myBody.setLinearVelocity(player.myBody.getLinearVelocity().x, 0);
 			player.jump(10000f);
-			player.controller.isGrounded = false;
+			if(player.controller != null)
+				player.controller.isGrounded = false;
 		}
 		//Checks if there is an object above the player
 		if(fixtureA.getUserData() != "air" && fixtureA.getUserData() != "door" && fixtureA.getUserData() != "Object" && fixtureB.getUserData() == "sky") {
 			player = (Player) fixtureB.getBody().getUserData();
-			player.controller.clearJump = false;
+			if(player.controller != null)
+				player.controller.clearJump = false;
 		}
 		else if(fixtureB.getUserData() != "air" && fixtureB.getUserData() != "door" && fixtureB.getUserData() != "Object" && fixtureA.getUserData() == "sky") {
 			player = (Player) fixtureA.getBody().getUserData();
-			player.controller.clearJump = false;
+			if(player.controller != null)
+				player.controller.clearJump = false;
 		}
 		//Checks if the player is colliding with an object
 		if(fixtureA.getUserData() == "Object" && fixtureB.getUserData() == "Player") {
@@ -130,12 +145,31 @@ public class ListenerClass implements ContactListener{
 		if(fixtureA.getUserData() == "Portal" && fixtureB.getUserData() == "Player") {
 			player = (Player) fixtureB.getBody().getUserData();
 			world.entityManager.removePlayer(player);
-			Portal.victory();
+			if(!Game.isMultiplayer)
+				Portal.victory();
+			else if((Game.isHost && player.getPlayerId() == "player1") || (!Game.isHost && player.getPlayerId() == "player2")) {
+				Game.isWaiting = true;
+				Game.getClient().getClient().sendTCP(new P2WaitingPing(player.getPlayerId()));
+
+
+			}
+			else if(((!Game.isHost && player.getPlayerId() == "player1") || (Game.isHost && player.getPlayerId() == "player2"))&& Game.isWaiting) {
+				Game.getClient().getClient().sendTCP(new NextMapPing());
+			}
 		}
 		else if(fixtureB.getUserData() == "Portal" && fixtureA.getUserData() == "Player") {
 			player = (Player) fixtureA.getBody().getUserData();
 			world.entityManager.removePlayer(player);
-			Portal.victory();
+			if(!Game.isMultiplayer)
+				Portal.victory();
+			else if((Game.isHost && player.getPlayerId() == "player1") || (!Game.isHost && player.getPlayerId() == "player2")) {
+				Game.isWaiting = true;
+				Game.getClient().getClient().sendTCP(new P2WaitingPing(player.getPlayerId()));
+
+			}
+			else if(((!Game.isHost && player.getPlayerId() == "player1") || (Game.isHost && player.getPlayerId() == "player2")) && Game.isWaiting) {
+				Game.getClient().getClient().sendTCP(new NextMapPing());
+			}
 		}
 		
 		//checks if an entities jump-sensor is hitting any non-entity objects, making sure
@@ -323,11 +357,13 @@ public class ListenerClass implements ContactListener{
 		}
 		if(fixtureA.getUserData() == "sky") {
 			player = (Player) fixtureA.getBody().getUserData();
-			player.controller.clearJump = true;
+			if(player.controller != null)
+				player.controller.clearJump = true;
 		}
 		if(fixtureB.getUserData() == "sky") {
 			player = (Player) fixtureB.getBody().getUserData();
-			player.controller.clearJump = true;
+			if(player.controller != null)
+				player.controller.clearJump = true;
 		}
 		
 	}

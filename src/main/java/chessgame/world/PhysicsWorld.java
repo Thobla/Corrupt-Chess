@@ -1,5 +1,7 @@
 package chessgame.world;
 
+import java.util.HashMap;
+
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -31,6 +33,8 @@ import chessgame.entities.RatingPoint;
 import chessgame.entities.ThePope;
 import chessgame.entities.TheTower;
 import chessgame.entities.Tower;
+import chessgame.server.DataTypes.ButtonData;
+import chessgame.server.DataTypes.PawnData;
 import chessgame.utils.Constants;
 import chessgame.utils.Direction;
 import chessgame.utils.EntityManager;
@@ -42,6 +46,7 @@ public class PhysicsWorld {
 	static float gravity = Constants.Gravity;
 	public World world;
 	public EntityManager entityManager;
+	private int currentId;
 	
 	/**
 	 * A class to keep track of the Entity world, and ContactListener.
@@ -51,6 +56,7 @@ public class PhysicsWorld {
 		world = new World(new Vector2(0, -gravity), true);
 		world.setContactListener(new ListenerClass(this));
 		entityManager = new EntityManager(this);
+		currentId = 0;
 	}
 	
 	/**
@@ -121,23 +127,23 @@ public class PhysicsWorld {
 			}
 			//Spawns a pawn
 			if(entity.getName().toLowerCase().equals("pawn")) {;
-				Pawn pawn = new Pawn(pos, world, manager);
+				Pawn pawn = new Pawn(pos, world, manager, nextId());
 				pawn.initialize();
 			}
 			//Spawns a coin	
 			if(entity.getName().toLowerCase().equals("ratingpoint")) {
-				RatingPoint point = new RatingPoint(pos, world, manager);
+				RatingPoint point = new RatingPoint(pos, world, manager, nextId());
 				point.initialize();
 			}
 			//Spawns a door
 			if(entity.getName().toLowerCase().equals("door")) {
 				int code =(int) entity.getProperties().get("code");
-				Door door = new Door(pos, world, manager, code);
+				Door door = new Door(pos, world, manager, code, nextId());
 				door.initialize();
 			}
 			if(entity.getName().toLowerCase().equals("button")) {
 				int code =(int) entity.getProperties().get("code");
-				Button button = new Button(pos, world, manager, code);
+				Button button = new Button(pos, world, manager, code, nextId());
 				button.initialize();
 			}
 			if(entity.getName().toLowerCase().equals("tower")) {
@@ -149,7 +155,7 @@ public class PhysicsWorld {
 				tower.initialize();
 			}
 			if(entity.getName().toLowerCase().equals("portal")) {
-				Portal portal = new Portal(pos, world, manager);
+				Portal portal = new Portal(pos, world, manager, nextId());
 				portal.initialize();
 			}
 			if(entity.getName().toLowerCase().equals("player")) {
@@ -205,6 +211,7 @@ public class PhysicsWorld {
 		}
 	}
 	
+<<<<<<< HEAD
 	public static IEntities spawnEntity(EntityType type, Vector2 pos, World world, EntityManager manager) {
 		if (type == EntityType.Knight) {
 			Knight knight = new Knight(new Vector2(pos.x*Constants.PixelPerMeter,pos.y*Constants.PixelPerMeter), world, manager);
@@ -217,4 +224,13 @@ public class PhysicsWorld {
 		}
 		return null;
 	}
+=======
+	int nextId() {
+		currentId ++;
+		return currentId - 1;
+	}
+	
+	
+	
+>>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
 }

@@ -31,6 +31,8 @@ public class Portal implements IEntities {
 	
 	int id;
 	
+	int id;
+	
 	//ParticleTesting
 	TextureAtlas particleAtlas;
 	ParticleEffect particle = new ParticleEffect();

@@ -133,6 +133,7 @@ public class Door implements IEntities {
 	public boolean isOpen() {
 		return open;
 	}
+
 	public int getId() {
         return this.myId;
     }
