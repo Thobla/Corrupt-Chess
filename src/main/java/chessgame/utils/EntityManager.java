@@ -92,8 +92,8 @@ public class EntityManager {
     public void updateRemoveList(List<Integer> removeList) {
     	if(removeList != null) {
 	    	List<IEntities> myRemoveList = idListToEntities(removeList);
-	    	System.out.println(myRemoveList.isEmpty());
-	    	
+	    	if(!myRemoveList.isEmpty())
+	    		System.out.println("updatingRemoveList");
 	    	updateLists(myRemoveList);
 	    	}
     	
@@ -114,8 +114,6 @@ public class EntityManager {
     		for(IEntities entity : entityList) {
     			/////////////tenk not id should be entity
     			for(int id : removeList) {
-    				System.out.println(entity.getId());
-    				System.out.println(id);
     				if(entity.getId() == id) {
     					newRemoveList.add(entity);
     				}

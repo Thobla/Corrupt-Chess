@@ -49,7 +49,6 @@ public class NetworkHandler {
 	
 	public void syncDeaths(Game game) {
 		if(removeList != null && !removeList.isEmpty())
-			System.out.println("removeListNotEmpty");
 			game.entityManager.updateRemoveList(removeList);
 	}
 	

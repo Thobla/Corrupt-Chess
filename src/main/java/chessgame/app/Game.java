@@ -264,12 +264,7 @@ public class Game implements Screen {
 	        
 	    	batch.setProjectionMatrix(cam.combined);
 	    	
-	    	//needs to send this packet before entityRemoveList gets emptied in updateEntities
-	    	if(Game.isMultiplayer) {
-	        	Packet packet = new Packet(entityManager);
-	        	List<Integer> removeList = packet.removeList;
-	        	Game.getClient().getClient().sendTCP(removeList);
-	        }
+	    	
 	    	
 	    	//Updates all entities
 	    	batch.begin();
@@ -277,8 +272,15 @@ public class Game implements Screen {
 	    	entityManager.updatePlayers(batch);
 	    	batch.end();
 	    	
-	    	//Pausing the game in multiplayer if 
 	    	
+	    	//needs to send this packet before entityRemoveList gets emptied 
+	    	//in updateLists!!!!!!
+	    	if(Game.isMultiplayer) {
+	        	Packet packet = new Packet(entityManager);
+	        	List<Integer> removeList = packet.removeList;
+	        	Game.getClient().getClient().sendTCP(removeList);
+	        }
+	    	//
 	    	
 	    	entityManager.updateLists();
 	    	
