@@ -93,6 +93,7 @@ public class NetworkHandler {
 		}
 		if(object instanceof FinishedPing){
 				game.goNext = true;
+				Game.levelIndex = ((FinishedPing) object).varaible;
 		}
 		if(object instanceof HashMap) {
 			if (!(game.entityManager == null)) {

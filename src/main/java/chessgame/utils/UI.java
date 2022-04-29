@@ -119,7 +119,7 @@ public class UI {
 						}
 						if((Game.isMultiplayer != null) && (Game.isHost != null)) {
 							if (Game.isMultiplayer) {
-								Game.getClient().getClient().sendTCP(new FinishedPing());
+								Game.getClient().getClient().sendTCP(new FinishedPing(Variable));
 							}
 
 						}
