@@ -32,6 +32,7 @@ import chessgame.utils.Constants;
 import chessgame.utils.Direction;
 import chessgame.utils.EntityManager;
 import chessgame.utils.EntityType;
+import chessgame.utils.GameSound;
 
 public class PhysicsWorld {
 	static int PPM = Constants.PixelPerMeter;
@@ -180,6 +181,10 @@ public class PhysicsWorld {
 				int xVal = (int) entity.getProperties().get("xVal");
 				int yVal = (int) entity.getProperties().get("yVal");
 				Game.mapSize = new Vector2(xVal, yVal);
+			}
+			if(entity.getName().toLowerCase().equals("music")) {
+				int index = (int) entity.getProperties().get("index");
+				GameSound.playMusic(index);
 			}
 		}
 	}

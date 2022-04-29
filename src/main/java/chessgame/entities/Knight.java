@@ -18,6 +18,7 @@ import chessgame.app.Game;
 import chessgame.entities.knightstates.*;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
+import chessgame.utils.GameSound;
 import chessgame.utils.Rumble;
 
 public class Knight implements IEnemies {
@@ -215,8 +216,12 @@ public class Knight implements IEnemies {
 				firstLanded = true;
 			myBody.setLinearVelocity(Vector2.Zero);
 			grounded = true;
-			if (getClosestPlayer(100f) != null)
-				Rumble.rumble(Math.min(Math.abs(1/(getClosestPlayer(100f).getPosition().x-getPosition().x)),0.6f), 0.1f);
+			if (getClosestPlayer(100f) != null) {
+				float dist = Math.abs(getClosestPlayer(100f).getPosition().x-getPosition().x);
+				Rumble.rumble(Math.min((1/dist),0.6f), 0.1f);
+				GameSound.playSoundEffect(2, (Math.min((5/dist),1f)));
+			}
+				
 			jumpTime = System.currentTimeMillis();
 		}
 		

@@ -16,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 import chessgame.app.ChessGame;
+import chessgame.utils.GameSound;
 import chessgame.utils.ScreenType;
 import chessgame.utils.UI;
 
@@ -32,6 +33,8 @@ public class MenuScreen implements Screen {
 		stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
        
+        GameSound.buttonSound();
+        
         //Background image
         Table backgroundTable = new Table();
         backgroundTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("assets/background.png"))));

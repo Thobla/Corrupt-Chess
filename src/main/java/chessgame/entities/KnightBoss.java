@@ -30,6 +30,7 @@ import chessgame.utils.Direction;
 import chessgame.utils.EntityAnimation;
 import chessgame.utils.EntityManager;
 import chessgame.utils.EntityType;
+import chessgame.utils.GameSound;
 import chessgame.utils.HUD;
 import chessgame.utils.Rumble;
 import chessgame.world.PhysicsWorld;
@@ -247,6 +248,7 @@ public class KnightBoss implements IEnemies {
 			myBody.setLinearVelocity(Vector2.Zero);
 			grounded = true;
 			Rumble.rumble(1f, 0.4f);
+			GameSound.playSoundEffect(1, 1);
 			jumpTime = System.currentTimeMillis();
 		}
 	}

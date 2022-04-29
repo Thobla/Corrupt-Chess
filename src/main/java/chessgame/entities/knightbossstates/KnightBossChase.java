@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import chessgame.entities.KnightBoss;
 import chessgame.entities.Player;
 import chessgame.utils.EntityAnimation;
+import chessgame.utils.GameSound;
 
 public class KnightBossChase extends KnightBossState{
 	KnightBoss knight;
@@ -24,6 +25,7 @@ public class KnightBossChase extends KnightBossState{
 		if (knight.getHealth() == 1)
 			counter = 50;
 		knight.telegrafChase = true;
+		GameSound.playSoundEffect(0,1);
 	}
 	
 	@Override

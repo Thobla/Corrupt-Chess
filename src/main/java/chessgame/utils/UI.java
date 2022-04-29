@@ -39,9 +39,6 @@ public class UI {
     //Imported skin for UI
     static Skin skin = new Skin(Gdx.files.internal("assets/skin/chess/chess.json"));
     static Skin tempskin = new Skin(Gdx.files.internal("assets/skin/goldenspiralui/golden-ui-skin.json"));
-    static //Sound for clicking buttons
-    Sound click = Gdx.audio.newSound(Gdx.files.internal("assets/sound/menuClick.mp3"));
-    static float volume = ((float)SaveFile.readSettings()[4])/100;
 
     public static void updateScreenSize(int x, int y, boolean fullscreen) {
     	if (fullscreen)
@@ -106,7 +103,7 @@ public class UI {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
+            	GameSound.buttonSound();
                 return true;
             }
         });
@@ -160,23 +157,17 @@ public class UI {
         audioSlider.addListener(new InputListener() {
         	@Override
         	public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-        		controls[4] = (int) audioSlider.getValue();
-        		volume = ((float) controls[4]) / 100;
+        		GameSound.newAudiolvl((int) audioSlider.getValue(), controls);
         	}
         	@Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-        		click.play(volume);
+        		GameSound.buttonSound();
                 return true;
             }
         });
 		return audioSlider;
 	}
 	
-	public static int[] newAudiolvl(int value, int[] controls) {
-		controls[4] = value;
-		volume = value/100;
-		return controls;
-	}
 	
 	public static TextButton playButton(Vector2 size, Vector2 position, ChessGame game) {
 		TextButton button = button(size, position, "Play");
@@ -193,7 +184,7 @@ public class UI {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
+            	GameSound.buttonSound();
                 return true;
             }
         });
@@ -218,7 +209,7 @@ public class UI {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
+            	GameSound.buttonSound();
                 return true;
             }
         });
@@ -234,7 +225,7 @@ public class UI {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
+            	GameSound.buttonSound();
                 return true;
             }
         });
@@ -295,7 +286,7 @@ public class UI {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
+            	GameSound.buttonSound();
                 return true;
             }
         });
@@ -312,7 +303,7 @@ public class UI {
     		
     		@Override
     		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-    			click.play(volume);
+    			GameSound.buttonSound();
     			return true;
     		}	
     	});
@@ -336,7 +327,7 @@ public class UI {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
+            	GameSound.buttonSound();
                 return true;
             }
         });
@@ -357,7 +348,7 @@ public class UI {
 		selectBox.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				click.play(volume);
+				GameSound.buttonSound();
 				controls[5] = selectBox.getSelectedIndex();
 				Vector2 newRes = Constants.resolutions[controls[5]];
 				boolean fullscreen = false;
@@ -401,7 +392,7 @@ public class UI {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
+            	GameSound.buttonSound();
                 return true;
             }
         });

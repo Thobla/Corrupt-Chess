@@ -160,10 +160,10 @@ public class ListenerClass implements ContactListener{
 			}
 		}
 		
-		if (fixtureA.getUserData() == "stopper") {
+		if (fixtureA.getUserData() == "stopper" && fixtureB.getUserData() != "Object") {
 			Tower tower = (Tower) fixtureA.getBody().getUserData();
 			tower.stopped();
-		} else if(fixtureB.getUserData() == "stopper"){
+		} else if(fixtureB.getUserData() == "stopper" && fixtureA.getUserData() != "Object"){
 			Tower tower = (Tower) fixtureB.getBody().getUserData();
 			tower.stopped();
 		}

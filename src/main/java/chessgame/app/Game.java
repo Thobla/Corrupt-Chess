@@ -24,6 +24,7 @@ import chessgame.utils.Constants;
 import chessgame.world.PhysicsWorld;
 import chessgame.world.TiledGameMap;
 import chessgame.utils.EntityManager;
+import chessgame.utils.GameSound;
 import chessgame.utils.HUD;
 import chessgame.utils.Rumble;
 import chessgame.utils.SaveFile;
@@ -62,8 +63,9 @@ public class Game implements Screen {
     public static String[] levels = new String[] {
     	"1-1",
     	"1-2",
-    	"1-3",
-    	"Knight"
+    	"Knight",
+    	"1-3"
+    	
     };
     
     //Stage for UI elements
@@ -98,6 +100,8 @@ public class Game implements Screen {
     	if(currentLevelIndex >= levels.length) 
     		return;
     	this.map = levels[level];
+    	
+    	GameSound.stopMusic();
     	
     	//World initialisation
     	gameWorld = new PhysicsWorld();
@@ -351,7 +355,7 @@ public class Game implements Screen {
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
+		GameSound.stopMusic();
 		
 	}
 }

@@ -17,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import chessgame.app.Game;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
+import chessgame.utils.GameSound;
 import chessgame.utils.Rumble;
 
 public class Tower implements IEnemies {
@@ -34,7 +35,7 @@ public class Tower implements IEnemies {
 	float dmgTime = 0;
 	
 	boolean facingRight;
-	long thinkingTime = 400;
+	long thinkingTime = 500;
 	long stoppedTime;
 	boolean stopped;
 	
@@ -73,8 +74,8 @@ public class Tower implements IEnemies {
 		addNewBoxSensor(myBody, width * 0.95f, height / 3.5f, new Vector2(0f, height), "weakpoint");
 		
 		//adding side sensors
-		addNewBoxSensor(myBody, width * 0.1f, height * 0.5f, new Vector2(width+width * 0.1f, 0f), "stopper");
-		addNewBoxSensor(myBody, width * 0.1f, height * 0.5f, new Vector2(-width-width * 0.1f, 0f), "stopper");
+		addNewBoxSensor(myBody, width * 0.1f, height * 0.5f, new Vector2(width+width, 0f), "stopper");
+		addNewBoxSensor(myBody, width * 0.1f, height * 0.5f, new Vector2(-width-width, 0f), "stopper");
 		
 
 	}
@@ -144,7 +145,7 @@ public class Tower implements IEnemies {
 
 	@Override
 	public void moveTo(Vector2 target) {
-		myBody.setLinearVelocity(target.setLength(20f));
+		myBody.setLinearVelocity(new Vector2(target.x*20f,0));
 		stopped = false;
 		if (facingRight)
 			facingRight = false;
@@ -155,8 +156,11 @@ public class Tower implements IEnemies {
 	public void stopped() {
 		stopped = true;
 		stoppedTime = System.currentTimeMillis();
-		if (getClosestPlayer(10f) != null)
-			Rumble.rumble(Math.min(Math.abs(1/(getClosestPlayer(10f).getPosition().x-getPosition().x)),0.4f), 0.2f);
+		if (getClosestPlayer(15f) != null) {
+			float dist = Math.abs(getClosestPlayer(15f).getPosition().x-getPosition().x);
+			Rumble.rumble(Math.min((1/dist),0.4f), 0.2f);
+			GameSound.playSoundEffect(2, Math.min((3/dist),0.7f));
+		}
 	}
 
 	@Override
