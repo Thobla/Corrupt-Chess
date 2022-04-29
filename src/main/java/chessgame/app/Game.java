@@ -200,37 +200,7 @@ public class Game implements Screen {
      	
     	//Updates the map
     	entityManager.updateLists();
-    	//Multiplayer innitializing network-classes
-        if (isMultiplayer && isHost) {
-            Game.server = new GameServer();
-            Game.client = new GameHost(this);
-            netHandler = new NetworkHandler();
-
-        }
-        else if(isMultiplayer && !isHost) {
-              Game.client = new GameClient(this, IpAddress);
-              netHandler = new NetworkHandler();
-        }
-
-        //
-
-        //Creates the player
-        if(!isMultiplayer) {
-            player = entityManager.addPlayer();
-        }
-        else {
-            if(isHost) {
-                player = entityManager.addPlayer();
-                player2 = entityManager.addPlayer();
-            }
-            else {
-                player2 = entityManager.addPlayer();
-                player = entityManager.addPlayer();
-            }
-        }
-        player.setController();
-
-    	
+    	    	
 
     	
     	
