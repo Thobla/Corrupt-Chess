@@ -1,35 +1,17 @@
 package chessgame.world;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import chessgame.server.pings.P2WaitingPing;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.Manifold;
-
 import chessgame.app.Game;
-import chessgame.app.PlayerController;
-import chessgame.entities.Bishop;
-import chessgame.entities.Bullet;
-import chessgame.entities.IEnemies;
-import chessgame.entities.IEntities;
-import chessgame.entities.IObjects;
-import chessgame.entities.Knight;
-import chessgame.entities.KnightBoss;
-import chessgame.entities.Player;
-import chessgame.entities.Portal;
-import chessgame.entities.TheTower;
-import chessgame.entities.Tower;
-import chessgame.server.pings.FinishedPing;
+import chessgame.entities.*;
 import chessgame.server.pings.NextMapPing;
+import chessgame.server.pings.P2WaitingPing;
 import chessgame.utils.EntityManager;
 import chessgame.utils.GameSound;
 import chessgame.utils.Rumble;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListenerClass implements ContactListener{
 	

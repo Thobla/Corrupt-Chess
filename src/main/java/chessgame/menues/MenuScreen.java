@@ -59,7 +59,7 @@ public class MenuScreen implements Screen {
         stage.addActor(optionButton);
         
         //Currently unused button
-        Button howToPlayButton = UI.newScreenButton(new Vector2(3, 1.5f), new Vector2(4, 7), "How to play", ScreenType.HowToPlay, game, 0);
+        Button howToPlayButton = UI.newScreenButton(new Vector2(4, 1.5f), new Vector2(4, 7), "How to play", ScreenType.HowToPlay, game, 0);
         stage.addActor(howToPlayButton);
         
         //Button for exiting the game

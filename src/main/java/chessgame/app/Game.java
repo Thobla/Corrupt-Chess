@@ -1,16 +1,21 @@
 package chessgame.app;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import com.badlogic.gdx.graphics.Texture;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
+import chessgame.entities.IEntities;
+import chessgame.entities.Player;
+import chessgame.menues.MenuScreen;
+import chessgame.server.DataTypes.ButtonData;
+import chessgame.server.DataTypes.PawnData;
+import chessgame.server.DataTypes.PlayerData;
+import chessgame.server.*;
+import chessgame.server.pings.Packet;
+import chessgame.server.pings.PausePing;
+import chessgame.server.pings.PlayerAction;
+import chessgame.utils.*;
+import chessgame.world.PhysicsWorld;
+import chessgame.world.TiledGameMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -24,45 +29,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import chessgame.entities.Button;
-import chessgame.entities.Door;
-import chessgame.entities.IEntities;
-import chessgame.entities.Player;
-import chessgame.entities.Pawn;
-import chessgame.utils.CameraStyles;
-import chessgame.utils.Constants;
-import chessgame.world.PhysicsWorld;
-import chessgame.world.TiledGameMap;
-import chessgame.utils.EntityManager;
-import chessgame.utils.GameSound;
-import chessgame.utils.HUD;
-import chessgame.utils.Rumble;
-import chessgame.utils.SaveFile;
-import chessgame.utils.ScreenType;
-import chessgame.utils.UI;
-import chessgame.server.GameClient;
-import chessgame.server.GameHost;
-import chessgame.server.GameServer;
-import chessgame.server.IClient;
-import chessgame.server.NetworkHandler;
-import chessgame.server.DataTypes.*;
-import chessgame.server.pings.Packet;
-import chessgame.server.pings.PausePing;
-import chessgame.server.pings.PlayerAction;
-
-import org.lwjgl.system.linux.XButtonEvent;
-import chessgame.menues.MenuScreen;
-import chessgame.server.GameClient;
-import chessgame.server.GameHost;
-import chessgame.server.GameServer;
-import chessgame.server.IClient;
-import chessgame.server.NetworkHandler;
-import chessgame.server.DataTypes.*;
-import chessgame.server.pings.Packet;
-import chessgame.server.pings.PausePing;
-import chessgame.server.pings.PlayerAction;
-
-import org.lwjgl.system.linux.XButtonEvent;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class Game implements Screen {
