@@ -15,6 +15,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.app.Game;
 import chessgame.entities.BBlock;
+import chessgame.entities.Bishop;
 import chessgame.entities.Bullet;
 import chessgame.entities.Button;
 import chessgame.entities.Door;
@@ -171,16 +172,20 @@ public class PhysicsWorld {
 				bblock.initialize();
 			
 		}
-			if(entity.getName().toLowerCase().equals("rbbutton")) {
-				int rbcode =(int) entity.getProperties().get("rbcode");
-				RBButton rbbutton = new RBButton(pos, world, manager, rbcode);
-				rbbutton.initialize();
-			}
-			if(entity.getName().toLowerCase().equals("size")) {
-				int xVal = (int) entity.getProperties().get("xVal");
-				int yVal = (int) entity.getProperties().get("yVal");
-				Game.mapSize = new Vector2(xVal, yVal);
-			}
+		if(entity.getName().toLowerCase().equals("rbbutton")) {
+			int rbcode =(int) entity.getProperties().get("rbcode");
+			RBButton rbbutton = new RBButton(pos, world, manager, rbcode);
+			rbbutton.initialize();
+		}
+		if(entity.getName().toLowerCase().equals("size")) {
+			int xVal = (int) entity.getProperties().get("xVal");
+			int yVal = (int) entity.getProperties().get("yVal");
+			Game.mapSize = new Vector2(xVal, yVal);
+		}
+		if(entity.getName().toLowerCase().equals("bishop")) {
+			Bishop bishop = new Bishop(pos, world, manager);
+			bishop.initialize();
+		}
 		}
 	}
 	
@@ -191,7 +196,7 @@ public class PhysicsWorld {
 			return knight;
 		}
 		if (type == EntityType.Bullet) {
-			Bullet bullet = new Bullet(new Vector2(pos.x*Constants.PixelPerMeter,pos.y*Constants.PixelPerMeter), world, manager, Direction.RIGHT);
+			Bullet bullet = new Bullet(new Vector2(pos.x*Constants.PixelPerMeter,pos.y*Constants.PixelPerMeter), world, manager, Direction.RIGHT, false);
 			return bullet;
 		}
 		return null;

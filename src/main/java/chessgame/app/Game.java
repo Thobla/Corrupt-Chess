@@ -63,7 +63,8 @@ public class Game implements Screen {
     	"1-1",
     	"1-2",
     	"1-3",
-    	"Knight"
+    	"3-1",
+    	"Knight",
     };
     
     //Stage for UI elements
@@ -101,7 +102,7 @@ public class Game implements Screen {
     	
     	//World initialisation
     	gameWorld = new PhysicsWorld();
-    	//debugRenderer = new Box2DDebugRenderer();
+    	debugRenderer = new Box2DDebugRenderer();
     	
     	entityManager = gameWorld.entityManager;
     	
@@ -165,7 +166,7 @@ public class Game implements Screen {
 	    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
 	        gameMap.render(cam);
 	        //Debug-render to be off when not debugging.
-	    	//debugRenderer.render(gameWorld.world, cam.combined);
+	    	debugRenderer.render(gameWorld.world, cam.combined);
 	    	
 	        
 	    	batch.setProjectionMatrix(cam.combined);

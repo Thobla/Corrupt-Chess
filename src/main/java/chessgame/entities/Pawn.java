@@ -86,9 +86,6 @@ public class Pawn implements IEnemies {
 		addNewBoxSensor(myBody, this.jumpSensorwidth, 0.05f, new Vector2(-1f, -this.height/2), "leftJumpSensor");
 		addNewBoxSensor(myBody, this.jumpSensorwidth/20, 0.05f, new Vector2(1f, -this.height/2), "rightJumpSensor");
 		addNewBoxSensor(myBody, this.jumpSensorwidth/20, 0.05f, new Vector2(-1f, -this.height/2), "leftJumpSensor");
-		
-		
-		
 	}
 	
 	public void removeBody() {
@@ -231,8 +228,6 @@ public class Pawn implements IEnemies {
 		fixDef.shape = shape;
 		
 		myBody.createFixture(fixDef).setUserData(userData);
-		
-		
 	}
 	
 	public void dmgColorTime(Color color, float time) {

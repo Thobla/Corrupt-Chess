@@ -29,10 +29,10 @@ public class KnightBossStunned extends KnightBossState {
 		knight.minions.add(PhysicsWorld.spawnEntity(EntityType.Knight, new Vector2(knight.getPosition().x-7f,knight.getPosition().y+20f), knight.world, knight.entityManager));
 		knight.minions.add(PhysicsWorld.spawnEntity(EntityType.Knight, new Vector2(knight.getPosition().x+5f,knight.getPosition().y+20f), knight.world, knight.entityManager));
 		
-		Bullet bulletL = new Bullet(new Vector2(knight.getPosition().x-0.5f,knight.getPosition().y-knight.height+0.6f), knight.world, knight.entityManager, Direction.LEFT);
+		Bullet bulletL = new Bullet(new Vector2(knight.getPosition().x-0.5f,knight.getPosition().y-knight.height+0.6f), knight.world, knight.entityManager, Direction.LEFT, false);
 		bulletL.initialize();
 		bulletL.setBulletSpeed(40f);
-		Bullet bulletR = new Bullet(new Vector2(knight.getPosition().x+0.6f,knight.getPosition().y-knight.height+0.6f), knight.world, knight.entityManager, Direction.RIGHT);
+		Bullet bulletR = new Bullet(new Vector2(knight.getPosition().x+0.6f,knight.getPosition().y-knight.height+0.6f), knight.world, knight.entityManager, Direction.RIGHT, false);
 		bulletR.initialize();
 		bulletR.setBulletSpeed(40f);
 		

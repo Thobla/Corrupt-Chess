@@ -27,21 +27,50 @@ public class Bullet implements IEntities{
 	float height = .5f;
 	float bulletSpeed;
 	
+	float bulletDeathTime = 0;
+	
+	float homingControl;
+	
+	String userData;
+	
+	IEntities target;
+	
 	double spawnTime;
+	
+	boolean isPlayer;
 	
 	//direction of the bullet
 	Direction direction;
 	
-	public Bullet (Vector2 position, World world, EntityManager entityManager, Direction direction) {
+	public Bullet (Vector2 position, World world, EntityManager entityManager, Direction direction, boolean isPlayer) {
 		this.position = position;
 		this.world = world;
 		this.entityManager = entityManager;
 		this.direction = direction;
+		this.isPlayer = isPlayer;
+	}
+	public Bullet (Vector2 position, World world, EntityManager entityManager, Direction direction, Player target) {
+		this.position = position;
+		this.isPlayer = false;
+		this.world = world;
+		this.entityManager = entityManager;
+		this.direction = direction;
+		this.target = target;
+		if(target != null)
+			homingControl = position.x - target.getPosition().x;
 	}
 	
 	@Override
 	public void initialize() {
-		sprite = new Sprite(new Texture (Gdx.files.internal("assets/bullet.png").file().getAbsolutePath()));
+		if(isPlayer) {
+			Texture bullet = new Texture (Gdx.files.internal("assets/bullet.png").file().getAbsolutePath());
+			sprite = new Sprite(bullet);
+			userData = "Bullet";
+		} else {
+			Texture eBullet = new Texture (Gdx.files.internal("assets/ebullet.png").file().getAbsolutePath());
+			sprite = new Sprite(eBullet);
+			userData = "eBullet";
+		}
 		if (!Game.gameStart)
 			entityManager.addEntity(this);
 		else
@@ -69,7 +98,7 @@ public class Bullet implements IEntities{
 		fixDef.density = 10f;
 		fixDef.isSensor = true;
 		
-		myBody.createFixture(fixDef).setUserData("Bullet");
+		myBody.createFixture(fixDef).setUserData(userData);
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);	
 	}
@@ -96,6 +125,43 @@ public class Bullet implements IEntities{
 			movement.y = -bulletSpeed;
 		
 		myBody.setLinearVelocity(movement);
+	}
+	
+	public void bulletMoveTo(Vector2 target) {
+		float xVal = position.x - target.x;
+		float yVal = position.y - target.y;
+		
+		if(homingControl > 0) {
+			bulletDeathTime = 0;
+			if(xVal > 0) {
+				if(yVal < 0) {
+					myBody.setLinearVelocity(myBody.getLinearVelocity().x, 2);
+				} else {
+					myBody.setLinearVelocity(myBody.getLinearVelocity().x, (-2));
+				}
+				myBody.setLinearVelocity(-1 * Math.abs(xVal) - 5, myBody.getLinearVelocity().y);
+			} else {
+				myBody.setLinearVelocity(myBody.getLinearVelocity());
+				if(bulletDeathTime >= 3) {
+					kill();
+				}
+			}
+		} else {
+			if(xVal < 0) {
+				bulletDeathTime = 0;
+				if(yVal < 0) {
+					myBody.setLinearVelocity(myBody.getLinearVelocity().x, 2);
+				} else {
+					myBody.setLinearVelocity(myBody.getLinearVelocity().x, (-2));
+				}
+				myBody.setLinearVelocity(1 * Math.abs(xVal)+ 5, myBody.getLinearVelocity().y);
+			} else {
+				myBody.setLinearVelocity(myBody.getLinearVelocity());
+				if(bulletDeathTime >= 3) {
+					kill();
+				}
+			}
+		}
 	}
 	
 	public void setBulletSpeed(float speed) {
@@ -128,11 +194,16 @@ public class Bullet implements IEntities{
 
 	@Override
 	public void updateState(Batch batch) {
-		if(System.currentTimeMillis() > spawnTime + 1000)
+		if(System.currentTimeMillis() > spawnTime + 1000 && target == null)
 			kill();
-		//Updates the position
+		bulletDeathTime += Gdx.graphics.getDeltaTime();
 		position = myBody.getPosition();
-		bulletMove(direction);
+		if(target != null) {
+			bulletMoveTo(target.getPosition());
+		}
+		else {
+			
+		}
 		
 		sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
 		sprite.setSize(1, 1);
