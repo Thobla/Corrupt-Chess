@@ -28,7 +28,6 @@ public class Player implements IEntities{
 	//PlayerStats
 	int health = 3;
 	int attack = 1;
-
 	
 	//Player prompt
 	Sprite prompt;
