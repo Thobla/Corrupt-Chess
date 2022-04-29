@@ -111,11 +111,11 @@ public class UI {
 					System.out.println("entersGame");
 					try {
 						if(Game.isMultiplayer == null) {
-							System.out.println("creates new game");
+							System.out.println("creates new multiplayer game");
 							game.setScreen(new Game(game, Variable, false, false, null));
 						}
 						else if(!Game.isMultiplayer) {
-							System.out.println("creates new game");
+							System.out.println("creates new singleplayer game");
 							game.setScreen(new Game(game, Variable, false, false, null));
 						}
 						if((Game.isMultiplayer != null) && (Game.isHost != null)) {
