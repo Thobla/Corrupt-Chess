@@ -26,24 +26,24 @@ public class ObjectTest {
 		EntityManager manager = new EntityManager(pworld);
 		
 		int code = 1;
-		Button button = new Button(Vector2.Zero, pworld.world, manager, code);
-		Door door = new Door(Vector2.Zero, pworld.world, manager, code);
+		Button button = new Button(Vector2.Zero, pworld.world, manager, code, 0);
+		Door door = new Door(Vector2.Zero, pworld.world, manager, code, 1);
 		manager.doorMap.put(code, door);
 		
 		assertEquals(false, door.isOpen());
 		button.itemFunction(null);
 		assertEquals(true, door.isOpen());
 		
-		Button falseButton = new Button(Vector2.Zero, pworld.world, manager, 2);
+		Button falseButton = new Button(Vector2.Zero, pworld.world, manager, 2, 2);
 		falseButton.itemFunction(null);
 		assertEquals(true, door.isOpen());
 	}
 	
 	@Test
 	void playerIncreaseRatingTest() {
-		Player player = new Player(new Vector2(0,0), pworld.world);
+		Player player = new Player(new Vector2(0,0), pworld.world, "player1");
 		EntityManager mockManager = mock(EntityManager.class);
-		RatingPoint rating = new RatingPoint(new Vector2(0,0), pworld.world, mockManager);
+		RatingPoint rating = new RatingPoint(new Vector2(0,0), pworld.world, mockManager, 0);
 		
 		assertEquals(player.getScore(), 0);
 		rating.itemFunction(player);

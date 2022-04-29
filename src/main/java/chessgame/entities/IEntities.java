@@ -20,7 +20,6 @@ public interface IEntities {
 	
 	abstract void createBody();
 	
-	
 	/**
 	 * Gets the position of the entity according to the gameMap.
 	 * @return the position.
@@ -50,6 +49,7 @@ public interface IEntities {
 	 */
 	public abstract void kill();
 	
+	
 	/**
 	 * removes the Box2D body of the entity
 	 */
@@ -65,4 +65,6 @@ public interface IEntities {
 	 * And runs the methods needed before the object is ready for use.
 	 */
 	public abstract void initialize();
+	
+	public abstract int getId();
 }

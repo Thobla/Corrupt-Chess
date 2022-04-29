@@ -17,6 +17,7 @@ public class EntityAnimation {
 	IEntities entity;
 	int width;
 	int height;
+	boolean looping = true;
 	
 	TextureRegion animationFrames[];
 	Animation<?> animation;
@@ -34,7 +35,20 @@ public class EntityAnimation {
 		
 		elapsedTime = 0;
 		animation = new Animation(this.framesPerSecond, animationFrames);
-
+	}
+	public EntityAnimation(Texture spriteSheet, int frames, float framesPerSecond, IEntities entity, Vector2 spriteSize, boolean looping){
+		this.spriteSheet = spriteSheet;
+		this.frames = frames;
+		this.framesPerSecond = 1f/framesPerSecond;
+		this.entity = entity;
+		this.width = (int) spriteSize.x;
+		this.height = (int) spriteSize.y;
+		this.looping = looping;
+		
+		buildAnimation();
+		
+		elapsedTime = 0;
+		animation = new Animation(this.framesPerSecond, animationFrames);
 	}
 	
 	public void buildAnimation() {
@@ -49,12 +63,72 @@ public class EntityAnimation {
 	
 	public void render(Batch batch) {
 		elapsedTime += Gdx.graphics.getDeltaTime();
-		TextureRegion currentFrame = (TextureRegion) animation.getKeyFrame(elapsedTime, true);
+		TextureRegion currentFrame = (TextureRegion) animation.getKeyFrame(elapsedTime, looping);
 		
 		Vector2 position = entity.getPosition();
 		
 		if(batch != null) {
 			batch.draw(currentFrame, position.x, position.y, width/32, height/32);
 		}
+	}
+	public void render(Batch batch, float xPos, float yPos, boolean fix) {
+		elapsedTime += Gdx.graphics.getDeltaTime();
+		TextureRegion currentFrame = (TextureRegion) animation.getKeyFrame(elapsedTime, looping);
+		
+		if(batch != null) {
+			if(fix)
+				batch.draw(currentFrame, xPos, yPos, width/16, height/16);
+			else
+				batch.draw(currentFrame, xPos, yPos, width/32, height/32);
+		}
+	}
+	public boolean playOnce(Batch batch) {
+		elapsedTime += Gdx.graphics.getDeltaTime();
+		TextureRegion currentFrame = (TextureRegion) animation.getKeyFrame(elapsedTime, looping);
+		
+		Vector2 position = entity.getPosition();
+		
+		if(batch != null) {
+			batch.draw(currentFrame, position.x, position.y, width/32, height/32);
+		}
+		if(animation.getKeyFrameIndex(elapsedTime) == frames-1) {
+			elapsedTime = 0;
+			return false;
+		}
+		return true;
+	}
+	public boolean playOnce(Batch batch, float xPos, float yPos, Boolean state) {
+		elapsedTime += Gdx.graphics.getDeltaTime();
+		TextureRegion currentFrame = (TextureRegion) animation.getKeyFrame(elapsedTime, looping);
+		
+		Vector2 position = entity.getPosition();
+		
+		if(batch != null) {
+			batch.draw(currentFrame, xPos, yPos, width/16, height/16);
+		}
+		if(animation.getKeyFrameIndex(elapsedTime) == frames-1) {
+			elapsedTime = 0;
+			return false;
+		}
+		return true;
+	}
+	public boolean playOnce(Batch batch, float xPos, float yPos) {
+		elapsedTime += Gdx.graphics.getDeltaTime();
+		TextureRegion currentFrame = (TextureRegion) animation.getKeyFrame(elapsedTime, looping);
+		
+		if(batch != null) {
+			batch.draw(currentFrame, xPos, yPos, width/32, height/32);
+		}
+		if(animation.getKeyFrameIndex(elapsedTime) == frames-1) {
+			elapsedTime = 0;
+			return false;
+		}
+		return true;
+	}
+	
+	public void changeSheet(Texture spriteSheet) {
+		this.spriteSheet = spriteSheet;
+		buildAnimation();
+		animation = new Animation(this.framesPerSecond, animationFrames);
 	}
 }

@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityAnimation;
 import chessgame.utils.EntityManager;
+import chessgame.utils.GameSound;
 
 public class RatingPoint implements IObjects{
 	Vector2 position;
@@ -23,11 +24,13 @@ public class RatingPoint implements IObjects{
 	EntityAnimation animation;
 	Texture sprite;
 	
-	public RatingPoint(Vector2 position, World world, EntityManager entityManager){
+	int id;
+	
+	public RatingPoint(Vector2 position, World world, EntityManager entityManager, int id){
 		this.position = new Vector2(position.x/Constants.PixelPerMeter, position.y/Constants.PixelPerMeter);
 		this.world = world;
 		this.entityManager = entityManager;
-
+		this.id = id;
 	}
 	
 	public void initialize() {
@@ -103,8 +106,14 @@ public class RatingPoint implements IObjects{
 
 	@Override
 	public void itemFunction(Player player) {
+		GameSound.playSoundEffect(3, 1);
 		player.ratingScore += 7;
 		kill();
 	}
+	
+	public int getId() {
+		return id;
+	}
+
 
 }

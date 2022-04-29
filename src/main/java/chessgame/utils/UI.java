@@ -1,5 +1,12 @@
 package chessgame.utils;
 
+import chessgame.menues.*;
+
+import java.io.IOException;
+
+import chessgame.server.GameHost;
+import chessgame.server.GameServer;
+import chessgame.server.pings.FinishedPing;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
@@ -19,15 +26,17 @@ import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Null;
-
 import chessgame.app.ChessGame;
 import chessgame.app.Game;
+import chessgame.menues.HowToPlayScreen;
 import chessgame.menues.LevelSelectScreen;
 import chessgame.menues.MenuScreen;
 import chessgame.menues.OptionScreen;
+
 
 public class UI {
 	
@@ -37,9 +46,6 @@ public class UI {
     //Imported skin for UI
     static Skin skin = new Skin(Gdx.files.internal("assets/skin/chess/chess.json"));
     static Skin tempskin = new Skin(Gdx.files.internal("assets/skin/goldenspiralui/golden-ui-skin.json"));
-    static //Sound for clicking buttons
-    Sound click = Gdx.audio.newSound(Gdx.files.internal("assets/sound/menuClick.mp3"));
-    static float volume = ((float)SaveFile.readSettings()[4])/100;
 
     public static void updateScreenSize(int x, int y, boolean fullscreen) {
     	if (fullscreen)
@@ -89,11 +95,57 @@ public class UI {
             	case MenuScreen:
             		game.setScreen(new MenuScreen(game));
             		break;
+				case MultiPlayerScreen:
+            		game.setScreen(new MultiPlayerScreen(game));
+            		break;
+					case HostScreen:
+						game.setScreen(new HostScreen(game));
+					break;
+					case ClientScreen:
+						game.setScreen(new ClientScreen(game));
+					break;
             	case OptionScreen:
             		game.setScreen(new OptionScreen(game));
             		break;
 				case Game:
-					game.setScreen(new Game(game, Variable));
+					System.out.println("entersGame");
+					try {
+						if(Game.isMultiplayer == null) {
+							System.out.println("creates new multiplayer game");
+							game.setScreen(new Game(game, Variable, false, false, null));
+						}
+						else if(!Game.isMultiplayer) {
+							System.out.println("creates new singleplayer game");
+							game.setScreen(new Game(game, Variable, false, false, null));
+						}
+						if((Game.isMultiplayer != null) && (Game.isHost != null)) {
+							if (Game.isMultiplayer) {
+								Game.getClient().getClient().sendTCP(new FinishedPing(Variable));
+							}
+
+						}
+
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+					break;
+				case Host:
+					try {
+						game.setScreen(new Game(game, Variable, true, true, null));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
+				case Client:
+					try {
+						game.setScreen(new Game(game, Variable, true, false, null));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
+				case HowToPlay:
+					game.setScreen(new HowToPlayScreen(game));
 					break;
 				default:
 					break;
@@ -101,15 +153,56 @@ public class UI {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
+            	GameSound.buttonSound();
                 return true;
             }
         });
 		return button;
 	}
-    
-    
-	
+
+// quit button that checks if the player is host or not. If host, the server should stop, else nothing will happen to the server.
+	public static TextButton quitButton(Vector2 size, Vector2 position, String text, ChessGame game, GameServer server, Boolean isHost){
+		TextButton button = button(size, position, text);
+		button.addListener(new InputListener() {
+			@Override
+			public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+				game.setScreen(new MenuScreen(game));
+				if(Game.isMultiplayer) {
+					if (isHost)
+						server.stopServer();
+
+					Game.isMultiplayer = false;
+				}
+			}
+			@Override
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				//click.play(volume);
+				return true;
+			}
+		});
+
+		return button;
+	}
+
+	public static Button connectButton(Vector2 size, Vector2 position, String text, ChessGame game, int Level, TextField ipField) {
+		Button button = button(size, position, text);
+		button.addListener(new InputListener() {
+			@Override
+			public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+				try {
+					game.setScreen(new Game(game, Level, true, false, ipField.getText()));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			@Override
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				//click.play(volume);
+				return true;
+			}
+		});
+		return button;
+	}
 	
 	/**
 	 * Creates a new Label with the given size, position, text and style
@@ -138,6 +231,14 @@ public class UI {
 		return image;
 	}
 	
+	public static Image image(Vector2 size, Vector2 position, Texture texture){
+		Image image = new Image(texture);
+		image.setSize(colWidth*size.x, rowHeight*size.y);
+		image.setPosition(colWidth*position.x, rowHeight*position.y);
+		image.setAlign(Align.center);
+		return image;
+	}
+	
 	public static Slider audioSlider(Vector2 size, Vector2 position, float audiolvl, int[] controls) {
 		Slider audioSlider = new Slider(0, 100, 1, false, skin, "default-horizontal");
         audioSlider.setSize(colWidth*size.x,rowHeight*size.y);
@@ -147,23 +248,17 @@ public class UI {
         audioSlider.addListener(new InputListener() {
         	@Override
         	public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-        		controls[4] = (int) audioSlider.getValue();
-        		volume = ((float) controls[4]) / 100;
+        		GameSound.newAudiolvl((int) audioSlider.getValue(), controls);
         	}
         	@Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-        		click.play(volume);
+        		GameSound.buttonSound();
                 return true;
             }
         });
 		return audioSlider;
 	}
 	
-	public static int[] newAudiolvl(int value, int[] controls) {
-		controls[4] = value;
-		volume = value/100;
-		return controls;
-	}
 	
 	public static TextButton playButton(Vector2 size, Vector2 position, ChessGame game) {
 		TextButton button = button(size, position, "Play");
@@ -172,7 +267,11 @@ public class UI {
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
             	//If the player hasnt completed the first level yet, they will skip the levelSelectScreen and begin at lvl 1
             	if (SaveFile.readProgress()[0] == 0) {
-            		game.setScreen(new Game(game, 0));
+            		try {
+						game.setScreen(new Game(game, 0, false, false, null));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
             	}	
             	else {
             		game.setScreen(new LevelSelectScreen(game));
@@ -180,7 +279,7 @@ public class UI {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
+            	GameSound.buttonSound();
                 return true;
             }
         });
@@ -205,7 +304,7 @@ public class UI {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
+            	GameSound.buttonSound();
                 return true;
             }
         });
@@ -221,15 +320,15 @@ public class UI {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
+            	GameSound.buttonSound();
                 return true;
             }
         });
 		return button;
 	}
 	
-	static Label prompt = UI.label(new Vector2(24,2), new Vector2(0,10),"", "title-light");
-	static Label warning = UI.label(new Vector2(12,2), new Vector2(6,8), "Please select a button that is not already assigned", "default");
+	static Label prompt = UI.label(new Vector2(24,2), new Vector2(0,10),"", "default-light");
+	static Label warning = UI.label(new Vector2(12,2), new Vector2(6,8), "Please select a button that is not already assigned", "default-light");
 	
 	private static int[] changeButtonInput(TextButton button, String text, int index, Stage stage, int[] controls) {
 		
@@ -282,7 +381,7 @@ public class UI {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
+            	GameSound.buttonSound();
                 return true;
             }
         });
@@ -299,7 +398,7 @@ public class UI {
     		
     		@Override
     		public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-    			click.play(volume);
+    			GameSound.buttonSound();
     			return true;
     		}	
     	});
@@ -323,7 +422,7 @@ public class UI {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
+            	GameSound.buttonSound();
                 return true;
             }
         });
@@ -344,7 +443,7 @@ public class UI {
 		selectBox.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				click.play(volume);
+				GameSound.buttonSound();
 				controls[5] = selectBox.getSelectedIndex();
 				Vector2 newRes = Constants.resolutions[controls[5]];
 				boolean fullscreen = false;
@@ -388,11 +487,18 @@ public class UI {
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	click.play(volume);
+            	GameSound.buttonSound();
                 return true;
             }
         });
 		return checkBox;
 	}
+	
+	public static TextField textField(String text, Vector2 size, Vector2 position ) {
+        TextField textField = new TextField(text, tempskin, "default");
+        textField.setSize(size.x*colWidth, size.y*rowHeight);
+        textField.setPosition(position.x*colWidth, position.y*rowHeight);
+        return textField;
+    }
 }
 

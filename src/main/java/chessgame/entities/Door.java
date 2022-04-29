@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -28,15 +27,17 @@ public class Door implements IEntities {
 	Boolean open;
 	int activationCode;
 	
+	int myId;
 	float width = 0.5f;
 	float height = 1.5f;
 	
 	
-	public Door(Vector2 position, World world, EntityManager entityManager, int code){
+	public Door(Vector2 position, World world, EntityManager entityManager, int code, int myId){
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		this.entityManager = entityManager;
 		this.activationCode = code;
+		this.myId = myId;
 		open = false;
 	}
 	
@@ -62,7 +63,7 @@ public class Door implements IEntities {
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);
 		
-		myBody.createFixture(shape, 1000f).setUserData("Door");;
+		myBody.createFixture(shape, 1000f).setUserData("door");;
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);
 	}
@@ -100,11 +101,9 @@ public class Door implements IEntities {
 		
 		if(open) {
 			myBody.getFixtureList().get(0).setSensor(true);
-			myBody.setUserData("air");
 			sprite = spriteOpen;
 		} else {
 			myBody.getFixtureList().get(0).setSensor(false);
-			myBody.setUserData("Door");
 			sprite = spriteClosed;
 		}
 		
@@ -134,4 +133,8 @@ public class Door implements IEntities {
 	public boolean isOpen() {
 		return open;
 	}
+
+	public int getId() {
+        return this.myId;
+    }
 }

@@ -11,8 +11,9 @@ Redd kongen din ved hjelp av en rekke ulike transformasjoner, som hver gir deg e
 ## Hvordan vinne spillet
 Enn så lenge må du nå en portal for å komme videre i spillet. Dette må du gjøre uten å miste all din HP (Health) \
 
-Dette er en portal: 
-<img src="assets/portal.png" width="32" heigth="32">
+Dette er en portal:
+\ 
+<img src="ReadMeAssets/Portal.gif" width="48" heigth="48">
 
  \
 Dette må du også klare å gjøre før tiden løper ut.

@@ -32,7 +32,7 @@ public class EnemyTest {
 	 */
 	@Test	
 	void getClosestPlayerTest(){
-		Pawn pawn = new Pawn(Vector2.Zero, pworld.world, manager);
+		Pawn pawn = new Pawn(Vector2.Zero, pworld.world, manager, 0);
 		
 		Player target = pawn.getClosestPlayer(1000f);
 		assertEquals(null, target);
@@ -64,7 +64,7 @@ public class EnemyTest {
 	
 	@Test
 	void changeStateTest() {
-		Pawn pawn = new Pawn(new Vector2(2,2), pworld.world, manager);
+		Pawn pawn = new Pawn(new Vector2(2,2), pworld.world, manager, 0);
 		//Checks that the pawn starts in idleState
 		assertEquals(pawn.idleState, pawn.getCurrentState());
 		

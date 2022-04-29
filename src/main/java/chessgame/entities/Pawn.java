@@ -14,11 +14,13 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import chessgame.app.Game;
 import chessgame.entities.pawnstates.*;
 import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 
 public class Pawn implements IEnemies {
+	int myId;
 	int health;
 	int attack;
 	public float aggroRange = 6f;
@@ -30,8 +32,8 @@ public class Pawn implements IEnemies {
 	public EntityManager entityManager;
 	public Sprite sprite;
 	
-	boolean invisFrame;
-	long hitTime;
+	boolean hasTakenDamage = false;
+	float dmgTime = 0;
 	
 	//State	
 	public PawnState idleState = new PawnIdle(this);
@@ -42,21 +44,22 @@ public class Pawn implements IEnemies {
 	
 	//Entity size
 	float width = 0.5f;
-	float height = 0.5f;
+	float height = 1f;
 	float jumpSensorwidth = 0.5f;
 	
-	public Pawn (Vector2 position, World world, EntityManager entityManager) {
+	public Pawn (Vector2 position, World world, EntityManager entityManager, int id) {
 		homePosition = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.position = homePosition;
 		this.world = world;
 		this.entityManager = entityManager;
+		myId = id;
 		health = 2;
 		attack = 1;
 	}
 	
 	public void initialize() {
-		sprite = new Sprite(new Texture (Gdx.files.internal("assets/pawn/badguy.png").file().getAbsolutePath()));
-		createBody();
+		sprite = new Sprite(new Texture (Gdx.files.internal("assets/pawn/darkPawn.png").file().getAbsolutePath()));
+		createBody(); 
 		
 		//Adds the pawn to the entityManager
     	entityManager.addEntity(this);
@@ -85,9 +88,6 @@ public class Pawn implements IEnemies {
 		addNewBoxSensor(myBody, this.jumpSensorwidth, 0.05f, new Vector2(-1f, -this.height/2), "leftJumpSensor");
 		addNewBoxSensor(myBody, this.jumpSensorwidth/20, 0.05f, new Vector2(1f, -this.height/2), "rightJumpSensor");
 		addNewBoxSensor(myBody, this.jumpSensorwidth/20, 0.05f, new Vector2(-1f, -this.height/2), "leftJumpSensor");
-		
-		
-		
 	}
 	
 	public void removeBody() {
@@ -101,6 +101,7 @@ public class Pawn implements IEnemies {
 
 	@Override
 	public void move(Vector2 newPos) {
+		myBody.setTransform(newPos, 0f);
 	}
 
 	@Override
@@ -112,27 +113,31 @@ public class Pawn implements IEnemies {
 	public int getHealth() {
 		return health;
 	}
+	
+	public void setHealth(int health) {
+        this.health = health;
+    }
 
 	@Override
 	public void takeDamage(int damage) {
-		attack = 0;
+		dmgTime = 0;
+		hasTakenDamage = true;
 		if(damage <= health)
 			health -= damage;
 		else {
 			kill();
 			return;
 		}
-		
-		invisFrame = true;
-		hitTime = System.currentTimeMillis();
-			//sprite.setColor(Color.WHITE);
-		
 	}
 
 	@Override
 	public int getAttack() {
 		return attack;
 	}
+
+	public int getId() {
+        return myId;
+    }
 
 	@Override
 	public void moveTo(Vector2 target) {
@@ -154,21 +159,13 @@ public class Pawn implements IEnemies {
 		keepWithinBounds();
 		position = myBody.getPosition();
 		if(batch != null) {
+			dmgColorTime(Color.RED, 0.25f);
 			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
-			sprite.setSize(1, 1);
+			sprite.setSize(2, 2);
 			sprite.draw(batch);	
 		}
 		if(health <= 0)
-			kill();
-		
-		if(System.currentTimeMillis() < hitTime + 100) {
-			sprite.setColor(Color.RED);
-			attack = 0;
-		} else {
-			sprite.setColor(Color.WHITE);
-			attack = 1;
-		}
-		
+			kill();		
 	}
 
 	@Override
@@ -182,8 +179,8 @@ public class Pawn implements IEnemies {
 	}
 	
 	public void keepWithinBounds() {
-		if(myBody.getPosition().x > 100-width) {
-			myBody.setTransform(new Vector2(100-width, myBody.getPosition().y), 0f);
+		if(myBody.getPosition().x > Game.mapSize.x-width) {
+			myBody.setTransform(new Vector2(Game.mapSize.x-width, myBody.getPosition().y), 0f);
 		}
 		else if(myBody.getPosition().x < (0+width)) {
 			myBody.setTransform(new Vector2(0+width, myBody.getPosition().y), 0f);
@@ -242,8 +239,16 @@ public class Pawn implements IEnemies {
 		fixDef.shape = shape;
 		
 		myBody.createFixture(fixDef).setUserData(userData);
-		
-		
+	}
+	
+	public void dmgColorTime(Color color, float time) {
+		if(dmgTime > time && hasTakenDamage) {
+			sprite.setColor(Color.WHITE);
+			hasTakenDamage = false;
+		} else if(hasTakenDamage) {
+			sprite.setColor(color);
+			dmgTime += Gdx.graphics.getDeltaTime();
+		}
 	}
 
 	@Override

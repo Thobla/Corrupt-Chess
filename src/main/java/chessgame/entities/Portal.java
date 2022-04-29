@@ -15,6 +15,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.app.Game;
 import chessgame.utils.Constants;
+import chessgame.utils.EntityAnimation;
 import chessgame.utils.EntityManager;
 
 public class Portal implements IEntities {
@@ -22,22 +23,27 @@ public class Portal implements IEntities {
 	World world;
 	EntityManager entityManager;
 	Body myBody;
-	Sprite sprite;
+	EntityAnimation animation;
+	Texture sprite;
 	
-	float width = 0.5f;
-	float height = 0.5f;
+	float width = 1f;
+	float height = 1f;
+	
+	int id;
 	
 	//ParticleTesting
 	TextureAtlas particleAtlas;
 	ParticleEffect particle = new ParticleEffect();
 	
-	public Portal(Vector2 position, World world, EntityManager entityManager){
+	public Portal(Vector2 position, World world, EntityManager entityManager, int id){
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		this.entityManager = entityManager;
+		this.id = id;
 	}
 	public void initialize() {
-		sprite = new Sprite(new Texture (Gdx.files.internal("assets/objects/portal.png").file().getAbsolutePath()));
+		sprite = new Texture (Gdx.files.internal("assets/objects/Portal-Sheet.png").file().getAbsolutePath());
+		animation = new EntityAnimation(sprite, 4, 7f, this, new Vector2(64,64));
 		createBody();
 		entityManager.addEntity(this);
 	}
@@ -51,11 +57,9 @@ public class Portal implements IEntities {
 		myBody = world.createBody(bodyDef);
 		
 		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(width, height);
-		
 		FixtureDef fixDef = new FixtureDef();
 		fixDef.isSensor = true;
-		shape.setAsBox(width * 0.95f, height / 10, new Vector2(0f, height), 0);
+		shape.setAsBox(width*0.8f, height*0.8f, new Vector2(width, height), 0);
 		fixDef.shape = shape;
 		
 		myBody.createFixture(fixDef).setUserData("Portal");
@@ -80,7 +84,7 @@ public class Portal implements IEntities {
 
 	@Override
 	public Sprite getSprite() {		
-		return sprite;
+		return null;
 	}
 
 	@Override
@@ -102,10 +106,12 @@ public class Portal implements IEntities {
 	public void updateState(Batch batch) {
 		position = myBody.getPosition();
 		if(batch != null) {
-			sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);
-			sprite.setSize(1, 1);
-			sprite.draw(batch);	
+			animation.render(batch);	
 		}
+	}
+	
+	public int getId() {
+		return this.id;
 	}
 	
 }

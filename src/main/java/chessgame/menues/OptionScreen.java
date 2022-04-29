@@ -2,8 +2,6 @@ package chessgame.menues;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -22,7 +20,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import chessgame.app.ChessGame;
-import chessgame.app.Main;
 import chessgame.utils.Constants;
 import chessgame.utils.SaveFile;
 import chessgame.utils.ScreenType;
@@ -39,6 +36,8 @@ public class OptionScreen implements Screen {
     private int sprint;
     private float audiolvl;
     private int resolutionIndex;
+    private int use;
+    private int change;
 	
     //Scalable units for size and placements of UI
     int rowHeight = Gdx.graphics.getHeight() / 16;
@@ -64,6 +63,8 @@ public class OptionScreen implements Screen {
         sprint = controls[3];
         audiolvl = controls[4];  
         resolutionIndex = controls[5];
+        use = controls[7];
+        change = controls[8];
         
         //Background image
         Table backgroundTable = new Table();
@@ -80,53 +81,63 @@ public class OptionScreen implements Screen {
         stage.addActor(backButton);
         
         //Text for up key
-        Label upText = UI.label(new Vector2(2,1), new Vector2(10-2,12), "Key up", "default");
+        Label upText = UI.label(new Vector2(2,1), new Vector2(10-2,12), "Key up", "default-light");
         stage.addActor(upText);
         //Button for up key
 		TextButton upButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,12), Keys.toString(up), "jump", 0, stage, controls);
         stage.addActor(upButton);
         
         //Text for left key
-        Label leftText = UI.label(new Vector2(2,1), new Vector2(10-2,11), "Key left", "default");
+        Label leftText = UI.label(new Vector2(2,1), new Vector2(10-2,11), "Key left", "default-light");
         stage.addActor(leftText);
         //Button for left key
         TextButton leftButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,11), Keys.toString(left), "left", 1, stage, controls);
         stage.addActor(leftButton);
         
         //Text for right key
-        Label rightText = UI.label(new Vector2(2,1), new Vector2(10-2,10), "Key right", "default");
+        Label rightText = UI.label(new Vector2(2,1), new Vector2(7.8f,10), "Key right", "default-light");
         stage.addActor(rightText);
         //Button for right key
         TextButton rightButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,10), Keys.toString(right), "right", 2, stage, controls);
         stage.addActor(rightButton);
         
+        //Text for use key
+        Label useText = UI.label(new Vector2(2,1), new Vector2(8,9), "Key use", "default-light");
+        stage.addActor(useText);
+        //Button for use key
+        TextButton useButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,9), Keys.toString(use), "use", 7, stage, controls);
+        stage.addActor(useButton);
+        
         //Text for sprint key
-        Label sprintText = UI.label(new Vector2(2,1), new Vector2(10-2,9), "Key sprint", "default");
-        stage.addActor(sprintText);
+        Label changeAbiltyText = UI.label(new Vector2(2,1), new Vector2(6.8f,8), "Key change abilty", "default-light");
+        stage.addActor(changeAbiltyText);
         //Button for sprint key
-        TextButton sprintButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,9), Keys.toString(sprint), "sprint", 3, stage, controls);
-        stage.addActor(sprintButton);
+        TextButton changeAbiltyButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,8), Keys.toString(change), "change abilty", 8, stage, controls);
+        stage.addActor(changeAbiltyButton);
         
         //Button for default controls reset
         TextButton defaultControls = UI.defaultControlsButton(new Vector2(6,1.8f), new Vector2(9,3), game);
         stage.addActor(defaultControls);
         
         //Text for audioSlider
-        Label audio = UI.label(new Vector2(3,2), new Vector2(10.5f,6.8f), "Sound level", "default");
+        Label audio = UI.label(new Vector2(3,2), new Vector2(10.5f,6.3f), "Sound level", "default-light");
         stage.addActor(audio);
         //Slider for controlling audio
-        Slider audioSlider = UI.audioSlider(new Vector2(6,1.5f) ,new Vector2(9,6), audiolvl, controls);
+        Slider audioSlider = UI.audioSlider(new Vector2(6,1.5f) ,new Vector2(9,5.5f), audiolvl, controls);
         stage.addActor(audioSlider);  
         
         String[] resItems = Constants.resolutionsString;
         SelectBox<String> resolution = UI.resolutionBox(new Vector2(3,1.5f), new Vector2(13,11), resItems, resolutionIndex, controls, game);
         stage.addActor(resolution);
         
-        Label fullScreenText = UI.label(new Vector2(2.2f,1), new Vector2(13,9), "Fullscreen", "default");
+        Label fullScreenText = UI.label(new Vector2(2.2f,1), new Vector2(13,9), "Fullscreen", "default-light");
         stage.addActor(fullScreenText);
         
         CheckBox fullScreenButton = UI.fullScreenBox(new Vector2(2.2f,1), new Vector2(15,9), controls, game);
         stage.addActor(fullScreenButton);
+        
+        
+        
 	}
 	
 	public static void defaultControls() {
