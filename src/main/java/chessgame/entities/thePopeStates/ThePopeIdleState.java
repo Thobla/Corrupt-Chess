@@ -24,6 +24,8 @@ public class ThePopeIdleState extends ThePopeStates {
 		waitTime = 0;
 		attacks.add(pope.bowserState);
 		attacks.add(pope.spiralState);
+		attacks.add(pope.spiralState);
+		attacks.add(pope.spiralState);
 		attacks.add(pope.shootState);
 		attacks.add(pope.lavaState);
 	}

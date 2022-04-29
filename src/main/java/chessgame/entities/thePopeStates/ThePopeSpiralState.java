@@ -43,7 +43,7 @@ public class ThePopeSpiralState extends ThePopeStates {
 				degree -= 0.5f;
 			pope.magicShot3(degree);
 			waitTime = 0;
-		} else {
+		} else if(!left && degree == 0) {
 			pope.changeState(pope.idleState);
 		}
 	}
