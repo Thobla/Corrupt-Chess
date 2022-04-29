@@ -35,8 +35,6 @@ public class MenuScreen implements Screen {
        
 		GameSound.stopMusic();
         
-        GameSound.buttonSound();
-        
         //Background image
         Table backgroundTable = new Table();
         backgroundTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("assets/background.png"))));

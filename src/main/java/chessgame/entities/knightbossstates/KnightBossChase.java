@@ -25,7 +25,7 @@ public class KnightBossChase extends KnightBossState{
 		if (knight.getHealth() == 1)
 			counter = 50;
 		knight.telegrafChase = true;
-		GameSound.playSoundEffect(0,1);
+		//GameSound.playSoundEffect(0,1);
 	}
 	
 	@Override

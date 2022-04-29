@@ -95,21 +95,21 @@ public class OptionScreen implements Screen {
         stage.addActor(leftButton);
         
         //Text for right key
-        Label rightText = UI.label(new Vector2(2,1), new Vector2(10-2,10), "Key right", "default-light");
+        Label rightText = UI.label(new Vector2(2,1), new Vector2(7.8f,10), "Key right", "default-light");
         stage.addActor(rightText);
         //Button for right key
         TextButton rightButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,10), Keys.toString(right), "right", 2, stage, controls);
         stage.addActor(rightButton);
         
         //Text for use key
-        Label useText = UI.label(new Vector2(2,1), new Vector2(10-2,9), "Key use", "default-light");
+        Label useText = UI.label(new Vector2(2,1), new Vector2(8,9), "Key use", "default-light");
         stage.addActor(useText);
         //Button for use key
         TextButton useButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,9), Keys.toString(use), "use", 7, stage, controls);
         stage.addActor(useButton);
         
         //Text for sprint key
-        Label changeAbiltyText = UI.label(new Vector2(2,1), new Vector2(10-2,8), "Key change abilty", "default-light");
+        Label changeAbiltyText = UI.label(new Vector2(2,1), new Vector2(6.8f,8), "Key change abilty", "default-light");
         stage.addActor(changeAbiltyText);
         //Button for sprint key
         TextButton changeAbiltyButton = UI.changeButton(new Vector2(2.2f,1), new Vector2(12-2,8), Keys.toString(change), "change abilty", 8, stage, controls);
