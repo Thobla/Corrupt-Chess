@@ -2,6 +2,9 @@ package chessgame.app;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -18,7 +21,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import chessgame.entities.Button;
+import chessgame.entities.Door;
 import chessgame.entities.Player;
+import chessgame.entities.Pawn;
 import chessgame.utils.CameraStyles;
 import chessgame.utils.Constants;
 import chessgame.world.PhysicsWorld;
@@ -30,6 +36,17 @@ import chessgame.utils.Rumble;
 import chessgame.utils.SaveFile;
 import chessgame.utils.ScreenType;
 import chessgame.utils.UI;
+import chessgame.server.GameClient;
+import chessgame.server.GameHost;
+import chessgame.server.GameServer;
+import chessgame.server.IClient;
+import chessgame.server.NetworkHandler;
+import chessgame.server.DataTypes.*;
+import chessgame.server.pings.Packet;
+import chessgame.server.pings.PausePing;
+import chessgame.server.pings.PlayerAction;
+
+import org.lwjgl.system.linux.XButtonEvent;
 import chessgame.menues.MenuScreen;
 
 
@@ -48,12 +65,38 @@ public class Game implements Screen {
     static Player player;
     PlayerController playerController;
     
+    //
+    //
+    //
+    //
+    //
+
+    //Multiplayer
+    static GameServer server;
+    static IClient client;
+    public static String ipAddress;
+    public static Boolean isHost;
+    public static Boolean isMultiplayer;
+    public static boolean setPause;
+    public static boolean isWaiting = false;
+    public boolean goNext = false;
+    static public int levelIndex;
+
+
+    public Player player2;
+    static public NetworkHandler netHandler;
+
+    //
+    //
+    //
+    //
+    //
     //World generation
     PhysicsWorld gameWorld;
     Box2DDebugRenderer debugRenderer;
     
     //Entities
-    EntityManager entityManager;
+    public EntityManager entityManager;
     
     final ChessGame game;
     String map;
@@ -85,6 +128,7 @@ public class Game implements Screen {
     static TextButton retryButton;
     static TextButton quitButtonGO;
     static TextButton quitButtonP;
+    public static boolean paused;
     static Label scoreText;
     static Label timerText;
     static float timer;
@@ -97,7 +141,12 @@ public class Game implements Screen {
     public static boolean gameStart = false;
     
     
-    public Game(ChessGame game, int level) {
+    public Game(ChessGame game, int level, Boolean isMultiplayer, Boolean isHost, String IpAddress) throws IOException {
+        System.out.println("new Game");
+        Game.isMultiplayer = isMultiplayer;
+        Game.isHost = isHost;
+        Game.ipAddress = IpAddress;
+        Game.isWaiting = false;
     	this.game = game;
     	currentLevelIndex = level;
     	if(currentLevelIndex >= levels.length) 
@@ -140,6 +189,36 @@ public class Game implements Screen {
      	
     	//Updates the map
     	entityManager.updateLists();
+    	//Multiplayer innitializing network-classes
+        if (isMultiplayer && isHost) {
+            Game.server = new GameServer();
+            Game.client = new GameHost(this);
+            netHandler = new NetworkHandler();
+
+        }
+        else if(isMultiplayer && !isHost) {
+              Game.client = new GameClient(this, IpAddress);
+              netHandler = new NetworkHandler();
+        }
+
+        //
+
+        //Creates the player
+        if(!isMultiplayer) {
+            player = entityManager.addPlayer();
+        }
+        else {
+            if(isHost) {
+                player = entityManager.addPlayer();
+                player2 = entityManager.addPlayer();
+            }
+            else {
+                player2 = entityManager.addPlayer();
+                player = entityManager.addPlayer();
+            }
+        }
+        player.setController();
+
     	
 
     	initilizeUI();
@@ -168,9 +247,34 @@ public class Game implements Screen {
     		game.setScreen(new MenuScreen(game));
     		return;
     	}
+    	if(goNext) {
+            if (isMultiplayer) {
+                try {
+                    if(isHost)
+                        game.setScreen(new Game(game, levelIndex, true, true, null));
+                    else
+                        game.setScreen(new Game(game, levelIndex, true, false, Game.ipAddress));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    	
         if (!paused) {
+        	if(isMultiplayer) {
+                //Directly changing an entities position has to happen before logicstep
+                netHandler.preStep(this);
+
+            }
 	    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
 	        gameMap.render(cam);
+	      //what to do after logic step in multiplayer
+            if(isMultiplayer) {
+                //Directly changing an entities position has to happen before logicstep
+                netHandler.postStep(this);
+
+            }
 	        //Debug-render to be off when not debugging.
 	    	//debugRenderer.render(gameWorld.world, cam.combined);
 	    	
@@ -184,13 +288,27 @@ public class Game implements Screen {
 	    	entityManager.updatePlayers(batch);
 	    	batch.end();
 	    	
+	    	//needs to send this packet before entityRemoveList gets emptied 
+            //in updateLists!!!!!!
+            if(Game.isMultiplayer) {
+                Packet packet = new Packet(entityManager);
+                List<Integer> removeList = packet.removeList;
+                Game.getClient().getClient().sendTCP(removeList);
+            }
+            //
+	    	
 	    	entityManager.updateLists();
 	    	
 	    	//UI updates
 	    	scoreText.setText(player.getScore());
 	           
 	        //Camera Updates
-	    	CameraStyles.lockOnTarget(cam, player.getPosition());
+	    	if (isWaiting) {
+                CameraStyles.lockOnTarget(cam, player2.getPosition());
+            }
+            else
+                CameraStyles.lockOnTarget(cam, player.getPosition());
+	    	
 	    	if (timer <= 0) {
 	    		paused = true;
 	    		gameOverScreen();
@@ -242,6 +360,44 @@ public class Game implements Screen {
 	        stage.act();
 	        stage.draw();
         }
+        //
+        //multiplayer
+        if (isMultiplayer && setPause) {
+            pauseGame();
+            setPause = false;
+        }
+
+            if (isMultiplayer) {
+                if(isHost) {
+                    Packet packet = new Packet(entityManager);
+                    HashMap<Integer, PawnData> pawnList = packet.pawnList;
+                    HashMap<Integer, ButtonData> buttonList = packet.buttonList;
+                    HashMap<String, PlayerData> playerList = packet.playerList;
+
+                    this.client.getClient().sendTCP(pawnList);
+                    this.client.getClient().sendTCP(buttonList);
+                    this.client.getClient().sendTCP(playerList);
+
+                }
+                else {
+                    PlayerAction playerAction = new PlayerAction(entityManager);
+                    HashMap<String, PlayerData> playerList = playerAction.playerList;
+                    List<IEntities> removeList = playerAction.removeList;
+                    this.client.getClient().sendTCP(playerList);
+                    this.client.getClient().sendTCP(removeList);
+                }
+        
+        }
+
+
+
+
+        //
+        //
+        //
+        //
+        //
+
     }
     public void gameOverScreen() {  
     	paused = true;
@@ -257,12 +413,18 @@ public class Game implements Screen {
     		stage.addAction(Actions.removeActor(pauseText));
     		stage.addAction(Actions.removeActor(resumeButton));
     		stage.addAction(Actions.removeActor(quitButtonP));
+    		//pause the other client's game
+            if(isMultiplayer)
+                client.getClient().sendTCP(new PausePing(false));
     	}
     	else {
     		paused = true;	
         	stage.addActor(pauseText);
         	stage.addActor(resumeButton);
         	stage.addActor(quitButtonP);
+        	//pause the other client's game
+            if(isMultiplayer)
+                client.getClient().sendTCP(new PausePing(true));
     	}
     }
     
@@ -342,9 +504,9 @@ public class Game implements Screen {
     	
         retryButton = UI.newScreenButton(buttonSize, new Vector2(13,8), "Retry?", ScreenType.Game, game, currentLevelIndex);
     	
-    	quitButtonGO = UI.newScreenButton(buttonSize, new Vector2(8,8), "Quit", ScreenType.MenuScreen, game, 0);
-    	
-    	quitButtonP = UI.newScreenButton(buttonSize, new Vector2(10.5f,8), "Quit", ScreenType.MenuScreen, game, 0);
+        quitButtonGO = UI.quitButton(buttonSize, new Vector2(8,8), "Quit", game, server, isHost);
+        
+        quitButtonP = UI.quitButton(buttonSize, new Vector2(10.5f,8), "Quit", game, server, isHost);
     	
     	continueButton = UI.newScreenButton(buttonSize, new Vector2(10.5f,10), "Continue", ScreenType.Game, game, currentLevelIndex+1);
     	
@@ -360,4 +522,15 @@ public class Game implements Screen {
 	public void hide() {
 	
 	}
+	public Boolean getIsHost() {
+        return this.isHost;
+    }
+
+    public static IClient getClient() {
+        return client;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
 }

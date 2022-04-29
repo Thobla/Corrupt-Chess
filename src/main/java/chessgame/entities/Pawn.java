@@ -20,6 +20,7 @@ import chessgame.utils.Constants;
 import chessgame.utils.EntityManager;
 
 public class Pawn implements IEnemies {
+	int myId;
 	int health;
 	int attack;
 	public float aggroRange = 6f;
@@ -46,11 +47,12 @@ public class Pawn implements IEnemies {
 	float height = 1f;
 	float jumpSensorwidth = 0.5f;
 	
-	public Pawn (Vector2 position, World world, EntityManager entityManager) {
+	public Pawn (Vector2 position, World world, EntityManager entityManager, int id) {
 		homePosition = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.position = homePosition;
 		this.world = world;
 		this.entityManager = entityManager;
+		myId = id;
 		health = 2;
 		attack = 1;
 	}
@@ -99,6 +101,7 @@ public class Pawn implements IEnemies {
 
 	@Override
 	public void move(Vector2 newPos) {
+		myBody.setTransform(newPos, 0f);
 	}
 
 	@Override
@@ -110,6 +113,9 @@ public class Pawn implements IEnemies {
 	public int getHealth() {
 		return health;
 	}
+	public void setHealth(int health) {
+        this.health = health;
+    }
 
 	@Override
 	public void takeDamage(int damage) {
@@ -127,6 +133,9 @@ public class Pawn implements IEnemies {
 	public int getAttack() {
 		return attack;
 	}
+	public int getId() {
+        return myId;
+    }
 
 	@Override
 	public void moveTo(Vector2 target) {

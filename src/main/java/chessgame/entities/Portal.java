@@ -29,14 +29,17 @@ public class Portal implements IEntities {
 	float width = 1f;
 	float height = 1f;
 	
+	int id;
+	
 	//ParticleTesting
 	TextureAtlas particleAtlas;
 	ParticleEffect particle = new ParticleEffect();
 	
-	public Portal(Vector2 position, World world, EntityManager entityManager){
+	public Portal(Vector2 position, World world, EntityManager entityManager, int id){
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		this.entityManager = entityManager;
+		this.id = id;
 	}
 	public void initialize() {
 		sprite = new Texture (Gdx.files.internal("assets/objects/Portal-Sheet.png").file().getAbsolutePath());
@@ -105,6 +108,10 @@ public class Portal implements IEntities {
 		if(batch != null) {
 			animation.render(batch);	
 		}
+	}
+	
+	public int getId() {
+		return this.id;
 	}
 	
 }

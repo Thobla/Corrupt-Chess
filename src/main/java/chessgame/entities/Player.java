@@ -27,10 +27,12 @@ import chessgame.utils.GameSound;
 import chessgame.utils.HUD;
 
 public class Player implements IEntities{
+	public String playerName;
 	Vector2 position;
 	public World world;
 	public Body myBody;
 	public PlayerController controller;
+	String playerId;
 	//PlayerStats
 	int health = 3;
 	int attack = 1;
@@ -71,10 +73,12 @@ public class Player implements IEntities{
 	//Player size
 	float width = .5f;
 	float height = .95f;
+	int entityId;
 	
-	public Player (Vector2 position, World world, EntityManager manager) {
+	public Player (Vector2 position, World world, EntityManager manager, String id) {
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
+		playerId = id;
 		currentState = playerPawnState;
 		this.manager = manager;
 		progress =(int) SaveFile.readProgress()[0];
@@ -100,9 +104,6 @@ public class Player implements IEntities{
 		//Load rating from saveFile
 		ratingScore = SaveFile.readScore();
 		
-    	//PlayerController
-		int[] controls = SaveFile.readSettings();
-    	controller = new PlayerController(controls);
     	
     	if(controller == null) {
     		playerColor = Color.valueOf("ffeba5");
@@ -117,6 +118,9 @@ public class Player implements IEntities{
 	public Vector2 getPosition() {
 		return position;
 	}
+	public void setPosition(Vector2 position) {
+        myBody.setTransform(position, 0f);
+    }
 	/**
 	 * Moves the entity based on input vector2
 	 * @param Vector2 - movement on the axises
@@ -318,7 +322,8 @@ public class Player implements IEntities{
 			updatePosition();
 			currentState.Update();
 			
-	    	controller.myController(this);
+	    	if (controller != null)
+	    		controller.myController(this);
 			keepWithinBounds();
 	    	
 			sprite.setFlip(!facing, false);
@@ -387,4 +392,17 @@ public class Player implements IEntities{
 	public void setRatingScore(int ratingScore) {
 		this.ratingScore = ratingScore;
 	}
+	public int getId() {
+        return this.entityId;
+    }
+
+    public String getPlayerId() {
+        return this.playerId;
+    }
+
+    public void setController() {
+        //PlayerController
+        int[] controls = SaveFile.readSettings();
+        controller = new PlayerController(controls);
+    }
 }

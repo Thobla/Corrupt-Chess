@@ -21,6 +21,7 @@ public class Button implements IObjects{
 	Body myBody;
 	World world;
 	EntityManager entityManager;
+	int myId;
 	
 	boolean active = false;
 	Sprite spriteOn;
@@ -30,11 +31,13 @@ public class Button implements IObjects{
 	
 	float width = 1f;
 	float height = 0.5f;
+
 	
-	public Button(Vector2 position, World world, EntityManager entityManager, int code) {
+	public Button(Vector2 position, World world, EntityManager entityManager, int code, int myId) {
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
 		this.world = world;
 		this.entityManager = entityManager;
+		this.myId = myId;
 		activationCode = code;
 	}
 	
@@ -136,4 +139,14 @@ public class Button implements IObjects{
 			door.doorState();
 		}
 	}
+	public void itemFunction() {
+        itemFunction(null);
+    }
+
+    public int getId() {
+        return this.myId;
+    }
+    public Boolean isActive() {
+        return active;
+    }
 }

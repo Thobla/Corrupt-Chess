@@ -66,4 +66,6 @@ public interface IEntities {
 	 * And runs the methods needed before the object is ready for use.
 	 */
 	public abstract void initialize();
+	
+	public abstract int getId();
 }
