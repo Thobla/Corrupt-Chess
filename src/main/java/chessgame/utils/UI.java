@@ -232,8 +232,8 @@ public class UI {
 		return button;
 	}
 	
-	static Label prompt = UI.label(new Vector2(24,2), new Vector2(0,10),"", "title-light");
-	static Label warning = UI.label(new Vector2(12,2), new Vector2(6,8), "Please select a button that is not already assigned", "default");
+	static Label prompt = UI.label(new Vector2(24,2), new Vector2(0,10),"", "default-light");
+	static Label warning = UI.label(new Vector2(12,2), new Vector2(6,8), "Please select a button that is not already assigned", "default-light");
 	
 	private static int[] changeButtonInput(TextButton button, String text, int index, Stage stage, int[] controls) {
 		
