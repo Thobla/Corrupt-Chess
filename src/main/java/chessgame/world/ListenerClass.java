@@ -23,7 +23,6 @@ import chessgame.entities.Knight;
 import chessgame.entities.KnightBoss;
 import chessgame.entities.Player;
 import chessgame.entities.Portal;
-import chessgame.entities.ThePope;
 import chessgame.entities.TheTower;
 import chessgame.entities.Tower;
 import chessgame.server.pings.FinishedPing;
@@ -202,19 +201,6 @@ public class ListenerClass implements ContactListener{
 			tower.stopped();
 		}
 		
-		if (fixtureA.getUserData() == "circle") {
-			ThePope pope = (ThePope) fixtureA.getBody().getUserData();
-			if(fixtureB.getBody().getUserData() instanceof Player) {
-				((Player)fixtureB.getBody().getUserData()).takeDamage(pope.getAttack());
-				player.jump(200f);
-			}
-		} else if(fixtureB.getUserData() == "circle"){
-			ThePope pope = (ThePope) fixtureB.getBody().getUserData();
-			if(fixtureA.getBody().getUserData() instanceof Player) {
-				((Player)fixtureA.getBody().getUserData()).takeDamage(pope.getAttack());
-				player.jump(200f);
-			}
-		}
 		
 		//Checks if the Knight enemy has landed
 				if (fixtureA.getUserData() == "hoof" && checkJumpable(fixtureB.getUserData())) {

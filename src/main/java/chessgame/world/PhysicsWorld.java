@@ -26,7 +26,6 @@ import chessgame.entities.KnightBoss;
 import chessgame.entities.Pawn;
 import chessgame.entities.Portal;
 import chessgame.entities.RatingPoint;
-import chessgame.entities.ThePope;
 import chessgame.entities.TheTower;
 import chessgame.entities.Tower;
 import chessgame.server.DataTypes.ButtonData;
@@ -177,10 +176,6 @@ public class PhysicsWorld {
 		if(entity.getName().toLowerCase().equals("bishop")) {
 			Bishop bishop = new Bishop(pos, world, manager);
 			bishop.initialize();
-		}
-		if(entity.getName().toLowerCase().equals("thepope")) {
-			ThePope pope = new ThePope(pos, world, manager);
-			pope.initialize();
 		}
 		}
 	}
