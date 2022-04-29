@@ -63,7 +63,7 @@ Olaug (skriveansvarlig)  - Olaug har hatt ansvar for deliverables under hele pro
 
 Åsmund (testansvarlig)  -  Åsmund har hatt ansvar for tester, og da sørget for at de testene som andre har laget og seg selv er utført mest mulig effektivt. 
 
-#######  Er det noen erfaringer enten team-messig eller mtp prosjektmetodikk som er verdt å nevne? Synes teamet at de valgene dere har tatt er gode? Hvis ikke, hva kan dere gjøre annerledes for å forbedre måten teamet fungerer på?
+###### Er det noen erfaringer enten team-messig eller mtp prosjektmetodikk som er verdt å nevne? Synes teamet at de valgene dere har tatt er gode? Hvis ikke, hva kan dere gjøre annerledes for å forbedre måten teamet fungerer på?
 
 Parprogrammering har vært vanskelig, siden vi ikke møtes nok. Scrum synes vi gjennomføres bra mtp sprinter vi selv lager i trello, så vi ser ikke noe grunn til å ikke bruke scrum lengre. Vi hadde nok litt for store ambisjoner for hvor mye tid vi kom til å ha sammen, og derfor trodde vi at parprogrammering var lurt. Har vist seg å være vanskeligere enn vi trodde, men likevel så blir parprogrammering brukt når vi kan/møtes, da spesielt i slutten av prosjektet med multiplayer. 
 
