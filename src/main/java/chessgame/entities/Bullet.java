@@ -135,9 +135,9 @@ public class Bullet implements IEntities{
 			bulletDeathTime = 0;
 			if(xVal > 0) {
 				if(yVal < 0) {
-					myBody.setLinearVelocity(myBody.getLinearVelocity().x, 2);
+					myBody.setLinearVelocity(myBody.getLinearVelocity().x, 4);
 				} else {
-					myBody.setLinearVelocity(myBody.getLinearVelocity().x, (-2));
+					myBody.setLinearVelocity(myBody.getLinearVelocity().x, (-4));
 				}
 				myBody.setLinearVelocity(-1 * Math.abs(xVal) - 5, myBody.getLinearVelocity().y);
 			} else {
@@ -150,9 +150,9 @@ public class Bullet implements IEntities{
 			if(xVal < 0) {
 				bulletDeathTime = 0;
 				if(yVal < 0) {
-					myBody.setLinearVelocity(myBody.getLinearVelocity().x, 2);
+					myBody.setLinearVelocity(myBody.getLinearVelocity().x, 4);
 				} else {
-					myBody.setLinearVelocity(myBody.getLinearVelocity().x, (-2));
+					myBody.setLinearVelocity(myBody.getLinearVelocity().x, (-4));
 				}
 				myBody.setLinearVelocity(1 * Math.abs(xVal)+ 5, myBody.getLinearVelocity().y);
 			} else {

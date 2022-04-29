@@ -64,6 +64,7 @@ public class Game implements Screen {
     	"1-2",
     	"1-3",
     	"3-1",
+    	"3-3",
     	"Knight",
     };
     

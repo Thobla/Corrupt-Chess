@@ -28,6 +28,7 @@ import chessgame.entities.Portal;
 import chessgame.entities.RBButton;
 import chessgame.entities.RBlock;
 import chessgame.entities.RatingPoint;
+import chessgame.entities.ThePope;
 import chessgame.entities.TheTower;
 import chessgame.entities.Tower;
 import chessgame.utils.Constants;
@@ -191,6 +192,10 @@ public class PhysicsWorld {
 		if(entity.getName().toLowerCase().equals("bishop")) {
 			Bishop bishop = new Bishop(pos, world, manager);
 			bishop.initialize();
+		}
+		if(entity.getName().toLowerCase().equals("thepope")) {
+			ThePope pope = new ThePope(pos, world, manager);
+			pope.initialize();
 		}
 		}
 	}
