@@ -630,4 +630,10 @@ public class TheTower implements IEnemies {
 	public IState getCurrentState() {
 		return currentState;
 	}
+
+	@Override
+	public int getId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

@@ -8,13 +8,10 @@ import java.util.List;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 
-import chessgame.entities.BBlock;
-import chessgame.app.Game;
 import chessgame.entities.Door;
 import chessgame.entities.IEntities;
 import chessgame.entities.Pawn;
 import chessgame.entities.Player;
-import chessgame.entities.RBlock;
 import chessgame.server.pings.Packet;
 import chessgame.world.PhysicsWorld;
 
@@ -31,8 +28,6 @@ public class EntityManager {
     public List<Player> playerList = new ArrayList<Player>();
     public List<Vector2> playerSpawns = new ArrayList<Vector2>();
     public HashMap<Integer, Door> doorMap = new HashMap<Integer, Door>();
-    public HashMap<Integer, RBlock> rBlockMap = new HashMap<Integer, RBlock>();
-    public HashMap<Integer, BBlock> bBlockMap = new HashMap<Integer, BBlock>();
     public List<IEntities> entityWaitingList = new ArrayList<IEntities>();
     
     private PhysicsWorld pworld;

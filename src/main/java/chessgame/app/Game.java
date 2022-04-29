@@ -2,18 +2,13 @@ package chessgame.app;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-<<<<<<< HEAD
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import com.badlogic.gdx.graphics.Texture;
-=======
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -106,40 +101,10 @@ public class Game implements Screen {
     public Player player2;
     static public NetworkHandler netHandler;
 
-    //
-    //
-    //
-    //
-    //
     //World generation
     PhysicsWorld gameWorld;
     Box2DDebugRenderer debugRenderer;
-    //
-    //
-    //
-    //
-    //
-    
-    //Multiplayer
-    static GameServer server;
-    static IClient client;
-    public static String ipAddress;
-    public static Boolean isHost;
-    public static Boolean isMultiplayer;
-    public static boolean setPause;
-    public static boolean isWaiting = false;
-    public boolean goNext = false;
-    static public int levelIndex;
-    
-    
-    public Player player2;
-    static public NetworkHandler netHandler;
-    
-    //
-    //
-    //
-    //
-    //
+
     
     
     //Entities
@@ -182,29 +147,17 @@ public class Game implements Screen {
     static Label victoryText;
     static TextButton continueButton;
     
-    public static boolean paused;
     static boolean dead;
     
     public static boolean gameStart = false;
     
-<<<<<<< HEAD
-    
-    public Game(ChessGame game, int level, Boolean isMultiplayer, Boolean isHost, String IpAddress) throws IOException {
-        System.out.println("new Game");
-        Game.isMultiplayer = isMultiplayer;
-        Game.isHost = isHost;
-        Game.ipAddress = IpAddress;
-        Game.isWaiting = false;
-=======
     public Game(ChessGame game, int level, Boolean isMultiplayer, Boolean isHost, String IpAddress) throws IOException {
     	System.out.println("new Game");
     	Game.isMultiplayer = isMultiplayer;
 		Game.isHost = isHost;
 		Game.ipAddress = IpAddress;
 		Game.isWaiting = false;
-    	
-    	
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
+		
     	this.game = game;
     	currentLevelIndex = level;
     	if(currentLevelIndex >= levels.length) 
@@ -331,32 +284,13 @@ public class Game implements Screen {
 
     @Override
     public void render(float delta) {
-<<<<<<< HEAD
     	if (!gameStart)
     		gameStart = true;
-=======
     	
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
     	if(currentLevelIndex >= levels.length) {
     		game.setScreen(new MenuScreen(game));
     		return;
     	}
-<<<<<<< HEAD
-    	if(goNext) {
-            if (isMultiplayer) {
-                try {
-                    if(isHost)
-                        game.setScreen(new Game(game, levelIndex, true, true, null));
-                    else
-                        game.setScreen(new Game(game, levelIndex, true, false, Game.ipAddress));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }
-=======
-    	
     	if(goNext) {
 			if (isMultiplayer) {
 				try {
@@ -371,40 +305,22 @@ public class Game implements Screen {
 			}
 		}
     	
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
-    	
         if (!paused) {
         	if(isMultiplayer) {
-<<<<<<< HEAD
-                //Directly changing an entities position has to happen before logicstep
-                netHandler.preStep(this);
-
-            }
-=======
         		//Directly changing an entities position has to happen before logicstep
         		netHandler.preStep(this);
         		
         	}
 	        //Logic step
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
 	    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
 	        gameMap.render(cam);
-<<<<<<< HEAD
-	      //what to do after logic step in multiplayer
-            if(isMultiplayer) {
-                //Directly changing an entities position has to happen before logicstep
-                netHandler.postStep(this);
-
-            }
-=======
+	        
 	        //what to do after logic step in multiplayer
 	        if(isMultiplayer) {
         		//Directly changing an entities position has to happen before logicstep
         		netHandler.postStep(this);
         		
         	}
-	    	
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
 	        //Debug-render to be off when not debugging.
 	    	//debugRenderer.render(gameWorld.world, cam.combined);
 	    	
@@ -419,16 +335,6 @@ public class Game implements Screen {
 	    	entityManager.updatePlayers(batch);
 	    	batch.end();
 	    	
-<<<<<<< HEAD
-	    	//needs to send this packet before entityRemoveList gets emptied 
-            //in updateLists!!!!!!
-            if(Game.isMultiplayer) {
-                Packet packet = new Packet(entityManager);
-                List<Integer> removeList = packet.removeList;
-                Game.getClient().getClient().sendTCP(removeList);
-            }
-            //
-=======
 	    	
 	    	//needs to send this packet before entityRemoveList gets emptied 
 	    	//in updateLists!!!!!!
@@ -437,31 +343,18 @@ public class Game implements Screen {
 	        	List<Integer> removeList = packet.removeList;
 	        	Game.getClient().getClient().sendTCP(removeList);
 	        }
-	    	//
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
 	    	
 	    	entityManager.updateLists();
 	    	
 	    	//UI updates
 	    	scoreText.setText(player.getScore());
 	           
-<<<<<<< HEAD
-	        //Camera Updates
-	    	if (isWaiting) {
-                CameraStyles.lockOnTarget(cam, player2.getPosition());
-            }
-            else
-                CameraStyles.lockOnTarget(cam, player.getPosition());
-=======
 	    	//Camera Updates
 	    	if (isWaiting) {
 	    		CameraStyles.lockOnTarget(cam, player2.getPosition());
 	    	}
 	    	else
 	    		CameraStyles.lockOnTarget(cam, player.getPosition());
-	        
-	    	
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
 	    	
 	    	if (timer <= 0) {
 	    		paused = true;
@@ -495,14 +388,6 @@ public class Game implements Screen {
         else {
         	gameMap.render(cam);
         	
-<<<<<<< HEAD
-        	//Debug-render to be off when not debugging.
-=======
-        	/**Debug-render to be off when not debugging.
-	    	*/
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
-        	//debugRenderer.render(gameWorld.world, cam.combined);
-        	
 	    	batch.setProjectionMatrix(cam.combined);
         	//Needs to send the entityRemoveList before it gets emptied
 	    	
@@ -522,49 +407,6 @@ public class Game implements Screen {
 	        stage.act();
 	        stage.draw();
         }
-<<<<<<< HEAD
-        //
-        //multiplayer
-        if (isMultiplayer && setPause) {
-            pauseGame();
-            setPause = false;
-        }
-
-            if (isMultiplayer) {
-                if(isHost) {
-                    Packet packet = new Packet(entityManager);
-                    HashMap<Integer, PawnData> pawnList = packet.pawnList;
-                    HashMap<Integer, ButtonData> buttonList = packet.buttonList;
-                    HashMap<String, PlayerData> playerList = packet.playerList;
-
-                    this.client.getClient().sendTCP(pawnList);
-                    this.client.getClient().sendTCP(buttonList);
-                    this.client.getClient().sendTCP(playerList);
-
-                }
-                else {
-                    PlayerAction playerAction = new PlayerAction(entityManager);
-                    HashMap<String, PlayerData> playerList = playerAction.playerList;
-                    List<IEntities> removeList = playerAction.removeList;
-                    this.client.getClient().sendTCP(playerList);
-                    this.client.getClient().sendTCP(removeList);
-                }
-        
-        }
-
-
-
-
-        //
-        //
-        //
-        //
-        //
-
-    }
-=======
-        
-        
         //
         //multiplayer
         if (isMultiplayer && setPause) {
@@ -593,22 +435,6 @@ public class Game implements Screen {
 	        	}
         }
         }
-        
-        
-        
-        
-        //
-        //
-        //
-        //
-        //
-        
-        
-        
-        
-        
-    
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
     public void gameOverScreen() {  
     	paused = true;
     	dead = true;
@@ -630,13 +456,8 @@ public class Game implements Screen {
     		stage.addAction(Actions.removeActor(resumeButton));
     		stage.addAction(Actions.removeActor(quitButtonP));
     		//pause the other client's game
-<<<<<<< HEAD
             if(isMultiplayer)
                 client.getClient().sendTCP(new PausePing(false));
-=======
-    		if(isMultiplayer)
-    			client.getClient().sendTCP(new PausePing(false));
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
     	}
     	else {
 			//todo:
@@ -645,15 +466,10 @@ public class Game implements Screen {
         	stage.addActor(pauseText);
         	stage.addActor(resumeButton);
         	stage.addActor(quitButtonP);
-<<<<<<< HEAD
-        	//pause the other client's game
-            if(isMultiplayer)
-                client.getClient().sendTCP(new PausePing(true));
-=======
+
         	//unpause the other client's game
         	if(isMultiplayer)
         		client.getClient().sendTCP(new PausePing(true));
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
     	}
     }
 
@@ -734,15 +550,8 @@ public class Game implements Screen {
 
     	quitButtonGO = UI.quitButton(buttonSize, new Vector2(8,8), "Quit", game, server, isHost);
     	
-<<<<<<< HEAD
-        quitButtonGO = UI.quitButton(buttonSize, new Vector2(8,8), "Quit", game, server, isHost);
-        
-        quitButtonP = UI.quitButton(buttonSize, new Vector2(10.5f,8), "Quit", game, server, isHost);
-    	
-=======
     	quitButtonP = UI.quitButton(buttonSize, new Vector2(10.5f,8), "Quit", game, server, isHost);
 
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
     	continueButton = UI.newScreenButton(buttonSize, new Vector2(10.5f,10), "Continue", ScreenType.Game, game, currentLevelIndex+1);
     	
     	resumeButton = UI.resumeButton(buttonSize, new Vector2(10.5f,10));
@@ -757,21 +566,6 @@ public class Game implements Screen {
 	public void hide() {
 	
 	}
-<<<<<<< HEAD
-	public Boolean getIsHost() {
-        return this.isHost;
-    }
-
-    public static IClient getClient() {
-        return client;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-=======
-
-	
 	
 	public Boolean getIsHost() {
 		return this.isHost;
@@ -784,7 +578,4 @@ public class Game implements Screen {
 	public Player getPlayer() {
 		return player;
 	}
-	
-	
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
 }

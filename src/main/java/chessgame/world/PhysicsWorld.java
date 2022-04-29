@@ -16,9 +16,7 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.app.Game;
-import chessgame.entities.BBlock;
 import chessgame.entities.Bishop;
-import chessgame.entities.BlockClock;
 import chessgame.entities.Bullet;
 import chessgame.entities.Button;
 import chessgame.entities.Door;
@@ -27,8 +25,6 @@ import chessgame.entities.Knight;
 import chessgame.entities.KnightBoss;
 import chessgame.entities.Pawn;
 import chessgame.entities.Portal;
-import chessgame.entities.RBButton;
-import chessgame.entities.RBlock;
 import chessgame.entities.RatingPoint;
 import chessgame.entities.ThePope;
 import chessgame.entities.TheTower;
@@ -169,36 +165,14 @@ public class PhysicsWorld {
 				KnightBoss knightBoss = new KnightBoss(pos, world, manager);
 				knightBoss.initialize();
 			}
-			
-			if(entity.getName().toLowerCase().equals("rblock")) {
-				int rbcode =(int) entity.getProperties().get("rbcode");
-				RBlock rblock = new RBlock(pos, world, manager, rbcode);
-				rblock.initialize();	
-		}
-			if(entity.getName().toLowerCase().equals("bblock")) {
-				int rbcode =(int) entity.getProperties().get("rbcode");
-				BBlock bblock = new BBlock(pos, world, manager, rbcode);
-				bblock.initialize();
-			
-		}
 			if(entity.getName().toLowerCase().equals("music")) {
 				int index = (int) entity.getProperties().get("index");
 				GameSound.playMusic(index);
 			}
-		if(entity.getName().toLowerCase().equals("rbbutton")) {
-			int rbcode =(int) entity.getProperties().get("rbcode");
-			RBButton rbbutton = new RBButton(pos, world, manager, rbcode);
-			rbbutton.initialize();
-		}
 		if(entity.getName().toLowerCase().equals("size")) {
 			int xVal = (int) entity.getProperties().get("xVal");
 			int yVal = (int) entity.getProperties().get("yVal");
 			Game.mapSize = new Vector2(xVal, yVal);
-		}
-		if(entity.getName().toLowerCase().equals("blockclock")) {
-			float timer = (float) entity.getProperties().get("timer");
-			BlockClock blockclock = new BlockClock(manager, timer);
-			blockclock.initialize();
 		}
 		if(entity.getName().toLowerCase().equals("bishop")) {
 			Bishop bishop = new Bishop(pos, world, manager);
@@ -211,7 +185,6 @@ public class PhysicsWorld {
 		}
 	}
 	
-<<<<<<< HEAD
 	public static IEntities spawnEntity(EntityType type, Vector2 pos, World world, EntityManager manager) {
 		if (type == EntityType.Knight) {
 			Knight knight = new Knight(new Vector2(pos.x*Constants.PixelPerMeter,pos.y*Constants.PixelPerMeter), world, manager);
@@ -224,13 +197,8 @@ public class PhysicsWorld {
 		}
 		return null;
 	}
-=======
 	int nextId() {
 		currentId ++;
 		return currentId - 1;
 	}
-	
-	
-	
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
 }

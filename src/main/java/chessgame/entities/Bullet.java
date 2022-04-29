@@ -227,5 +227,10 @@ public class Bullet implements IEntities{
 		sprite.setSize(1, 1);
 		sprite.draw(batch);
 	}
+	@Override
+	public int getId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

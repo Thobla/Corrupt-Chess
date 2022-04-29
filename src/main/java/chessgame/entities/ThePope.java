@@ -291,4 +291,10 @@ public class ThePope implements IEnemies {
 		currentState.Enter();
 	}
 
+	@Override
+	public int getId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

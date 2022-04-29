@@ -30,16 +30,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Null;
-
 import chessgame.app.ChessGame;
 import chessgame.app.Game;
-<<<<<<< HEAD
 import chessgame.menues.HowToPlayScreen;
 import chessgame.menues.LevelSelectScreen;
 import chessgame.menues.MenuScreen;
 import chessgame.menues.OptionScreen;
-=======
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
+
 
 public class UI {
 	
@@ -179,7 +176,7 @@ public class UI {
 			}
 			@Override
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				click.play(volume);
+				//click.play(volume);
 				return true;
 			}
 		});
@@ -200,7 +197,7 @@ public class UI {
 			}
 			@Override
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				click.play(volume);
+				//click.play(volume);
 				return true;
 			}
 		});

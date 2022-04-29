@@ -23,14 +23,11 @@ import chessgame.entities.Knight;
 import chessgame.entities.KnightBoss;
 import chessgame.entities.Player;
 import chessgame.entities.Portal;
-<<<<<<< HEAD
 import chessgame.entities.ThePope;
 import chessgame.entities.TheTower;
 import chessgame.entities.Tower;
-=======
 import chessgame.server.pings.FinishedPing;
 import chessgame.server.pings.NextMapPing;
->>>>>>> refs/remotes/origin/multiplayer_+_aasmund_+_mikal_Merge
 import chessgame.utils.EntityManager;
 import chessgame.utils.GameSound;
 import chessgame.utils.Rumble;
