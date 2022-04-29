@@ -20,7 +20,7 @@ ButtonPress
   index: -1
 Sprite-0002 (1)
   rotate: false
-  xy: 1, 97
+  xy: 1, 177
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -34,7 +34,7 @@ boootooon (3)
   index: -1
 knob
   rotate: false
-  xy: 241, 259
+  xy: 515, 792
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -55,30 +55,23 @@ smollButtonHover
   index: -1
 smollButtonPress
   rotate: false
-  xy: 241, 389
+  xy: 1, 307
   size: 158, 160
   orig: 158, 160
   offset: 0, 0
   index: -1
 Checkbox_false
   rotate: false
-  xy: 1269, 1623
+  xy: 755, 1100
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 Checkbox_true
   rotate: false
-  xy: 401, 485
+  xy: 1269, 1623
   size: 64, 64
   orig: 64, 64
-  offset: 0, 0
-  index: -1
-List
-  rotate: false
-  xy: 1, 227
-  size: 238, 240
-  orig: 238, 240
   offset: 0, 0
   index: -1
 akoljefhujiasdgfohuasdfgohj
@@ -90,7 +83,7 @@ akoljefhujiasdgfohuasdfgohj
   index: -1
 selection
   rotate: false
-  xy: 755, 1148
+  xy: 241, 533
   size: 119, 16
   orig: 119, 16
   offset: 0, 0
