@@ -130,7 +130,7 @@ public class ListenerClass implements ContactListener{
 				Portal.victory();
 			else if((Game.isHost && player.getPlayerId() == "player1") || (!Game.isHost && player.getPlayerId() == "player2")) {
 				Game.isWaiting = true;
-				Game.getClient().getClient().sendTCP(new FinishedPing(true));
+
 			}
 			else if(((!Game.isHost && player.getPlayerId() == "player1") || (Game.isHost && player.getPlayerId() == "player2"))&& Game.isWaiting) {
 				Game.getClient().getClient().sendTCP(new NextMapPing());
@@ -143,7 +143,6 @@ public class ListenerClass implements ContactListener{
 				Portal.victory();
 			else if((Game.isHost && player.getPlayerId() == "player1") || (!Game.isHost && player.getPlayerId() == "player2")) {
 				Game.isWaiting = true;
-				Game.getClient().getClient().sendTCP(new FinishedPing(true));
 			}
 			else if(((!Game.isHost && player.getPlayerId() == "player1") || (Game.isHost && player.getPlayerId() == "player2")) && Game.isWaiting) {
 				Game.getClient().getClient().sendTCP(new NextMapPing());

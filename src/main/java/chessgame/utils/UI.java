@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import chessgame.server.GameHost;
 import chessgame.server.GameServer;
+import chessgame.server.pings.FinishedPing;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
@@ -117,12 +118,10 @@ public class UI {
 							game.setScreen(new Game(game, Variable, false, false, null));
 						}
 						if((Game.isMultiplayer != null) && (Game.isHost != null)) {
-							if (Game.isHost) {
-								game.setScreen(new Game(game, Variable, true, true, null));
+							if (Game.isMultiplayer) {
+								Game.getClient().getClient().sendTCP(new FinishedPing());
 							}
-							if (!Game.isHost && Game.isMultiplayer){
-								game.setScreen(new Game(game, Variable, true, false, Game.ipAddress));
-							}
+
 						}
 
 					} catch (IOException e) {

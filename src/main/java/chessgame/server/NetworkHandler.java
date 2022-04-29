@@ -79,6 +79,9 @@ public class NetworkHandler {
 				
 			}
 		}
+		if(object instanceof FinishedPing){
+				game.goNext = true;
+		}
 		if(object instanceof HashMap) {
 			if (!(game.entityManager == null)) {
 				if(!game.getIsHost()) {

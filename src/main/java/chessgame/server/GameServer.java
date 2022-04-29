@@ -1,5 +1,6 @@
 package chessgame.server;
 
+import chessgame.server.pings.FinishedPing;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
@@ -23,7 +24,7 @@ public class GameServer {
             Network.register(server);
             server.addListener(new Listener() {
                 public void received(Connection connection, Object object) {
-                    if (object instanceof HashMap || object instanceof List || object instanceof PausePing || object instanceof NextMapPing) {
+                    if (object instanceof HashMap || object instanceof List || object instanceof PausePing || object instanceof NextMapPing || object instanceof FinishedPing) {
                         server.sendToAllTCP(object);
                     }
                 }

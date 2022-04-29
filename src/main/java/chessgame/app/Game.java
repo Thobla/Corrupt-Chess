@@ -79,6 +79,7 @@ public class Game implements Screen {
     public static Boolean isMultiplayer;
     public static boolean setPause;
     public static boolean isWaiting = false;
+    public boolean goNext = false;
     
     
     public Player player2;
@@ -238,8 +239,19 @@ public class Game implements Screen {
     		return;
     	}
     	
-    	
-    	
+    	if(goNext) {
+			if (isMultiplayer) {
+				try {
+					if(isHost)
+						game.setScreen(new Game(game, currentLevelIndex+1, true, true, null));
+					else
+						game.setScreen(new Game(game, currentLevelIndex+1, true, false, Game.ipAddress));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			}
+		}
     	
     	
         if (!paused) {
