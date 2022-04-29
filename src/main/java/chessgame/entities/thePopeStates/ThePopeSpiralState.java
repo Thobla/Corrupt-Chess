@@ -28,7 +28,6 @@ public class ThePopeSpiralState extends ThePopeStates {
 
 	@Override
 	public void Update() {
-		pope.useMagicCircle = false;
 		waitTime += Gdx.graphics.getDeltaTime();
 		if(degree == 30) {
 			left = false;

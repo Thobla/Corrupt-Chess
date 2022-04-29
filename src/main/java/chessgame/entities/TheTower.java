@@ -562,7 +562,7 @@ public class TheTower implements IEnemies {
 	@Override
 	public void kill() {
 		
-		//Make something that spawns a portal.
+		//Opens the doors for the boss room
 		if(entityManager.doorMap.containsKey(0)) {
 			Door door = entityManager.doorMap.get(0);
 			door.doorState();

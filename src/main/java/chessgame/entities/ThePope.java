@@ -14,7 +14,6 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.app.Game;
-import chessgame.entities.thePopeStates.ThePopeBowserState;
 import chessgame.entities.thePopeStates.ThePopeDormantState;
 import chessgame.entities.thePopeStates.ThePopeIdleState;
 import chessgame.entities.thePopeStates.ThePopeLavaState;
@@ -25,6 +24,7 @@ import chessgame.utils.Constants;
 import chessgame.utils.Direction;
 import chessgame.utils.EntityAnimation;
 import chessgame.utils.EntityManager;
+import chessgame.utils.HUD;
 
 public class ThePope implements IEnemies {
 	
@@ -49,7 +49,6 @@ public class ThePope implements IEnemies {
 	public ThePopeStates dormantState = new ThePopeDormantState(this);
 	public ThePopeStates idleState = new ThePopeIdleState(this);
 	public ThePopeStates lavaState = new ThePopeLavaState(this);
-	public ThePopeStates bowserState = new ThePopeBowserState(this);
 	public ThePopeStates shootState = new ThePopeShootState(this);
 	public ThePopeStates spiralState = new ThePopeSpiralState(this);
 	
@@ -59,23 +58,11 @@ public class ThePope implements IEnemies {
 	//Difficulty scaling
 	public int magicRoations = 3;
 	public int bullets = 5;
-	public int lavaSpeed;
-	
 	
 	float width = 0.5f;
 	float height = 1.75f;
 	
 	Sprite sprite;
-	//Bowser attack
-	boolean hello = true;
-	public boolean useMagicCircle;
-	Player magicTarget;
-	public boolean magicLock = false;
-	private int magicCounter;
-	private int magicTime;
-	Vector2 targetPosition = new Vector2(0,0);
-	public boolean finishMagicCircle = true;
-	private int magicCastTime;
 	
 	public ThePope(Vector2 position, World world, EntityManager entityManager) {
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
@@ -102,10 +89,6 @@ public class ThePope implements IEnemies {
 		dormantAnimation = new EntityAnimation(dormantSheet, 8, 16f, this, new Vector2(64f, 128f));
 		Texture triggerSheet = new Texture (Gdx.files.internal("assets/Enemies/ThePope/triggerSheet.png").file().getAbsolutePath());
 		triggerAnimation = new EntityAnimation(triggerSheet, 13, 16f, this, new Vector2(64f, 128f));
-		magicSheet = new Texture (Gdx.files.internal("assets/Enemies/ThePope/magicCircle.png").file().getAbsolutePath());
-		magicCircle = new EntityAnimation(magicSheet, 9, 9f, this, new Vector2(96f, 96f));
-		Texture magicLockSheet = new Texture (Gdx.files.internal("assets/Enemies/ThePope/magicCircleLockOn.png").file().getAbsolutePath());
-		magicCircleLockOn = new EntityAnimation(magicLockSheet, 4, 8f, this, new Vector2(96f, 96f));
 		createBody();
 	}
 	
@@ -172,53 +155,23 @@ public class ThePope implements IEnemies {
 
 	@Override
 	public void kill() {
+		
+		//Opens the doors for the boss room
+		if(entityManager.doorMap.containsKey(0)) {
+			Door door = entityManager.doorMap.get(0);
+			door.doorState();
+		}
+		if(entityManager.doorMap.containsKey(1)) {
+			Door door = entityManager.doorMap.get(1);
+			door.doorState();
+		}
+		
 		entityManager.removeEntity(this);
 	}
 
 	@Override
 	public void removeBody() {
 		world.destroyBody(myBody);
-	}
-	
-	public void magicCircleAttack(int time) {
-		useMagicCircle = true;
-		magicTarget = null;
-		magicLock = false;
-		magicCounter = 0;
-		magicTime = time;
-	}
-	public void magicCircleController(Batch batch) {
-		Boolean insideLock = true;
-		if(useMagicCircle) {
-			if(magicTarget == null) {
-				magicTarget = getClosestPlayer(100f);
-			}
-			if(!magicLock) {
-				if(magicCounter < magicTime /2)
-					targetPosition = new Vector2(magicTarget.getPosition().x, magicTarget.position.y);
-				if(magicCounter < magicTime)
-					insideLock = magicCircle.playOnce(batch, targetPosition.x - (96/32), targetPosition.y-(96/32), true);
-				else
-					magicLock = true;
-				if(!insideLock)
-					magicCounter++;
-			} else {
-				if(hello)
-					magicCastTime = 0;
-				hello = magicCircleLockOn.playOnce(batch, targetPosition.x - (96/32), targetPosition.y -(96/32), true);
-				if(hello && magicCastTime > .2f) {
-					magicCircleHitBox(batch);
-					hello = true;
-				}
-			}
-		}
-	}
-	public void magicCircleHitBox(Batch batch) {
-		useMagicCircle = false;
-		magicCircleLockOn.playOnce(batch, targetPosition.x - (96/32), targetPosition.y -(96/32), true);
-		circle.setActive(true);
-		circle.setTransform(new Vector2(targetPosition.x, targetPosition.y), 0);
-		//circle.setActive(false);
 	}
 	
 	public void magicShot() {
@@ -237,15 +190,14 @@ public class ThePope implements IEnemies {
 
 	@Override
 	public void updateState(Batch batch) {
+		if(!HUD.bossBar && !dormant)
+			HUD.enableBossHP("Ludwig the Bishop");
+		
 		myBody.setLinearVelocity(0, myBody.getLinearVelocity().y);
-		magicCastTime += Gdx.graphics.getDeltaTime();
 		currentState.Update();
 		
 		position = myBody.getPosition();
 		if(batch != null) {
-			if(useMagicCircle) {
-				magicCircleController(batch);
-			}
 			if(dormant) {
 				if(trigger) {
 					dormant = triggerAnimation.playOnce(batch, position.x - 2*width, position.y - height);
@@ -279,6 +231,8 @@ public class ThePope implements IEnemies {
 			kill();
 			return;
 		}
+		
+		HUD.BossHp(5, damage);
 	}
 
 	@Override

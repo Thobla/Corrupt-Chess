@@ -25,7 +25,6 @@ public class ThePopeLavaState extends ThePopeStates {
 
 	@Override
 	public void Update() {
-		pope.useMagicCircle = false;
 		waitTime += Gdx.graphics.getDeltaTime();
 		
 		if(waitTime > .2f) {

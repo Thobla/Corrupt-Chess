@@ -33,7 +33,6 @@ public class ThePopeShootState extends ThePopeStates{
 
 	@Override
 	public void Update() {
-		pope.useMagicCircle = false;
 		waitTime += Gdx.graphics.getDeltaTime();
 		restTime += Gdx.graphics.getDeltaTime();
 		

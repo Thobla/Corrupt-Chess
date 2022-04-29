@@ -17,6 +17,15 @@ public class ThePopeDormantState extends ThePopeStates{
 	
 	@Override
 	public void Enter() {
+		EntityManager entityManager = pope.entityManager;
+		if(entityManager.doorMap.containsKey(0)) {
+			Door door = entityManager.doorMap.get(0);
+			door.doorState();
+		}
+		if(entityManager.doorMap.containsKey(1)) {
+			Door door = entityManager.doorMap.get(1);
+			door.doorState();
+		}
 	}
 
 	@Override
@@ -35,8 +44,12 @@ public class ThePopeDormantState extends ThePopeStates{
 		}
 		if(pope.getClosestPlayer(3.5f) != null) {
 			EntityManager entityManager = pope.entityManager;
+			
 			if(entityManager.doorMap.containsKey(0)) {
 				Door door = entityManager.doorMap.get(0);
+				door.doorState();}
+			if(entityManager.doorMap.containsKey(1)) {
+				Door door = entityManager.doorMap.get(1);
 				door.doorState();
 			}
 			pope.trigger = true;
