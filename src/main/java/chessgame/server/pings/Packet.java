@@ -32,11 +32,11 @@ public class Packet {
 	public HashMap<Integer, ButtonData> buttonList= new HashMap<>();
 	public HashMap<String, PlayerData> playerList= new HashMap<>();
 	
-	public List<IEntities> removeList = new ArrayList<>();
+	public List<Integer> removeList = new ArrayList<>();
 	
 	public Packet(EntityManager entityManager){
 		this.entityManager = entityManager;
-		removeList = entityManager.entityRemoveList;
+		removeList = entityManager.RemoveListToId();
 		addAllEntities();
 	}
 	

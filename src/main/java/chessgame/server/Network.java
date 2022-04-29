@@ -21,8 +21,6 @@ public class Network {
         //kryo.register(chessgame.server.Packet.class);
         
         Kryo kryo = endPoint.getKryo();
-        //kryo.register(PlayerAction.class);
-        //kryo.register(Packet.class);
         kryo.register(java.util.HashMap.class);
         kryo.register(ButtonData.class);
         kryo.register(PawnData.class);

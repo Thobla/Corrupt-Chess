@@ -1,5 +1,6 @@
 package chessgame.server;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,7 +26,7 @@ import chessgame.utils.EntityManager;
 public class NetworkHandler {
 	private Vector2 playerPosition;
 	private HashMap<Integer, PawnData> pawnMap = new HashMap<>();
-	private List<IEntities> removeList;
+	private List<Integer> removeList = new ArrayList<>();
 	private boolean playerFinished = false;
 	private boolean bothFinished = false;
 	
@@ -47,8 +48,9 @@ public class NetworkHandler {
 	}
 	
 	public void syncDeaths(Game game) {
-		if(removeList != null)
-			game.entityManager.updateLists(removeList);
+		if(removeList != null && !removeList.isEmpty())
+			System.out.println("removeListNotEmpty");
+			game.entityManager.updateRemoveList(removeList);
 	}
 	
 	public void ifBothFinished(Game game) {
@@ -61,8 +63,11 @@ public class NetworkHandler {
 		alterP2Position(game);
 		if(!playerFinished)
 			alterPawnPositions(game);
-		syncDeaths(game);
 		ifBothFinished(game);
+	}
+	
+	public void postStep(Game game) {
+		syncDeaths(game);
 	}
 	
 	
@@ -71,9 +76,8 @@ public class NetworkHandler {
 	public void handlePacket(Object object, Game game) {
 		if(object instanceof List) {
 			if(!(game.entityManager == null)) {
-				if(!game.getIsHost()) {
-					this.removeList = (List<IEntities>) object;
-				}
+				removeList = (List<Integer>) object;
+				
 			}
 		}
 		if(object instanceof HashMap) {

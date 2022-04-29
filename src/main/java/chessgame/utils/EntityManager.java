@@ -8,10 +8,12 @@ import java.util.List;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 
+import chessgame.app.Game;
 import chessgame.entities.Door;
 import chessgame.entities.IEntities;
 import chessgame.entities.Pawn;
 import chessgame.entities.Player;
+import chessgame.server.pings.Packet;
 import chessgame.world.PhysicsWorld;
 
 
@@ -46,6 +48,7 @@ public class EntityManager {
     public void removeEntity(IEntities entity) {
     	if(!entityRemoveList.contains(entity))
     		entityRemoveList.add(entity);
+    	
     }
     /**
      * Adds the enemy to the enemyList.
@@ -85,6 +88,45 @@ public class EntityManager {
     		entity.updateState(batch);
     	}
     }
+    
+    public void updateRemoveList(List<Integer> removeList) {
+    	if(removeList != null) {
+	    	List<IEntities> myRemoveList = idListToEntities(removeList);
+	    	System.out.println(myRemoveList.isEmpty());
+	    	
+	    	updateLists(myRemoveList);
+	    	}
+    	
+	    }
+    
+    
+    public List<Integer> RemoveListToId(){
+    	List<Integer> newIdList = new ArrayList<Integer>();
+    	for(IEntities entity : entityRemoveList) {
+    		newIdList.add(entity.getId());
+    	}
+		return newIdList;
+    }
+    //Ikkje serlig efferktiv, kan muligens effektiviseres
+    private List<IEntities> idListToEntities(List<Integer> removeList){
+    	List<IEntities> newRemoveList = new ArrayList<IEntities>();
+    	
+    		for(IEntities entity : entityList) {
+    			/////////////tenk not id should be entity
+    			for(int id : removeList) {
+    				System.out.println(entity.getId());
+    				System.out.println(id);
+    				if(entity.getId() == id) {
+    					newRemoveList.add(entity);
+    				}
+    			}
+    		
+    	}
+    	
+		return newRemoveList;
+    }
+    
+    
     /**
      * Adds a spawn location toS the spawnLocation list
      * @param pos

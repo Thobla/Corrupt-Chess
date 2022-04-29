@@ -106,7 +106,16 @@ public class UI {
             		game.setScreen(new OptionScreen(game));
             		break;
 				case Game:
+					System.out.println("entersGame");
 					try {
+						if(Game.isMultiplayer == null) {
+							System.out.println("creates new game");
+							game.setScreen(new Game(game, Variable, false, false, null));
+						}
+						else if(!Game.isMultiplayer) {
+							System.out.println("creates new game");
+							game.setScreen(new Game(game, Variable, false, false, null));
+						}
 						if((Game.isMultiplayer != null) && (Game.isHost != null)) {
 							if (Game.isHost) {
 								game.setScreen(new Game(game, Variable, true, true, null));
@@ -114,9 +123,6 @@ public class UI {
 							if (!Game.isHost && Game.isMultiplayer){
 								game.setScreen(new Game(game, Variable, true, false, Game.ipAddress));
 							}
-						}
-						else{
-							game.setScreen(new Game(game, Variable, false, false, null));
 						}
 
 					} catch (IOException e) {

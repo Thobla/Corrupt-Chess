@@ -252,7 +252,11 @@ public class Game implements Screen {
 	    	gameWorld.logicStep(Gdx.graphics.getDeltaTime());
 	        gameMap.render(cam);
 	        //what to do after logic step in multiplayer
-	        
+	        if(isMultiplayer) {
+        		//Directly changing an entities position has to happen before logicstep
+        		netHandler.postStep(this);
+        		
+        	}
 	    	
 	        //Debug-render to be off when not debugging.
 	    	//debugRenderer.render(gameWorld.world, cam.combined);
@@ -260,6 +264,12 @@ public class Game implements Screen {
 	        
 	    	batch.setProjectionMatrix(cam.combined);
 	    	
+	    	//needs to send this packet before entityRemoveList gets emptied in updateEntities
+	    	if(Game.isMultiplayer) {
+	        	Packet packet = new Packet(entityManager);
+	        	List<Integer> removeList = packet.removeList;
+	        	Game.getClient().getClient().sendTCP(removeList);
+	        }
 	    	
 	    	//Updates all entities
 	    	batch.begin();
@@ -315,7 +325,9 @@ public class Game implements Screen {
         	//debugRenderer.render(gameWorld.world, cam.combined);
         	
 	    	batch.setProjectionMatrix(cam.combined);
-        	
+        	//Needs to send the entityRemoveList before it gets emptied
+	    	
+	    	
 	    	//Updates all entities
 	    	batch.begin();
 	    	entityManager.updateEntities(batch);
@@ -346,11 +358,11 @@ public class Game implements Screen {
 	        		HashMap<Integer, PawnData> pawnList = packet.pawnList;
 	        		HashMap<Integer, ButtonData> buttonList = packet.buttonList;
 	        		HashMap<String, PlayerData> playerList = packet.playerList;
-	        		List<IEntities> removeList = packet.removeList;
+	        		
 	        		this.client.getClient().sendTCP(pawnList);
 	        		this.client.getClient().sendTCP(buttonList);
 	        		this.client.getClient().sendTCP(playerList);
-	        		this.client.getClient().sendTCP(removeList);
+	        		
 	        	}
 	        	else {
 	        		PlayerAction playerAction = new PlayerAction(entityManager);
@@ -414,8 +426,6 @@ public class Game implements Screen {
     }
 
     public static void victoryScreen() {
-		//todo:
-		// muligens legge til server wait her.
     	paused = true;
     	dead = true;
     	stage.addActor(victoryText);
