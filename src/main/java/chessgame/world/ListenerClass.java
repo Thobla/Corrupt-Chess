@@ -45,7 +45,7 @@ public class ListenerClass implements ContactListener{
 		Fixture fixtureA = contact.getFixtureA();
 		Fixture fixtureB = contact.getFixtureB();
 		
-		//checks if the fixture is the "groundCheck-platter" for the player, if it is, we change the players controller isGrounded to true
+		//checks if the fixture is the "groundCheck-platter" for the player, if it is, we change the players controller isGrounded to true		
 		if(fixtureA.getUserData() == "foot" && checkJumpable(fixtureB.getUserData())) {
 		 	player = (Player) fixtureA.getBody().getUserData();
 		 	player.controller.isGrounded = true;

@@ -16,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import chessgame.app.Game;
 import chessgame.entities.BBlock;
 import chessgame.entities.Bishop;
+import chessgame.entities.BlockClock;
 import chessgame.entities.Bullet;
 import chessgame.entities.Button;
 import chessgame.entities.Door;
@@ -181,6 +182,11 @@ public class PhysicsWorld {
 			int xVal = (int) entity.getProperties().get("xVal");
 			int yVal = (int) entity.getProperties().get("yVal");
 			Game.mapSize = new Vector2(xVal, yVal);
+		}
+		if(entity.getName().toLowerCase().equals("blockclock")) {
+			float timer = (float) entity.getProperties().get("timer");
+			BlockClock blockclock = new BlockClock(manager, timer);
+			blockclock.initialize();
 		}
 		if(entity.getName().toLowerCase().equals("bishop")) {
 			Bishop bishop = new Bishop(pos, world, manager);

@@ -26,7 +26,7 @@ public class BishopIdleState extends BishopState{
 		Player player = bishop.getClosestPlayer(10f);
 		if(player != null) {
 			
-			if(Math.abs(player.getPosition().x - bishop.getPosition().x) < 3.5f)
+			if(Math.abs(player.getPosition().x - bishop.getPosition().x) < 3.5f && player.getPosition().y < bishop.getPosition().y -.3f)
 				bishop.changeState(bishop.bishopRetreatState);
 			else if(waitTime > 1f) {
 				bishop.changeState(bishop.bishopFireState);

@@ -63,6 +63,7 @@ public class BBlock implements IEntities {
 		
 		myBody.createFixture(shape, 1000f).setUserData("BBlock");;
 		myBody.setFixedRotation(true);
+		myBody.getFixtureList().get(0).setFriction(0);
 		myBody.setUserData(this);
 	}
 
@@ -103,7 +104,7 @@ public class BBlock implements IEntities {
 			sprite = spriteOff;
 		} else {
 			myBody.getFixtureList().get(0).setSensor(false);
-			myBody.setUserData("BBlock");
+			myBody.getFixtureList().get(0).setUserData("BBlock");
 			sprite = spriteOn;
 		}
 		

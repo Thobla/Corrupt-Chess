@@ -63,6 +63,7 @@ public class RBlock implements IEntities {
 		
 		myBody.createFixture(shape, 1000f).setUserData("RBlock");;
 		myBody.setFixedRotation(true);
+		myBody.getFixtureList().get(0).setFriction(0);
 		myBody.setUserData(this);
 	}
 
@@ -103,7 +104,7 @@ public class RBlock implements IEntities {
 			sprite = spriteOff;
 		} else {
 			myBody.getFixtureList().get(0).setSensor(false);
-			myBody.setUserData("RBlock");
+			myBody.getFixtureList().get(0).setUserData("RBlock");
 			sprite = spriteOn;
 		}
 		

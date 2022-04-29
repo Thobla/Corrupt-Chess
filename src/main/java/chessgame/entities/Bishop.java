@@ -85,8 +85,6 @@ public class Bishop implements IEnemies {
 		
 		//adding a weakpoint
 		addNewBoxSensor(myBody, width * 0.95f, height / 3.5f, new Vector2(0f, height), "weakpoint");
-				
-
 	}
 	
 	

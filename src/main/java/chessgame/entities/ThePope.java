@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import chessgame.utils.Constants;
@@ -14,6 +17,7 @@ public class ThePope implements IEnemies {
 	Vector2 position;
 	World world;
 	EntityManager entityManager;
+	Body myBody;
 	
 	float health;
 	float attack;
@@ -32,44 +36,61 @@ public class ThePope implements IEnemies {
 	
 	@Override
 	public void createBody() {
-		// TODO Auto-generated method stub
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.type = BodyDef.BodyType.DynamicBody;
+		bodyDef.position.set(new Vector2(position.x, position.y));
 		
+		myBody = world.createBody(bodyDef);
+		
+		PolygonShape shape = new PolygonShape();
+		shape.setAsBox(width, height);
+		
+		myBody.createFixture(shape, 1f).setUserData("Enemy");;
+		myBody.setFixedRotation(true);
+		myBody.setUserData(this);
+		
+		//adding a weakpoint
+		addNewBoxSensor(myBody, width * 0.95f, height / 3.5f, new Vector2(0f, height), "weakpoint");
 	}
 
 	@Override
 	public Vector2 getPosition() {
-		// TODO Auto-generated method stub
-		return null;
+		return position;
 	}
 
 	@Override
 	public void move(Vector2 newPos) {
-		// TODO Auto-generated method stub
+	}
+	
+	void addNewBoxSensor(Body thisBody, float length, float height, Vector2 centerPosition, String userData) {
+		PolygonShape shape = new PolygonShape();
+		//creating a fixture that will serve as a sensor for the pawn
+		FixtureDef fixDef = new FixtureDef();
+		fixDef.isSensor = true;
+		shape.setAsBox(length, height, centerPosition, 0);
+		fixDef.shape = shape;
 		
+		myBody.createFixture(fixDef).setUserData(userData);
 	}
 
 	@Override
 	public Sprite getSprite() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Body getBody() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void kill() {
-		// TODO Auto-generated method stub
-		
+		entityManager.removeEntity(this);
 	}
 
 	@Override
 	public void removeBody() {
-		// TODO Auto-generated method stub
-		
+		world.destroyBody(myBody);
 	}
 
 	@Override
