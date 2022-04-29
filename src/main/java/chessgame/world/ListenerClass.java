@@ -338,6 +338,7 @@ public class ListenerClass implements ContactListener{
 		unjumpable.add("Bullet");
 		unjumpable.add("sky");
 		unjumpable.add("ColorBlockOff");
+		unjumpable.add("Wave");
 	}
 	
 	private <T> boolean checkJumpable(T name) {
