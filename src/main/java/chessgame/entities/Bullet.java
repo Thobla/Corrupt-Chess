@@ -69,7 +69,7 @@ public class Bullet implements IEntities{
 		} else {
 			Texture eBullet = new Texture (Gdx.files.internal("assets/ebullet.png").file().getAbsolutePath());
 			sprite = new Sprite(eBullet);
-			userData = "eBullet";
+			userData = "EnemyBullet";
 		}
 		if (!Game.gameStart)
 			entityManager.addEntity(this);

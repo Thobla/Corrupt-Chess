@@ -3,6 +3,7 @@ package chessgame.entities.bishopStates;
 import com.badlogic.gdx.Gdx;
 
 import chessgame.entities.Bishop;
+import chessgame.entities.Player;
 
 public class BishopIdleState extends BishopState{
 	
@@ -22,11 +23,15 @@ public class BishopIdleState extends BishopState{
 	@Override
 	public void Update() {
 		waitTime += Gdx.graphics.getDeltaTime();
-		
-		if(bishop.getClosestPlayer(10f) != null)
-			if(waitTime > 1f) {
+		Player player = bishop.getClosestPlayer(10f);
+		if(player != null) {
+			
+			if(Math.abs(player.getPosition().x - bishop.getPosition().x) < 2f)
+				bishop.changeState(bishop.bishopRetreatState);
+			else if(waitTime > 1f) {
 				bishop.changeState(bishop.bishopFireState);
 			}
+		}
 	}
 
 }

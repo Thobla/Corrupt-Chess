@@ -14,8 +14,10 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import chessgame.app.Game;
 import chessgame.entities.bishopStates.BishopFireState;
 import chessgame.entities.bishopStates.BishopIdleState;
+import chessgame.entities.bishopStates.BishopRetreatState;
 import chessgame.entities.bishopStates.BishopState;
 import chessgame.entities.pawnstates.PawnState;
 import chessgame.utils.Constants;
@@ -35,6 +37,7 @@ public class Bishop implements IEnemies {
 	IState currentState;
 	public BishopState bishopIdleState = new BishopIdleState(this);
 	public BishopState bishopFireState = new BishopFireState(this);
+	public BishopState bishopRetreatState = new BishopRetreatState(this);
 	
 	boolean hasTakenDamage = false;
 	float dmgTime = 0;
@@ -76,7 +79,7 @@ public class Bishop implements IEnemies {
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(width, height);
 		
-		myBody.createFixture(shape, 1000f).setUserData("Enemy");;
+		myBody.createFixture(shape, 1f).setUserData("Enemy");;
 		myBody.setFixedRotation(true);
 		myBody.setUserData(this);
 		
@@ -85,6 +88,8 @@ public class Bishop implements IEnemies {
 				
 
 	}
+	
+	
 
 	@Override
 	public Vector2 getPosition() {
@@ -119,6 +124,7 @@ public class Bishop implements IEnemies {
 
 	@Override
 	public void updateState(Batch batch) {
+		keepWithinBounds();
 		position = myBody.getPosition();
 		currentState.Update();
 		if(batch != null) {
@@ -132,8 +138,6 @@ public class Bishop implements IEnemies {
 	public void shootBullet(Player player) {
 		Bullet b = new Bullet(this.position, world, entityManager, Direction.UP, player);
 		b.initialize();
-		System.out.println(b.position);
-		System.out.println(position);
 	}
 
 	@Override
@@ -203,8 +207,15 @@ public class Bishop implements IEnemies {
 
 	@Override
 	public void keepWithinBounds() {
-		// TODO Auto-generated method stub
-		
+		if(myBody.getPosition().x > Game.mapSize.x-width) {
+			myBody.setTransform(new Vector2(Game.mapSize.x-width, myBody.getPosition().y), 0f);
+		}
+		else if(myBody.getPosition().x < (0+width)) {
+			myBody.setTransform(new Vector2(0+width, myBody.getPosition().y), 0f);
+		}
+		if(myBody.getPosition().y < 0) {
+			kill();
+		}
 	}
 
 	@Override
