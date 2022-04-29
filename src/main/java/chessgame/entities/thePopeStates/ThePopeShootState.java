@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
 import chessgame.entities.ThePope;
+import chessgame.utils.Direction;
 
 public class ThePopeShootState extends ThePopeStates{
 	ThePope pope;
@@ -32,12 +33,13 @@ public class ThePopeShootState extends ThePopeStates{
 
 	@Override
 	public void Update() {
+		pope.useMagicCircle = false;
 		waitTime += Gdx.graphics.getDeltaTime();
 		restTime += Gdx.graphics.getDeltaTime();
 		
-		System.out.println(returnAir);
 		if(waitTime > 1f && bulletAmount > 0) {
 			pope.magicShot();
+			pope.magicShot2(Direction.DOWN);
 			waitTime = 0;
 			bulletAmount--;
 		}

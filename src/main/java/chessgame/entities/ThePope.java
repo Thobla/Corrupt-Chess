@@ -19,6 +19,7 @@ import chessgame.entities.thePopeStates.ThePopeDormantState;
 import chessgame.entities.thePopeStates.ThePopeIdleState;
 import chessgame.entities.thePopeStates.ThePopeLavaState;
 import chessgame.entities.thePopeStates.ThePopeShootState;
+import chessgame.entities.thePopeStates.ThePopeSpiralState;
 import chessgame.entities.thePopeStates.ThePopeStates;
 import chessgame.utils.Constants;
 import chessgame.utils.Direction;
@@ -42,6 +43,7 @@ public class ThePope implements IEnemies {
 	public EntityAnimation castingAnimation;
 	public EntityAnimation magicCircle;
 	public EntityAnimation magicCircleLockOn;
+	Texture magicSheet;
 	
 	public ThePopeStates currentState;
 	public ThePopeStates dormantState = new ThePopeDormantState(this);
@@ -49,6 +51,7 @@ public class ThePope implements IEnemies {
 	public ThePopeStates lavaState = new ThePopeLavaState(this);
 	public ThePopeStates bowserState = new ThePopeBowserState(this);
 	public ThePopeStates shootState = new ThePopeShootState(this);
+	public ThePopeStates spiralState = new ThePopeSpiralState(this);
 	
 	int health;
 	int attack;
@@ -64,6 +67,7 @@ public class ThePope implements IEnemies {
 	
 	Sprite sprite;
 	//Bowser attack
+	boolean hello = true;
 	public boolean useMagicCircle;
 	Player magicTarget;
 	public boolean magicLock = false;
@@ -71,6 +75,7 @@ public class ThePope implements IEnemies {
 	private int magicTime;
 	Vector2 targetPosition = new Vector2(0,0);
 	public boolean finishMagicCircle = true;
+	private int magicCastTime;
 	
 	public ThePope(Vector2 position, World world, EntityManager entityManager) {
 		this.position = new Vector2(position.x/Constants.PixelPerMeter+width, position.y/Constants.PixelPerMeter+height);
@@ -97,7 +102,7 @@ public class ThePope implements IEnemies {
 		dormantAnimation = new EntityAnimation(dormantSheet, 8, 16f, this, new Vector2(64f, 128f));
 		Texture triggerSheet = new Texture (Gdx.files.internal("assets/Enemies/ThePope/triggerSheet.png").file().getAbsolutePath());
 		triggerAnimation = new EntityAnimation(triggerSheet, 13, 16f, this, new Vector2(64f, 128f));
-		Texture magicSheet = new Texture (Gdx.files.internal("assets/Enemies/ThePope/magicCircle.png").file().getAbsolutePath());
+		magicSheet = new Texture (Gdx.files.internal("assets/Enemies/ThePope/magicCircle.png").file().getAbsolutePath());
 		magicCircle = new EntityAnimation(magicSheet, 9, 9f, this, new Vector2(96f, 96f));
 		Texture magicLockSheet = new Texture (Gdx.files.internal("assets/Enemies/ThePope/magicCircleLockOn.png").file().getAbsolutePath());
 		magicCircleLockOn = new EntityAnimation(magicLockSheet, 4, 8f, this, new Vector2(96f, 96f));
@@ -198,8 +203,13 @@ public class ThePope implements IEnemies {
 				if(!insideLock)
 					magicCounter++;
 			} else {
-				finishMagicCircle = magicCircleLockOn.playOnce(batch, targetPosition.x - (96/32), targetPosition.y -(96/32), true);
-				magicCircleHitBox(batch);
+				if(hello)
+					magicCastTime = 0;
+				hello = magicCircleLockOn.playOnce(batch, targetPosition.x - (96/32), targetPosition.y -(96/32), true);
+				if(hello && magicCastTime > .2f) {
+					magicCircleHitBox(batch);
+					hello = true;
+				}
 			}
 		}
 	}
@@ -216,9 +226,19 @@ public class ThePope implements IEnemies {
 		Bullet b = new Bullet(this.position, world, entityManager, Direction.UP, player);
 		b.initialize();
 	}
+	public void magicShot2(Direction dir) {
+		Bullet b = new Bullet(this.position, world, entityManager, dir, false);
+		b.initialize();
+	}
+	public void magicShot3(float degree) {
+		Bullet b = new Bullet(this.position, world, entityManager, degree, false);
+		b.initialize();
+	}
 
 	@Override
 	public void updateState(Batch batch) {
+		myBody.setLinearVelocity(0, myBody.getLinearVelocity().y);
+		magicCastTime += Gdx.graphics.getDeltaTime();
 		currentState.Update();
 		
 		position = myBody.getPosition();

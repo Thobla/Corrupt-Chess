@@ -29,7 +29,7 @@ public class ThePopeDormantState extends ThePopeStates{
 				pope.getBody().applyLinearImpulse(new Vector2(0,1f), pope.getPosition(), true);
 			} else {
 				pope.getBody().setLinearVelocity(Vector2.Zero);
-				pope.changeState(pope.shootState);
+				pope.changeState(pope.idleState);
 			}
 			
 		}

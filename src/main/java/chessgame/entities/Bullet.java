@@ -25,7 +25,8 @@ public class Bullet implements IEntities{
 	
 	float width = .5f;
 	float height = .5f;
-	float bulletSpeed;
+	float bulletSpeed = 8;
+	float degrees;
 	
 	float bulletDeathTime = 0;
 	
@@ -40,13 +41,20 @@ public class Bullet implements IEntities{
 	boolean isPlayer;
 	
 	//direction of the bullet
-	Direction direction;
+	Direction direction = null;
 	
 	public Bullet (Vector2 position, World world, EntityManager entityManager, Direction direction, boolean isPlayer) {
 		this.position = position;
 		this.world = world;
 		this.entityManager = entityManager;
 		this.direction = direction;
+		this.isPlayer = isPlayer;
+	}
+	public Bullet (Vector2 position, World world, EntityManager entityManager, float degrees, boolean isPlayer) {
+		this.position = position;
+		this.world = world;
+		this.entityManager = entityManager;
+		this.degrees = degrees;
 		this.isPlayer = isPlayer;
 	}
 	public Bullet (Vector2 position, World world, EntityManager entityManager, Direction direction, Player target) {
@@ -127,6 +135,14 @@ public class Bullet implements IEntities{
 		myBody.setLinearVelocity(movement);
 	}
 	
+	public void bulletMove(float degree) {
+		Vector2 movement = new Vector2(0, 0);
+		movement.x = (float) (Math.cos(degree) * bulletSpeed);
+		movement.y = (float) (Math.sin(degree) * bulletSpeed);
+		
+		myBody.setLinearVelocity(movement);
+	}
+	
 	public void bulletMoveTo(Vector2 target) {
 		float xVal = position.x - target.x;
 		float yVal = position.y - target.y;
@@ -194,15 +210,17 @@ public class Bullet implements IEntities{
 
 	@Override
 	public void updateState(Batch batch) {
-		if(System.currentTimeMillis() > spawnTime + 1000 && target == null)
+		if(System.currentTimeMillis() > spawnTime + 3000 && target == null)
 			kill();
 		bulletDeathTime += Gdx.graphics.getDeltaTime();
 		position = myBody.getPosition();
 		if(target != null) {
 			bulletMoveTo(target.getPosition());
 		}
-		else {
-			
+		else if(direction != null){
+			bulletMove(direction);
+		} else {
+			bulletMove(degrees);
 		}
 		
 		sprite.setPosition(position.x - sprite.getWidth()/2 , position.y - sprite.getHeight()/2);

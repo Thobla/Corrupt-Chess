@@ -1,9 +1,12 @@
 package chessgame.entities.thePopeStates;
 
+import com.badlogic.gdx.Gdx;
+
 import chessgame.entities.ThePope;
 
 public class ThePopeBowserState extends ThePopeStates {
 	ThePope pope;
+	float waitTime;
 	public ThePopeBowserState(ThePope pope) {
 		this.pope = pope;
 	}
@@ -14,12 +17,16 @@ public class ThePopeBowserState extends ThePopeStates {
 		pope.magicLock = false;
 		pope.finishMagicCircle = true;
 		pope.magicCircleAttack(pope.magicRoations);
+		waitTime = 0;
 	}
 
 	@Override
 	public void Update() {
-		if(pope.finishMagicCircle && pope.magicLock)
-			pope.changeState(pope.idleState);
+		waitTime += Gdx.graphics.getDeltaTime();
+		if(waitTime > 3f) {
+			if(pope.finishMagicCircle && pope.magicLock)
+				pope.changeState(pope.idleState);
+		}
 	}
 
 }
