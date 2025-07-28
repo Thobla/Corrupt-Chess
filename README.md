@@ -2,7 +2,7 @@
 
 ![TitleImage](https://github.com/Thobla/Corrupt-Chess/blob/master/ReadMeAssets/corruptChess.png?raw=true)
 
-I orrupted Chess spiller du som en sjakkbrikke som har som mål å redde sin konge frå mostanderen. \
+I Corrupted Chess spiller du som en sjakkbrikke som har som mål å redde sin konge frå mostanderen. \
 for å gjøre dette må du gå igjennom en rekke "levels" med farlige fiender og hindringer. \
 Redd kongen din ved hjelp av en rekke ulike transformasjoner, som hver gir deg en litt spesiell evne.
 
