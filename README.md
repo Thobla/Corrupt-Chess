@@ -6,17 +6,16 @@ I Corrupted Chess spiller du som en sjakkbrikke som har som mål å redde sin ko
 for å gjøre dette må du gå igjennom en rekke "levels" med farlige fiender og hindringer. \
 Redd kongen din ved hjelp av en rekke ulike transformasjoner, som hver gir deg en litt spesiell evne.
 
-<img src="https://github.com/Thobla/Corrupt-Chess/blob/master/ReadMeAssets/pawnboi.gif?raw=true" width="200" heigth="200">
-
+![Pawnboi](https://github.com/Thobla/Corrupt-Chess/blob/master/ReadMeAssets/pawnboi.gif?raw=true)
 
 ## Hvordan vinne spillet
-Enn så lenge må du nå en portal for å komme videre i spillet. Dette må du gjøre uten å miste all din HP (Health) \
+Enn så lenge må du nå en portal for å komme videre i spillet. Dette må du gjøre uten å miste all din HP (Health)
 
 Dette er en portal:
 
-![PortalImage](ReadMeAssets/Portal.gif)
+![PortalImage](https://github.com/Thobla/Corrupt-Chess/blob/master/ReadMeAssets/Portal.gif?raw=true)
 
- \
+ 
 Dette må du også klare å gjøre før tiden løper ut.
 
 ## Spillets - Status
