@@ -8,6 +8,8 @@ Redd kongen din ved hjelp av en rekke ulike transformasjoner, som hver gir deg e
 
 <img src="https://github.com/Thobla/Corrupt-Chess/blob/master/ReadMeAssets/pawnboi.gif?raw=true" width="200" heigth="200">
 
+![Pawnboi](https://github.com/Thobla/Corrupt-Chess/blob/master/ReadMeAssets/pawnboi.gif?raw=true)
+
 ## Hvordan vinne spillet
 Enn så lenge må du nå en portal for å komme videre i spillet. Dette må du gjøre uten å miste all din HP (Health) \
 
