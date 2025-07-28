@@ -1,6 +1,5 @@
-[![pipeline status](https://git.app.uib.no/6-chicks/chess-game/badges/master/pipeline.svg)](https://git.app.uib.no/6-chicks/chess-game/-/commits/master)
 # Chess Game
-![alt text](ReadMeAssets/corruptChess.png)
+![TitleImage](https://github.com/Thobla/Corrupt-Chess/blob/master/ReadMeAssets/corruptChess.png?raw=true)
 
 I Corrupted Chess spiller du som en sjakkbrikke som har som mål å redde sin konge frå mostanderen. \
 for å gjøre dette må du gå igjennom en rekke "levels" med farlige fiender og hindringer. \
